@@ -32,12 +32,15 @@ function job_setup()
     state.LuzafRing = M(false, "Luzaf's Ring")
     state.warned = M(false)
     state.CapacityMode = M(false, 'Capacity Point Mantle')
+	state.Buff['Triple Shot'] = buffactive['Triple Shot'] or false
 	
 	-- Override certain gear from swapping, very important for QD bullets
 	no_swap_gear = S{"Warp Ring", "Dim. Ring (Dem)", "Dim. Ring (Holla)", "Dim. Ring (Mea)",
               "Trizek Ring", "Echad Ring", "Facility Ring", "Capacity Ring",
               "Dev. Bul. Pouch", "Chr. Bul. Pouch", "Liv. Bul. Pouch"}
 	no_shoot_ammo = S{"Animikii Bullet", "Hauksbok Bullet"}
+
+    --define_roll_values()
 end
 
 
@@ -94,12 +97,13 @@ function init_gear_sets()
     --------------------------------------
     -- Start defining the sets
     --------------------------------------
+    
 	-- Precast sets to enhance JAs
     sets.precast.JA['Triple Shot'] = {body="Chasseur's Frac +3"}
-    sets.precast.JA['Snake Eye'] = {legs="Lanun Trews +1"}
+    sets.precast.JA['Snake Eye'] = {legs="Lanun Trews +3"}
     sets.precast.JA['Wild Card'] = {feet="Lanun Bottes +3"}
     sets.precast.JA['Random Deal'] = {body="Lanun Frac +3"}
-    sets.precast.JA['Fold'] = {hands="Lanun Gants +1"} 
+    sets.precast.JA['Fold'] = {hands="Lanun Gants +3"} 
     sets.CapacityMantle = {back="Aptitude Mantle +1"}
     
     sets.precast.CorsairRoll = {
@@ -127,7 +131,7 @@ function init_gear_sets()
     sets.precast.CorsairRoll["Allies' Roll"] = set_combine(sets.precast.CorsairRoll, {hands="Chasseur's Gants +3"})
     
     sets.precast.LuzafRing = {right_ring="Luzaf's Ring"}
-    sets.precast.FoldDoubleBust = {hands="Lanun Gants +1"}
+    sets.precast.FoldDoubleBust = {hands="Lanun Gants +3"}
     
     sets.precast.CorsairShot = {}
     
@@ -155,8 +159,7 @@ function init_gear_sets()
     sets.precast.FC = {
 		--head="Carmine Mask +1", --Path D
 		head={ name="Herculean Helm", augments={'Mag. Acc.+12 "Mag.Atk.Bns."+12','Enmity-1','MND+4','Mag. Acc.+11','"Mag.Atk.Bns."+14',}},
-		--body="Taeon Tabard", --Fast Cast
-		body="Malignance Tabard",
+		body={ name="Taeon Tabard", augments={'DEF+19','"Fast Cast"+4',}},
 		hands={ name="Leyline Gloves", augments={'Accuracy+14','Mag. Acc.+13','"Mag.Atk.Bns."+13','"Fast Cast"+2',}},
 		--legs="Herculean Trousers" --Fast Cast
 		legs="Malignance Tights",
@@ -177,19 +180,28 @@ function init_gear_sets()
     sets.precast.FC.Utsusemi = set_combine(sets.precast.FC, {
 		--body="Passion Jacket",
 		neck="Magoraga Beads",
-})
+	})
     
-    sets.precast.RA = { -- +49 (+42) Rapid Shot, +46 (+61) Snapshot
-		head="Chass. Tricorne +3", --18/0
-		--body="Oshosi Vest +1", --0/14
-		body="Laksa. Frac +3", --20/0
-		hands="Lanun Gants +3",
-		legs="Adhemar Kecks +1", augments={'Path: D',}, --13/10
-		feet="Meg. Jam. +2", --0/10
-		neck={ name="Comm. Charm +2", augments={'Path: A',}}, --0/4
-		waist="Yemaya Belt", --0/5
-		back={ name="Camulus's Mantle", augments={'AGI+20','Rng.Acc.+20 Rng.Atk.+20','Rng.Acc.+8','"Store TP"+10','Mag. Evasion+15',}}, --0/10
+    sets.precast.RA = { -- +51 Rapid Shot, +62 Snapshot
+		head="Chass. Tricorne +3", --18 RS/0 SS
+		--body="Oshosi Vest +1", --0 RS/14 SS
+		body="Laksa. Frac +3", --20 RS/0 SS
+		hands="Lanun Gants +3", --0 RS/13 SS
+		legs="Adhemar Kecks +1", augments={'Path: D',}, --13 RS/10 SS 
+		feet="Meg. Jam. +2", --0 RS/10 SS
+		neck={ name="Comm. Charm +2", augments={'Path: A',}}, --0 RS/4 SS
+		waist="Yemaya Belt", --0 RS/5 SS
+		back={ name="Camulus's Mantle", augments={'AGI+20','Rng.Acc.+20 Rng.Atk.+20','Rng.Acc.+8','"Store TP"+10','Mag. Evasion+15',}}, --0 RS/10 SS
 	}
+	
+	sets.precast.RA.Flurry1 = set_combine(sets.precast.RA, {
+        body="Laksa. Frac +3",
+    }) --47/52
+
+    sets.precast.RA.Flurry2 = set_combine(sets.precast.RA.Flurry1, {
+        hands="Carmine Fin. Ga. +1", --8/11
+        feet="Pursuer's Gaiters", --0/10
+        }) --32/73
 
 	--------------------------------------
     -- Weaponskill sets
@@ -391,7 +403,6 @@ function init_gear_sets()
 		waist="Yemaya Belt",
 		left_ear="Dedition Earring",
 		left_ring="Mummu Ring",
-		--right_ring="Chirich Ring +1",
 		right_ring="Chirich Ring +1",
 		back={ name="Camulus's Mantle", augments={'AGI+20','Mag. Acc+20 /Mag. Dmg.+20','AGI+10','Weapon skill damage +10%','Mag. Evasion+15',}},
 	}
@@ -417,7 +428,7 @@ function init_gear_sets()
 		left_ring="Dingir Ring",
 		right_ring="Ilabrat Ring",
 		back={ name="Camulus's Mantle", augments={'AGI+20','Rng.Acc.+20 Rng.Atk.+20','Rng.Acc.+8','"Store TP"+10','Mag. Evasion+15',}},
-}
+	}
 
     sets.midcast.RA.Acc = set_combine(sets.midcast.RA, {
 		body="Laska. Frac +3",
@@ -426,7 +437,7 @@ function init_gear_sets()
 		--left_ear="Belya Earring",
 		--left_ring="Hajduk Ring +1",
 		right_ring="Regal Ring",
-})
+	})
 
 	sets.midcast.RA.StoreTP = set_combine(sets.midcast.RA, {
 		feet="Malignance Boots",
@@ -434,7 +445,15 @@ function init_gear_sets()
 		left_ear="Dedition Earring",
 		--left_ring="Chirich Ring +1",
 		right_ring="Chirich Ring +1",
-})	
+	})
+	
+	sets.midcast.RA.TripleShot = set_combine(sets.midcast.RA, {
+		--head="Oshosi Mask +1",
+		body="Chasseur's Frac +3",
+		hands="Lanun Gants +3",
+		--legs="Osh. Trousers +1",
+		--feet="Osh. Leggings +1",
+	})
     
 	--------------------------------------
 	-- Miscelanious Sets
@@ -467,7 +486,7 @@ function init_gear_sets()
 		neck="Sanctity Necklace",
 		left_ear="Dawn Earring",
 		left_ring="Shneddick Ring",
-        right_ring="Chirich Ring +1",
+        right_ring="Chirich Ring +1",		
 	})
 
     sets.idle.Town = {
@@ -499,7 +518,7 @@ function init_gear_sets()
 		left_ring="Vengeful Ring",
 		right_ring="Defending Ring",
 		back={ name="Camulus's Mantle", augments={'INT+20','Eva.+20 /Mag. Eva.+20','"Snapshot"+10','Mag. Evasion+15',}},
-})
+	})
 
     sets.defense.MDT = sets.defense.PDT
 
@@ -563,6 +582,14 @@ function init_gear_sets()
 })
 
 	-------------------------------------
+    -- Dual Wield sets
+	-------------------------------------
+	-- Requires the GearInfo plugin to function
+	-- properly. Otherwise will fallback to engaged sets.
+    -- * /NIN DW Trait: 25% DW
+    -- * /DNC DW Trait: 15% DW
+	
+		-------------------------------------
     -- Dual Wield sets
 	-------------------------------------
 	-- Requires the GearInfo plugin to function
@@ -778,14 +805,35 @@ function job_precast(spell, action, spellMap, eventArgs)
     end
 end
 
+-- Checks if Flurry is cast upon us, and uses the appropriate RA precast set.
 function job_post_precast(spell, action, spellMap, eventArgs)
-    if spell.type == 'WeaponSkill' then
+    if spell.action_type == 'Ranged Attack' then
+        special_ammo_check()
+        if flurry == 2 then
+            equip(sets.precast.RA.Flurry2)
+        elseif flurry == 1 then
+            equip(sets.precast.RA.Flurry1)
+        end
+	elseif spell.type == 'WeaponSkill' then
         if state.CapacityMode.value then
             equip(sets.CapacityMantle)
         end
     end
 end
 
+function job_buff_change(buff,gain)
+-- If we gain or lose any flurry buffs, adjust gear.
+    if S{'flurry'}:contains(buff:lower()) then
+        if not gain then
+            flurry = nil
+            --add_to_chat(122, "Flurry status cleared.")
+        end
+        if not midaction() then
+            handle_equipping_gear(player.status)
+        end
+    end
+end
+	
 function job_midcast(spell, action, spellMap, eventArgs)
     if spell.type == 'CorsairShot' or spell.action_type == 'Ranged Attack' then
         if state.CapacityMode.value then
@@ -804,7 +852,6 @@ end
 -------------------------------------------------------------------------------------------------------------------
 -- Customization hooks for idle and melee sets, after they've been automatically constructed.
 -------------------------------------------------------------------------------------------------------------------
-
 -- Return a customized weaponskill mode to use for weaponskill sets.
 -- Don't return anything if you're not overriding the default value.
 function get_custom_wsmode(spell, action, default_wsmode)
@@ -845,20 +892,10 @@ end
 function job_buff_change(buff, gain)
 end
 
--- Warp ring rule, for any buff being lost
-    if S{'Warp', 'Vocation', 'Capacity'}:contains(player.equipment.left_ring) then
-        if not buffactive['Dedication'] then
-            disable('left_ring')
-        end
-    else
-        enable('left_ring')
-    end
-
 
 -------------------------------------------------------------------------------------------------------------------
 -- User code that supplements self-commands.
 -------------------------------------------------------------------------------------------------------------------
-
 -- Called by the 'update' self-command, for common needs.
 -- Set eventArgs.handled to true if we don't want automatic equipping of gear.
 function job_handle_equipping_gear(playerStatus, eventArgs)
@@ -923,10 +960,36 @@ end
 -------------------------------------------------------------------------------------------------------------------
 -- Utility functions specific to this job.
 -------------------------------------------------------------------------------------------------------------------
+--Read incoming packet to differentiate between Haste/Flurry I and II
+windower.register_event('action',
+    function(act)
+        --check if you are a target of spell
+        local actionTargets = act.targets
+        playerId = windower.ffxi.get_player().id
+        isTarget = false
+        for _, target in ipairs(actionTargets) do
+            if playerId == target.id then
+                isTarget = true
+            end
+        end
+        if isTarget == true then
+            if act.category == 4 then
+                local param = act.param
+                if param == 845 and flurry ~= 2 then
+                    --add_to_chat(122, 'Flurry Status: Flurry I')
+                    flurry = 1
+                elseif param == 846 then
+                    --add_to_chat(122, 'Flurry Status: Flurry II')
+                    flurry = 2
+              end
+            end
+        end
+    end
+	)
+
 -- Defines if we are dual-wielding, and if so determines
 -- how much dual-wield we need for a given haste value. 
 -- This requires the Gearinfo addon to work properly.
--- To Do: Can we have seperate callouts for both /NIN and /DNC?
 function determine_haste_group()
     classes.CustomMeleeGroups:clear()
     if DW == true
@@ -980,6 +1043,9 @@ function gearinfo(cmdParams, eventArgs)
 end
 
 function get_combat_form()
+	if state.Buff['Triple Shot'] then
+		state.CombatForm:set('TripleShot')
+    end
     if cor_sub_weapons:contains(player.equipment.main) then
       if player.equipment.main == gear.Stave then
         if S{'NIN', 'DNC'}:contains(player.sub_job) and cor_sub_weapons:contains(player.equipment.sub) then
@@ -1020,32 +1086,6 @@ function use_ra(spell)
     end
     send_command('@wait '..delay..'; input /ra <t>')
 end
-
---function check_gear()
-	--if no_swap_gear:contains(player.equipment.left_ring) then
-        --disable("left_ring")
-    --else
-        --enable("left_ring")
-    --end
-    --if no_swap_gear:contains(player.equipment.right_ring) then
-        --disable("right_ring")
-    --else
-        --enable("right_ring")
-    --end
---end
-
---windower.register_event('zone change',
-    --function()
-        --if no_swap_gear:contains(player.equipment.left_ring) then
-            --enable("left_ring")
-            --equip(sets.idle)
-        --end
-		--if no_swap_gear:contains(player.equipment.right_ring) then
-            --enable("right_ring")
-            --equip(sets.idle)
-		--end
-    --end
---)
 
 -- Determine whether we have sufficient ammo for the action being attempted.
 function do_bullet_checks(spell, spellMap, eventArgs)
@@ -1130,6 +1170,16 @@ function special_ammo_check()
         return
     end
 end
+
+-- Warp ring rule, for any buff being lost
+    if S{'Warp', 'Vocation', 'Capacity'}:contains(player.equipment.left_ring) then
+        if not buffactive['Dedication'] then
+            disable('left_ring')
+        end
+    else
+        enable('left_ring')
+    end
+
 
 function select_default_macro_book()
     if player.sub_job == 'NIN' then
