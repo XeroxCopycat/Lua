@@ -51,7 +51,7 @@ function job_setup()
         ['Aspirs'] = {'Aspir','Aspir II','Aspir III'}
         }
 
-    lockstyleset = 10
+    lockstyleset = 100
 
 end
 
@@ -75,7 +75,6 @@ function user_setup()
 
     send_command('bind ^` input /ma Stun <t>')
     send_command('bind !` gs c toggle MagicBurst')
-    send_command('bind !w input /ma "Aspir III" <t>')
     send_command('bind !p input /ma "Shock Spikes" <me>')
     send_command('bind @d gs c toggle DeathMode')
     -- send_command('bind @c gs c toggle CP')
@@ -158,10 +157,10 @@ function init_gear_sets()
     sets.precast.FC.Curaga = sets.precast.FC.Cure
     sets.precast.FC.Impact = set_combine(sets.precast.FC, {head=empty, body="Twilight Cloak", waist="Shinjutsu-no-Obi +1"})
     sets.precast.FC.Dispelga = set_combine(sets.precast.FC, {main="Daybreak", sub="Ammurapi Shield", waist="Shinjutsu-no-Obi +1"})
-    sets.precast.Storm = set_combine(sets.precast.FC, {ring2={name="Stikini Ring +1", bag="wardrobe4"},})
+    sets.precast.Storm = set_combine(sets.precast.FC, {right_ring={name="Stikini Ring +1", bag="wardrobe4"},})
 
     sets.precast.FC.DeathMode = {
-        --ammo="Ghastly Tathlum +1",
+        ammo="Ghastly Tathlum +1",
         --head="Amalric Coif +1", --11
         --body="Amalric Doublet +1",
         --hands="Merlinic Dastanas", --6
@@ -213,8 +212,8 @@ function init_gear_sets()
         neck="Orunmila's Torque",
         ear1="Etiolation Earring",
         ear2="Loquacious Earring",
-        ring1="Mephitas's Ring +1",
-        ring2="Mephitas's Ring",
+        left_ring="Mephitas's Ring +1",
+        right_ring="Mephitas's Ring",
         back="Bane Cape",
         waist="Shinjutsu-no-Obi +1",
     } -- Max MP
@@ -229,8 +228,8 @@ function init_gear_sets()
         neck="Baetyl Pendant",
         ear1="Malignance Earring",
         ear2="Moonshade Earring",
-        ring1="Epaminondas's Ring",
-        ring2="Archon Ring",
+        left_ring="Epaminondas's Ring",
+        right_ring="Archon Ring",
         back=gear.BLM_MAB_Cape,
         waist="Acuity Belt +1",
         } -- INT
@@ -251,16 +250,16 @@ function init_gear_sets()
         --neck="Nodens Gorget", --5
         --ear1="Mendi. Earring", --5
         --ear2="Roundel Earring", --5
-        --ring1="Lebeche Ring", --3/(-5)
-        --ring2="Haoma's Ring",
+        --left_ring="Lebeche Ring", --3/(-5)
+        --right_ring="Haoma's Ring",
         --back="Oretan. Cape +1", --6
         --waist="Bishop's Sash",
     }
 
     sets.midcast.Curaga = set_combine(sets.midcast.Cure, {
         --neck="Nuna Gorget +1",
-        --ring1={name="Stikini Ring +1", bag="wardrobe3"},
-        --ring2="Metamor. Ring +1",
+        --left_ring={name="Stikini Ring +1", bag="wardrobe3"},
+        --right_ring="Metamor. Ring +1",
         --waist="Luminary Sash",
     })
 
@@ -274,8 +273,8 @@ function init_gear_sets()
         --neck="Debilis Medallion",
         --ear1="Beatific Earring",
         --ear2="Meili Earring",
-        --ring1="Menelaus's Ring",
-        --ring2="Haoma's Ring",
+        --left_ring="Menelaus's Ring",
+        --right_ring="Haoma's Ring",
     })
 
 	-- Enhancing Magic
@@ -290,8 +289,8 @@ function init_gear_sets()
         --neck="Incanter's Torque",
         --ear1="Mimir Earring",
         --ear2="Andoaa Earring",
-        --ring1={name="Stikini Ring +1", bag="wardrobe3"},
-        --ring2={name="Stikini Ring +1", bag="wardrobe4"},
+        --left_ring={name="Stikini Ring +1", bag="wardrobe3"},
+        --right_ring={name="Stikini Ring +1", bag="wardrobe4"},
         --back="Fi Follet Cape +1",
         --waist="Olympus Sash",
     }
@@ -336,12 +335,12 @@ function init_gear_sets()
         --head="Amalric Coif +1",
         --hands="Regal Cuffs",
         --ear1="Halasz Earring",
-        --ring1="Freke Ring",
-        --ring2="Evanescence Ring",
+        --left_ring="Freke Ring",
+        --right_ring="Evanescence Ring",
         --waist="Emphatikos Rope",
     })
 
-    sets.midcast.Protect = set_combine(sets.midcast.EnhancingDuration, {ring1="Sheltered Ring"})
+    sets.midcast.Protect = set_combine(sets.midcast.EnhancingDuration, {left_ring="Sheltered Ring"})
     sets.midcast.Protectra = sets.midcast.Protect
     sets.midcast.Shell = sets.midcast.Protect
     sets.midcast.Shellra = sets.midcast.Protect
@@ -359,8 +358,8 @@ function init_gear_sets()
         neck="Erra Pendant",
         --ear1="Malignance Earring",
         --ear2="Vor Earring",
-        --ring1={name="Stikini Ring +1", bag="wardrobe3"},
-        --ring2={name="Stikini Ring +1", bag="wardrobe4"},
+        --left_ring={name="Stikini Ring +1", bag="wardrobe3"},
+        --right_ring={name="Stikini Ring +1", bag="wardrobe4"},
         --back="Aurist's Cape +1",
         --waist="Luminary Sash",
     }
@@ -428,8 +427,8 @@ function init_gear_sets()
         --neck="Mizu. Kubikazari", --10
         --ear1="Malignance Earring",
         --ear2="Regal Earring",
-        --ring1="Mephitas's Ring +1",
-        --ring2="Metamor. Ring +1",
+        --left_ring="Mephitas's Ring +1",
+        --right_ring="Metamor. Ring +1",
         --back=gear.BLM_Death_Cape, --5
         --waist="Sacro Cord",
         }
@@ -446,14 +445,14 @@ function init_gear_sets()
 		ammo="Sroda Tathlum",
 		head="Wicce Petasos +2",
 		body="Wicce Coat +3",
-		hands="Wicce Gloves +2",
-		legs={ name="Agwu's Slops", augments={'Path: A',}},
-		feet={ name="Agwu's Pigaches", augments={'Path: A',}},
+		hands="Wicce Gloves +3",
+		legs="Wicce Chausses +3",
+		feet="Wicce Sabots +2",
 		neck="Sorcerer's Stole",
-		waist="Fucho-no-Obi",
-		left_ear="Barkaro. Earring",
-		right_ear="Regal Earring",
-		left_ring="Gelatinous Ring",
+		waist="Eschan Stone",
+		left_ear="Regal Earring",
+		right_ear={ name="Wicce Earring +1", augments={'System: 1 ID: 1676 Val: 0','Mag. Acc.+12','Enmity-2',}},
+		left_ring="Metamor. Ring +1",
 		right_ring="Defending Ring",
 		back={ name="Taranus's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','INT+10','"Mag.Atk.Bns."+10','Phys. dmg. taken-6%',}},
     }
@@ -487,7 +486,7 @@ function init_gear_sets()
     sets.midcast.Impact = set_combine(sets.midcast['Elemental Magic'], {
         head=empty,
         body="Twilight Cloak",
-        ring2="Archon Ring",
+        right_ring="Archon Ring",
         })
 
     sets.midcast.Impact.Resistant = set_combine(sets.midcast['Elemental Magic'].Resistant, {
@@ -554,8 +553,8 @@ function init_gear_sets()
         neck="Sanctity Necklace",
         --left_ear="Malignance Earring",
         right_ear="Regal Earring",
-        --ring1="Mephitas's Ring +1",
-        --ring2="Mephitas's Ring",
+        --left_ring="Mephitas's Ring +1",
+        --right_ring="Mephitas's Ring",
         --back=gear.BLM_Death_Cape,
         --waist="Shinjutsu-no-Obi +1",
     }
@@ -571,7 +570,7 @@ function init_gear_sets()
 		waist="Eschan Stone",
 		left_ear="Etiolation Earring",
 		right_ear="Loquac. Earring",
-		left_ring="Gelatinous Ring",
+		left_ring="Shneddick Ring",
 		right_ring="Defending Ring",
 		back={ name="Taranus's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','INT+10','"Mag.Atk.Bns."+10','Phys. dmg. taken-6%',}},
     })
@@ -642,8 +641,8 @@ function init_gear_sets()
 	-------------------------------------
     sets.buff.Doom = {
         --neck="Nicander's Necklace", --20
-        --ring1={name="Eshmun's Ring", bag="wardrobe3"}, --20
-        --ring2={name="Eshmun's Ring", bag="wardrobe4"}, --20
+        --left_ring={name="Eshmun's Ring", bag="wardrobe3"}, --20
+        --right_ring={name="Eshmun's Ring", bag="wardrobe4"}, --20
         waist="Gishdubar Sash", --10
     }
 
@@ -770,9 +769,9 @@ function job_buff_change(buff, gain)
         if gain then
             equip(sets.buff.Doom)
             send_command('@input /p Doomed.')
-            disable('ring1','ring2','waist')
+            disable('left_ring','right_ring','waist')
         else
-            enable('ring1','ring2','waist')
+            enable('left_ring','right_ring','waist')
             handle_equipping_gear(player.status)
         end
     end
@@ -956,25 +955,25 @@ end
 
 function check_gear()
     if no_swap_gear:contains(player.equipment.left_ring) then
-        disable("ring1")
+        disable("left_ring")
     else
-        enable("ring1")
+        enable("left_ring")
     end
     if no_swap_gear:contains(player.equipment.right_ring) then
-        disable("ring2")
+        disable("right_ring")
     else
-        enable("ring2")
+        enable("right_ring")
     end
 end
 
 windower.register_event('zone change',
     function()
         if no_swap_gear:contains(player.equipment.left_ring) then
-            enable("ring1")
+            enable("left_ring")
             equip(sets.idle)
         end
         if no_swap_gear:contains(player.equipment.right_ring) then
-            enable("ring2")
+            enable("right_ring")
             equip(sets.idle)
         end
     end
