@@ -126,23 +126,27 @@ function init_gear_sets()
 	-------------------------------------
     -- Precast sets to enhance JAs
     sets.precast.JA['Mana Wall'] = {
-        --feet="Wicce Sabots +1",
+        feet="Wicce Sabots +3",
         back={ name="Taranus's Cape", augments={'Mag. Acc+20 /Mag. Dmg.+20',}},
     }
 
     sets.precast.JA.Manafont = {body="Arch. Coat +1"}
 
     -- Fast cast sets for spells
-    sets.precast.FC = {
-        head={ name="Merlinic Hood", augments={'Mag. Acc.+21 "Mag.Atk.Bns."+21','"Drain" and "Aspir" potency +4','MND+4','Mag. Acc.+13','"Mag.Atk.Bns."+8',}},
-		body={ name="Merlinic Jubbah", augments={'"Mag.Atk.Bns."+29','"Fast Cast"+5','MND+7','Mag. Acc.+14',}},
-		hands="Jhakri Cuffs +2",
-		legs="Mallquis Trews +2",
-		feet="Jhakri Pigaches +2",
-		neck="Baetyl Pendant",
-		left_ear="Loquac. Earring",
-		left_ring="Kishar Ring",
-		right_ring="Jhakri Ring",
+    sets.precast.FC = { --FC +63%, QC +7%
+        ammo="Impatiens", --QC +2
+		 head={ name="Merlinic Hood", augments={'Attack+10','"Fast Cast"+7','DEX+1','Mag. Acc.+6',}}, --FC +15
+		body={ name="Merlinic Jubbah", augments={'"Mag.Atk.Bns."+29','"Fast Cast"+5','MND+7','Mag. Acc.+14',}}, --FC +11
+		hands={ name="Merlinic Dastanas", augments={'"Fast Cast"+7','Mag. Acc.+2','"Mag.Atk.Bns."+13',}}, --FC +7
+		legs={ name="Agwu's Slops", augments={'Path: A',}}, --FC +7
+		feet={ name="Merlinic Crackows", augments={'"Fast Cast"+4','CHR+5',}}, --FC +9
+		neck="Baetyl Pendant", --FC +4
+		waist="Witful Belt", --FC +3, QC +3
+		left_ear="Loquac. Earring", --FC +2
+		right_ear="Etiolation Earring", --FC +1
+		left_ring="Lebeche Ring", --QC +2
+		right_ring="Kishar Ring", --FC +4
+		back={ name="Taranus's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','INT+10','"Mag.Atk.Bns."+10','Phys. dmg. taken-6%',}},
     }
 
     sets.precast.FC['Enhancing Magic'] = set_combine(sets.precast.FC, {
@@ -163,12 +167,12 @@ function init_gear_sets()
         ammo="Ghastly Tathlum +1",
         --head="Amalric Coif +1", --11
         --body="Amalric Doublet +1",
-        --hands="Merlinic Dastanas", --6
+        hands={ name="Merlinic Dastanas", augments={'"Fast Cast"+7','Mag. Acc.+2','"Mag.Atk.Bns."+13',}}, --FC +7
         --legs="Volte Brais", --8
         --feet="Volte Gaiters", --6
         --neck="Orunmila's Torque", --5
-        --left_ear="Etiolation Earring", --1
-        right_ear="Loquacious Earring", --2
+        left_ear="Loquac. Earring", --FC +2
+		right_ear="Etiolation Earring", --FC +1
         --left_ring="Mephitas's Ring +1",
         --right_ring="Weather. Ring +1", --5
         --back="Bane Cape", --4
@@ -347,9 +351,7 @@ function init_gear_sets()
 
 	-- Enfeebling magic
     sets.midcast.MndEnfeebles = {
-        main="Daybreak",
-        --sub="Ammurapi Shield",
-        --ammo="Pemphredo Tathlum",
+        ammo="Pemphredo Tathlum",
         --head=empty;
         --body="Cohort Cloak +1",
         --hands="Regal Cuffs",
@@ -365,20 +367,17 @@ function init_gear_sets()
     }
 
     sets.midcast.IntEnfeebles = set_combine(sets.midcast.MndEnfeebles, {
-        --main="Maxentius",
-        --sub="Ammurapi Shield",
-        --waist="Acuity Belt +1",
+        waist="Acuity Belt +1",
     })
 
     sets.midcast.ElementalEnfeeble = sets.midcast.IntEnfeebles
     sets.midcast.Dispelga = set_combine(sets.midcast.IntEnfeebles, {
-		main="Daybreak",
-		sub="Ammurapi Shield",
 		--waist="Shinjutsu-no-Obi +1",
 	})
 
 	-- Dark Magic
     sets.midcast['Dark Magic'] = {
+		ammo="Pemphredo Tathlum",
         head="Pixie Hairpin +1",
 		body="Jhakri Robe +2",
 		hands="Jhakri Cuffs +2",
@@ -400,7 +399,7 @@ function init_gear_sets()
 		hands={ name="Agwu's Gages", augments={'Path: A',}},
 		legs="Spae. Tonban +1",
 		feet={ name="Agwu's Pigaches", augments={'Path: A',}},
-		neck="Sorcerer's Stole",
+		neck="Src. Stole +2",
 		waist="Fucho-no-Obi",
 		left_ear="Barkaro. Earring",
 		right_ear="Regal Earring",
@@ -416,39 +415,37 @@ function init_gear_sets()
     })
 
     sets.midcast.Death = {
-        --main=gear.Grioavolr_MB, --5
-        --sub="Enki Strap",
-        --ammo="Ghastly Tathlum +1",
-        --head="Pixie Hairpin +1",
-        --body=gear.Merl_MB_body, --10
-        --hands="Amalric Gages", --(5)
-        --legs="Amalric Slops +1",
-        --feet="Merlinic Crackows", --11
-        --neck="Mizu. Kubikazari", --10
-        --ear1="Malignance Earring",
-        --ear2="Regal Earring",
-        --left_ring="Mephitas's Ring +1",
-        --right_ring="Metamor. Ring +1",
-        --back=gear.BLM_Death_Cape, --5
-        --waist="Sacro Cord",
-        }
+        ammo="Ghastly Tathlum +1",
+		head="Pixie Hairpin +1",
+		body="Wicce Coat +3",
+		hands={ name="Agwu's Gages", augments={'Path: A',}},
+		legs="Spae. Tonban +1",
+		feet="Wicce Sabots +3",
+		neck={ name="Src. Stole +2", augments={'Path: A',}},
+		waist={ name="Acuity Belt +1", augments={'Path: A',}},
+		left_ear="Barkaro. Earring",
+		right_ear="Etiolation Earring",
+		left_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
+		right_ring="Archon Ring",
+		back={ name="Taranus's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','INT+10','"Mag.Atk.Bns."+10','Phys. dmg. taken-6%',}},
+    }
 
     sets.midcast.Death.Resistant = set_combine(sets.midcast.Death, {
         --main=gear.Grioavolr_MB,
         --sub="Enki Strap",
         --head="Amalric Coif +1",
-        --waist="Acuity Belt +1",
+        waist="Acuity Belt +1",
     })
 
     -- Elemental Magic sets
     sets.midcast['Elemental Magic'] = {
 		ammo="Sroda Tathlum",
-		head="Wicce Petasos +2",
+		head="Wicce Petasos +3",
 		body="Wicce Coat +3",
 		hands="Wicce Gloves +3",
 		legs="Wicce Chausses +3",
-		feet="Wicce Sabots +2",
-		neck="Sorcerer's Stole",
+		feet="Wicce Sabots +3",
+		neck="Src. Stole +2",
 		waist="Eschan Stone",
 		left_ear="Regal Earring",
 		right_ear={ name="Wicce Earring +1", augments={'System: 1 ID: 1676 Val: 0','Mag. Acc.+12','Enmity-2',}},
@@ -458,42 +455,37 @@ function init_gear_sets()
     }
 
     sets.midcast['Elemental Magic'].DeathMode = set_combine(sets.midcast['Elemental Magic'], {
-        --main=gear.Grioavolr_MB,
-        --sub="Enki Strap",
-        --ammo="Ghastly Tathlum +1",
+        ammo="Ghastly Tathlum +1",
         --legs="Amalric Slops +1",
         --feet="Merlinic Crackows",
         --back=gear.BLM_Death_Cape,
         })
 
     sets.midcast['Elemental Magic'].Resistant = set_combine(sets.midcast['Elemental Magic'], {
-        --sub="Khonsu",
         ammo="Pemphredo Tathlum",
         --legs="Merlinic Shalwar",
         neck="Sanctity Necklace",
         --waist="Sacro Cord",
-        })
+    })
 
     sets.midcast['Elemental Magic'].Spaekona = set_combine(sets.midcast['Elemental Magic'], {
-        --sub="Khonsu",
         ammo="Pemphredo Tathlum",
         body="Spaekona's Coat +2",
         --legs="Merlinic Shalwar",
         --feet="Merlinic Crackows",
         neck="Erra Pendant",
-        })
+    })
 
     sets.midcast.Impact = set_combine(sets.midcast['Elemental Magic'], {
         head=empty,
-        body="Twilight Cloak",
+        body="Crepuscular Cloak",
         right_ring="Archon Ring",
-        })
+    })
 
     sets.midcast.Impact.Resistant = set_combine(sets.midcast['Elemental Magic'].Resistant, {
-        --sub="Khonsu",
-        --head=empty,
-        --body="Twilight Cloak",
-        })
+        head=empty,
+        body="Crepuscular Cloak",
+    })
 
     -- Initializes trusts at iLvl 119
     sets.midcast.Trust = sets.precast.FC
@@ -501,7 +493,7 @@ function init_gear_sets()
     sets.resting = {
         --main="Chatoyant Staff",
         --waist="Shinjutsu-no-Obi +1",
-        }
+    }
 
 	-------------------------------------
     -- Idle sets
@@ -566,7 +558,7 @@ function init_gear_sets()
 		hands={ name="Arch. Gloves +1", augments={'Increases Elemental Magic accuracy',}},
 		legs={ name="Arch. Tonban +3", augments={'Increases Elemental Magic debuff time and potency',}},
 		feet={ name="Arch. Sabots +1", augments={'Increases Aspir absorption amount',}},
-		neck="Sorcerer's Stole",
+		neck="Src. Stole +2",
 		waist="Eschan Stone",
 		left_ear="Etiolation Earring",
 		right_ear="Loquac. Earring",
@@ -597,7 +589,7 @@ function init_gear_sets()
 		hands={ name="Agwu's Gages", augments={'Path: A',}},
 		legs={ name="Agwu's Slops", augments={'Path: A',}},
 		feet={ name="Agwu's Pigaches", augments={'Path: A',}},
-		neck="Sorcerer's Stole",
+		neck="Src. Stole +2",
 		waist="Eschan Stone",
 		left_ear="Barkaro. Earring",
 		right_ear="Regal Earring",
@@ -777,6 +769,15 @@ function job_buff_change(buff, gain)
     end
 
 end
+
+-- Warp ring rule, for any buff being lost
+    if S{'Warp', 'Vocation', 'Capacity'}:contains(player.equipment.left_ring) then
+        if not buffactive['Dedication'] then
+            disable('left_ring')
+        end
+    else
+        enable('left_ring')
+    end
 
 -- Handle notifications of general user state change.
 function job_state_change(stateField, newValue, oldValue)
