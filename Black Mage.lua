@@ -414,22 +414,20 @@ function init_gear_sets()
 		back={ name="Taranus's Cape", augments={'Mag. Acc+20 /Mag. Dmg.+20',}},
     }
 
-    sets.midcast.Drain = set_combine(sets.midcast['Dark Magic'], {
+    sets.midcast.Drain = set_combine(sets.midcast['Dark Magic'], { --75 Drain/Aspir Pot, Max +96
         ammo="Pemphredo Tathlum",
-		--head="Merlinic Hood", --Drain/Aspir Pot
-		head="Wicce Petasos +3",
-		--body="Merlinic Jubbah", --Drain/Aspir Pot
-		body="Wicce Coat +3",
-		--hands="Merlinic Dastanas", --Drain/Aspir Pot
+		head={ name="Merlinic Hood", augments={'"Drain" and "Aspir" potency +11','MND+8','"Mag.Atk.Bns."+14',}}, --11
+		body={ name="Merlinic Jubbah", augments={'"Mag.Atk.Bns."+28','"Drain" and "Aspir" potency +11','Mag. Acc.+1',}}, --11
+		--hands="Merlinic Dastanas", --Drain/Aspir Pot 11
 		hands={ name="Arch. Gloves +1", augments={'Increases Elemental Magic accuracy',}},
-		--legs="Spae. Tonban +3",
-		legs="Spae. Tonban +1",
-		feet={ name="Agwu's Pigaches", augments={'Path: A',}},
-		neck="Erra Pendant",
-		waist="Fucho-no-Obi",
+		--legs="Spae. Tonban +3", --20
+		legs="Spae. Tonban +2", --10
+		feet={ name="Agwu's Pigaches", augments={'Path: A',}}, --20
+		neck="Erra Pendant", --5
+		waist="Fucho-no-Obi", --8
 		left_ear="Regal Earring",
 		right_ear="Malignance Earring",
-		left_ring="Evanescence Ring",
+		left_ring="Evanescence Ring", --10
 		right_ring="Archon Ring",
 		--back="Aurist Cape +1", --Needs Augmented
 		back={ name="Taranus's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','INT+10','"Mag.Atk.Bns."+10','Phys. dmg. taken-6%',}},
