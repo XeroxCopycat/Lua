@@ -51,7 +51,7 @@ function job_setup()
 
     no_swap_gear = S{"Warp Ring", "Dim. Ring (Dem)", "Dim. Ring (Holla)", "Dim. Ring (Mea)",
               "Trizek Ring", "Echad Ring", "Facility Ring", "Capacity Ring"}
-
+	elemental_ws = S{"Aeolian Edge"}
     include('Mote-TreasureHunter')
 
     -- For th_action_check():
@@ -72,7 +72,7 @@ end
 
 -- Setup vars that are user-dependent.  Can override this function in a sidecar file.
 function user_setup()
-    state.OffenseMode:options('Normal', 'MidAcc', 'HighAcc', 'StoreTP', 'Crit')
+    state.OffenseMode:options('Normal', 'MidAcc', 'HighAcc', 'StoreTP')
     state.HybridMode:options('Normal', 'DT')
     state.RangedMode:options('Normal', 'Acc')
     state.WeaponskillMode:options('Normal', 'Acc', 'Crit')
@@ -189,7 +189,7 @@ function init_gear_sets()
 		waist="Fotia Belt",
 		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
 		right_ear="Sherida Earring",
-		left_ring="Epaminondas's Ring",
+		left_ring="Cornelia's Ring",
 		right_ring="Regal Ring",
 		back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
     }
@@ -212,8 +212,7 @@ function init_gear_sets()
 	--------------------------------------------------
 	--Aeolian Edge
 	sets.precast.WS['Aeolian Edge'] = {
-		--ammo="Seething Bomblet +1",
-        ammo="Pemphredo Tathlum",
+		ammo="Seething Bomblet",
 		head={ name="Nyame Helm", augments={'Path: B',}},
 		body="Nyame Mail",
 		hands="Nyame Gauntlets",
@@ -224,7 +223,7 @@ function init_gear_sets()
 		waist="Eschan Stone",
 		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
 		right_ear="Friomisi Earring",
-		left_ring="Epaminondas's Ring",
+		left_ring="Cornelia's Ring",
 		right_ring="Dingir Ring",
 		back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
 	}
@@ -254,8 +253,7 @@ function init_gear_sets()
     sets.precast.WS['Exenterator'] = {
         ammo="Yetshila +1",
 		head={ name="Adhemar Bonnet +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
-		--body={ name="Plunderer's Vest +3", augments={'Enhances "Ambush" effect',}},
-		body={ name="Plunderer's Vest +2", augments={'Enhances "Ambush" effect',}},
+		body={ name="Plunderer's Vest +3", augments={'Enhances "Ambush" effect',}},
 		hands={ name="Adhemar Wrist. +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
 		legs="Pill. Culottes +3",
 		feet="Gleti's Boots",
@@ -273,16 +271,14 @@ function init_gear_sets()
 	
 	-- Rudra's Storm
     sets.precast.WS['Rudra\'s Storm'] = set_combine(sets.precast.WS, {
-		--ammo="Seething Bomblet +1",
+		ammo="Seething Bomblet",
 		head={ name="Plun. Bonnet +3", augments={'Enhances "Aura Steal" effect',}},
 		body="Skulker's Vest +3",
 		hands="Meg. Gloves +2",
 		legs={ name="Plun. Culottes +3", augments={'Enhances "Feint" effect',}},
-		legs={ name="Plun. Culottes +2", augments={'Enhances "Feint" effect',}},
 		feet={ name="Plun. Poulaines +3", augments={'Enhances "Assassin\'s Charge" effect',}},
 		neck={ name="Asn. Gorget +1", augments={'Path: A',}},
-		--waist="Kentarch Belt +1",
-		waist="Grunfeld Belt",
+		waist="Kentarch Belt",
 		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
 		right_ear="Sherida Earring",
 		left_ring="Ilabrat Ring",
@@ -300,8 +296,7 @@ function init_gear_sets()
 		legs={ name="Herculean Trousers", augments={'"Mag.Atk.Bns."+21','Weapon skill damage +3%','MND+8',}},
 		--feet="Lustra. Leggings +1",
 		feet={ name="Plun. Poulaines +3", augments={'Enhances "Assassin\'s Charge" effect',}},
-		--waist="Kentarch Belt +1",
-		waist="Grunfeld Belt",
+		waist="Kentarch Belt",
 		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
 		left_ring="Ilabrat Ring",
 		right_ring="Regal Ring",
@@ -456,27 +451,33 @@ function init_gear_sets()
 		waist="Reiki Yotai",
 		left_ear="Dedition Earring",
 		right_ear={ name="Skulk. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+13','Mag. Acc.+13','"Store TP"+4',}},
-		left_ring="Epona's Ring",
+		left_ring="Gere Ring",
 		right_ring="Petrov Ring",
 		back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Phys. dmg. taken-10%',}},
 	}
 
     sets.engaged.MidAcc = set_combine(sets.engaged.LowAcc, {
-        left_ear="Sherida Earring",
+        left_ear="Telos Earring",
 		left_ring="Chirich Ring +1",
     })
 
     sets.engaged.HighAcc = set_combine(sets.engaged.MidAcc, {
-		head="Pill. Bonnet +3",
-		legs="Pill. Culottes +3",
+		head="Malignance Chapeau",
+		hands="Malignance Gloves",
+		legs="Malignance Tights",
+		feet="Malignance Boots",
         left_ear="Telos Earring",
 		right_ring="Regal Ring",	
     })
 	
-	sets.engaged.Hybrid = set_combine(sets.engaged, {
-		head="Nyame Helm",
+	sets.engaged.StoreTP = set_combine(sets.engaged, {
+		head="Malignance Chapeau",
 		hands="Malignance Gloves",
-		ring="Moonlight Ring",
+		legs="Malignance Tights",
+		feet="Malignance Boots",
+		neck="Anu Torque",
+		left_ear="Dedition Earring",
+		left_ring="Chirich Ring +1",
 	})	
 	
 	--------------------------------------------------
@@ -489,222 +490,182 @@ function init_gear_sets()
     -- No Magic Haste (74% DW to cap)
     sets.engaged.DW = { --DW +75
         ammo="Aurgelmir Orb",
-		head="Malignance Chapeau",
+		head="Skulker's Bonnet +3",
 		body={ name="Adhemar Jacket +1", augments={'DEX+12','AGI+12','Accuracy+20',}}, --DW +6
 		hands="Floral Gauntlets", --DW +5
-		legs="Malignance Tights",
+		legs={ name="Samnuha Tights", augments={'STR+8','DEX+9','"Dbl.Atk."+3','"Triple Atk."+2',}},
 		feet="Taeon Boots", --DW +8
 		neck="Asn. Gorget +1",
 		waist="Reiki Yotai", --DW +7
 		left_ear="Eabani Earring", --DW +4
 		right_ear="Suppanomimi", --DW +5
-		left_ring="Epona's Ring",
+		left_ring="Gere Ring",
 		right_ring="Petrov Ring",
 		back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Phys. dmg. taken-10%',}}, --DW +10
     }
 
     sets.engaged.DW.MidAcc = set_combine(sets.engaged.DW, {
-		neck="Sanctity Necklace",
 		left_ring="Chirich Ring +1",
-		right_ring="Moonlight Ring",
+		right_ring="Regal Ring",
     })
 
     sets.engaged.DW.HighAcc = set_combine(sets.engaged.DW.MidAcc, {
-		head="Pill. Bonnet +3",
-        legs="Pill. Culottes +3",
-        right_ring="Regal Ring",
+		head="Malignance Chapeau",
+		legs="Malignance Tights",
     })
 	
 	sets.engaged.DW.StoreTP = set_combine(sets.engaged.DW, {
-		neck="Iskur Gorget",
-		--left_ring="Lehko's Ring", +STP 10
-	})
-	
-	sets.engaged.DW.Crit = set_combine(sets.engaged.DW, {
-		head="Mummu Bonnet +2",
-		legs="Skulk. Culottes +3",
-		--left_ring="Lehko's Ring", 
+		head="Malignance Chapeau",
+		legs="Malignance Tights",
+		neck="Anu Torque",
+		left_ring="Chirich Ring +1",
 	})
 
     -- 15% Magic Haste (67% DW to cap)
     sets.engaged.DW.LowHaste = { --DW +67
         ammo="Aurgelmir Orb",
-		head="Malignance Chapeau",
-		body={ name="Adhemar Jacket +1", augments={'DEX+12','AGI+12','Accuracy+20',}}, --DW +6
-		hands="Floral Gauntlets", --DW +5
-		legs="Malignance Tights",
-		feet="Malignance Boots",
+		head="Skulker's Bonnet +3",
+		body={ name="Adhemar Jacket +1", augments={'DEX+12','AGI+12','Accuracy+20',}}, -- +6
+		hands="Floral Gauntlets", -- +5
+		legs={ name="Samnuha Tights", augments={'STR+8','DEX+9','"Dbl.Atk."+3','"Triple Atk."+2',}},
+		feet={ name="Plun. Poulaines +3", augments={'Enhances "Assassin\'s Charge" effect',}},
 		neck="Asn. Gorget +1",
-		waist="Reiki Yotai", --DW +7
-		left_ear="Eabani Earring", --DW +4
-		right_ear="Suppanomimi", --DW +5
-		left_ring="Epona's Ring",
+		waist="Reiki Yotai", -- +7
+		left_ear="Eabani Earring", -- +4
+		right_ear="Suppanomimi", -- +5
+		left_ring="Gere Ring",
 		right_ring="Petrov Ring",
-		back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Phys. dmg. taken-10%',}}, --DW +10
+		back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Phys. dmg. taken-10%',}}, -- +10
 	}
-
+	
     sets.engaged.DW.MidAcc.LowHaste = set_combine(sets.engaged.DW.LowHaste, {
-		neck="Sanctity Necklace",
 		left_ring="Chirich Ring +1",
-		right_ring="Moonlight Ring",
+		right_ring="Regal Ring",
     })
 
     sets.engaged.DW.HighAcc.LowHaste = set_combine(sets.engaged.DW.MidAcc.LowHaste, {
-		head="Pill. Bonnet +3",
-        legs="Pill. Culottes +3",
-        right_ring="Regal Ring",
-     })
-	 
-	sets.engaged.DW.StoreTP.LowHaste = set_combine(sets.engaged.DW.LowHaste, {
-		neck="Iskur Gorget",
-		--left_ring="Lehko's Ring", +STP 10
-	})
-	
-	sets.engaged.DW.Crit.LowHaste = set_combine(sets.engaged.DW.LowHaste, {
-		head="Mummu Bonnet +2",
-		legs="Skulk. Culottes +3",
-		--left_ring="Lehko's Ring",
-	})
-
-    -- 30% Magic Haste (56% DW to cap)
-    sets.engaged.DW.MidHaste = { -- DW +58
-		ammo="Aurgelmir Orb",
 		head="Malignance Chapeau",
-		body={ name="Adhemar Jacket +1", augments={'DEX+12','AGI+12','Accuracy+20',}}, --DW +6
-		hands="Floral Gauntlets", --DW +5
 		legs="Malignance Tights",
 		feet="Malignance Boots",
+     })
+	 
+    -- 30% Magic Haste (56% DW to cap)
+    sets.engaged.DW.MidHaste = { -- DW +57
+		ammo="Aurgelmir Orb",
+		head="Skulker's Bonnet +3",
+		body={ name="Adhemar Jacket +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
+		hands={ name="Adhemar Wrist. +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
+		legs={ name="Samnuha Tights", augments={'STR+8','DEX+9','"Dbl.Atk."+3','"Triple Atk."+2',}},
+		feet={ name="Plun. Poulaines +3", augments={'Enhances "Assassin\'s Charge" effect',}},
 		neck="Asn. Gorget +1",
-		waist="Reiki Yotai", --DW +7
-		left_ear="Sherida Earring",
+		waist="Reiki Yotai",
+		left_ear="Eabani Earring",
 		right_ear={ name="Skulk. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+13','Mag. Acc.+13','"Store TP"+4',}},
-		left_ring="Epona's Ring",
+		left_ring="Gere Ring",
 		right_ring="Petrov Ring",
-		back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Phys. dmg. taken-10%',}}, --DW +10
+		back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Phys. dmg. taken-10%',}},
 	}
 
     sets.engaged.DW.MidAcc.MidHaste = set_combine(sets.engaged.DW.MidHaste, {
-		neck="Sanctity Necklace",
 		left_ear="Telos Earring",
 		left_ring="Chirich Ring +1",
-		right_ring="Moonlight Ring",
+		right_ring="Regal Ring",
     })
 
     sets.engaged.DW.HighAcc.MidHaste = set_combine(sets.engaged.DW.MidAcc.MidHaste, {
-        head="Pill. Bonnet +3",
-        legs="Pill. Culottes +3",
-		feet="Pill. Poulaines +3",
-        right_ring="Regal Ring",
-    })
-	
-	sets.engaged.DW.StoreTP.MidHaste = set_combine(sets.engaged.DW.MidHaste, {
-		neck="Iskur Gorget",
-		left_ear="Dedition Earring",
-		--left_ring="Lehko's Ring", +STP 10
-		left_ring="Chirich Ring +1",
-	})
-	
-	sets.engaged.DW.Crit.MidHaste = set_combine(sets.engaged.DW.MidHaste, {
-		head="Mummu Bonnet +2",
-		legs="Skulk. Culottes +3",
-		feet="Mummu Gamash. +2",
-		--left_ring="Lehko's Ring",
-	})
-
-    -- 35% Magic Haste (51% DW to cap)
-    sets.engaged.DW.HighHaste = { --DW +51, 1402 Acc
-		ammo="Aurgelmir Orb",
-		head="Malignance Chapeau",
-		body="Malignance Tabard",
+        head="Malignance Chapeau",
 		hands="Malignance Gloves",
 		legs="Malignance Tights",
 		feet="Malignance Boots",
-		neck="Asn. Gorget +1",
-		waist="Reiki Yotai", --DW +7
-		left_ear="Eabani Earring", --DW +4
-		right_ear={ name="Skulk. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+13','Mag. Acc.+13','"Store TP"+4',}},
-		left_ring="Epona's Ring",
-		right_ring="Petrov Ring",
-		back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Phys. dmg. taken-10%',}}, --DW +10
-    }
-
-    sets.engaged.DW.MidAcc.HighHaste = set_combine(sets.engaged.DW.HighHaste, {
-		body={ name="Adhemar Jacket +1", augments={'DEX+12','AGI+12','Accuracy+20',}}, --DW +6
-		left_ear="Telos Earring",
-		left_ring="Chirich Ring +1",
-		right_ring="Moonlight Ring",
-    })
-
-    sets.engaged.DW.HighAcc.HighHaste = set_combine(sets.engaged.DW.MidAcc.HighHaste, {
-        head="Pill. Bonnet +3",
-		hands="Skulk. Armlets +3",
-        legs="Pill. Culottes +3",
-		feet="Pill. Poulaines +3",
-        right_ring="Regal Ring",
     })
 	
-	sets.engaged.DW.StoreTP.HighHaste = set_combine(sets.engaged.DW.HighHaste, {
-		neck="Iskur Gorget",
-		left_ear="Dedition Earring",
-		--left_ring="Lehko's Ring", +STP 10
+	sets.engaged.DW.StoreTP.MidHaste = set_combine(sets.engaged.DW.MidHaste, {
+		head="Malignance Chapeau",
+		hands="Malignance Gloves",
+		legs="Malignance Tights",
+		feet="Malignance Boots",
+		neck="Anu Torque",
 		left_ring="Chirich Ring +1",
 	})
 	
-	sets.engaged.DW.Crit.HighHaste = set_combine(sets.engaged.DW.HighHaste, {
-		head="Mummu Bonnet +2",
-		hands="Mummu Wrists +2",
-		legs="Skulk. Culottes +3",
-		feet="Mummu Gamash. +2",
-		--left_ring="Lehko's Ring",
+    -- 35% Magic Haste (51% DW to cap)
+    sets.engaged.DW.HighHaste = { --DW +52, 1402 Acc
+		ammo="Aurgelmir Orb",
+		head="Skulker's Bonnet +3",
+		body={ name="Adhemar Jacket +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
+		hands={ name="Adhemar Wrist. +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
+		legs={ name="Samnuha Tights", augments={'STR+8','DEX+9','"Dbl.Atk."+3','"Triple Atk."+2',}},
+		feet={ name="Plun. Poulaines +3", augments={'Enhances "Assassin\'s Charge" effect',}},
+		neck="Asn. Gorget +1",
+		waist="Reiki Yotai",
+		left_ear="Dedition Earring",
+		right_ear={ name="Skulk. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+13','Mag. Acc.+13','"Store TP"+4',}},
+		left_ring="Gere Ring",
+		right_ring="Petrov Ring",
+		back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Phys. dmg. taken-10%',}},
+	}
+
+    sets.engaged.DW.MidAcc.HighHaste = set_combine(sets.engaged.DW.HighHaste, {
+		left_ear="Telos Earring",
+		right_ring="Regal Ring",
+    })
+
+    sets.engaged.DW.HighAcc.HighHaste = set_combine(sets.engaged.DW.MidAcc.HighHaste, {
+        head="Malignance Chapeau",
+		hands="Malignance Gloves",
+		legs="Malignance Tights",
+		feet="Malignance Boots",
+    })
+	
+	sets.engaged.DW.StoreTP.HighHaste = set_combine(sets.engaged.DW.HighHaste, {
+		head="Malignance Chapeau",
+		hands="Malignance Gloves",
+		legs="Malignance Tights",
+		feet="Malignance Boots",
+		neck="Anu Torque",
+		left_ear="Dedition Earring",
+		left_ring="Chirich Ring +1",
 	})
 		
     -- 45% Magic Haste (36% DW to cap)
     sets.engaged.DW.MaxHaste = { --DW +37
 		ammo="Aurgelmir Orb",
-		head="Malignance Chapeau",
-		body={ name="Adhemar Jacket +1", augments={'DEX+12','AGI+12','Accuracy+20',}}, --DW +6
-		hands="Malignance Gloves",
-		legs="Malignance Tights",
-		feet="Malignance Boots",
+		head="Skulker's Bonnet +3",
+		body="Pillager's Vest +3",
+		hands={ name="Adhemar Wrist. +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
+		legs={ name="Samnuha Tights", augments={'STR+8','DEX+9','"Dbl.Atk."+3','"Triple Atk."+2',}},
+		feet={ name="Plun. Poulaines +3", augments={'Enhances "Assassin\'s Charge" effect',}},
 		neck="Asn. Gorget +1",
-		waist="Windbuffet Belt +1",
-		left_ear="Sherida Earring",
+		waist="Reiki Yotai",
+		left_ear="Dedition Earring",
 		right_ear={ name="Skulk. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+13','Mag. Acc.+13','"Store TP"+4',}},
-		left_ring="Epona's Ring",
+		left_ring="Gere Ring",
 		right_ring="Petrov Ring",
 		back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Phys. dmg. taken-10%',}},
-    }
+	}
 	
     sets.engaged.DW.MidAcc.MaxHaste = set_combine(sets.engaged.DW.MaxHaste, {
 		left_ear="Telos Earring",
-		left_ring="Chirich Ring +1",
-		right_ring="Moonlight Ring",
+		right_ring="Regal Ring",
     })
 
     sets.engaged.DW.HighAcc.MaxHaste = set_combine(sets.engaged.DW.MidAcc.MaxHaste, {
-		head="Pill. Bonnet +3",
-		hands="Skulk. Armlets +3",
-        legs="Pill. Culottes +3",
-		feet="Pill. Poulaines +3",
-        right_ring="Regal Ring",
+		ammo="Yamarang",
+		head="Malignance Chapeau",
+		hands="Pill. Armlets +3",
+		legs="Malignance Tights",
     })
 	
 	sets.engaged.DW.StoreTP.MaxHasste = set_combine(sets.engaged.DW.MaxHaste, {
-		neck="Iskur Gorget",
+		head="Malignance Chapeau",
+		hands="Malignance Gloves",
+		legs="Malignance Tights",
+		feet="Malignance Boots",
+		neck="Anu Torque",
 		left_ear="Dedition Earring",
-		--left_ring="Lehko's Ring", +STP 10
 		left_ring="Chirich Ring +1",
 	})
 	
-	sets.engaged.DW.Crit.MaxHaste = set_combine(sets.engaged.DW.MaxHaste, {
-		ammo="Yetshila +1",
-		head="Mummu Bonnet +2",
-		hands="Mummu Wrists +2",
-		legs="Skulk. Culottes +3",
-		feet="Mummu Gamash. +2",
-		left_ear="Odr Earring",
-		--left_ring="Lehko's Ring",
-	})
 	--------------------------------------------------
 	-- Special Purpose Sets
 	--------------------------------------------------
@@ -720,6 +681,7 @@ function init_gear_sets()
 
     --sets.Reive = {neck="Ygnas's Resolve +1"}
     sets.CP = {back="Aptitude Mantle +1"}
+	sets.Obi = {waist="Hachirin-no-Obi"}
 
 end
 
@@ -783,8 +745,8 @@ end
 -- Called when a player gains or loses a buff.
 -- buff == buff gained or lost
 -- gain == true if the buff was gained, false if it was lost.
-function job_buff_change(buff,gain)
 
+function job_buff_change(buff,gain)
 --    if buffactive['Reive Mark'] then
 --        if gain then
 --            equip(sets.Reive)
@@ -807,6 +769,25 @@ function job_buff_change(buff,gain)
 
     if not midaction() then
         handle_equipping_gear(player.status)
+    end
+
+	if elemental_ws:contains(spell.name) then
+        -- Matching double weather (w/o day conflict).
+        if spell.element == world.weather_element and (get_weather_intensity() == 2 and spell.element ~= elements.weak_to[world.day_element]) then
+            equip({waist="Hachirin-no-Obi"})
+        -- Target distance under 1.7 yalms.
+        elseif spell.target.distance < (1.7 + spell.target.model_size) then
+            equip({waist="Orpheus's Sash"})
+        -- Matching day and weather.
+        elseif spell.element == world.day_element and spell.element == world.weather_element then
+			equip({waist="Hachirin-no-Obi"})
+        -- Target distance under 8 yalms.
+        elseif spell.target.distance < (8 + spell.target.model_size) then
+            equip({waist="Orpheus's Sash"})
+        -- Match day or weather.
+        elseif spell.element == world.day_element or spell.element == world.weather_element then
+            equip({waist="Hachirin-no-Obi"})
+        end
     end
 end
 
@@ -1073,5 +1054,5 @@ function select_default_macro_book()
 end
 
 function set_lockstyle()
-    send_command('wait 2; input /lockstyleset 40 ' .. lockstyleset)
+    send_command('wait 2; input /lockstyleset 80 ' .. lockstyleset)
 end

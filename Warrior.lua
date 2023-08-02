@@ -79,24 +79,32 @@ function init_gear_sets()
 	
     -- Precast sets to enhance JAs
     sets.precast.JA['Blood Rage'] = { body="Boii Lorica +3" }
-    sets.precast.JA['Provoke'] = set_combine(sets.TreasureHunter, { hands="Pummeler's Mufflers +2"})
-    sets.precast.JA['Berserk'] = { 
+    
+	sets.precast.JA['Provoke'] = set_combine(sets.TreasureHunter, { hands="Pummeler's Mufflers +2"})
+    
+	sets.precast.JA['Berserk'] = { 
 		body="Pummeler's Lorica +3",
 		feet="Agoge Calligae +3",
 		back={ name="Cichol's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
 	}
-    sets.precast.JA['Warcry'] = { head="Agoge Mask +3"}
-    sets.precast.JA['Mighty Strikes'] = { head="Agoge Mufflers +3"}
-    sets.precast.JA['Retaliation'] = { 
+    
+	sets.precast.JA['Warcry'] = { head="Agoge Mask +3"}
+    
+	sets.precast.JA['Mighty Strikes'] = { head="Agoge Mufflers +3"}
+    
+	sets.precast.JA['Retaliation'] = { 
 		hands="Pummeler's Mufflers +2",
 		feet="Boii Calligae +3",
 	}
-    sets.precast.JA['Aggressor'] = { 
+    
+	sets.precast.JA['Aggressor'] = { 
 		head="Pummeler's Mask +3", 
 		body="Agoge Lorica +3",
 	}
-    sets.precast.JA['Restraint'] = { hands="Boii Mufflers +3"}
-    sets.precast.JA['Warrior\'s Charge'] = { legs="Agoge Cuisses +3"}
+    
+	sets.precast.JA['Restraint'] = { hands="Boii Mufflers +3"}
+    
+	sets.precast.JA['Warrior\'s Charge'] = { legs="Agoge Cuisses +3"}
 
     sets.CapacityMantle  = { back="Apptitude Mantle +1" }
  
@@ -159,7 +167,7 @@ function init_gear_sets()
 		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
 		right_ear="Thrud Earring",
 		left_ring="Epaminondas's Ring",
-		right_ring="Regal Ring",
+		right_ring="Cornelia's Ring",
 		back={ name="Cichol's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Damage taken-5%',}},
     }
 	
@@ -176,7 +184,7 @@ function init_gear_sets()
 		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
 		right_ear={ name="Boii Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+12','Mag. Acc.+12','Crit.hit rate+4',}},
 		left_ring="Epaminondas's Ring",
-		right_ring="Regal Ring",
+		right_ring="Cornelia's Ring",
 		back={ name="Cichol's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Damage taken-5%',}},
 	}
 	
@@ -196,7 +204,7 @@ function init_gear_sets()
 		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
 		right_ear="Thrud Earring",
 		left_ring="Epaminondas's Ring",
-		right_ring="Regal Ring",
+		right_ring="Cornelia's Ring",
 		back={ name="Cichol's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Damage taken-5%',}},
 	}
 	
@@ -209,18 +217,18 @@ function init_gear_sets()
 	--Full Break
 	sets.precast.WS["Full Break"] = set_combine {
 		ammo="Pemphredo Tathlum",
-		head="Boii Mask +3",
-		body="Boii Lorica +3",
-		hands="Boii Mufflers +3",
+		head="Sakpata's Helm",
+		body="Sacro Breastplate",
+		hands="Sakpata's Gauntlets",
 		legs="Boii Cuisses +3",
-		feet="Boii Calligae +3",
+		feet="Sakpata's Leggings",
 		neck="Sanctity Necklace",
 		waist="Eschan Stone",
-		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
-		right_ear="Gwati Earring",
-		left_ring="Flamma Ring",
-		right_ring="Regal Ring",
-		back={ name="Cichol's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Damage taken-5%',}},
+		left_ear="Gwati Earring",
+		right_ear={ name="Boii Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+12','Mag. Acc.+12','Crit.hit rate+4',}},
+		left_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
+		right_ring="Cornelia's Ring",
+		back={ name="Cichol's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
 	}
 	
 	sets.precast.WS['Full Break'].MidAcc = set_combine(sets.precast.WS['Full Break'], {
@@ -242,7 +250,7 @@ function init_gear_sets()
 		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
 		right_ear={ name="Boii Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+12','Mag. Acc.+12','Crit.hit rate+4',}},
 		left_ring="Epaminondas's Ring",
-		right_ring="Regal Ring",
+		right_ring="Cornelia's Ring",
 		back={ name="Cichol's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Damage taken-5%',}},
 	}
 	
@@ -264,8 +272,8 @@ function init_gear_sets()
 		waist={ name="Sailfi Belt +1", augments={'Path: A',}},
 		left_ear="Thrud Earring",
 		right_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
-		left_ring="Niqmaddu Ring",
-		right_ring="Regal Ring",
+		left_ring="Epaminondas's Ring",
+		right_ring="Cornelia's Ring",
 		back={ name="Cichol's Mantle", augments={'VIT+20','Accuracy+20 Attack+20','VIT+10','Weapon skill damage +10%','Damage taken-5%',}},
     }
 	
@@ -290,8 +298,8 @@ function init_gear_sets()
 		waist="Fotia Belt",
 		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
 		right_ear="Thrud Earring",
-		left_ring="Niqmaddu Ring",
-		right_ring="Regal Ring",
+		left_ring="Epaminondas's Ring",
+		right_ring="Cornelia's Ring",
 		back={ name="Cichol's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Damage taken-5%',}},
 	}
 	
@@ -310,14 +318,14 @@ function init_gear_sets()
 		waist="Fotia Belt",
 		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
 		right_ear="Thrud Earring",
-		left_ring="Niqmaddu Ring",
-		right_ring="Regal Ring",
+		left_ring="Epaminondas's Ring",
+		right_ring="Cornelia's Ring",
 		back={ name="Cichol's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Damage taken-5%',}},
 	}
 	
 	--Sonic Thrust
 	sets.precast.WS['Sonic Thrust'] = {
-		 ammo="Knobkierrie",
+		ammo="Knobkierrie",
 		head={ name="Agoge Mask +3", augments={'Enhances "Savagery" effect',}},
 		body="Pumm. Lorica +3",
 		hands="Boii Mufflers +3",
@@ -327,8 +335,8 @@ function init_gear_sets()
 		waist={ name="Sailfi Belt +1", augments={'Path: A',}},
 		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
 		right_ear="Thrud Earring",
-		left_ring="Niqmaddu Ring",
-		right_ring="Regal Ring",
+		left_ring="Epaminondas's Ring",
+		right_ring="Cornelia's Ring",
 		back={ name="Cichol's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Damage taken-5%',}},
 	}
 	
@@ -344,8 +352,8 @@ function init_gear_sets()
 		waist="Fotia Belt",
 		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
 		right_ear={ name="Boii Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+12','Mag. Acc.+12','Crit.hit rate+4',}},
-		left_ring="Niqmaddu Ring",
-		right_ring="Regal Ring",
+		left_ring="Epaminondas's Ring",
+		right_ring="Cornelia's Ring",
 		back={ name="Cichol's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
     }
 	
@@ -362,7 +370,7 @@ function init_gear_sets()
 		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
 		right_ear={ name="Boii Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+12','Mag. Acc.+12','Crit.hit rate+4',}},
 		left_ring="Epaminondas's Ring",
-		right_ring="Regal Ring",
+		right_ring="Cornelia's Ring",
 		back={ name="Cichol's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Damage taken-5%',}},
 	}
     
@@ -382,7 +390,7 @@ function init_gear_sets()
 		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
 		right_ear="Thrud Earring",
 		left_ring="Epaminondas's Ring",
-		right_ring="Regal Ring",
+		right_ring="Cornelia's Ring",
 		back={ name="Cichol's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Damage taken-5%',}},
 	}
 	
@@ -399,7 +407,7 @@ function init_gear_sets()
 		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
 		right_ear="Thrud Earring",
 		left_ring="Epaminondas's Ring",
-		right_ring="Regal Ring",
+		right_ring="Cornelia's Ring",
 		back={ name="Cichol's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Damage taken-5%',}},
     }
 	
@@ -432,8 +440,8 @@ function init_gear_sets()
 		waist={ name="Sailfi Belt +1", augments={'Path: A',}},
 		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
 		right_ear="Thrud Earring",
-		left_ring="Niqmaddu Ring",
-		right_ring="Regal Ring",
+		left_ring="Epaminondas's Ring",
+		right_ring="Cornelia's Ring",
 		back={ name="Cichol's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Damage taken-5%',}},
 	}
 	
@@ -501,27 +509,22 @@ function init_gear_sets()
      -- Defense sets, activated with F10 (PDT) and
 	 -- F11 (MDT) keys.
     sets.defense.PDT = {
-        head="Boii Mask +3",
-        body="Boii Lorica +3",
+        head="Sakpata's Helm",
+        body="Tartarus Platemail",
         hands="Sakpata's Gauntlets",
         legs="Sakpata's Cuisses",
-        feet="Boii Calligae +3",
+        feet="Sakpata's Leggings",
         right_ring="Defending Ring",
-        waist="Sailfi Belt +1",
     }
 
     sets.defense.MDT = set_combine(sets.defense.PDT, {
         ammo="Staunch Tathlum +1",
 		head="Volte Cap",
-		body="Boii Lorica +3",
-		hands="Sakpata's Gauntlets",
-		legs="Sakpata's Cuisses",
 		feet="Volte Boots",
 		neck="Loricate Torque",
-		waist="Flume Belt +1",
+		waist="Plat. Mog. Belt",
+		left_ear="Eabani Earring",
 		right_ear="Hearty Earring",
-		left_ring="Moonlight Ring",
-		right_ring="Defending Ring",
     })
  
      sets.Kiting = {left_ring="Shneddick Ring"}
@@ -535,37 +538,36 @@ function init_gear_sets()
     -- EG: sets.engaged.Dagger.Accuracy.Evasion
 	-- Normal, MidAcc, HighAcc, StoreTP, Crit
 	-- Default set for two-handed weapons such as Great Axe, Great Sword, and Polearm.
-    sets.engaged = { --Acc 1256, DA +94, TA +5
-        ammo="Coiste Bodhar", --3/0
-        head="Flam. Zucchetto +2", --0/5, STP +6
-        body="Boii Lorica +3", --0/0, STP +11
-        hands="Sakpata's Gauntlets", --6/0
-        legs="Boii Cuisses +3", --8/0
-        feet="Pumm. Calligae +3", --9/0, STP+4
-        neck={ name="War. Beads +2", augments={'Path: A',}}, --7/0
-        waist="Sailfi Belt +1", --5/2
-        left_ear={ name="Schere Earring", augments={'Path: A',}}, --6/0
-		right_ear={ name="Boii Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+12','Mag. Acc.+12','Crit.hit rate+4',}}, --8/0
-        left_ring="Niqmaddu Ring", --0/0/3
-        right_ring="Flamma Ring", --0/0, STP +5
-        back={ name="Cichol's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}}, --10/0
-    }
+    
+	sets.engaged = { --Acc 1256, DA +94, TA +5
+        ammo="Coiste Bodhar",
+		head="Boii Mask +3",
+		body="Boii Lorica +3",
+		hands="Sakpata's Gauntlets",
+		legs="Pumm. Cuisses +3",
+		feet="Pumm. Calligae +3",
+		neck={ name="War. Beads +2", augments={'Path: A',}},
+		waist={ name="Sailfi Belt +1", augments={'Path: A',}},
+		left_ear={ name="Schere Earring", augments={'Path: A',}},
+		right_ear={ name="Boii Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+12','Mag. Acc.+12','Crit.hit rate+4',}},
+		left_ring="Niqmaddu Ring",
+		right_ring="Petrov Ring",
+		back={ name="Cichol's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
+	}
     
 	sets.engaged.MidAcc = set_combine(sets.engaged, { --Acc 1281
+		waist="Ioskeha Belt +1", --9/0
 		left_ear="Telos Earring", --1/0, STP +5
-		right_ring="Moonlight Ring", --0,0, STP +5
+		left_ring="Chirich Ring +1", --0,0, STP +5
     })
     
 	sets.engaged.HighAcc = set_combine(sets.engaged.Mid, { --Acc 1384
-		head="Boii Mask +3", --7/0
-		body="Tatena. Harama. +1", --0/5, STP +5~9
-		hands="Tatena. Gote +1", --0/4, STP +4~8
-		legs="Tatena. Haidate +1", --0/3, STP +4~8
-		Feet="Tatena. Sune. +1", --0/3, STP +4~8
+		hands="Boii Mufflets +3",
+		legs="Boii Cuisses +3",
+		Feet="Boii Calligae +3",
 	})
 	 
 	sets.engaged.StoreTP = set_combine(sets.engaged, {
-		body="Hjarrandi Breast.",
 		neck="Vim Torque +1", --0/0, STP +10, Regain +20
 		left_ear="Dedition Earring", --0/0, STP +8
 		right_ear="Telos Earring", 
@@ -714,42 +716,40 @@ function init_gear_sets()
     -- Sword & Shield Set
 	-------------------------------------
 	-- Used for Sword, Club, and Axe sets when using a shield in the off-hand.
-	sets.engaged.OH = { --Acc 1256, DA +93
-        ammo="Coiste Bodhar", --3/0
-        head="Hjarrandi Helm", --6/0, STP+7
-        body="Sakpata's Plate", --8/0
-        hands="Sakpata's Gauntlets", --6/0
-        legs="Agoge Cuisses +3", --6/0
-        feet="Pumm. Calligae +3", --9/0, STP+4
-        neck="Vim Torque +1",
-        waist="Sailfi Belt +1", --5/2
-        left_ear={ name="Schere Earring", augments={'Path: A',}}, --6/0
-        right_ear={ name="Boii Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+12','Mag. Acc.+12','Crit.hit rate+4',}}, --8/0
-        left_ring="Niqmaddu Ring", --0/0/3
-        right_ring="Petrov Ring", --1/0, STP +5
-        back={ name="Cichol's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}}, --10/0
-    }
-    
-	sets.engaged.OH.MidAcc = set_combine(sets.engaged.OH, { --Acc 1281
+	sets.engaged.OH = { --Acc 1326, DA +101
+        ammo="Coiste Bodhar",
+		head="Boii Mask +3",
+		body="Hjarrandi Breast.",
+		hands="Sakpata's Gauntlets",
+		legs="Pumm. Cuisses +3",
+		feet="Pumm. Calligae +3",
 		neck={ name="War. Beads +2", augments={'Path: A',}},
+		waist={ name="Sailfi Belt +1", augments={'Path: A',}},
+		left_ear={ name="Schere Earring", augments={'Path: A',}},
+		right_ear={ name="Boii Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+12','Mag. Acc.+12','Crit.hit rate+4',}},
+		left_ring="Niqmaddu Ring",
+		right_ring="Petrov Ring",
+		back={ name="Cichol's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
+	}
+
+	sets.engaged.OH.MidAcc = set_combine(sets.engaged.OH, { --Acc 1346
 		waist="Ioskeha Belt +1", --9/0
 		left_ear="Telos Earring", --1/0, STP +5
-		right_ring="Moonlight Ring", --0,0, STP +5
+		left_ring="Chirich Ring +1", --0,0, STP +5
     })
     
 	sets.engaged.OH.HighAcc = set_combine(sets.engaged.OH.MidAcc, { --Acc 1384
-		head="Boii Mask +3", --7/0
-		body="Tatena. Harama. +1", --0/5, STP +5~9
-		hands="Tatena. Gote +1", --0/4, STP +4~8
-		legs="Tatena. Haidate +1", --0/3, STP +4~8
-		Feet="Tatena. Sune. +1", --0/3, STP +4~8
+		body="Boii Lorica +3",
+		hands="Boii Mufflets +3",
+		legs="Boii Cuisses +3",
+		Feet="Boii Calligae +3",
 	})
 	 
 	sets.engaged.OH.StoreTP = set_combine(sets.engaged.OH, {
-		body="Hjarrandi Breast.",
+		body="Boii Lorica +3",
 		neck="Vim Torque +1", --0/0, STP +10, Regain +20
-		left_ear="Dedition Earring", --0/0, STP +8
-		right_ear="Telos Earring", 
+		left_ear="Telos Earring",
+		right_ear="Dedition Earring", --0/0, STP +8
 	})
 end
 
@@ -1021,10 +1021,14 @@ end
 
 function select_default_macro_book()
     -- Default macro set/book
-	if player.sub_job == 'DNC' then
+	if player.sub_job == 'DRG' then
 		set_macro_page(1, 1)
 	elseif player.sub_job == 'SAM' then
 		set_macro_page(1, 2)
+	elseif player.sub_job == 'NIN' then
+		set_macro_page(1, 3)
+	elseif player.sub_job == 'DNC' then
+		set_macro_page(1, 4)
 	else
 		set_macro_page(1, 1)
 	end

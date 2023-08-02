@@ -46,6 +46,7 @@ function job_setup()
 
     no_swap_gear = S{"Warp Ring", "Dim. Ring (Dem)", "Dim. Ring (Holla)", "Dim. Ring (Mea)",
               "Trizek Ring", "Echad Ring", "Facility Ring", "Capacity Ring"}
+	elemental_ws = S{"Rock Crusher"}
 
     degrade_array = {
         ['Aspirs'] = {'Aspir','Aspir II','Aspir III'}
@@ -130,24 +131,23 @@ function init_gear_sets()
         back={ name="Taranus's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','INT+10','"Mag.Atk.Bns."+10','Phys. dmg. taken-6%',}},
     }
 
-    sets.precast.JA.Manafont = {body="Arch. Coat +1"}
+    sets.precast.JA.Manafont = {body="Arch. Coat +3"}
 
     -- Fast cast sets for spells
-    sets.precast.FC = { --FC +63%, QC +7%
+    sets.precast.FC = { --FC +80%, QC +7%
         ammo="Impatiens", --QC +2
 		head={ name="Merlinic Hood", augments={'Attack+10','"Fast Cast"+7','DEX+1','Mag. Acc.+6',}}, --FC +15
-		body={ name="Merlinic Jubbah", augments={'"Mag.Atk.Bns."+29','"Fast Cast"+5','MND+7','Mag. Acc.+14',}}, --FC +11
+		body={ name="Merlinic Jubbah", augments={'Mag. Acc.+16','"Fast Cast"+6','MND+5',}}, --FC +12
 		hands={ name="Merlinic Dastanas", augments={'"Fast Cast"+7','Mag. Acc.+2','"Mag.Atk.Bns."+13',}}, --FC +7
 		legs={ name="Agwu's Slops", augments={'Path: A',}}, --FC +7
-		feet={ name="Merlinic Crackows", augments={'"Fast Cast"+4','CHR+5',}}, --FC +9
+		feet={ name="Merlinic Crackows", augments={'Mag. Acc.+13','"Fast Cast"+7',}}, --FC +12
 		neck="Baetyl Pendant", --FC +4
 		waist="Witful Belt", --FC +3, QC +3
 		left_ear="Loquac. Earring", --FC +2
 		right_ear="Malignance Earring", --FC +4
 		left_ring="Lebeche Ring", --QC +2
 		right_ring="Kishar Ring", --FC +4
-		--back=( name="Taranus's Cape", --needs to be fast cast cape
-		back={ name="Taranus's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','INT+10','"Mag.Atk.Bns."+10','Phys. dmg. taken-6%',}},
+		back={ name="Taranus's Cape", augments={'MP+60','Mag. Acc+20 /Mag. Dmg.+20','MP+20','"Fast Cast"+10','Phys. dmg. taken-10%',}},
     }
 
     sets.precast.FC['Enhancing Magic'] = set_combine(sets.precast.FC, {
@@ -157,7 +157,6 @@ function init_gear_sets()
 
     sets.precast.FC['Elemental Magic'] = set_combine(sets.precast.FC, {
 		body="Wicce Coat +3",
-		--back=( name="Taranus's Cape", --needs to be fast cast cape
 	})
 
     sets.precast.FC.Cure = set_combine(sets.precast.FC, {})
@@ -169,8 +168,13 @@ function init_gear_sets()
 		--waist="Shinjutsu-no-Obi +1",
 	})
     
-	sets.precast.FC.Dispelga = set_combine(sets.precast.FC, {main="Daybreak", sub="Ammurapi Shield", waist="Shinjutsu-no-Obi +1"})
-    sets.precast.Storm = set_combine(sets.precast.FC, {right_ring={name="Stikini Ring +1", bag="wardrobe4"},})
+	sets.precast.FC.Dispelga = set_combine(sets.precast.FC, {
+		main="Daybreak",
+		--sub="Ammurapi Shield",
+		--waist="Shinjutsu-no-Obi +1",
+	})
+    
+	sets.precast.Storm = set_combine(sets.precast.FC, {right_ring={name="Stikini Ring +1", bag="wardrobe4"},})
 
     sets.precast.FC.DeathMode = {
         ammo="Ghastly Tathlum +1",
@@ -186,8 +190,7 @@ function init_gear_sets()
 		right_ear="Etiolation Earring", --FC +1
         --left_ring="Mephitas's Ring +1",
         --right_ring="Weather. Ring +1", --5
-        --back="Taranus's Cape", --FC +10
-        
+        back={ name="Taranus's Cape", augments={'MP+60','Mag. Acc+20 /Mag. Dmg.+20','MP+20','"Fast Cast"+10','Phys. dmg. taken-10%',}},
     }
 
     sets.precast.FC.Impact.DeathMode = set_combine(sets.precast.FC.DeathMode, {
@@ -198,7 +201,7 @@ function init_gear_sets()
 
 	
     -------------------------------------
-    -- weaponskill sets
+    -- Weaponskill sets
 	-------------------------------------
     -- Default set for any weaponskill that isn't any more specifically defined
     sets.precast.WS = {
@@ -213,8 +216,8 @@ function init_gear_sets()
 		right_ear="Telos Earring",
 		left_ring="Epaminondas's Ring",
 		right_ring="Karieyh Ring",
-		back={ name="Taranus's Cape", augments={'Mag. Acc+20 /Mag. Dmg.+20',}},
-        }
+		back={ name="Taranus's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','INT+10','"Mag.Atk.Bns."+10','Phys. dmg. taken-6%',}},
+    }
 
     -- Specific weaponskill sets.  Uses the base set if an appropriate WSMod version isn't found.
 	-- Staff Weaponskills
@@ -232,9 +235,8 @@ function init_gear_sets()
 		left_ring="Metamor. Ring +1",
 		--right_ring="Mephitas's Ring +1",
 		right_ring="Defending Ring",
-		--back=gear.BLM_Death_Cape,
-		back={ name="Taranus's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','INT+10','"Mag.Atk.Bns."+10','Phys. dmg. taken-6%',}},
-    }
+		back={ name="Taranus's Cape", augments={'MP+60','Mag. Acc+20 /Mag. Dmg.+20','MP+20','"Fast Cast"+10','Phys. dmg. taken-10%',}},
+}
 
     sets.precast.WS['Vidohunir'] = {
         ammo="Ghastly Tathlum +1",
@@ -254,12 +256,14 @@ function init_gear_sets()
 
     
 
-	-------------------------------------
+	---------------------------------------------------------------------------------------------------------------
     -- Midcast sets
-	-------------------------------------
+	---------------------------------------------------------------------------------------------------------------
     sets.midcast.FastRecast = sets.precast.FC
 
-	-- Cures
+	-------------------------------------
+    -- Cure / Curaga sets
+	-------------------------------------
     sets.midcast.Cure = {
         --ammo="Esper Stone +1", --0/(-5)
         --body="Vanya Robe",
@@ -293,7 +297,9 @@ function init_gear_sets()
         --right_ring="Haoma's Ring",
     })
 
-	-- Enhancing Magic
+	-------------------------------------
+    -- Enhancing Magic sets
+	-------------------------------------
     sets.midcast['Enhancing Magic'] = {
         --main=gear.Gada_ENH,
         --sub="Ammurapi Shield",
@@ -359,27 +365,30 @@ function init_gear_sets()
     sets.midcast.Shell = sets.midcast.Protect
     sets.midcast.Shellra = sets.midcast.Protect
 
-	-- Enfeebling magic (PRIORITY)
+	-------------------------------------
+    -- Enfeebling Magic sets
+	-------------------------------------
     sets.midcast.MndEnfeebles = {
         ammo="Pemphredo Tathlum",
-        --head=empty;
-        --body="Cohort Cloak +1",
-        --hands="Regal Cuffs",
-        --legs="Ea Slops +1",
-        --feet="Skaoi Boots",
-        neck="Erra Pendant",
-        --ear1="Malignance Earring",
-        --ear2="Vor Earring",
-        --left_ring={name="Stikini Ring +1", bag="wardrobe3"},
-        --right_ring={name="Stikini Ring +1", bag="wardrobe4"},
-        --back="Aurist's Cape +1",
-        --waist="Luminary Sash",
+		head="Wicce Petasos +3",
+		body="Spaekona's Coat +3",
+		--body="Cohort Cloak +1", -- Needs augmented
+		hands="Wicce Gloves +3",
+		legs="Wicce Chausses +3",
+		feet="Wicce Sabots +3",
+		neck={ name="Src. Stole +2", augments={'Path: A',}},
+		waist={ name="Acuity Belt +1", augments={'Path: A',}},
+		left_ear="Regal Earring",
+		right_ear="Malignance Earring",
+		left_ring="Kishar ring",
+		right_ring="Metamor. Ring +1",
+		back="Aurist's Cape", -- Needs augmented
     }
 
     sets.midcast.IntEnfeebles = set_combine(sets.midcast.MndEnfeebles, {
         ammo="Pemphredo Tathlum",
 		head="Wicce Petasos +3",
-		body="Spaekona's Coat +2",
+		body="Spaekona's Coat +3",
 		hands="Spae. Gloves +1",
 		legs={ name="Arch. Tonban +3", augments={'Increases Elemental Magic debuff time and potency',}},
 		feet={ name="Arch. Sabots +3", augments={'Increases Aspir absorption amount',}},
@@ -397,7 +406,9 @@ function init_gear_sets()
 		--waist="Shinjutsu-no-Obi +1",
 	})
 
-	-- Dark Magic
+	-------------------------------------
+    -- Dark Magic sets
+	-------------------------------------
     sets.midcast['Dark Magic'] = {
 		ammo="Pemphredo Tathlum",
         head="Pixie Hairpin +1",
@@ -411,15 +422,14 @@ function init_gear_sets()
 		right_ear="Telos Earring",
 		left_ring="Kishar Ring",
 		right_ring="Jhakri Ring",
-		back={ name="Taranus's Cape", augments={'Mag. Acc+20 /Mag. Dmg.+20',}},
+		back={ name="Taranus's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','INT+10','"Mag.Atk.Bns."+10','Phys. dmg. taken-6%',}},
     }
 
     sets.midcast.Drain = set_combine(sets.midcast['Dark Magic'], { --75 Drain/Aspir Pot, Max +96
-        ammo="Pemphredo Tathlum",
 		head={ name="Merlinic Hood", augments={'"Drain" and "Aspir" potency +11','MND+8','"Mag.Atk.Bns."+14',}}, --11
 		body={ name="Merlinic Jubbah", augments={'"Mag.Atk.Bns."+28','"Drain" and "Aspir" potency +11','Mag. Acc.+1',}}, --11
 		--hands="Merlinic Dastanas", --Drain/Aspir Pot 11
-		hands={ name="Arch. Gloves +1", augments={'Increases Elemental Magic accuracy',}},
+		hands={ name="Arch. Gloves +3", augments={'Increases Elemental Magic accuracy',}},
 		--legs="Spae. Tonban +3", --20
 		legs="Spae. Tonban +2", --10
 		feet={ name="Agwu's Pigaches", augments={'Path: A',}}, --20
@@ -430,8 +440,7 @@ function init_gear_sets()
 		left_ring="Evanescence Ring", --10
 		right_ring="Archon Ring",
 		--back="Aurist Cape +1", --Needs Augmented
-		back={ name="Taranus's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','INT+10','"Mag.Atk.Bns."+10','Phys. dmg. taken-6%',}},
-    })
+	})
 
     sets.midcast.Aspir = sets.midcast.Drain
 
@@ -439,6 +448,9 @@ function init_gear_sets()
         feet="Volte Gaiters",
     })
 
+	-------------------------------------
+    -- Death sets
+	-------------------------------------
     sets.midcast.Death = {
         ammo="Ghastly Tathlum +1",
 		head="Pixie Hairpin +1",
@@ -452,17 +464,17 @@ function init_gear_sets()
 		right_ear="Etiolation Earring",
 		left_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
 		right_ring="Archon Ring",
-		back={ name="Taranus's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','INT+10','"Mag.Atk.Bns."+10','Phys. dmg. taken-6%',}},
+		back={ name="Taranus's Cape", augments={'MP+60','Mag. Acc+20 /Mag. Dmg.+20','MP+20','"Fast Cast"+10','Phys. dmg. taken-10%',}},
     }
 
     sets.midcast.Death.Resistant = set_combine(sets.midcast.Death, {
-        --main=gear.Grioavolr_MB,
-        --sub="Enki Strap",
         --head="Amalric Coif +1",
         waist="Acuity Belt +1",
     })
 
+    -------------------------------------
     -- Elemental Magic sets
+	-------------------------------------
     sets.midcast['Elemental Magic'] = {
 		ammo="Sroda Tathlum",
 		head="Wicce Petasos +3",
@@ -475,7 +487,7 @@ function init_gear_sets()
 		left_ear="Regal Earring",
 		right_ear={ name="Wicce Earring +1", augments={'System: 1 ID: 1676 Val: 0','Mag. Acc.+12','Enmity-2',}},
 		left_ring="Metamor. Ring +1",
-		right_ring="Defending Ring",
+		right_ring="Freke Ring",
 		back={ name="Taranus's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','INT+10','"Mag.Atk.Bns."+10','Phys. dmg. taken-6%',}},
     }
 
@@ -483,8 +495,8 @@ function init_gear_sets()
         ammo="Ghastly Tathlum +1",
         --legs="Amalric Slops +1",
         --feet="Merlinic Crackows",
-        --back=gear.BLM_Death_Cape,
-        })
+        back={ name="Taranus's Cape", augments={'MP+60','Mag. Acc+20 /Mag. Dmg.+20','MP+20','"Fast Cast"+10','Phys. dmg. taken-10%',}},
+    })
 
     sets.midcast['Elemental Magic'].Resistant = set_combine(sets.midcast['Elemental Magic'], {
         ammo="Pemphredo Tathlum",
@@ -495,7 +507,7 @@ function init_gear_sets()
 
     sets.midcast['Elemental Magic'].Spaekona = set_combine(sets.midcast['Elemental Magic'], {
         ammo="Pemphredo Tathlum",
-        body="Spaekona's Coat +2",
+        body="Spaekona's Coat +3",
         --legs="Merlinic Shalwar",
         --feet="Merlinic Crackows",
         neck="Erra Pendant",
@@ -506,11 +518,21 @@ function init_gear_sets()
         body="Crepuscular Cloak",
         right_ring="Archon Ring",
     })
-
+	
+	sets.midcast.Impact.DeathMode = set_combine(sets.midcast['Elemental Magic'].DeathMode, {
+        head=empty,
+        body="Crepuscular Cloak",
+        right_ring="Archon Ring",
+    })
+	
     sets.midcast.Impact.Resistant = set_combine(sets.midcast['Elemental Magic'].Resistant, {
         head=empty,
         body="Crepuscular Cloak",
+        right_ring="Archon Ring",
     })
+	
+	
+
 
     -- Initializes trusts at iLvl 119
     sets.midcast.Trust = sets.precast.FC
@@ -550,8 +572,7 @@ function init_gear_sets()
 
     sets.idle.ManaWall = {
         feet="Wicce Sabots +3",
-        --back=gear.BLM_Death_Cape,
-		back={ name="Taranus's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','INT+10','"Mag.Atk.Bns."+10','Phys. dmg. taken-6%',}},
+		back={ name="Taranus's Cape", augments={'MP+60','Mag. Acc+20 /Mag. Dmg.+20','MP+20','"Fast Cast"+10','Phys. dmg. taken-10%',}},
     }
 
     sets.idle.DeathMode = {
@@ -566,9 +587,8 @@ function init_gear_sets()
 		right_ear="Loquac. Earring",
 		left_ring="Shneddick Ring",
 		right_ring="Defending Ring",
-		--back=gear.BLM_Death_Cape,
-		back={ name="Taranus's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','INT+10','"Mag.Atk.Bns."+10','Phys. dmg. taken-6%',}},
-    }
+		back={ name="Taranus's Cape", augments={'MP+60','Mag. Acc+20 /Mag. Dmg.+20','MP+20','"Fast Cast"+10','Phys. dmg. taken-10%',}},
+	}
 
     sets.idle.Town = set_combine(sets.idle, {
         ammo="Sroda Tathlum",
@@ -600,7 +620,6 @@ function init_gear_sets()
 	-------------------------------------
     -- Magic Burst sets
 	-------------------------------------
-
     sets.magic_burst = {
         ammo="Ghastly Tathlum +1",
 		head="Ea Hat +1",
@@ -616,6 +635,16 @@ function init_gear_sets()
 		right_ring="Freke Ring",
 		back={ name="Taranus's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','INT+10','"Mag.Atk.Bns."+10','Phys. dmg. taken-6%',}},
     }
+	
+	sets.magic_burst.DeathMode = set_combine(sets.magic_burst, {
+		head="Pixie Hairpin +1",
+		--feet="Amalric Nails +1",
+		left_ear="Barkaro. Earring",
+		right_ear="Etiolation Earring",
+		--left_ring="Mephitas's Ring +1",
+		right_ring="Archon Ring",
+		back={ name="Taranus's Cape", augments={'MP+60','Mag. Acc+20 /Mag. Dmg.+20','MP+20','"Fast Cast"+10','Phys. dmg. taken-10%',}},
+	})
 
     sets.magic_burst.Resistant = {
         ammo="Pemphredo Tathlum",
@@ -633,6 +662,10 @@ function init_gear_sets()
 		right_ring="Freke Ring",
 		back={ name="Taranus's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','INT+10','"Mag.Atk.Bns."+10','Phys. dmg. taken-6%',}},
     }
+	
+	sets.magic_burst.Spaekona = set_combine(sets.magic_burst, {
+		body="Spaekona's Coat +3",
+	})
 	
 	-------------------------------------
     -- Engaged Sets
@@ -675,7 +708,7 @@ function init_gear_sets()
 		left_ring="Archon Ring",
 	}
     
-	-- sets.Obi = {waist="Hachirin-no-Obi"}
+	sets.Obi = {waist="Hachirin-no-Obi"}
     -- sets.CP = {back="Mecisto. Mantle"}
 
 end

@@ -254,9 +254,9 @@ function init_gear_sets()
     ---------------------------------------- Precast Sets ------------------------------------------
     ------------------------------------------------------------------------------------------------
 
-    sets.precast.JA['Snake Eye'] = {legs="Lanun Trews +2"}
+    sets.precast.JA['Snake Eye'] = {legs="Lanun Trews +3"}
     sets.precast.JA['Wild Card'] = {feet="Lanun Bottes +3"}
-    sets.precast.JA['Random Deal'] = {body="Lanun Frac +1"}
+    sets.precast.JA['Random Deal'] = {body="Lanun Frac +3"}
 
 	-- Phantom Roll precast
     sets.precast.CorsairRoll = {
@@ -275,7 +275,7 @@ function init_gear_sets()
     }
 
 	-- Phantom Roll Duration / Lower Delay
-    sets.precast.CorsairRoll.Duration = {main="Rostam", range="Compensator"}
+    --sets.precast.CorsairRoll.Duration = {main="Rostam", range="Compensator"}
     --sets.precast.CorsairRoll.LowerDelay = {legs="Desultor Tassets"}
 	
 	-- Equipment for specific rolls
@@ -367,7 +367,7 @@ function init_gear_sets()
 		left_ear="Ishvara Earring",
 		right_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
 		left_ring="Cornelia's Ring",
-		right_ring="Regal Ring",
+		right_ring="Epaminondas's Ring",
 		back={ name="Camulus's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Mag. Evasion+15',}},
     }
     
