@@ -66,7 +66,7 @@ function init_gear_sets()
 	sets.weapons.Throwing = {main="Aeneas", sub="Gleti's Knife", range="Raider's Bmrng.",ammo=empty}
 	sets.weapons.SwordThrowing = {main="Naegling", sub="Gleti's Knife", range="Raider's Bmrng.", ammo=empty}
 	sets.weapons.Bow = {main="Aeneas", sub="Kustawi +1", range="Kaja Bow", ammo="Chapuli Arrow"}
-	sets.weapons.Blunt = {main="Premium Mogti"}
+	sets.weapons.Blunt = {main="Fusetto"}
 	
     -- Actions we want to use to tag TH.
     sets.precast.Step = {

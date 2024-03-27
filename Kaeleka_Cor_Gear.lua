@@ -12,17 +12,17 @@ function user_job_setup()
 
     gear.RAbullet = "Chrono Bullet"
     gear.WSbullet = "Chrono Bullet"
-    gear.MAbullet = "Chrono Bullet" --For MAB WS, do not put single-use bullets here.
-    gear.QDbullet = "Animikii Bullet"
+    gear.MAbullet = "Living Bullet" --For MAB WS, do not put single-use bullets here.
+    gear.QDbullet = "Hauksbok Bullet"
     options.ammo_warning_limit = 15
     --Ikenga_vest_bonus = 190  -- It is 190 at R20. Uncomment if you need to manually adjust because you are using below R20
 
-	gear.tp_ranger_jse_back = {name="Camulus's Mantle",augments={'AGI+20','Rng.Acc.+20 Rng.Atk.+20','Rng.Acc.+10','"Store TP"+10',}}
+	gear.tp_ranger_jse_back = {name="Camulus's Mantle", augments={'AGI+20','Rng.Acc.+20 Rng.Atk.+20','Rng.Acc.+10','"Store TP"+10','Mag. Evasion+15',}}
 	gear.snapshot_jse_back = {name="Camulus's Mantle", augments={'INT+20','Eva.+20 /Mag. Eva.+20','"Snapshot"+10','Mag. Evasion+15',}}
-	gear.tp_jse_back = {name="Camulus's Mantle",augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Store TP"+10',}}
-	gear.ranger_wsd_jse_back = {name="Camulus's Mantle",augments={'AGI+20','Rng.Acc.+20 Rng.Atk.+20','AGI+10','Weapon skill damage +10%',}}
-	gear.magic_wsd_jse_back = {name="Camulus's Mantle",augments={'AGI+20','Mag. Acc+20 /Mag. Dmg.+20','AGI+10','Weapon skill damage +10%',}}
-	gear.str_wsd_jse_back = {name="Camulus's Mantle",augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%',}}
+	gear.tp_jse_back = {name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}}
+	gear.ranger_wsd_jse_back = {name="Camulus's Mantle", augments={'AGI+20','Rng.Acc.+20 Rng.Atk.+20','AGI+10','Weapon skill damage +10%','Mag. Evasion+15',}}
+	gear.magic_wsd_jse_back = {name="Camulus's Mantle", augments={'AGI+20','Mag. Acc+20 /Mag. Dmg.+20','AGI+10','Weapon skill damage +10%','Mag. Evasion+15',}}
+	gear.str_wsd_jse_back = {name="Camulus's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Mag. Evasion+15',}}
 
     -- Additional local binds
 	send_command('bind ^` gs c cycle ElementalMode')
@@ -38,7 +38,7 @@ function user_job_setup()
 	send_command('bind ^@!\\\\ gs c toggle LuzafRing')
 	send_command('bind @f7 gs c toggle RngHelper')
 
-	send_command('bind !r gs c weapons DualSavageWeapons;gs c update')
+	--send_command('bind !r gs c weapons DualSavageWeapons;gs c update')
 	send_command('bind ^q gs c weapons DualAeolian;gs c update')
 	send_command('bind !q gs c weapons DualLeadenRanged;gs c update')
 	send_command('bind @pause roller roll')
@@ -81,7 +81,8 @@ function init_gear_sets()
 		right_ear={ name="Chas. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+9','Mag. Acc.+9',}},
 		left_ring="Gelatinous Ring +1",
 		right_ring="Defending Ring",
-		back={ name="Camulus's Mantle", augments={'INT+20','Eva.+20 /Mag. Eva.+20','"Snapshot"+10','Mag. Evasion+15',}},}
+		back=gear.snapshot_jse_back,
+	}
 
 
 	--------------------------------------
@@ -116,7 +117,7 @@ function init_gear_sets()
 		right_ear="Telos Earring",
 		left_ring="Dingir Ring",
 		right_ring="Ilabrat Ring",
-		back={ name="Camulus's Mantle", augments={'AGI+20','Rng.Acc.+20 Rng.Atk.+20','Rng.Acc.+8','"Store TP"+10','Mag. Evasion+15',}},
+		back=gear.tp_ranger_jse_back,
 	}
 	
 	-- Quick Draw - Max damage
@@ -133,7 +134,7 @@ function init_gear_sets()
 		right_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
 		left_ring="Dingir Ring",
 		right_ring="Gelatinous Ring +1",
-		back={ name="Camulus's Mantle", augments={'AGI+20','Mag. Acc+20 /Mag. Dmg.+20','AGI+10','Weapon skill damage +10%','Mag. Evasion+15',}}
+		back=gear.magic_wsd_jse_back,
 	}
 	
 	
@@ -151,7 +152,7 @@ function init_gear_sets()
 		right_ear={ name="Chas. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+14','Mag. Acc.+14','Crit.hit rate+5',}},
 		left_ring="Regal Ring",
 		right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
-		back={ name="Camulus's Mantle", augments={'AGI+20','Mag. Acc+20 /Mag. Dmg.+20','AGI+10','Weapon skill damage +10%','Mag. Evasion+15',}},
+		back=gear.magic_wsd_jse_back,
 	}
 
 
@@ -169,7 +170,7 @@ function init_gear_sets()
 		right_ear={ name="Chas. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+14','Mag. Acc.+14','Crit.hit rate+5',}},
 		left_ring="Regal Ring",
 		right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
-		back={ name="Camulus's Mantle", augments={'AGI+20','Mag. Acc+20 /Mag. Dmg.+20','AGI+10','Weapon skill damage +10%','Mag. Evasion+15',}},
+		back=gear.magic_wsd_jse_back,
 	}
 	
 	
@@ -211,13 +212,24 @@ function init_gear_sets()
 	
 	sets.precast.FC.Cure = set_combine(sets.precast.FC, {right_ear="Mendi. Earring"})
 
-    sets.precast.RA = {ammo=gear.RAbullet,
-        head="Chass. Tricorne +1",neck="Comm. Charm +2",
-        body="Laksa. Frac +3",hands="Carmine Fin. Ga. +1",ring1="Crepuscular Ring",
-        back=gear.snapshot_jse_back,waist="Impulse Belt",legs="Laksa. Trews +3",feet="Meg. Jam. +2"}
+    sets.precast.RA = {
+		ammo=gear.RAbullet,
+        head="Chass. Tricorne +3",
+		body="Oshosi Vest +1",
+		hands={ name="Carmine Fin. Ga. +1", augments={'Rng.Atk.+20','"Mag.Atk.Bns."+12','"Store TP"+6',}},
+		legs={ name="Adhemar Kecks +1", augments={'AGI+12','"Rapid Shot"+13','Enmity-6',}},
+		feet="Meg. Jam. +2",
+		neck={ name="Comm. Charm +2", augments={'Path: A',}},
+		waist="Impulse Belt",
+		--left_ring="Crepuscular Ring",
+		back=gear.snapshot_jse_back,
+	}
 		
-	sets.precast.RA.Flurry = set_combine(sets.precast.RA, {waist="Yemaya Belt",legs="Adhemar Kecks +1"})
-	sets.precast.RA.Flurry2 = set_combine(sets.precast.RA, {waist="Yemaya Belt",legs="Adhemar Kecks +1"})
+	sets.precast.RA.Flurry = set_combine(sets.precast.RA, {waist="Yemaya Belt"})
+	sets.precast.RA.Flurry2 = set_combine(sets.precast.RA, {
+		waist="Yemaya Belt",
+		feet={ name="Pursuer's Gaiters", augments={'Rng.Acc.+10','"Rapid Shot"+10','"Recycle"+15',}},
+	})
 
        
 -------------------------------------------------------------------------------------------------------------------
@@ -238,7 +250,7 @@ function init_gear_sets()
 		right_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
 		left_ring="Regal Ring",
 		right_ring="Cornelia's Ring",
-		back={ name="Camulus's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Mag. Evasion+15',}},
+		back=gear.str_wsd_jse_back,
     }
 
     sets.precast.WS.Acc = set_combine(sets.precast.WS, { })
@@ -261,7 +273,7 @@ function init_gear_sets()
 		right_ear="Friomisi Earring",
 		left_ring="Cornelia's Ring",
 		right_ring="Dingir Ring",
-		back={ name="Camulus's Mantle", augments={'AGI+20','Mag. Acc+20 /Mag. Dmg.+20','AGI+10','Weapon skill damage +10%','Mag. Evasion+15',}},
+		back=gear.magic_wsd_jse_back,
 	}
 	
     --Evisceration
@@ -280,7 +292,7 @@ function init_gear_sets()
 		left_ring="Ilabrat Ring",
 		right_ring="Regal Ring",
 		--back DEX+30, Crit +10%
-		back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
+		back=gear.tp_jse_back,
 	}
 	
 	sets.precast.WS['Evisceration'].Acc = set_combine(sets.precast.WS['Evisceration'], { })
@@ -307,7 +319,7 @@ function init_gear_sets()
 		right_ear="Ishvara Earring",
 		left_ring="Cornelia's Ring",
 		right_ring="Dingir Ring",
-		back={ name="Camulus's Mantle", augments={'AGI+20','Rng.Acc.+20 Rng.Atk.+20','AGI+10','Weapon skill damage +10%','Mag. Evasion+15',}},
+		back=gear.ranger_wsd_jse_back,
 	}
 	
 	sets.precast.WS['Last Stand'].Acc = set_combine(sets.precast.WS['Last Stand'], { })
@@ -333,7 +345,7 @@ function init_gear_sets()
 		right_ear="Friomisi Earring",
 		left_ring="Archon Ring",
 		right_ring="Dingir Ring",
-		back={ name="Camulus's Mantle", augments={'AGI+20','Mag. Acc+20 /Mag. Dmg.+20','AGI+10','Weapon skill damage +10%','Mag. Evasion+15',}},
+		back=gear.magic_wsd_jse_back,
 	}
 	
 	--Wildfire
@@ -373,7 +385,7 @@ function init_gear_sets()
 		right_ear="Odr Earring",
 		left_ring="Metamor. Ring +1",
 		right_ring="Regal Ring",
-		back={ name="Camulus's Mantle", augments={'INT+20','Eva.+20 /Mag. Eva.+20','"Snapshot"+10','Mag. Evasion+15',}},
+		back=gear.magic_wsd_jse_back,
 	}
 	
 	-- Savage Blade
@@ -389,7 +401,7 @@ function init_gear_sets()
 		right_ear="Ishvara Earring",
 		left_ring="Cornelia's Ring",
 		right_ring="Regal Ring",
-		back={ name="Camulus's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Mag. Evasion+15',}},
+		back=gear.str_wsd_jse_back,
 	}
 	
 	sets.precast.WS['Savage Blade'].Acc = set_combine(sets.precast.WS['Savage Blade'], { })
@@ -456,7 +468,8 @@ function init_gear_sets()
 		right_ear="Enervating Earring",
 		left_ring="Dingir Ring",
 		right_ring="Ilabrat Ring",
-		back={ name="Camulus's Mantle", augments={'AGI+20','Rng.Acc.+20 Rng.Atk.+20','Rng.Acc.+8','"Store TP"+10','Mag. Evasion+15',}},}
+		back=gear.tp_ranger_jse_back,
+	}
 
     sets.midcast.RA.Acc = {
 		ammo=gear.RAbullet,
@@ -471,7 +484,7 @@ function init_gear_sets()
 		right_ear="Enervating Earring",
 		left_ring="Dingir Ring",
 		right_ring="Ilabrat Ring",
-		back={ name="Camulus's Mantle", augments={'AGI+20','Rng.Acc.+20 Rng.Atk.+20','Rng.Acc.+8','"Store TP"+10','Mag. Evasion+15',}},
+		back=gear.tp_ranger_jse_back,
 	}
 	
 	
@@ -481,7 +494,7 @@ function init_gear_sets()
 	sets.buff['Triple Shot'] = {
 		body="Chasseur's Frac +3",
 		hands="Lanun Gants +3",
-		back={ name="Camulus's Mantle", augments={'AGI+20','Rng.Acc.+20 Rng.Atk.+20','Rng.Acc.+8','"Store TP"+10','Mag. Evasion+15',}},
+		back=gear.tp_ranger_jse_back,
 	}
 
 
@@ -504,7 +517,8 @@ function init_gear_sets()
 		right_ear="Odnowa Earring +1",
 		left_ring="Warden's Ring",
 		right_ring="Defending Ring",
-		back={ name="Camulus's Mantle", augments={'INT+20','Eva.+20 /Mag. Eva.+20','"Snapshot"+10','Mag. Evasion+15',}},}
+		back=gear.snapshot_jse_back,
+	}
 		
 	
 	--------------------------------------
@@ -522,7 +536,7 @@ function init_gear_sets()
 		right_ear="Odnowa Earring +1",
         left_ring="Chirich Ring +1",
 		right_ring="Defending Ring",
-		back={ name="Camulus's Mantle", augments={'INT+20','Eva.+20 /Mag. Eva.+20','"Snapshot"+10','Mag. Evasion+15',}},
+		back=gear.snapshot_jse_back,
 	}
 	
 
@@ -550,7 +564,7 @@ function init_gear_sets()
 		right_ear="Odnowa Earring +1",
 		left_ring="Warden's Ring",
 		right_ring="Defending Ring",
-		back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
+		back=gear.tp_jse_back,
 	}
 
 	
@@ -569,7 +583,7 @@ function init_gear_sets()
 		right_ear="Odnowa Earring +1",
 		left_ring="Warden's Ring",
 		right_ring="Defending Ring",
-		back={ name="Camulus's Mantle", augments={'INT+20','Eva.+20 /Mag. Eva.+20','"Snapshot"+10','Mag. Evasion+15',}},
+		back=gear.snapshot_jse_back,
 	}
 	
 	
@@ -588,7 +602,7 @@ function init_gear_sets()
 		right_ear="Odnowa Earring +1",
 		left_ring="Archon Ring",
 		right_ring="Defending Ring",
-		back={ name="Camulus's Mantle", augments={'INT+20','Eva.+20 /Mag. Eva.+20','"Snapshot"+10','Mag. Evasion+15',}},
+		back=gear.snapshot_jse_back,
 	}
 		
 	
@@ -633,7 +647,7 @@ function init_gear_sets()
 		right_ear="Brutal Earring",
 		left_ring="Petrov Ring",
 		right_ring="Epona's Ring",
-		back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
+		back=gear.tp_jse_back,
     }
 	
 	--------------------------------------
@@ -651,7 +665,7 @@ function init_gear_sets()
 		right_ear={ name="Chas. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+14','Mag. Acc.+14','Crit.hit rate+5',}},
 		left_ring="Cacoethic Ring +1",
 		right_ring="Epona's Ring",
-		back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
+		back=gear.tp_jse_back,
 	}
 	
 	--------------------------------------
@@ -669,7 +683,7 @@ function init_gear_sets()
 		right_ear="Brutal Earring",
 		left_ring="Petrov Ring",
 		right_ring="Defending Ring",
-		back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
+		back=gear.tp_jse_back,
 	}
 	
 	
@@ -688,7 +702,7 @@ function init_gear_sets()
 		right_ear={ name="Chas. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+14','Mag. Acc.+14','Crit.hit rate+5',}},
 		left_ring="Cacoethic Ring +1",
 		right_ring="Defending Ring",
-		back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
+		back=gear.tp_jse_back,
 	}
 	
 
@@ -707,7 +721,7 @@ function init_gear_sets()
 		right_ear="Suppanomimi",
 		left_ring="Petrov Ring",
 		right_ring="Epona's Ring",
-		back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
+		back=gear.tp_jse_back,
 	}
     
 	
@@ -728,7 +742,7 @@ function init_gear_sets()
 		right_ear="Suppanomimi",
 		left_ring="Cacoethic Ring +1",
 		right_ring="Epona's Ring",
-		back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
+		back=gear.tp_jse_back,
 	}
 	
 	
@@ -747,7 +761,7 @@ function init_gear_sets()
 		right_ear="Suppanomimi",
 		left_ring="Defending Ring",
 		right_ring="Epona's Ring",
-		back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
+		back=gear.tp_jse_back,
 	}
 
 	--------------------------------------
@@ -765,7 +779,7 @@ function init_gear_sets()
 		right_ear="Suppanomimi",
 		left_ring="Cacoethic Ring +1",
 		right_ring="Defending Ring",
-		back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
+		back=gear.tp_jse_back,
 	}
 		
 	
@@ -779,18 +793,18 @@ function init_gear_sets()
 	sets.weapons.DualSavageWeapons = {main="Naegling", sub="Blurred Knife +1", range="Ataktos"}
 	sets.weapons.DualEvisceration = {main="Tauret", sub="Blurred Knife +1", range="Ataktos"}
 	sets.weapons.Savage = {main="Naegling", sub="Nusku Shield", range="Ataktos"}
-	sets.weapons.DualLeadenRanged = {main={ name="Rostam", augments={'Path: A',}}, sub="Tauret", range="Fomalhaut"}
-	sets.weapons.DualLeadenMelee = {main="Naegling", sub="Blurred Knife +1", range="Fomalhaut"}
+	sets.weapons.DualLeadenRanged = {main={ name="Rostam", augments={'Path: A',}}, sub="Tauret", range="Death Penalty"}
+	sets.weapons.DualLeadenMelee = {main="Naegling", sub="Blurred Knife +1", range="Death Penalty"}
 	sets.weapons.DualAeolian = {main={ name="Rostam", augments={'Path: A',}}, sub="Tauret", range="Ataktos"}
-	sets.weapons.DualLeadenMeleeAcc = {main="Naegling", sub="Blurred Knife +1", range="Fomalhaut"}
+	sets.weapons.DualLeadenMeleeAcc = {main="Naegling", sub="Blurred Knife +1", range="Death Penalty"}
 	sets.weapons.DualRanged = {main={ name="Rostam", augments={'Path: A',}}, sub="Kustawi +1", range="Fomalhaut"}
 end
 
 -- Select default macro book on initial load or subjob change.
 function select_default_macro_book()
-    if player.sub_job == 'NIN' then
+    if player.sub_job == 'DNC' then
         set_macro_page(1, 1)
-    elseif player.sub_job == 'DNC' then
+    elseif player.sub_job == 'NIN' then
 		set_macro_page(2, 1)
     elseif player.sub_job == 'RNG' then
         set_macro_page(3, 1)
