@@ -3,6 +3,7 @@ function user_job_setup()
     state.OffenseMode:options('Normal', 'Acc', 'Fodder')
     state.WeaponskillMode:options('Normal', 'Acc', 'Fodder')
     state.HybridMode:options('Normal', 'DT')
+	state.CastingMode:options('Normal', 'SIRD')
     state.PhysicalDefenseMode:options('PDT', 'PDTReraise')
     state.MagicalDefenseMode:options('MDT', 'MDTReraise')
 	state.ResistDefenseMode:options('MEVA')
@@ -51,7 +52,7 @@ function init_gear_sets()
 	--sets.precast.JA['Arcane Circle'] = {feet="Ig. Sollerets +3"}
 	--sets.precast.JA['Souleater'] = {head="Ig. Burgeonet +3"}
 	--sets.precast.JA['Weapon Bash'] = {hands="Ig. Gauntlets +3"}
-	--sets.precast.JA['Nether Void'] = {legs="Heath. Flanchard +3"}
+	sets.precast.JA['Nether Void'] = {legs="Heath. Flanchard +2"}
 	--sets.precast.JA['Blood Weapon'] = {body="Fall. Cuirass +3"}
 	--sets.precast.JA['Dark Seal'] = {head="Fall. Burgeonet +3"}
 	sets.precast.JA['Last Resort'] = {
@@ -186,7 +187,7 @@ function init_gear_sets()
 	sets.midcast['Dread Spikes'] = set_combine(sets.midcast['Dark Magic'], {
 		--ammo="Happy Egg",
 		--head="Ratri Sallet +1",
-		--body="Heath. Cuirass +3",
+		body="Heath. Cuirass +3",
 		--hands="Rat. Gadlings +1",
 		--legs="Ratri Cuisses +1",
 		--feet="Rat. Sollerets +1",
@@ -273,19 +274,7 @@ function init_gear_sets()
 	
 	--------------------------------------
 	-- Great Sword Weaponskills
-	--------------------------------------
-	-- Catastrophe
-    --sets.precast.WS['Catastrophe'] = set_combine(sets.precast.WS, {})
-    --sets.precast.WS['Catastrophe'].Acc = set_combine(sets.precast.WS.Acc, {})
-    --sets.precast.WS['Catastrophe'].Fodder = set_combine(sets.precast.WS.Fodder, {})
-	
-	
-	-- Entropy
-    --sets.precast.WS['Entropy'] = set_combine(sets.precast.WS, {
-	--sets.precast.WS['Entropy'].Acc = set_combine(sets.precast.WS.Acc, {})
-    --sets.precast.WS['Entropy'].Fodder = set_combine(sets.precast.WS.Fodder, {})
-	
-	
+	--------------------------------------	
 	-- Resolution
 	sets.precast.WS['Resolution'] = set_combine(sets.precast.WS, {
 		ammo="Coiste Bodhar",
@@ -308,19 +297,27 @@ function init_gear_sets()
 	
 	
 	-- Torcleaver
-    sets.precast.WS['Torcleaver'] = set_combine(sets.precast.WS, {
-		--body="Ignominy Cuirass +3",
-		--legs="Fall. Flanchard +3",
-		right_ring="Niqmaddu Ring",
-	})
+    sets.precast.WS['Torcleaver'] = {
+		ammo="Knobkierrie",
+		head={ name="Nyame Helm", augments={'Path: B',}},
+		body={ name="Nyame Mail", augments={'Path: B',}},
+		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
+		legs={ name="Nyame Flanchard", augments={'Path: B',}},
+		feet="Heath. Sollerets +2",
+		neck={ name="Abyssal Beads +2", augments={'Path: A',}},
+		waist="Fotia Belt",
+		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
+		right_ear="Thrud Earring",
+		left_ring="Niqmaddu Ring",
+		right_ring="Regal Ring",
+		back={ name="Ankou's Mantle", augments={'VIT+20','Accuracy+20 Attack+20','Weapon skill damage +10%','Phys. dmg. taken-8%',}},
+	}
     
-	sets.precast.WS['Torcleaver'].Acc = set_combine(sets.precast.WS.Acc, {
-		--feet="Heath. Sollerets +3",
-	})
+	sets.precast.WS['Torcleaver'].Acc = set_combine(sets.precast.WS['Torcleaver'], {})
 	
-    sets.precast.WS['Torcleaver'].Fodder = set_combine(sets.precast.WS.Fodder, {
-		--head="Heath. Bur. +3",,
-		--feet="Heath. Sollerets +3",
+    sets.precast.WS['Torcleaver'].Fodder = set_combine(ssets.precast.WS['Torcleaver'], {
+		head="Heath. Burgeon. +2",
+		left_ring="Sroda Ring",
 	})
 	
 	
@@ -334,7 +331,29 @@ function init_gear_sets()
 	
 	
 	-- Entropy
+	sets.precast.WS['Entropy'] = set_combine(sets.precast.WS, {
+		ammo="Knobkierrie",
+		head="Heath. Burgeon. +2",
+		body={ name="Nyame Mail", augments={'Path: B',}},
+		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
+		legs={ name="Carmine Cuisses +1", augments={'Accuracy+20','Attack+12','"Dual Wield"+6',}},
+		feet="Heath. Sollerets +2",
+		neck="Fotia Gorget",
+		waist="Fotia Belt",
+		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
+		right_ear="Malignance Earring",
+		left_ring="Cornelia's Ring",
+		right_ring="Regal Ring",
+		back={ name="Ankou's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
+	})
 	
+	sets.precast.WS['Entropy'].Acc = set_combine(sets.precast.WS['Entropy'], {})
+	
+	sets.precast.WS['Entropy'].Fodder = set_combine(sets.precast.WS['Entropy'], {
+		body={ name="Sakpata's Plate", augments={'Path: A',}},
+		left_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
+		right_ring="Sroda Ring",
+	})	
 	
 	-- Origin
 	
@@ -345,27 +364,33 @@ function init_gear_sets()
 	--------------------------------------
 	-- Sword Weaponskills
 	--------------------------------------
-	sets.precast.WS["Savage Blade"] = set_combine(sets.precast.WS, {
+	sets.precast.WS["Savage Blade"] = {
 		ammo="Knobkierrie",
 		head={ name="Nyame Helm", augments={'Path: B',}},
 		body={ name="Nyame Mail", augments={'Path: B',}},
 		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
 		legs={ name="Nyame Flanchard", augments={'Path: B',}},
-		feet={ name="Nyame Sollerets", augments={'Path: B',}},
-		neck="Abyssal Beads +2",
+		feet="Heath. Sollerets +2",
+		neck={ name="Abyssal Beads +2", augments={'Path: A',}},
 		waist={ name="Sailfi Belt +1", augments={'Path: A',}},
 		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
 		right_ear="Thrud Earring",
 		left_ring="Cornelia's Ring",
 		right_ring="Regal Ring",
-		back={ name="Ankou's Mantle", augments={'STR+20','Accuracy+20 Attack+20','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
+		back={ name="Ankou's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
+	}
+	
+	sets.precast.WS["Savage Blade"].Acc = set_combine(sets.precast.WS["Savage Blade"], {})
+	
+	sets.precast.WS["Savage Blade"].Fodder = set_combine(sets.precast.WS["Savage Blade"], {
+		right_ring="Sroda Ring",
 	})
     
 -------------------------------------------------------------------------------------------------------------------    
 -- Sets to return to when not performing an action.
 -------------------------------------------------------------------------------------------------------------------           
     --------------------------------------
-	-- Resting Weaponskills
+	-- Resting Set
 	--------------------------------------
      sets.resting = {}
 
@@ -374,11 +399,11 @@ function init_gear_sets()
 	-- Swaps when using WS at 3000 TP
 	--------------------------------------
 	--sets.MaxTP = {ear1="Lugra Earring +1",ear2="Lugra Earring",}
-	--sets.AccMaxTP = {ear1="Mache Earring +1",ear2="Telos Earring"}
-	--sets.AccDayMaxTPWSEars = {ear1="Mache Earring +1",ear2="Telos Earring"}
+	--sets.AccMaxTP = {left_ear="Mache Earring", right_ear="Telos Earring",}
+	--sets.AccDayMaxTPWSEars = {left_ear="Mache Earring", right_ear="Telos Earring",}
 	--sets.DayMaxTPWSEars = {ear1="Ishvara Earring",ear2="Brutal Earring",}
-	--sets.AccDayWSEars = {ear1="Mache Earring +1",ear2="Telos Earring"}
-	--sets.DayWSEars = {ear1="Brutal Earring",ear2="Moonshade Earring",}
+	--sets.AccDayWSEars = {left_ear="Mache Earring", right_ear="Telos Earring",}
+	--sets.DayWSEars = {left_ear="Moonshade Earring", right_ear="Brutal Earring",}
 
      
 -------------------------------------------------------------------------------------------------------------------
@@ -406,7 +431,7 @@ function init_gear_sets()
 	--------------------------------------
 	-- Refresh Set
 	--------------------------------------
-	sets.idle.Refresh = set_combine(sets.idle, {neck="Vim Torque +1",})
+	sets.idle.Refresh = set_combine(sets.idle, {body="Lugra Cloak +1", neck="Sibyl Scarf",})
 	
 	--------------------------------------
 	-- Regen Set
@@ -414,9 +439,10 @@ function init_gear_sets()
     sets.idle.Regen = set_combine(sets.idle, {
 		head="Volte Salade",
 		body="Sacro Breastplate",
+		hands="Volte Moufles",
 		neck="Sanctity Necklace",
 		left_ear="Dawn Earring",
-		right_ring="Chirich Ring +1",
+		left_ring="Chirich Ring +1",
 	})
 
 	--------------------------------------
@@ -517,20 +543,18 @@ function init_gear_sets()
 		legs={ name="Sakpata's Cuisses", augments={'Path: A',}},
 		feet="Flam. Gambieras +2",
 		neck={ name="Abyssal Beads +2", augments={'Path: A',}},
-		waist="Ioskeha Belt +1",
-		left_ear="Cessance Earring",
-		right_ear="Dedition Earring",
-		left_ring="Niqmaddu Ring",
-		right_ring="Moonlight Ring",
-		back={ name="Ankou's Mantle", augments={'STR+20','Accuracy+20 Attack+20','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
+		waist="Sailfi Belt +1",
+		left_ear="Dedition Earring",
+		right_ear="Telos Earring",
+		left_ring="Chirich Ring +1",
+		right_ring="Niqmaddu Ring",
+		back={ name="Ankou's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
 	}
 
 	--------------------------------------
 	-- Engaged Accuracy Set
 	--------------------------------------
-	sets.engaged.Acc = set_combine(sets.engaged, {
-		right_ear="Telos Earring",	
-	})
+	sets.engaged.Acc = set_combine(sets.engaged, {})
 	
 	--------------------------------------
 	-- Engaged Fodder Set
@@ -553,7 +577,7 @@ function init_gear_sets()
 		right_ear="Dedition Earring",
 		left_ring="Gelatinous Ring +1",
 		right_ring="Moonlight Ring",
-		back={ name="Ankou's Mantle", augments={'STR+20','Accuracy+20 Attack+20','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
+		back={ name="Ankou's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
 	}
 	
 	--------------------------------------
@@ -577,24 +601,23 @@ function init_gear_sets()
 -------------------------------------------------------------------------------------------------------------------
 -- Weapon Sets
 -------------------------------------------------------------------------------------------------------------------
-	sets.weapons.Greatsword = {main="Montante +1", sub="Utu Grip"}
-	sets.weapons.Club = {main="Loxotic Mace +1", sub="Blurred Shield +1"}
+	sets.weapons.Greatsword = {main="Agwu's Claymore", sub="Utu Grip"}
 	sets.weapons.Sword = {main="Naegling", sub="Blurred Shield +1"}
-	
-    end
+	sets.weapons.Club = {main="Loxotic Mace +1", sub="Blurred Shield +1"}
+end
 	
 -- Select default macro book on initial load or subjob change.
 function select_default_macro_book()
     -- Default macro set/book
-    if player.sub_job == 'WAR' then
-        set_macro_page(2, 15)
-    elseif player.sub_job == 'SAM' then
-        set_macro_page(3, 15)
+    if player.sub_job == 'SAM' then
+        set_macro_page(1, 7)
+    elseif player.sub_job == 'WAR' then
+        set_macro_page(2, 7)
     elseif player.sub_job == 'DNC' then
-        set_macro_page(4, 15)
+        set_macro_page(3, 7)
     elseif player.sub_job == 'THF' then
-        set_macro_page(1, 15)
+        set_macro_page(4, 7)
     else
-        set_macro_page(5, 15)
+        set_macro_page(1, 7)
     end
 end
