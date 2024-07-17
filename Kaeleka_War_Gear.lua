@@ -7,10 +7,10 @@ function user_job_setup()
     state.MagicalDefenseMode:options('MDT', 'MDTReraise')
 	state.ResistDefenseMode:options('MEVA')
 	state.IdleMode:options('Normal', 'Regen', 'Reraise')
-    state.ExtraMeleeMode = M{['description']='Extra Melee Mode','None'}
-	state.Passive = M{['description'] = 'Passive Mode','None','Twilight'}
+    state.ExtraMeleeMode = M{['description']='Extra Melee Mode', 'None'}
+	state.Passive = M{['description'] = 'Passive Mode', 'None', 'Twilight'}
 	state.Weapons:options('Axe', 'Club', 'Greataxe', 'Greatsword', 'Polearm', 'Sword', 'DualWeapons', 
-		'ProcDagger','ProcSword','ProcGreatSword','ProcScythe','ProcPolearm','ProcGreatKatana','ProcClub','ProcStaff')
+		'ProcDagger','ProcSword','ProcGreatSword','ProcKatana','ProcScythe','ProcPolearm','ProcGreatKatana','ProcClub','ProcStaff')
 
 
 	-- Additional local binds
@@ -193,7 +193,8 @@ function init_gear_sets()
 		legs="Boii Cuisses +3",
 		left_ring="Cornelia's Ring",
 		right_ring="Regal Ring",
-		back={ name="Cichol's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Damage taken-5%',}},})
+		back={ name="Cichol's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Damage taken-5%',}},
+	})
 
     sets.precast.WS['Judgement'].Acc = set_combine(sets.precast.WS.Acc, {})
 
@@ -490,6 +491,7 @@ function init_gear_sets()
 		body="Sacro Breastplate",
 		neck="Sanctity Necklace",
 		left_ear="Dawn Earring",
+		right_ring="Chirich Ring +1",
 	})
 		
 	sets.idle.Weak = set_combine(sets.idle, {head="Twilight Helm",body="Twilight Mail"})
@@ -520,7 +522,6 @@ function init_gear_sets()
 	}
 		
 	sets.defense.PDTReraise = set_combine(sets.defense.PDT, {head="Twilight Helm",body="Twilight Mail"})
-
 
 	--------------------------------------
 	-- Magical Damage Reduction
@@ -612,31 +613,22 @@ function init_gear_sets()
 	--sets.weapons.Staff = {main="", sub=""}
 	sets.weapons.Sword = {main="Naegling", sub="Blurred Shield +1"}
 	sets.weapons.DualWeapons = {main="Naegling",sub="Blurred Knife +1"}
-	sets.weapons.ProcDagger = {main="Chicken Knife II",sub=empty}
-	sets.weapons.ProcSword = {main="Ark Sword",sub=empty}
+	sets.weapons.ProcDagger = {main="Wind Knife",sub=empty}
+	sets.weapons.ProcSword = {main="Ibushi Shinai",sub=empty}
 	sets.weapons.ProcGreatSword = {main="Lament",sub=empty}
-	sets.weapons.ProcScythe = {main="Ark Scythe",sub=empty}
-	sets.weapons.ProcPolearm = {main="Pitchfork +1",sub=empty}
-	sets.weapons.ProcGreatKatana = {main="Hardwood Katana",sub=empty}
-	sets.weapons.ProcClub = {main="Dream Bell +1",sub=empty}
-	sets.weapons.ProcStaff = {main="Terra's Staff",sub=empty}
+	sets.weapons.ProcKatana = {main="Debahocho",sub=empty}
+	sets.weapons.ProcScythe = {main="Lost Sickle",sub=empty}
+	sets.weapons.ProcPolearm = {main="Tzee Xicu's Blade",sub=empty}
+	sets.weapons.ProcGreatKatana = {main="Zanmato",sub=empty}
+	sets.weapons.ProcClub = {main="Magician's Rod",sub=empty}
+	sets.weapons.ProcStaff = {main="Caver's Shovel",sub=empty}
 
 end
 	
 -- Select default macro book on initial load or subjob change.
 function select_default_macro_book()
     -- Default macro set/book
-    if player.sub_job == 'SAM' then
-        set_macro_page(2, 2)
-    elseif player.sub_job == 'DNC' then
-        set_macro_page(3, 2)
-    elseif player.sub_job == 'NIN' then
-        set_macro_page(3, 2)
-    elseif player.sub_job == 'THF' then
-        set_macro_page(3, 2)
-    else
-        set_macro_page(1, 2)
-    end
+    set_macro_page(1, 2)
 end
 
 function user_job_lockstyle()
