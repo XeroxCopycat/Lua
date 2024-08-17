@@ -1,13 +1,14 @@
 -- Setup vars that are user-dependent.  Can override this function in a sidecar file.
 function user_job_setup()
-    state.OffenseMode:options('Normal', 'Acc', 'StoreTP')
-    state.RangedMode:options('Normal', 'Acc', 'StoreTP')
-    state.WeaponskillMode:options('Normal','Acc', 'PDL')
-    state.CastingMode:options('Normal', 'Resistant', 'Fodder', 'Proc')
+    state.OffenseMode:options('Normal', 'Acc', 'Fodder')
+    state.RangedMode:options('Normal', 'Acc', 'Fodder')
+    state.WeaponskillMode:options('Normal','Acc', 'Fodder')
+    state.CastingMode:options('Normal', 'Resistant', 'Proc', 'StoreTP')
     state.IdleMode:options('Normal', 'PDT', 'Regen', 'Refresh')
 	state.HybridMode:options('Normal','DT')
 	state.ExtraMeleeMode = M{['description']='Extra Melee Mode', 'None', 'DWMax'}
-	state.Weapons:options('Default','Ranged','Savage','Evisceration','DualWeapons','DualSavageWeapons','DualEvisceration','DualLeadenRanged','DualLeadenMelee','DualAeolian','DualLeadenMeleeAcc','DualRanged','DualProcWeapons','None')
+	state.Weapons:options('Default', 'Savage', 'LeadenMelee', 'LeadenRanged', 'LastStand', 'Terminus', 'Wildfire', 'Evisceration', 'Aeolian',
+		'DualSavage', 'DualLeadenMelee', 'DualLeadenRanged', 'DualLastStand', 'DualTerminus', 'DualWildfire', 'DualEvisceration', 'DualAeolian')
 	state.CompensatorMode:options('Always','300','1000','Never')
 
     gear.RAbullet = "Chrono Bullet"
@@ -73,14 +74,14 @@ function init_gear_sets()
 		head={ name="Lanun Tricorne +3", augments={'Enhances "Winning Streak" effect',}},
 		body="Malignance Tabard",
 		hands="Chasseur's Gants +3",
-		legs="Malignance Tights",
+		legs="Malignance Tights", -- Desulutor's Tassets
 		feet="Malignance Boots",
 		neck="Regal Necklace",
 		waist="Flume Belt +1",
 		left_ear="Etiolation Earring",
 		right_ear={ name="Chas. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+9','Mag. Acc.+9',}},
-		left_ring="Gelatinous Ring +1",
-		right_ring="Defending Ring",
+		left_ring="Defending Ring",
+		right_ring="Gelatinous Ring +1",
 		back=gear.snapshot_jse_back,
 	}
 
@@ -88,7 +89,7 @@ function init_gear_sets()
 	--------------------------------------
 	-- Precast for larger AOE on Phantom Roll
 	--------------------------------------
-    sets.precast.LuzafRing = {left_ring="Luzaf's Ring"}
+    sets.precast.LuzafRing = {right_ring="Luzaf's Ring"}
     
     
 	--------------------------------------
@@ -102,28 +103,12 @@ function init_gear_sets()
 	
 	
 	--------------------------------------
-	-- Quick Draw precast gear
+	-- Quick Draw Sests
 	--------------------------------------
-    -- Quick draw - Base/StoreTP
+	-- Quick Draw Precsat / Normal
 	sets.precast.CorsairShot = {
-		head="Malignance Chapeau",
-		body="Malignance Tabard",
-		hands="Malignance Gloves",
-		legs="Chas. Culottes +3",
-		feet="Malignance Boots",
-		neck="Iskur Gorget",
-		waist="Orpheus's Sash",
-		left_ear="Dedition Earring",
-		right_ear="Telos Earring",
-		left_ring="Dingir Ring",
-		right_ring="Ilabrat Ring",
-		back=gear.tp_ranger_jse_back,
-	}
-	
-	-- Quick Draw - Max damage
-	sets.precast.CorsairShot.Damage = {
-		ammo=gear.QDbullet,
-        head={ name="Nyame Helm", augments={'Path: B',}},
+		ammo="Hauksbok Bullet",
+		head={ name="Ikenga's Hat", augments={'Path: A',}},
 		body={ name="Lanun Frac +3", augments={'Enhances "Loaded Deck" effect',}},
 		hands={ name="Carmine Fin. Ga. +1", augments={'Rng.Atk.+20','"Mag.Atk.Bns."+12','"Store TP"+6',}},
 		legs={ name="Nyame Flanchard", augments={'Path: B',}},
@@ -131,87 +116,98 @@ function init_gear_sets()
 		neck={ name="Comm. Charm +2", augments={'Path: A',}},
 		waist="Orpheus's Sash",
 		left_ear="Friomisi Earring",
-		right_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
+		right_ear={ name="Chas. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+14','Mag. Acc.+14','Crit.hit rate+5',}},
 		left_ring="Dingir Ring",
-		right_ring="Gelatinous Ring +1",
-		back=gear.magic_wsd_jse_back,
+		right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
+		back={ name="Camulus's Mantle", augments={'AGI+20','Mag. Acc+20 /Mag. Dmg.+20','AGI+10','Weapon skill damage +10%','Mag. Evasion+15',}},
 	}
-	
-	
-	-- Quick Draw - Treasure Hunter
-    sets.precast.CorsairShot.Proc = {
-		ammo=gear.QDbullet,
-		head="Volte Cap",
+
+	-- Quick Draw Precsat / Resistant
+	sets.precast.CorsairShot.Resistant = set_combine(sets.precast.CorsairShot, {
+		ammo="Animikii Bullet",
+		head="Laksa. Tricorne +3",
 		body="Ikenga's Vest",
 		hands="Laksa. Gants +3",
 		legs={ name="Ikenga's Trousers", augments={'Path: A',}},
-		feet="Volte Boots",
+		feet="Laksa. Bottes +2",
 		neck={ name="Comm. Charm +2", augments={'Path: A',}},
-		waist="Chaac Belt",
+		waist="Eschan Stone",
 		left_ear="Digni. Earring",
-		right_ear={ name="Chas. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+14','Mag. Acc.+14','Crit.hit rate+5',}},
 		left_ring="Regal Ring",
-		right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
-		back=gear.magic_wsd_jse_back,
-	}
+		back={ name="Camulus's Mantle", augments={'AGI+20','Mag. Acc+20 /Mag. Dmg.+20','AGI+10','Weapon skill damage +10%','Mag. Evasion+15',}},
+	})
 
-
-	-- Quick Draw - Light Shot
-    sets.precast.CorsairShot['Light Shot'] = {
-		ammo=gear.QDbullet,
-        head="Laksa. Tricorne +3",
-		body="Ikenga's Vest",
-		hands="Laksa. Gants +3",
-		legs={ name="Ikenga's Trousers", augments={'Path: A',}},
-		feet="Laksa. Bottes +3",
-		neck={ name="Comm. Charm +2", augments={'Path: A',}},
-		waist="Orpheus's Sash",
-		left_ear="Digni. Earring",
-		right_ear={ name="Chas. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+14','Mag. Acc.+14','Crit.hit rate+5',}},
-		left_ring="Regal Ring",
-		right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
-		back=gear.magic_wsd_jse_back,
-	}
+	-- Quick Draw Precsat / Proc
+	sets.precast.CorsairShot.Fodder = set_combine(sets.precast.CorsairShot, {feet="Chass. Bottes +3"})
 	
+	-- Quick Draw Precsat / StoreTP
+	sets.precast.CorsairShot.StoreTP = set_combine(sets.precast.CorsairShot, {
+		body="Malignance Tabard",
+		hands="Malignance Gloves",
+		legs="Chas. Culottes +3",
+		feet="Malignance Boots",
+		neck="Iskur Gorget",
+		waist="Reiki Yotai",
+		left_ear="Dedition Earring",
+		right_ear="Telos Earring",
+		left_ring="Chirich Ring +1",
+		right_ring="Ilabrat Ring",
+	})
 	
-	-- Quick Draw - Dark Shot
+	-- Quick Draw Precsat / Light Shot
+    sets.precast.CorsairShot['Light Shot'] = set_combine{sets.precast.CorsairShot.Resistant, {right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},	}}
+	
+	-- Quick Draw Precsat / Dark Shot
     sets.precast.CorsairShot['Dark Shot'] = set_combine(sets.precast.CorsairShot['Light Shot'], { })
 
 
     --------------------------------------
 	-- Waltz sets
 	--------------------------------------
-    sets.precast.Waltz = {
-        head="Carmine Mask +1",neck="Loricate Torque +1",left_ear="Etiolation Earring",right_ear="Sanare Earring",
-        body=gear.herculean_waltz_body,hands=gear.herculean_waltz_hands,ring1="Defending Ring",ring2="Valseur's Ring",
-        back="Moonlight Cape",waist="Flume Belt +1",legs="Dashing Subligar",feet=gear.herculean_waltz_feet}
+	-- Curing Waltz / Others
+    --sets.precast.Waltz = {
+        --head="Carmine Mask +1",neck="Loricate Torque +1",left_ear="Etiolation Earring",right_ear="Sanare Earring",
+        --body=gear.herculean_waltz_body,hands=gear.herculean_waltz_hands,ring1="Defending Ring",ring2="Valseur's Ring",
+        --back="Moonlight Cape",waist="Flume Belt +1",legs="Dashing Subligar",feet=gear.herculean_waltz_feet}
 		
-	
-	sets.Self_Waltz = {head="Mummu Bonnet +2",body="Passion Jacket",ring1="Asklepian Ring"}
+	-- Curing Waltz / Self
+	sets.Self_Waltz = {
+		head="Mummu Bonnet +2",
+		--body="Passion Jacket",
+		--left_ring="Asklepian Ring",
+	}
         
-    
-	-- Don't need any special gear for Healing Waltz.
-    sets.precast.Waltz['Healing Waltz'] = {}
+	-- Healing Waltz.
+    --sets.precast.Waltz['Healing Waltz'] = {}
 	
 	
 	--------------------------------------
 	-- Fast Cast gear
 	--------------------------------------
-	-- To-Do: Add fast cast ambu cape.
+	-- To-Do: Add fast cast cape, herc. legs w/ fast cast, carmine feet
     sets.precast.FC = {
-        head={ name="Herculean Helm", augments={'Accuracy+28','"Triple Atk."+4','DEX+10',}}, --FC +7
-		body={ name="Taeon Tabard", augments={'DEF+19','"Fast Cast"+4',}}, --FC +8
-		hands={ name="Leyline Gloves", augments={'Accuracy+14','Mag. Acc.+13','"Mag.Atk.Bns."+13','"Fast Cast"+2',}}, --FC +7
-		neck="Voltsurge Torque", --FC +4
-		left_ear="Etiolation Earring", --FC +1
-		right_ear="Loquac. Earring", --FC +2
-		right_ring="Kishar Ring", --FC +4
+        head={ name="Carmine Mask +1", augments={'Accuracy+20','Mag. Acc.+12','"Fast Cast"+4',}},
+		body={ name="Taeon Tabard", augments={'DEF+19','"Fast Cast"+4',}},
+		hands={ name="Leyline Gloves", augments={'Accuracy+14','Mag. Acc.+13','"Mag.Atk.Bns."+13','"Fast Cast"+2',}},
+		legs={ name="Herculean Trousers", augments={'Mag. Acc.+18 "Mag.Atk.Bns."+18','DEX+8','Mag. Acc.+14','"Mag.Atk.Bns."+14',}},
+		neck="Voltsurge Torque",
+		left_ear="Etiolation Earring",
+		right_ear="Loquac. Earring",
+		left_ring="Kishar Ring",
+		right_ring="Lebeche Ring",
 	}
 
-    sets.precast.FC.Utsusemi = set_combine(sets.precast.FC, {neck="Magoraga Beads", body="Passion Jacket"})
+	-- Fast Cast / Utsusemi
+    --sets.precast.FC.Utsusemi = set_combine(sets.precast.FC, {neck="Magoraga Beads", body="Passion Jacket"})
 	
+	-- Fast Cast / Cure
 	sets.precast.FC.Cure = set_combine(sets.precast.FC, {right_ear="Mendi. Earring"})
 
+
+	--------------------------------------
+	-- Preshot Gear
+	--------------------------------------
+	-- No Flurry / Snapshot 60%
     sets.precast.RA = {
 		ammo=gear.RAbullet,
         head="Chass. Tricorne +3",
@@ -221,12 +217,19 @@ function init_gear_sets()
 		feet="Meg. Jam. +2",
 		neck={ name="Comm. Charm +2", augments={'Path: A',}},
 		waist="Impulse Belt",
-		--left_ring="Crepuscular Ring",
-		back=gear.snapshot_jse_back,
+		--ring="Crepuscular Ring",
+		back={ name="Camulus's Mantle", augments={'INT+20','Eva.+20 /Mag. Eva.+20','"Snapshot"+10','Mag. Evasion+15',}},
 	}
-		
-	sets.precast.RA.Flurry = set_combine(sets.precast.RA, {waist="Yemaya Belt"})
+	
+	-- Flurry I / Snapshot 45%
+	sets.precast.RA.Flurry = set_combine(sets.precast.RA, {
+		body="Laksa. Frac +3",
+		waist="Yemaya Belt",
+	})
+	
+	-- Flurry II / Snapshop 30%
 	sets.precast.RA.Flurry2 = set_combine(sets.precast.RA, {
+		body="Laksa. Frac +3",
 		waist="Yemaya Belt",
 		feet={ name="Pursuer's Gaiters", augments={'Rng.Acc.+10','"Rapid Shot"+10','"Recycle"+15',}},
 	})
@@ -240,22 +243,22 @@ function init_gear_sets()
 	--------------------------------------
     sets.precast.WS = {
         head={ name="Nyame Helm", augments={'Path: B',}},
-		body="Laksa. Frac +3",
-		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
+		body={ name="Nyame Mail", augments={'Path: B',}},
+		hands="Chasseur's Gants +3",
 		legs={ name="Nyame Flanchard", augments={'Path: B',}},
 		feet={ name="Lanun Bottes +3", augments={'Enhances "Wild Card" effect',}},
 		neck="Fotia Gorget",
 		waist="Fotia Belt",
-		left_ear="Telos Earring",
-		right_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
-		left_ring="Regal Ring",
-		right_ring="Cornelia's Ring",
-		back=gear.str_wsd_jse_back,
+		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
+		right_ear="Telos Earring",
+		left_ring="Cornelia's Ring",
+		right_ring="Regal Ring",
+		back={ name="Camulus's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Mag. Evasion+15',}},
     }
 
     sets.precast.WS.Acc = set_combine(sets.precast.WS, { })
 	
-	sets.precast.WS.PDL = set_combine(sets.precast.WS, {body="Ikenga's Vest",left_ring="Sroda Ring"})
+	sets.precast.WS.Fodder = set_combine(sets.precast.WS, {body="Ikenga's Vest",left_ring="Sroda Ring"})
 		
     --------------------------------------
 	-- Dagger Weaponskills
@@ -273,39 +276,55 @@ function init_gear_sets()
 		right_ear="Friomisi Earring",
 		left_ring="Cornelia's Ring",
 		right_ring="Dingir Ring",
-		back=gear.magic_wsd_jse_back,
+		back={ name="Camulus's Mantle", augments={'AGI+20','Mag. Acc+20 /Mag. Dmg.+20','AGI+10','Weapon skill damage +10%','Mag. Evasion+15',}},
 	}
 	
     --Evisceration
 	sets.precast.WS['Evisceration'] = {
-		--head="Blistering Sallet +1",
-		head={ name="Adhemar Bonnet +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
+		head="Blistering Sallet +1",
 		body="Meg. Cuirie +2",
 		hands={ name="Adhemar Wrist. +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
-		--legs="Zoar Subligar +1",
-		legs={ name="Samnuha Tights", augments={'STR+8','DEX+9','"Dbl.Atk."+3','"Triple Atk."+2',}},
-		feet="Mummu Gamash. +2",
+		legs="Zoar Subligar +1",
+		feet={ name="Adhe. Gamashes +1", augments={'STR+12','DEX+12','Attack+20',}},
 		neck="Fotia Gorget",
 		waist="Fotia Belt",
 		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
 		right_ear="Odr Earring",
 		left_ring="Ilabrat Ring",
 		right_ring="Regal Ring",
-		--back DEX+30, Crit +10%
-		back=gear.tp_jse_back,
+		back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
 	}
 	
 	sets.precast.WS['Evisceration'].Acc = set_combine(sets.precast.WS['Evisceration'], { })
 	
-	sets.precast.WS['Evisceration'].PDL = set_combine(sets.precast.WS['Evisceration'], {
+	sets.precast.WS['Evisceration'].Fodder = set_combine(sets.precast.WS['Evisceration'], {
 		body="Ikenga's Vest",
+		hands="Malignance Gloves",
 		feet="Ikenga's Clogs",
+		left_ear="Mache Earring",
 	})
 
 	
     --------------------------------------
 	-- Gun Weaponskills
 	--------------------------------------
+	-- Hot Shot
+    sets.precast.WS['Hot Shot'] = {
+		head={ name="Nyame Helm", augments={'Path: B',}},
+		body={ name="Nyame Mail", augments={'Path: B',}},
+		hands="Chasseur's Gants +3",
+		legs={ name="Nyame Flanchard", augments={'Path: B',}},
+		feet={ name="Lanun Bottes +3", augments={'Enhances "Wild Card" effect',}},
+		neck="Fotia Gorget",
+		waist="Orpheus's Sash",
+		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
+		right_ear="Ishvara Earring",
+		left_ring="Cornelia's Ring",
+		right_ring="Dingir Ring",
+		back={ name="Camulus's Mantle", augments={'AGI+20','Mag. Acc+20 /Mag. Dmg.+20','AGI+10','Weapon skill damage +10%','Mag. Evasion+15',}},
+	}
+	
+	
 	-- Last Stand
     sets.precast.WS['Last Stand'] = {
 		head={ name="Lanun Tricorne +3", augments={'Enhances "Winning Streak" effect',}},
@@ -313,26 +332,29 @@ function init_gear_sets()
 		hands="Chasseur's Gants +3",
 		legs={ name="Nyame Flanchard", augments={'Path: B',}},
 		feet={ name="Lanun Bottes +3", augments={'Enhances "Wild Card" effect',}},
-		neck="Fotia Gorget",
+		neck={ name="Comm. Charm +2", augments={'Path: A',}},
 		waist="Fotia Belt",
 		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
 		right_ear="Ishvara Earring",
-		left_ring="Cornelia's Ring",
+		left_ring="Regal Ring",
 		right_ring="Dingir Ring",
-		back=gear.ranger_wsd_jse_back,
+		back={ name="Camulus's Mantle", augments={'AGI+20','Rng.Acc.+20 Rng.Atk.+20','AGI+10','Weapon skill damage +10%','Mag. Evasion+15',}},
 	}
 	
 	sets.precast.WS['Last Stand'].Acc = set_combine(sets.precast.WS['Last Stand'], { })
 	
-    sets.precast.WS['Last Stand'].PDL = set_combine(sets.precast.WS['Last Stand'], {
-		head="Ikenga's Hat",
-		hands="Ikenga's Gloves",
-		legs="Ikenga's Trousers",
-		feet="Ikenga's Clogs",
-		left_ring="Sroda Ring",
+    sets.precast.WS['Last Stand'].Fodder = set_combine(sets.precast.WS['Last Stand'], {
+		head={ name="Nyame Helm", augments={'Path: B',}},
+		legs={ name="Ikenga's Trousers", augments={'Path: A',}},
+		feet={ name="Nyame Sollerets", augments={'Path: B',}},
+		neck="Fotia Gorget",
+		waist="Fotia Belt",
+		left_ring="Cornelia's Ring",
+		right_ring="Sroda Ring",
 	})
 	
-	--Leaden Salute
+	
+	-- Leaden Salute
 	sets.precast.WS['Leaden Salute'] = {
 		head="Pixie Hairpin +1",
 		body={ name="Lanun Frac +3", augments={'Enhances "Loaded Deck" effect',}},
@@ -345,28 +367,21 @@ function init_gear_sets()
 		right_ear="Friomisi Earring",
 		left_ring="Archon Ring",
 		right_ring="Dingir Ring",
-		back=gear.magic_wsd_jse_back,
+		back={ name="Camulus's Mantle", augments={'AGI+20','Mag. Acc+20 /Mag. Dmg.+20','AGI+10','Weapon skill damage +10%','Mag. Evasion+15',}},
 	}
 	
-	--Wildfire
+	
+	-- Terminus
+	sets.precast.WS['Terminus'] = sets.precast.WS['Last Stand']
+	sets.precast.WS['Terminus'].Acc = sets.precast.WS['Last Stand'].Acc
+	sets.precast.WS['Terminus'].Fodder = sets.precast.WS['Last Stand'].Fodder
+	
+	
+	 -- Wildfire
 	sets.precast.WS['Wildfire'] = set_combine(sets.precast.WS['Leaden Salute'], {
 		head={ name="Nyame Helm", augments={'Path: B',}}, 
 		left_ring="Cornelia's Ring",
 	})
-		
-    sets.precast.WS['Detonator'] = sets.precast.WS['Last Stand']
-    sets.precast.WS['Detonator'].Acc = sets.precast.WS['Last Stand'].Acc
-    sets.precast.WS['Slug Shot'] = sets.precast.WS['Last Stand']
-    sets.precast.WS['Slug Shot'].Acc = sets.precast.WS['Last Stand'].Acc
-    sets.precast.WS['Numbing Shot'] = sets.precast.WS['Last Stand']
-    sets.precast.WS['Numbing Shot'].Acc = sets.precast.WS['Last Stand'].Acc
-    sets.precast.WS['Sniper Shot'] = sets.precast.WS['Last Stand']
-    sets.precast.WS['Sniper Shot'].Acc = sets.precast.WS['Last Stand'].Acc
-    sets.precast.WS['Split Shot'] = sets.precast.WS['Last Stand']
-    sets.precast.WS['Split Shot'].Acc = sets.precast.WS['Last Stand'].Acc
-		
-    sets.precast.WS['Hot Shot'] = sets.precast.WS['Wildfire']
-    sets.precast.WS['Hot Shot'].Acc = sets.precast.WS['Wildfire'].Acc
 
 
 	--------------------------------------
@@ -382,11 +397,12 @@ function init_gear_sets()
 		neck="Fotia Gorget",
 		waist="Fotia Belt",
 		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
-		right_ear="Odr Earring",
-		left_ring="Metamor. Ring +1",
+		right_ear="Telos Earring",
+		left_ring="Cornelia's Ring",
 		right_ring="Regal Ring",
-		back=gear.magic_wsd_jse_back,
+		back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
 	}
+	
 	
 	-- Savage Blade
 	sets.precast.WS['Savage Blade'] = {
@@ -396,17 +412,17 @@ function init_gear_sets()
 		legs={ name="Nyame Flanchard", augments={'Path: B',}},
 		feet={ name="Nyame Sollerets", augments={'Path: B',}},
 		neck="Rep. Plat. Medal",
-		waist="Sailfi Belt +1",
+		waist={ name="Sailfi Belt +1", augments={'Path: A',}},
 		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
 		right_ear="Ishvara Earring",
 		left_ring="Cornelia's Ring",
 		right_ring="Regal Ring",
-		back=gear.str_wsd_jse_back,
+		back={ name="Camulus's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Mag. Evasion+15',}},
 	}
 	
 	sets.precast.WS['Savage Blade'].Acc = set_combine(sets.precast.WS['Savage Blade'], { })
 	
-	sets.precast.WS['Savage Blade'].PDL = set_combine(sets.precast.WS['Savage Blade'], {
+	sets.precast.WS['Savage Blade'].Fodder = set_combine(sets.precast.WS['Savage Blade'], {
 		body="Ikenga's Vest",
 		neck={ name="Comm. Charm +2", augments={'Path: A',}},
 		right_ring="Sroda Ring",
@@ -427,13 +443,15 @@ function init_gear_sets()
 	-- Fast Recast
 	--------------------------------------
     sets.midcast.FastRecast = {
-        head={ name="Herculean Helm", augments={'Accuracy+28','"Triple Atk."+4','DEX+10',}}, --FC +7
-		body={ name="Taeon Tabard", augments={'DEF+19','"Fast Cast"+4',}}, --FC +8
-		hands={ name="Leyline Gloves", augments={'Accuracy+14','Mag. Acc.+13','"Mag.Atk.Bns."+13','"Fast Cast"+2',}}, --FC +7
-		neck="Voltsurge Torque", --FC +4
-		left_ear="Etiolation Earring", --FC +1
-		right_ear="Loquac. Earring", --FC +2
-		right_ring="Kishar Ring", --FC +4
+        head={ name="Carmine Mask +1", augments={'Accuracy+20','Mag. Acc.+12','"Fast Cast"+4',}},
+		body={ name="Taeon Tabard", augments={'DEF+19','"Fast Cast"+4',}},
+		hands={ name="Leyline Gloves", augments={'Accuracy+14','Mag. Acc.+13','"Mag.Atk.Bns."+13','"Fast Cast"+2',}},
+		legs={ name="Herculean Trousers", augments={'Mag. Acc.+18 "Mag.Atk.Bns."+18','DEX+8','Mag. Acc.+14','"Mag.Atk.Bns."+14',}},
+		neck="Voltsurge Torque",
+		left_ear="Etiolation Earring",
+		right_ear="Loquac. Earring",
+		left_ring="Kishar Ring",
+		right_ring="Lebeche Ring",
 	}
         
     
@@ -453,11 +471,12 @@ function init_gear_sets()
 
 
 	--------------------------------------
-	-- Ranged gear
+	-- Midshot Gear
 	--------------------------------------
-    sets.midcast.RA = {
+    -- Ranged Attack / Normal
+	sets.midcast.RA = {
 		ammo=gear.RAbullet,
-        head="Ikenga's Hat",
+        head={ name="Ikenga's Hat", augments={'Path: A',}},
 		body="Ikenga's Vest",
 		hands="Ikenga's Gloves",
 		legs="Chas. Culottes +3",
@@ -466,26 +485,28 @@ function init_gear_sets()
 		waist="Yemaya Belt",
 		left_ear="Telos Earring",
 		right_ear="Enervating Earring",
-		left_ring="Dingir Ring",
-		right_ring="Ilabrat Ring",
-		back=gear.tp_ranger_jse_back,
+		left_ring="Ilabrat Ring",
+		right_ring="Dingir Ring",
+		back={ name="Camulus's Mantle", augments={'AGI+20','Rng.Acc.+20 Rng.Atk.+20','Rng.Acc.+10','"Store TP"+10','Mag. Evasion+15',}},
 	}
 
-    sets.midcast.RA.Acc = {
-		ammo=gear.RAbullet,
-		head={ name="Ikenga's Hat", augments={'Path: A',}},
-		body="Ikenga's Vest",
-		hands="Ikenga's Gloves",
-		legs="Chas. Culottes +3",
-		feet="Ikenga's Clogs",
+	-- Ranged Attack / Acc
+    sets.midcast.RA.Acc = set_combine(sets.midcast.RA, {
 		neck={ name="Comm. Charm +2", augments={'Path: A',}},
-		waist="Yemaya Belt",
-		left_ear="Telos Earring",
-		right_ear="Enervating Earring",
-		left_ring="Dingir Ring",
-		right_ring="Ilabrat Ring",
-		back=gear.tp_ranger_jse_back,
-	}
+		right_ear={ name="Chas. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+14','Mag. Acc.+14','Crit.hit rate+5',}},
+	})
+	
+	-- Ranged Attack / Fodder
+	sets.midcast.RA.Fodder = set_combine(sets.midcast.RA, {
+		legs={ name="Ikenga's Trousers", augments={'Path: A',}},
+		right_ring="Sroda Ring",
+	})
+	
+	-- Ranged Attack / StoreTP
+	sets.midcast.RA.StoreTP = set_combine(sets.midcast.RA, {
+		right_ear="Dedition Earring",
+		right_ring="Chirich Ring +1",
+	})
 	
 	
 	--------------------------------------
@@ -494,7 +515,7 @@ function init_gear_sets()
 	sets.buff['Triple Shot'] = {
 		body="Chasseur's Frac +3",
 		hands="Lanun Gants +3",
-		back=gear.tp_ranger_jse_back,
+		back={ name="Camulus's Mantle", augments={'AGI+20','Rng.Acc.+20 Rng.Atk.+20','Rng.Acc.+10','"Store TP"+10','Mag. Evasion+15',}},
 	}
 
 
@@ -505,39 +526,34 @@ function init_gear_sets()
 	-- Base Idle Set
 	--------------------------------------
     sets.idle = {
-		ammo=gear.RAbullet,
-        head={ name="Nyame Helm", augments={'Path: B',}},
+		head={ name="Nyame Helm", augments={'Path: B',}},
 		body={ name="Nyame Mail", augments={'Path: B',}},
 		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
-		legs={ name="Carmine Cuisses +1", augments={'Accuracy+20','Attack+12','"Dual Wield"+6',}},
+		legs={ name="Nyame Flanchard", augments={'Path: B',}},
 		feet={ name="Nyame Sollerets", augments={'Path: B',}},
 		neck="Loricate Torque +1",
-		waist="Flume Belt +1",
-		left_ear="Etiolation Earring",
-		right_ear="Odnowa Earring +1",
-		left_ring="Warden's Ring",
-		right_ring="Defending Ring",
-		back=gear.snapshot_jse_back,
+		waist="Plat. Mog. Belt",
+		left_ear="Odnowa Earring +1",
+		right_ear="Eabani Earring",
+		left_ring="Defending Ring",
+		right_ring="Shneddick Ring",
+		back={ name="Camulus's Mantle", augments={'INT+20','Eva.+20 /Mag. Eva.+20','"Snapshot"+10','Mag. Evasion+15',}},
 	}
 		
 	
 	--------------------------------------
 	-- Idle Regen set
 	--------------------------------------
-	sets.idle.Regen = { 
+	sets.idle.Regen = set_combine(sets.idle, { 
 		head="Meghanada Visor +2",
 		body="Meg. Cuirie +2",
 		hands="Meg. Gloves +2",
-		legs={ name="Carmine Cuisses +1", augments={'Accuracy+20','Attack+12','"Dual Wield"+6',}},
+		legs="Meg. Chausses +2",
 		feet="Meg. Jam. +2",
 		neck="Sanctity Necklace",
-		waist="Flume Belt +1",
 		left_ear="Dawn Earring",
-		right_ear="Odnowa Earring +1",
-        left_ring="Chirich Ring +1",
-		right_ring="Defending Ring",
-		back=gear.snapshot_jse_back,
-	}
+		left_ring="Chirich Ring +1",
+	})
 	
 
 	--------------------------------------
@@ -550,7 +566,7 @@ function init_gear_sets()
 -- Defense Sets
 -------------------------------------------------------------------------------------------------------------------
 	--------------------------------------
-	-- Physical Damage Reduction
+	-- Damage Reduction / DT
 	--------------------------------------
     sets.defense.PDT = {
         head={ name="Nyame Helm", augments={'Path: B',}},
@@ -560,57 +576,48 @@ function init_gear_sets()
 		feet={ name="Nyame Sollerets", augments={'Path: B',}},
 		neck="Loricate Torque +1",
 		waist="Flume Belt +1",
-		left_ear="Eabani Earring",
-		right_ear="Odnowa Earring +1",
-		left_ring="Warden's Ring",
-		right_ring="Defending Ring",
-		back=gear.tp_jse_back,
+		left_ear="Odnowa Earring +1",
+		right_ear="Eabani Earring",
+		left_ring="Defending Ring",
+		right_ring="Archon Ring",
+		back={ name="Camulus's Mantle", augments={'INT+20','Eva.+20 /Mag. Eva.+20','"Snapshot"+10','Mag. Evasion+15',}},
 	}
 
 	
 	--------------------------------------
-	-- Magic Damage Reduction
+	-- Damage Reduction / MDT
 	--------------------------------------
-    sets.defense.MDT = {
-        head={ name="Nyame Helm", augments={'Path: B',}},
-		body={ name="Nyame Mail", augments={'Path: B',}},
-		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
-		legs={ name="Nyame Flanchard", augments={'Path: B',}},
-		feet={ name="Nyame Sollerets", augments={'Path: B',}},
-		neck="Loricate Torque +1",
-		waist="Flume Belt +1",
-		left_ear="Etiolation Earring",
-		right_ear="Odnowa Earring +1",
-		left_ring="Warden's Ring",
-		right_ring="Defending Ring",
-		back=gear.snapshot_jse_back,
-	}
+    sets.defense.MDT = set_combine(sets.defense.PDT, {
+		neck="Warder's Charm +1",
+		waist="Plat. Mog. Belt",
+		right_ring="Archon Ring",
+	})
 	
 	
 	--------------------------------------
 	-- Magic Evasion
 	--------------------------------------
-    sets.defense.MEVA = {
-        head={ name="Nyame Helm", augments={'Path: B',}},
-		body={ name="Nyame Mail", augments={'Path: B',}},
-		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
-		legs={ name="Nyame Flanchard", augments={'Path: B',}},
-		feet={ name="Nyame Sollerets", augments={'Path: B',}},
-		neck="Warder's Charm +1",
-		waist="Carrier's Sash",
-		left_ear="Eabani Earring",
-		right_ear="Odnowa Earring +1",
-		left_ring="Archon Ring",
-		right_ring="Defending Ring",
-		back=gear.snapshot_jse_back,
-	}
+    sets.defense.MEVA = set_combine(sets.defense.PDT, {
+        head="Volte Cap",
+		feet="Volte Boots",
+		neck="Unmoving Collar +1",
+		waist="Plat. Mog. Belt",
+		left_ear="Hearty Earring",
+		right_ring="Warden's Ring",
+		back="Solemnity Cape",
+	})
 		
 	
 	--------------------------------------
 	-- Miscelaneous Sets
 	--------------------------------------
-    sets.Kiting = {legs="Carmine Cuisses +1"}
+	-- Kiting
+    sets.Kiting = {right_ring="Shneddick Ring"}
+	
+	-- Treasure Hunter
 	sets.TreasureHunter = set_combine(sets.TreasureHunter, {})
+	
+	-- Dual Wield Max
 	sets.DWMax = {
 		body={ name="Adhemar Jacket +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
 		hands={ name="Floral Gauntlets", augments={'Rng.Acc.+13','Accuracy+14','"Triple Atk."+1','Magic dmg. taken -2%',}},
@@ -621,6 +628,8 @@ function init_gear_sets()
 		right_ear="Suppanomimi",
 		back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dual Wield"+10','Phys. dmg. taken-10%',}},
 	}
+	
+	-- Doom
 	sets.buff.Doom = set_combine(sets.buff.Doom, {neck="Nicander's Necklace", waist="Gishdubar Sash"})
     
     -- Resting sets
@@ -633,7 +642,7 @@ function init_gear_sets()
 -- Engaged Sets
 -------------------------------------------------------------------------------------------------------------------
 	--------------------------------------
-	-- Engaged Set
+	-- Engaged Set / Single Wield
 	--------------------------------------
     sets.engaged = {
 		head={ name="Adhemar Bonnet +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
@@ -647,67 +656,41 @@ function init_gear_sets()
 		right_ear="Brutal Earring",
 		left_ring="Petrov Ring",
 		right_ring="Epona's Ring",
-		back=gear.tp_jse_back,
+		back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
     }
 	
 	--------------------------------------
-	-- Accuracy Set
+	-- Accuracy Set / Single Wield
 	--------------------------------------
-    sets.engaged.Acc = {
-		head={ name="Adhemar Bonnet +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
-		body={ name="Herculean Vest", augments={'"Triple Atk."+3','INT+10','Accuracy+9','Attack+6',}},
-		hands={ name="Adhemar Wrist. +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
-		legs={ name="Carmine Cuisses +1", augments={'Accuracy+20','Attack+12','"Dual Wield"+6',}},
-		feet={ name="Herculean Boots", augments={'Accuracy+17','"Triple Atk."+3','STR+10','Attack+9',}},
+    sets.engaged.Acc = set_combine(sets.engaged, {
+		head={ name="Carmine Mask +1", augments={'Accuracy+20','Mag. Acc.+12','"Fast Cast"+4',}},
 		neck="Combatant's Torque",
-		waist="Reiki Yotai",
-		left_ear="Odr Earring",
-		right_ear={ name="Chas. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+14','Mag. Acc.+14','Crit.hit rate+5',}},
-		left_ring="Cacoethic Ring +1",
-		right_ring="Epona's Ring",
-		back=gear.tp_jse_back,
-	}
+		waist="Kentarch Belt",
+		left_ear="Mache Earring", --Upgrade to +1
+		right_ear={ name="Chas. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+14','Mag. Acc.+14','Crit.hit rate+5',}}, --Change to Crep. Earring
+		left_ring="Chirich Ring +1",
+	})
 	
 	--------------------------------------
-	-- Damage Taken Set / Store TP Set
+	-- Fodder Set / Single Wield
 	--------------------------------------
-    sets.engaged.DT = {
+    sets.engaged.Fodder = set_combine(sets.engaged, {})
+	
+	--------------------------------------
+	-- Hybrid Set / Single Wield
+	--------------------------------------
+    sets.engaged.DT = set_combine(sets.engaged, {
         head="Malignance Chapeau",
 		body="Malignance Tabard",
 		hands="Malignance Gloves",
 		legs="Chas. Culottes +3",
 		feet="Malignance Boots",
-		neck="Loricate Torque +1",
-		waist="Windbuffet Belt +1",
-		left_ear="Cessance Earring",
-		right_ear="Brutal Earring",
-		left_ring="Petrov Ring",
-		right_ring="Defending Ring",
-		back=gear.tp_jse_back,
-	}
-	
-	
-	--------------------------------------
-	-- Accuracy DT / Store TP Set
-	--------------------------------------
-    sets.engaged.Acc.DT = {
-        head="Malignance Chapeau",
-		body="Malignance Tabard",
-		hands="Malignance Gloves",
-		legs={ name="Carmine Cuisses +1", augments={'Accuracy+20','Attack+12','"Dual Wield"+6',}},
-		feet="Malignance Boots",
-		neck="Loricate Torque +1",
-		waist="Windbuffet Belt +1",
-		left_ear="Odr Earring",
-		right_ear={ name="Chas. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+14','Mag. Acc.+14','Crit.hit rate+5',}},
-		left_ring="Cacoethic Ring +1",
-		right_ring="Defending Ring",
-		back=gear.tp_jse_back,
-	}
+		left_ring="Defending Ring",
+	})
 	
 
 	--------------------------------------
-	-- Dual Wield Set
+	-- Engaged Set / Dual Wield
 	--------------------------------------
     sets.engaged.DW = {
 		head={ name="Adhemar Bonnet +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
@@ -721,83 +704,57 @@ function init_gear_sets()
 		right_ear="Suppanomimi",
 		left_ring="Petrov Ring",
 		right_ring="Epona's Ring",
-		back=gear.tp_jse_back,
+		back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dual Wield"+10','Phys. dmg. taken-10%',}},
 	}
     
-	
 	--------------------------------------
-	-- Dual Wield Accuracy Set
+	-- Accuracy Set / Dual Wield
 	--------------------------------------
-    sets.engaged.DW.Acc = {
-		--head="Carmine Mask +1", --Path D
-		head={ name="Adhemar Bonnet +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
-		body={ name="Adhemar Jacket +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
-		--hands="Gazu Bracelets +1", --Augmented
-		hands={ name="Adhemar Wrist. +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
-		legs={ name="Carmine Cuisses +1", augments={'Accuracy+20','Attack+12','"Dual Wield"+6',}},
-		feet={ name="Herculean Boots", augments={'Accuracy+17','"Triple Atk."+3','STR+10','Attack+9',}},
+    sets.engaged.DW.Acc = set_combine(sets.engaged.DW, {
+		head={ name="Carmine Mask +1", augments={'Accuracy+20','Mag. Acc.+12','"Fast Cast"+4',}},
 		neck="Combatant's Torque",
-		waist="Windbuffet Belt +1",
-		left_ear="Odr Earring",
-		right_ear="Suppanomimi",
-		left_ring="Cacoethic Ring +1",
-		right_ring="Epona's Ring",
-		back=gear.tp_jse_back,
-	}
-	
+		waist="Kentarch Belt",
+		left_ring="Chirich Ring +1",
+	})
 	
 	--------------------------------------
-	-- Dual Wield DT / Store TP Set
+	-- Fodder Set / Dual Wield
 	--------------------------------------
-    sets.engaged.DW.DT = {
-        head="Malignance Chapeau",
-		body={ name="Adhemar Jacket +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
-		hands="Malignance Gloves",
-		legs="Chas. Culottes +3",
-		feet="Malignance Boots",
-		neck="Iskur Gorget",
-		waist="Reiki Yotai",
-		left_ear="Odnowa Earring +1",
-		right_ear="Suppanomimi",
-		left_ring="Defending Ring",
-		right_ring="Epona's Ring",
-		back=gear.tp_jse_back,
-	}
+    sets.engaged.DW.Fodder = set_combine(sets.engaged.DW, {})
 
 	--------------------------------------
 	-- Dual Wield DT / Accuracy Set
 	--------------------------------------
-    sets.engaged.DW.Acc.DT = {
-        head="Malignance Chapeau",
-		body={ name="Adhemar Jacket +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
+    sets.engaged.DW.DT = set_combine(sets.engaged.DW, {
+         head="Malignance Chapeau",
+		body="Malignance Tabard",
 		hands="Malignance Gloves",
-		legs={ name="Carmine Cuisses +1", augments={'Accuracy+20','Attack+12','"Dual Wield"+6',}},
+		legs="Chas. Culottes +3",
 		feet="Malignance Boots",
-		neck="Loricate Torque +1",
-		waist="Reiki Yotai",
-		left_ear="Odr Earring",
-		right_ear="Suppanomimi",
-		left_ring="Cacoethic Ring +1",
-		right_ring="Defending Ring",
-		back=gear.tp_jse_back,
-	}
+		left_ring="Defending Ring",
+	})
 		
 	
 -------------------------------------------------------------------------------------------------------------------
 -- Weapons Sets
 -------------------------------------------------------------------------------------------------------------------
-	sets.weapons.Default = {main="Naegling", sub="Nusku Shield", range="Fomalhaut"}
-	sets.weapons.Ranged = {main={ name="Rostam", augments={'Path: A',}}, sub="Nusku Shield", range="Fomalhaut"}
-	sets.weapons.Evisceration = {main="Tauret", sub="Nusku Shield", range="Ataktos"}
-	sets.weapons.DualWeapons = {main="Naegling", sub="Blurred Knife +1", range="Fomalhaut"}
-	sets.weapons.DualSavageWeapons = {main="Naegling", sub="Blurred Knife +1", range="Ataktos"}
-	sets.weapons.DualEvisceration = {main="Tauret", sub="Blurred Knife +1", range="Ataktos"}
+	sets.weapons.Default = {main="Naegling", sub="Nusku Shield", range="Death Penalty"}
 	sets.weapons.Savage = {main="Naegling", sub="Nusku Shield", range="Ataktos"}
+	sets.weapons.LeadenRanged = {main={ name="Rostam", augments={'Path: A',}}, sub="Nusku Shield", range="Death Penalty"}
+	sets.weapons.LeadenMelee = {main="Naegling", sub="Nusku Shield", range="Death Penalty"}
+	sets.weapons.LastStand = {main={ name="Rostam", augments={'Path: A',}}, sub="Nusku Shield", range="Fomalhaut"}
+	sets.weapons.Wildfire = {main="Naegling", sub="Nusku Shield", range="Death Penalty"}
+	sets.weapons.Evisceration = {main="Tauret", sub="Nusku Shield", range="Ataktos"}
+	sets.weapons.Aeolian = {main={ name="Rostam", augments={'Path: A',}}, sub="Nusku Shield", range="Ataktos"} 
+	sets.weapons.Terminus = {main="Gleti's Knife", sub="Nusku Shield", range="Earp"}
+	sets.weapons.DualSavage = {main="Naegling", sub="Crepuscular Knife", range="Ataktos"}
 	sets.weapons.DualLeadenRanged = {main={ name="Rostam", augments={'Path: A',}}, sub="Tauret", range="Death Penalty"}
-	sets.weapons.DualLeadenMelee = {main="Naegling", sub="Blurred Knife +1", range="Death Penalty"}
-	sets.weapons.DualAeolian = {main={ name="Rostam", augments={'Path: A',}}, sub="Tauret", range="Ataktos"}
-	sets.weapons.DualLeadenMeleeAcc = {main="Naegling", sub="Blurred Knife +1", range="Death Penalty"}
-	sets.weapons.DualRanged = {main={ name="Rostam", augments={'Path: A',}}, sub="Kustawi +1", range="Fomalhaut"}
+	sets.weapons.DualLeadenMelee = {main="Naegling", sub="Tauret", range="Death Penalty"}
+	sets.weapons.DualLastStand = {main={ name="Rostam", augments={'Path: A',}}, sub="Crepuscular Knife", range="Fomalhaut"}
+	sets.weapons.DualWildfire = {main="Naegling", sub="Tauret", range="Death Penalty"}
+	sets.weapons.DualEvisceration = {main="Tauret", sub="Gleti's Knife", range="Ataktos"}
+	sets.weapons.DualAeolian = {main="Tauret", sub="Naegling", range="Ataktos"}
+	sets.weapons.DualTerminus = {main="Gleti's Knife", sub="Crepuscular Knife", range="Earp"}
 end
 
 -- Select default macro book on initial load or subjob change.
@@ -813,34 +770,6 @@ function select_default_macro_book()
     else
         set_macro_page(1, 1)
     end
-end
-
-function user_job_lockstyle()
-	if player.equipment.main == nil or player.equipment.main == 'empty' then
-		windower.chat.input('/lockstyleset 020')
-	elseif res.items[item_name_to_id(player.equipment.main)].skill == 3 then --Sword in main hand.
-		if player.equipment.sub == nil or player.equipment.sub == 'empty' then --Sword/Nothing.
-				windower.chat.input('/lockstyleset 020')
-		elseif res.items[item_name_to_id(player.equipment.sub)].shield_size then --Sword/Shield
-				windower.chat.input('/lockstyleset 020')
-		elseif res.items[item_name_to_id(player.equipment.sub)].skill == 3 then --Sword/Sword.
-			windower.chat.input('/lockstyleset 020')
-		elseif res.items[item_name_to_id(player.equipment.sub)].skill == 2 then --Sword/Dagger.
-			windower.chat.input('/lockstyleset 020')
-		else
-			windower.chat.input('/lockstyleset 020') --Catchall just in case something's weird.
-		end
-	elseif res.items[item_name_to_id(player.equipment.main)].skill == 2 then --Dagger in main hand.
-		if player.equipment.sub == nil or player.equipment.sub == 'empty' then --Dagger/Nothing.
-			windower.chat.input('/lockstyleset 020')
-		elseif res.items[item_name_to_id(player.equipment.sub)].shield_size then --Dagger/Shield
-				windower.chat.input('/lockstyleset 020')
-		elseif res.items[item_name_to_id(player.equipment.sub)].skill == 2 then --Dagger/Dagger.
-			windower.chat.input('/lockstyleset 020')
-		else
-			windower.chat.input('/lockstyleset 020') --Catchall just in case something's weird.
-		end
-	end
 end
 
 autows_list = {['Default']='Savage Blade',['Evisceration']='Evisceration',['Savage']='Savage Blade',['Ranged']='Last Stand',['DualWeapons']='Savage Blade',['DualSavageWeapons']='Savage Blade',['DualEvisceration']='Evisceration',['DualLeadenRanged']='Leaden Salute',['DualLeadenMelee']='Leaden Salute',['DualAeolian']='Aeolian Edge',['DualRanged']='Last Stand'}
