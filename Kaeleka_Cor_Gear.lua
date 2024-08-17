@@ -18,13 +18,6 @@ function user_job_setup()
     options.ammo_warning_limit = 15
     --Ikenga_vest_bonus = 190  -- It is 190 at R20. Uncomment if you need to manually adjust because you are using below R20
 
-	gear.tp_ranger_jse_back = {name="Camulus's Mantle", augments={'AGI+20','Rng.Acc.+20 Rng.Atk.+20','Rng.Acc.+10','"Store TP"+10','Mag. Evasion+15',}}
-	gear.snapshot_jse_back = {name="Camulus's Mantle", augments={'INT+20','Eva.+20 /Mag. Eva.+20','"Snapshot"+10','Mag. Evasion+15',}}
-	gear.tp_jse_back = {name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}}
-	gear.ranger_wsd_jse_back = {name="Camulus's Mantle", augments={'AGI+20','Rng.Acc.+20 Rng.Atk.+20','AGI+10','Weapon skill damage +10%','Mag. Evasion+15',}}
-	gear.magic_wsd_jse_back = {name="Camulus's Mantle", augments={'AGI+20','Mag. Acc+20 /Mag. Dmg.+20','AGI+10','Weapon skill damage +10%','Mag. Evasion+15',}}
-	gear.str_wsd_jse_back = {name="Camulus's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Mag. Evasion+15',}}
-
     -- Additional local binds
 	send_command('bind ^` gs c cycle ElementalMode')
 	send_command('bind !` gs c elemental quickdraw')
@@ -566,8 +559,9 @@ function init_gear_sets()
 -- Defense Sets
 -------------------------------------------------------------------------------------------------------------------
 	--------------------------------------
-	-- Damage Reduction / DT
+	-- Damage Reduction / DT Sets
 	--------------------------------------
+	-- Physical Damage Taken
     sets.defense.PDT = {
         head={ name="Nyame Helm", augments={'Path: B',}},
 		body={ name="Nyame Mail", augments={'Path: B',}},
@@ -584,9 +578,7 @@ function init_gear_sets()
 	}
 
 	
-	--------------------------------------
-	-- Damage Reduction / MDT
-	--------------------------------------
+	-- Magic Damage Taken
     sets.defense.MDT = set_combine(sets.defense.PDT, {
 		neck="Warder's Charm +1",
 		waist="Plat. Mog. Belt",
@@ -594,9 +586,8 @@ function init_gear_sets()
 	})
 	
 	
-	--------------------------------------
+	
 	-- Magic Evasion
-	--------------------------------------
     sets.defense.MEVA = set_combine(sets.defense.PDT, {
         head="Volte Cap",
 		feet="Volte Boots",
@@ -608,16 +599,24 @@ function init_gear_sets()
 	})
 		
 	
-	--------------------------------------
-	-- Miscelaneous Sets
+-------------------------------------------------------------------------------------------------------------------
+-- Miscelaneous Sets
+-------------------------------------------------------------------------------------------------------------------
 	--------------------------------------
 	-- Kiting
+	--------------------------------------
     sets.Kiting = {right_ring="Shneddick Ring"}
 	
+	
+	--------------------------------------
 	-- Treasure Hunter
+	--------------------------------------
 	sets.TreasureHunter = set_combine(sets.TreasureHunter, {})
 	
+	
+	--------------------------------------
 	-- Dual Wield Max
+	--------------------------------------
 	sets.DWMax = {
 		body={ name="Adhemar Jacket +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
 		hands={ name="Floral Gauntlets", augments={'Rng.Acc.+13','Accuracy+14','"Triple Atk."+1','Magic dmg. taken -2%',}},
@@ -629,21 +628,27 @@ function init_gear_sets()
 		back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dual Wield"+10','Phys. dmg. taken-10%',}},
 	}
 	
+	
+	--------------------------------------
 	-- Doom
+	--------------------------------------
 	sets.buff.Doom = set_combine(sets.buff.Doom, {neck="Nicander's Necklace", waist="Gishdubar Sash"})
     
+	
     -- Resting sets
     sets.resting = {}
-	sets.BulletPouch = {waist="Chr. Bul. Pouch"}
-
 	
+	
+	-- Bullet Pouch
+	sets.BulletPouch = {waist="Chr. Bul. Pouch"}
 	
 -------------------------------------------------------------------------------------------------------------------
 -- Engaged Sets
 -------------------------------------------------------------------------------------------------------------------
 	--------------------------------------
-	-- Engaged Set / Single Wield
+	-- Single Wield Sets
 	--------------------------------------
+	-- Engaged Set
     sets.engaged = {
 		head={ name="Adhemar Bonnet +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
 		body={ name="Herculean Vest", augments={'"Triple Atk."+3','INT+10','Accuracy+9','Attack+6',}},
@@ -659,9 +664,8 @@ function init_gear_sets()
 		back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
     }
 	
-	--------------------------------------
-	-- Accuracy Set / Single Wield
-	--------------------------------------
+	
+	-- Accuracy Set
     sets.engaged.Acc = set_combine(sets.engaged, {
 		head={ name="Carmine Mask +1", augments={'Accuracy+20','Mag. Acc.+12','"Fast Cast"+4',}},
 		neck="Combatant's Torque",
@@ -671,14 +675,12 @@ function init_gear_sets()
 		left_ring="Chirich Ring +1",
 	})
 	
-	--------------------------------------
-	-- Fodder Set / Single Wield
-	--------------------------------------
+
+	-- Fodder Set
     sets.engaged.Fodder = set_combine(sets.engaged, {})
 	
-	--------------------------------------
-	-- Hybrid Set / Single Wield
-	--------------------------------------
+	
+	-- Hybrid DT Set
     sets.engaged.DT = set_combine(sets.engaged, {
         head="Malignance Chapeau",
 		body="Malignance Tabard",
@@ -690,8 +692,9 @@ function init_gear_sets()
 	
 
 	--------------------------------------
-	-- Engaged Set / Dual Wield
+	-- Dual Wield Sets
 	--------------------------------------
+	-- DW Engaged Set
     sets.engaged.DW = {
 		head={ name="Adhemar Bonnet +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
 		body={ name="Adhemar Jacket +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
@@ -707,9 +710,8 @@ function init_gear_sets()
 		back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dual Wield"+10','Phys. dmg. taken-10%',}},
 	}
     
-	--------------------------------------
-	-- Accuracy Set / Dual Wield
-	--------------------------------------
+	
+	-- DW Accuracy Set
     sets.engaged.DW.Acc = set_combine(sets.engaged.DW, {
 		head={ name="Carmine Mask +1", augments={'Accuracy+20','Mag. Acc.+12','"Fast Cast"+4',}},
 		neck="Combatant's Torque",
@@ -717,16 +719,14 @@ function init_gear_sets()
 		left_ring="Chirich Ring +1",
 	})
 	
-	--------------------------------------
-	-- Fodder Set / Dual Wield
-	--------------------------------------
+	
+	-- DW Fodder Set
     sets.engaged.DW.Fodder = set_combine(sets.engaged.DW, {})
 
-	--------------------------------------
-	-- Dual Wield DT / Accuracy Set
-	--------------------------------------
+	
+	-- DW Hybrid DT Set
     sets.engaged.DW.DT = set_combine(sets.engaged.DW, {
-         head="Malignance Chapeau",
+        head="Malignance Chapeau",
 		body="Malignance Tabard",
 		hands="Malignance Gloves",
 		legs="Chas. Culottes +3",
@@ -736,40 +736,55 @@ function init_gear_sets()
 		
 	
 -------------------------------------------------------------------------------------------------------------------
--- Weapons Sets
+-- Miscelaneous
 -------------------------------------------------------------------------------------------------------------------
-	sets.weapons.Default = {main="Naegling", sub="Nusku Shield", range="Death Penalty"}
-	sets.weapons.Savage = {main="Naegling", sub="Nusku Shield", range="Ataktos"}
-	sets.weapons.LeadenRanged = {main={ name="Rostam", augments={'Path: A',}}, sub="Nusku Shield", range="Death Penalty"}
-	sets.weapons.LeadenMelee = {main="Naegling", sub="Nusku Shield", range="Death Penalty"}
-	sets.weapons.LastStand = {main={ name="Rostam", augments={'Path: A',}}, sub="Nusku Shield", range="Fomalhaut"}
-	sets.weapons.Wildfire = {main="Naegling", sub="Nusku Shield", range="Death Penalty"}
-	sets.weapons.Evisceration = {main="Tauret", sub="Nusku Shield", range="Ataktos"}
-	sets.weapons.Aeolian = {main={ name="Rostam", augments={'Path: A',}}, sub="Nusku Shield", range="Ataktos"} 
-	sets.weapons.Terminus = {main="Gleti's Knife", sub="Nusku Shield", range="Earp"}
-	sets.weapons.DualSavage = {main="Naegling", sub="Crepuscular Knife", range="Ataktos"}
-	sets.weapons.DualLeadenRanged = {main={ name="Rostam", augments={'Path: A',}}, sub="Tauret", range="Death Penalty"}
-	sets.weapons.DualLeadenMelee = {main="Naegling", sub="Tauret", range="Death Penalty"}
-	sets.weapons.DualLastStand = {main={ name="Rostam", augments={'Path: A',}}, sub="Crepuscular Knife", range="Fomalhaut"}
-	sets.weapons.DualWildfire = {main="Naegling", sub="Tauret", range="Death Penalty"}
-	sets.weapons.DualEvisceration = {main="Tauret", sub="Gleti's Knife", range="Ataktos"}
-	sets.weapons.DualAeolian = {main="Tauret", sub="Naegling", range="Ataktos"}
-	sets.weapons.DualTerminus = {main="Gleti's Knife", sub="Crepuscular Knife", range="Earp"}
-end
+	--------------------------------------
+	-- Weapon Sets
+	--------------------------------------
+		sets.weapons.Default = {main="Naegling", sub="Nusku Shield", range="Death Penalty"}
+		sets.weapons.Savage = {main="Naegling", sub="Nusku Shield", range="Ataktos"}
+		sets.weapons.LeadenRanged = {main={ name="Rostam", augments={'Path: A',}}, sub="Nusku Shield", range="Death Penalty"}
+		sets.weapons.LeadenMelee = {main="Naegling", sub="Nusku Shield", range="Death Penalty"}
+		sets.weapons.LastStand = {main={ name="Rostam", augments={'Path: A',}}, sub="Nusku Shield", range="Fomalhaut"}
+		sets.weapons.Wildfire = {main="Naegling", sub="Nusku Shield", range="Death Penalty"}
+		sets.weapons.Evisceration = {main="Tauret", sub="Nusku Shield", range="Ataktos"}
+		sets.weapons.Aeolian = {main={ name="Rostam", augments={'Path: A',}}, sub="Nusku Shield", range="Ataktos"} 
+		sets.weapons.Terminus = {main="Gleti's Knife", sub="Nusku Shield", range="Earp"}
+		sets.weapons.DualSavage = {main="Naegling", sub="Crepuscular Knife", range="Ataktos"}
+		sets.weapons.DualLeadenRanged = {main={ name="Rostam", augments={'Path: A',}}, sub="Tauret", range="Death Penalty"}
+		sets.weapons.DualLeadenMelee = {main="Naegling", sub="Tauret", range="Death Penalty"}
+		sets.weapons.DualLastStand = {main={ name="Rostam", augments={'Path: A',}}, sub="Crepuscular Knife", range="Fomalhaut"}
+		sets.weapons.DualWildfire = {main="Naegling", sub="Tauret", range="Death Penalty"}
+		sets.weapons.DualEvisceration = {main="Tauret", sub="Gleti's Knife", range="Ataktos"}
+		sets.weapons.DualAeolian = {main="Tauret", sub="Naegling", range="Ataktos"}
+		sets.weapons.DualTerminus = {main="Gleti's Knife", sub="Crepuscular Knife", range="Earp"}
+	end
 
--- Select default macro book on initial load or subjob change.
-function select_default_macro_book()
-    if player.sub_job == 'DNC' then
-        set_macro_page(1, 1)
-    elseif player.sub_job == 'NIN' then
-		set_macro_page(2, 1)
-    elseif player.sub_job == 'RNG' then
-        set_macro_page(3, 1)
-    elseif player.sub_job == 'DRG' then
-        set_macro_page(4, 1)
-    else
-        set_macro_page(1, 1)
-    end
-end
+	--------------------------------------
+	-- Selects default macro book on initial load or subjob change.
+	--------------------------------------
+	function select_default_macro_book()
+		set_macro_page(1, 1)
+	end
 
-autows_list = {['Default']='Savage Blade',['Evisceration']='Evisceration',['Savage']='Savage Blade',['Ranged']='Last Stand',['DualWeapons']='Savage Blade',['DualSavageWeapons']='Savage Blade',['DualEvisceration']='Evisceration',['DualLeadenRanged']='Leaden Salute',['DualLeadenMelee']='Leaden Salute',['DualAeolian']='Aeolian Edge',['DualRanged']='Last Stand'}
+	--------------------------------------
+	--AutoWS when a specific weapon set is selected
+	--------------------------------------
+	autows_list = {
+		['Default']='Savage Blade',
+		['Savage']='Savage Blade',
+		['LeadenRanged']='Leaden Salute',
+		['LeadenMelee']='Leaden Salute',
+		['LastStand']='Last Stand',
+		['Wildfire']='Wildfire',
+		['Evisceration']='Evisceration',
+		['Terminus']='Terminus',
+		['DualSavage']='Savage Blade',
+		['DualLeadenRanged']='Leaden Salute',
+		['DualLeadenMelee']='Leaden Salute',
+		['DualLastStand']='Last Stand',
+		['DualWildfire']='Wildfire',
+		['DualEvisceration']='Evisceration',
+		['DualAeolian']='Aeolian Edge',
+		['DualTerminus']='Terminus'
+	}
