@@ -707,7 +707,7 @@ function init_gear_sets()
 	sets.weapons.Aeolian = {main="Malevolence", sub="Naegling"}
 	sets.weapons.Savage = {main="Naegling", sub="Gleti's Knife"}
 	sets.weapons.Evisceration = {main="Tauret", sub="Gleti's Knife"}
-	sets.weapons.TrialWeapon = {main="Fusetto", sub="Blurred Knife +1"}
+	sets.weapons.TrialWeapon = {main="Fusetto"}
 	
     -- Actions we want to use to tag TH.
     sets.precast.Step = sets.TreasureHunter	
@@ -719,17 +719,7 @@ end
 -- Select default macro book on initial load or subjob change.
 function select_default_macro_book()
     -- Default macro set/book
-    if player.sub_job == 'DNC' then
-        set_macro_page(1, 4)
-    elseif player.sub_job == 'WAR' then
-        set_macro_page(2, 4)
-    elseif player.sub_job == 'NIN' then
-        set_macro_page(3, 4)
-	elseif player.sub_job == 'RDM' then
-		set_macro_page(4, 4)
-    else
-        set_macro_page(1, 4)
-    end
+        set_macro_page(1, 6)
 end
 
 autows_list = {['Aeneas']="Rudra's Storm",['Aeolian']='Aeolian Edge',['Savage']='Savage Blade',['Throwing']="Rudra's Storm",['SwordThrowing']='Savage Blade',['Evisceration']='Evisceration',['ProcWeapons']='Wasp Sting',['Bow']='Empyreal Arrow'}

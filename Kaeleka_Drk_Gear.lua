@@ -506,7 +506,7 @@ function init_gear_sets()
 		back={ name="Ankou's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
 	}
 
-	--sets.defense.PDTReraise = set_combine(sets.defense.PDT, {head="Twilight Helm",body="Twilight Mail"})
+	--sets.defense.PDTReraise = set_combine(sets.defense.PDT, {head="Twilight Helm", body="Twilight Mail"})
 
 	
 	--------------------------------------
