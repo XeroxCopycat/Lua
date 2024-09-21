@@ -1,14 +1,15 @@
 -- Setup vars that are user-dependent.
 function user_job_setup()
-    state.OffenseMode:options('Normal','Acc','Fodder')
-    state.HybridMode:options('Normal','DT')
-    state.WeaponskillMode:options('Normal', 'Acc', 'Fodder', 'Proc')
-    state.RangedMode:options('Normal', 'Acc')
+    state.OffenseMode:options('Normal', 'Acc', 'Fodder')
+	state.RangedMode:options('Normal', 'Acc')
+	state.WeaponskillMode:options('Normal', 'Acc', 'Fodder', 'Proc')
+    state.HybridMode:options('Normal', 'DT')
+    state.IdleMode:options('Normal', 'Regen', 'Sphere')
+    state.ExtraMeleeMode = M{['description']='Extra Melee Mode', 'None', 'SBMax'}
     state.PhysicalDefenseMode:options('PDT')
 	state.MagicalDefenseMode:options('MDT')
 	state.ResistDefenseMode:options('MEVA')
-    state.IdleMode:options('Normal', 'Regen', 'Sphere')
-	state.Weapons:options('GreatKatana', 'Polearm', 'ProcWeapon')
+    state.Weapons:options('GreatKatana', 'Polearm', 'ProcWeapon')
 
 	gear.ws_jse_back = {name="Smertrios's Mantle",augments={'STR+20','Accuracy+20 Attack+20','Weapon skill damage +10%',}}
 	gear.stp_jse_back = {name="Smertrios's Mantle",augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Store TP"+10',}}
@@ -36,6 +37,11 @@ function init_gear_sets()
 -- Precast Sets
 -------------------------------------------------------------------------------------------------------------------
 	--------------------------------------
+	-- Enmity set
+	--------------------------------------
+	sets.Enmity = {ammo="Sapience Orb", head="Loess Barbuta +1"}
+	
+	--------------------------------------
 	-- Fast cast sets for spells
 	--------------------------------------
     sets.precast.FC = {
@@ -48,8 +54,7 @@ function init_gear_sets()
 		left_ring="Lebeche Ring",
 	}
 	
-	
-   	--------------------------------------
+	--------------------------------------
 	-- Precast sets to enhance JAs
 	--------------------------------------
     sets.precast.JA.Meditate = {
@@ -62,7 +67,6 @@ function init_gear_sets()
 	sets.precast.JA['Sekkanoki'] = {hands="Kasuga Kote +3"}
 	sets.precast.JA['Sengikori'] = {feet="Kas. Sune-Ate +3"}
 	
-	
 	--------------------------------------
 	-- Ranged Attack / Preshot
 	--------------------------------------
@@ -73,26 +77,11 @@ function init_gear_sets()
 		waist="Yemaya Belt",
 	}
 	
-	
 	--------------------------------------
 	-- Waltz sets
 	--------------------------------------
-	-- Curing Waltz
     sets.precast.Waltz = {}
-    
-	
-    -- Don't need any special gear for Healing Waltz.
     sets.precast.Waltz['Healing Waltz'] = {}
-	
-	
-	--------------------------------------
-	-- Weapon Sets
-	--------------------------------------
-	sets.weapons.GreatKatana = {main="Masamune", sub="Utu Grip"}
-	sets.weapons.Polearm = {main="Shining One", sub="Utu Grip"}
-	--sets.weapons.Dojikiri = {main="Dojikiri Yasutsuna",sub="Utu Grip"}
-	--sets.weapons.Bow = {main="Norifusa +1",sub="Utu Grip",range="Cibitshavore",ammo="Eminent Arrow"}
-
 
 ------------------------------------------------------------------------------------------------------------------- 
 -- Midcast Sets
@@ -116,7 +105,6 @@ function init_gear_sets()
 		back={ name="Smertrios's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Store TP"+10','Phys. dmg. taken-10%',}},
 	}
 	
-	
     -- Specific spells
     sets.midcast.Utsusemi = set_combine(sets.midcast.FastRecast, {back="Mujin Mantle"})
 	
@@ -138,8 +126,7 @@ function init_gear_sets()
 		right_ring="Regal Ring",
 		back={ name="Smertrios's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Store TP"+10','Phys. dmg. taken-10%',}},
 	}
-
-
+	
 	-- Ranged Attack / Midshot Acc
     sets.midcast.RA.Acc = set_combine(sets.midcast.RA, {
 		head="Ken. Jinpachi +1",
@@ -156,30 +143,26 @@ function init_gear_sets()
 	--------------------------------------
     sets.precast.WS = {
 		ammo="Knobkierrie",
-		head={ name="Nyame Helm", augments={'Path: B',}},
-		body={ name="Sakonji Domaru +3", augments={'Enhances "Overwhelm" effect',}},
+		head="Mpaca's Cap",
+		body={ name="Nyame Mail", augments={'Path: B',}},
 		hands="Kasuga Kote +3",
-		legs="Wakido Haidate +3",
+		legs={ name="Nyame Flanchard", augments={'Path: B',}},
 		feet={ name="Nyame Sollerets", augments={'Path: B',}},
 		neck={ name="Sam. Nodowa +2", augments={'Path: A',}},
 		waist={ name="Sailfi Belt +1", augments={'Path: A',}},
 		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
-		right_ear={ name="Kasuga Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+13','Mag. Acc.+13','Weapon skill damage +2%',}},
-		left_ring="Epaminondas's Ring",
-		right_ring="Cornelia's Ring",
+		right_ear="Thrud Earring",
+		left_ring="Cornelia's Ring",
+		right_ring="Regal Ring",
 		back={ name="Smertrios's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
-	}
+}
     
-
-	sets.precast.WS.Acc = set_combine(sets.precast.WS, {legs="Wakido Haidate +3", left_ring="Regal Ring"})
-    
+	-- Default WS accuracy gear
+	sets.precast.WS.Acc = set_combine(sets.precast.WS, {legs="Wakido Haidate +3"})
 	
-	sets.precast.WS.Fodder = set_combine(sets.precast.WS, {feet="Kas. Sune-Ate +3", left_ring="Sroda Ring"})
+	-- Default WS fodder gear
+	sets.precast.WS.Fodder = set_combine(sets.precast.WS, {feet="Kas. Sune-Ate +3", right_ring="Sroda Ring"})
 	
-	
-	--------------------------------------
-	-- Specific weaponskill sets.	
-	--------------------------------------
 	--------------------------------------
 	-- Bow Weaponskills
 	--------------------------------------
@@ -187,12 +170,11 @@ function init_gear_sets()
     sets.precast.WS['Apex Arrow'].Acc = set_combine(sets.precast.WS['Apex Arrow'], {})
     sets.precast.WS['Apex Arrow'].Fodder = set_combine(sets.precast.WS['Apex Arrow'], {})
 	
-	
 	--------------------------------------
 	-- Great Katana Weaponskills
 	--------------------------------------
 	-- Tach: Ageha
-    sets.precast.WS['Tachi: Ageha'] = {
+    sets.precast.WS['Tachi: Ageha'] = set_combine(sets.precast.WS, {
 		ammo="Pemphredo Tathlum",
 		head="Kasuga Kabuto +3",
 		body="Kasuga Domaru +3",
@@ -203,116 +185,40 @@ function init_gear_sets()
 		waist="Eschan Stone",
 		left_ear="Digni. Earring",
 		right_ear={ name="Kasuga Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+13','Mag. Acc.+13','Weapon skill damage +2%',}},
-		left_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
-		right_ring="Cornelia's Ring",
-		back={ name="Smertrios's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}
-	}}
-	
-	
-	-- Tachi: Gekko
-    sets.precast.WS['Tachi: Gekko'] = set_combine(sets.precast.WS, {})
-    sets.precast.WS['Tachi: Gekko'].Acc = set_combine(sets.precast.WS.Acc, {})
-    sets.precast.WS['Tachi: Gekko'].Fodder = set_combine(sets.precast.WS.Fodder, {})
-	
+		--left_ring="Stikini Ring +1",
+		right_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
+		back={ name="Smertrios's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}}
+	})
 	
     -- Tachi: Fudo
 	sets.precast.WS['Tachi: Fudo'] = set_combine(sets.precast.WS, {})
     sets.precast.WS['Tachi: Fudo'].Acc = set_combine(sets.precast.WS.Acc, {})
     sets.precast.WS['Tachi: Fudo'].Fodder = set_combine(sets.precast.WS.Fodder, {})
-	
-	
-	-- Tachi: Hobaku	
-    sets.precast.WS['Tachi: Hobaku'] = {}
-	
-	
-	-- Tachi: Jinpu
-    sets.precast.WS['Tachi: Jinpu'] = set_combine(sets.precast.WS, {
-		body={ name="Nyame Mail", augments={'Path: B',}},
-		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
-		legs={ name="Nyame Flanchard", augments={'Path: B',}},
-		waist="Orpheus's Sash",
-		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
-		right_ear="Friomisi Earring",
-	})
-	
-	
-	-- Tachi: Kasha
-    sets.precast.WS['Tachi: Kasha'] = set_combine(sets.precast.WS, {})
-    sets.precast.WS['Tachi: Kasha'].Acc = set_combine(sets.precast.WS.Acc, {})
-    sets.precast.WS['Tachi: Kasha'].Fodder = set_combine(sets.precast.WS.Fodder, {})
-	
-	
-	-- Tachi: Rana
-    sets.precast.WS['Tachi: Rana'] = set_combine(sets.precast.WS, {})
-    sets.precast.WS['Tachi: Rana'].Acc = set_combine(sets.precast.WS.Acc, {})
-    sets.precast.WS['Tachi: Rana'].Fodder = set_combine(sets.precast.WS.Fodder, {})
-	
-	
+
 	-- Tachi: Shoha
     sets.precast.WS['Tachi: Shoha'] = set_combine(sets.precast.WS, {left_ring="Niqmaddu Ring", right_ring="Sroda Ring"})
     sets.precast.WS['Tachi: Shoha'].Acc = set_combine(sets.precast.WS.Acc, {})
     sets.precast.WS['Tachi: Shoha'].Fodder = set_combine(sets.precast.WS.Fodder, {
-		--legs="Mpaca's Hose",
+		ammo="Crepuscular Pebble",
+		legs="Mpaca's Hose",
+		left_ring="Niqmaddu Ring", 
+		right_ring="Sroda Ring"
 	})
 
-	
-	-- Tachi: Yukikaze
-    sets.precast.WS['Tachi: Yukikaze'] = set_combine(sets.precast.WS, {})
-    sets.precast.WS['Tachi: Yukikaze'].Acc = set_combine(sets.precast.WS.Acc, {})
-    sets.precast.WS['Tachi: Yukikaze'].Fodder = set_combine(sets.precast.WS.Fodder, {})
-
-	
 	--------------------------------------
 	-- Polearm Weaponskills
 	--------------------------------------
 	-- Impulse Drive
-	sets.precast.WS['Impulse Drive'] = set_combine(sets.precast.WS, {})
+	sets.precast.WS['Impulse Drive'] = set_combine(sets.precast.WS, {
+		ammo="Knobkierrie",
+		head="Mpaca's Cap",
+		body="Mpaca's Doublet",
+		left_ring="Niqmaddu Ring",
+		right_ring="Sroda Ring",
+	})
+	
     sets.precast.WS['Impulse Drive'].Acc = set_combine(sets.precast.WS['Impulse Drive'], {})
     sets.precast.WS['Impulse Drive'].Fodder = set_combine(sets.precast.WS['Impulse Drive'], {})
-
-	-- Sonic Thrust
-	sets.precast.WS['Sonic Thrust'] = set_combine(sets.precast.WS, {})
-	sets.precast.WS['Sonic Thrust'].Acc = set_combine(sets.precast.WS['Sonic Thrust'], {})
-	sets.precast.WS['Sonic Thrust'].Fodder = set_combine(sets.precast.WS['Sonic Thrust'], {})
-	
-	-- Stardiver
-	sets.precast.WS['Stardiver'] = set_combine(sets.precast.WS, {
-		neck="Fotia Gorget",
-		waist="Fotia Belt",
-		right_ear={ name="Schere Earring", augments={'Path: A',}},
-		left_ring="Regal Ring",
-		right_ring="Niqmaddu Ring",
-	})
-	
-	sets.precast.WS['Stardiver'].Acc = set_combine(sets.precast.WS['Stardiver'], {})
-	
-	sets.precast.WS['Stardiver'].Fodder = set_combine(sets.precast.WS['Stardiver'], {
-		neck={ name="Sam. Nodowa +2", augments={'Path: A',}},
-		feet="Kas. Sune-Ate +3",
-		left_ring="Sroda Ring",
-	})
-	
-	-- Vorpal Thrust
-	sets.precast.WS['Vorpal Thrust'] = set_combine(sets.precast.WS, {
-		ammo="Knobkierrie",
-		head="Flam. Zucchetto +2",
-		body={ name="Tatena. Harama. +1", augments={'Path: A',}},
-		hands="Flam. Manopolas +2",
-		legs={ name="Tatena. Haidate +1", augments={'Path: A',}},
-		feet={ name="Tatena. Sune. +1", augments={'Path: A',}},
-		neck="Fotia Gorget",
-		waist={ name="Sailfi Belt +1", augments={'Path: A',}},
-		left_ear={ name="Schere Earring", augments={'Path: A',}},
-		right_ear={ name="Kasuga Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+13','Mag. Acc.+13','Weapon skill damage +2%',}},
-		left_ring="Cornelia's Ring",
-		right_ring="Niqmaddu Ring",
-		back={ name="Smertrios's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
-	})
-	
-	sets.precast.WS['Vorpal Thrust'].Acc = set_combine(sets.precast.WS['Vorpal Thrust'], {})
-	
-	sets.precast.WS['Vorpal Thrust'].Fodder = set_combine(sets.precast.WS['Vorpal Thrust'], {feet="Kas. Sune-Ate +3", right_ring="Sroda Ring"})
-
 
 	--------------------------------------
 	-- Swaps when using WS at 3000 TP
@@ -348,32 +254,27 @@ function init_gear_sets()
 		waist="Flume Belt +1",
 		left_ear="Etiolation Earring",
 		right_ear="Odnowa Earring +1",
-		left_ring="Shneddick Ring",
-		right_ring="Defending Ring",
+		left_ring="Defending Ring",
+		right_ring="Shneddick Ring",
 		back={ name="Smertrios's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Store TP"+10','Phys. dmg. taken-10%',}},
 	}
-	
 	
 	-- Regen set
 	sets.idle.Regen = set_combine(sets.idle, {
 		body="Sacro Breastplate",
 		neck="Sanctity Necklace",
 		left_ear="Dawn Earring",
-		right_ring="Chirich Ring +1",
+		left_ring="Chirich Ring +1",
 	})
 	
-	
 	-- Regain set
-	sets.idle.Regain = set_combine(sets.idle, {})
-	
+	sets.idle.Regain = set_combine(sets.idle, {body="Makora Meikogai"})
 	
 	-- Reraise Set
 	sets.idle.Reraise = set_combine(sets.idle, {head="Twilight Helm", body="Twilight Mail",})
 	
-	
 	-- Sphere set
 	sets.idle.Sphere = set_combine(sets.idle, {body="Makora Meikogai"})
-	
 	
 	-- Weakened set
     sets.idle.Weak = {head="Twilight Helm", body="Twilight Mail"}
@@ -393,47 +294,30 @@ function init_gear_sets()
 		legs={ name="Nyame Flanchard", augments={'Path: B',}},
 		feet={ name="Nyame Sollerets", augments={'Path: B',}},
 		neck="Loricate Torque +1",
-		waist="Flume Belt +1",
-		left_ear="Etiolation Earring",
-		right_ear="Odnowa Earring +1",
-		left_ring="Gelatinous Ring +1",
-		right_ring="Defending Ring",
-		back={ name="Smertrios's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
+		waist="Ioskeha Belt +1",
+		left_ear="Odnowa Earring +1",
+		right_ear="Eabani Earring",
+		left_ring="Defending Ring",
+		right_ring="Warden's Ring",
+		back={ name="Smertrios's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Store TP"+10','Phys. dmg. taken-10%',}},
 	}
-
 	
 	--sets.defense.PDTReraise = set_combine(sets.defense.PDT, {head="Twilight Helm",body="Twilight Mail"})
-	
-	
 	
 	--------------------------------------
 	-- Magical Damage Reduction
 	--------------------------------------
     sets.defense.MDT = set_combine(sets.defense.PDT, {neck="Warder's Charm +1", waist="Carrier's Sash"})
-	
-	
 	--sets.defense.MDTReraise = set_combine(sets.defense.MDT, {head="Twilight Helm",body="Twilight Mail"})
 	
-    
 	--------------------------------------
 	-- Magic Evasion
 	--------------------------------------
-	sets.defense.MEVA = {
-		ammo="Staunch Tathlum +1",
-		head={ name="Nyame Helm", augments={'Path: B',}},
-		body={ name="Nyame Mail", augments={'Path: B',}},
-		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
-		legs={ name="Nyame Flanchard", augments={'Path: B',}},
-		feet={ name="Nyame Sollerets", augments={'Path: B',}},
+	sets.defense.MEVA = set_combine(sets.defense.PDT, {
 		neck="Warder's Charm +1",
 		waist="Carrier's Sash",
-		left_ear="Odnowa Earring +1",
-		right_ear="Eabani Earring",
-		left_ring="Vengeful Ring",
-		right_ring="Defending Ring",
-		back={ name="Smertrios's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
-	}
-	
+		right_ring="Vengeful Ring",
+	})
 	
 	--------------------------------------
 	-- Misc. Defensive Sets
@@ -457,25 +341,33 @@ function init_gear_sets()
 		head="Kasuga Kabuto +3",
 		body="Kasuga Domaru +3",
 		hands="Wakido Kote +3",
-		egs="Kasuga Haidate +3",
-		feet={ name="Tatena. Sune. +1", augments={'Path: A',}},
+		legs="Kasuga Haidate +3",
+		feet={ name="Ryuo Sune-Ate +1", augments={'HP+65','"Store TP"+5','"Subtle Blow"+8',}},
 		neck={ name="Sam. Nodowa +2", augments={'Path: A',}},
-		waist="Ioskeha Belt +1",
+		waist={ name="Sailfi Belt +1", augments={'Path: A',}},
 		left_ear="Dedition Earring",
 		right_ear={ name="Kasuga Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+13','Mag. Acc.+13','Weapon skill damage +2%',}},
 		left_ring="Niqmaddu Ring",
 		right_ring="Chirich Ring +1",
 		back={ name="Smertrios's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Store TP"+10','Phys. dmg. taken-10%',}},
-}
+	}
 
-	-- Accuracy Set
+	-- Engaged accuracy set
     sets.engaged.Acc = set_combine(sets.engaged, {
-		feet="Wakido Sune. +3",
+		ammo="Coiste Bodhar",
+		hands="Kasuga Kote +3",
+		feet={ name="Tatena. Sune. +1", augments={'Path: A',}},
 		left_ear={ name="Schere Earring", augments={'Path: A',}},
-		right_ring="Regal Ring",
 	})
 
-
+	-- Engaged max accuracy Set
+	sets.engaged.MaxAcc = set_combine(sets.engaged, {
+		ammo="Amar Cluster",
+		hands="Wakido Kote +3",
+		feet="Wakido Sune. +3",
+		left_ear={ name="Schere Earring", augments={'Path: A',}},
+	})
+	
 	-- Fodder Set
     sets.engaged.Fodder = set_combine(sets.engaged, {
 		feet="Kas. Sune-Ate +3",
@@ -485,43 +377,59 @@ function init_gear_sets()
 	--------------------------------------
 	-- Hybrid Engaged Set
 	--------------------------------------
-	sets.engaged.DT = {
-		ammo={ name="Coiste Bodhar", augments={'Path: A',}},
-		head="Kasuga Kabuto +3",
-		body="Kasuga Domaru +3",
-		hands="Wakido Kote +3",
-		legs="Kasuga Haidate +3",
-		feet={ name="Tatena. Sune. +1", augments={'Path: A',}},
-		neck={ name="Sam. Nodowa +2", augments={'Path: A',}},
-		waist="Ioskeha Belt +1",
-		left_ear="Dedition Earring",
-		right_ear={ name="Kasuga Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+13','Mag. Acc.+13','Weapon skill damage +2%',}},
-		left_ring="Niqmaddu Ring",
-		right_ring="Defending Ring",
-		back={ name="Smertrios's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Store TP"+10','Phys. dmg. taken-10%',}},
-	}
+	sets.engaged.DT = set_combine(sets.engaged, {ammo={ name="Coiste Bodhar", augments={'Path: A',}}, left_ring="Defending Ring",})
 	
-
-	-- Hybrid Engaged / Accuracy Set
+	-- Hybrid engaged accuracy set
     sets.engaged.Acc.DT = set_combine(sets.engaged.DT, {
 		feet="Wakido Sune. +3",
 		left_ear={ name="Schere Earring", augments={'Path: A',}},
 		right_ring="Regal Ring",
 	})
 
+	-- Hybrid engaged max accuracy Set
+	sets.engaged.MaxAcc.DT = set_combine(sets.engaged.DT, {
+		hands="Wakido Kote +3",
+		feet="Wakido Sune. +3",
+		left_ear={ name="Schere Earring", augments={'Path: A',}},
+		right_ring="Regal Ring",
+	})
 
-	-- Hybrid Engaged / Fodder Set
+	-- Hybrid engaged fodder set
     sets.engaged.Fodder.DT = set_combine(sets.engaged.DT, {
 		feet="Kas. Sune-Ate +3",
 		left_ring="Sroda Ring",
 	})
 	
-
-	
-	
 	--------------------------------------
-	-- Special Sets
+	-- Extra melee mode, subtle blow
 	--------------------------------------
+	sets.SBMax = {
+		ammo="Aurgelmir Orb",
+		head="Ken. Jinpachi +1",
+		body="Kasuga Domaru +3",
+		hands="Wakido Kote +3",
+		legs="Mpaca's Hose",
+		feet={ name="Ryuo Sune-Ate +1", augments={'HP+65','"Store TP"+5','"Subtle Blow"+8',}},
+		neck={ name="Sam. Nodowa +2", augments={'Path: A',}},
+		waist="Ioskeha Belt +1",
+		left_ear={ name="Schere Earring", augments={'Path: A',}},
+		right_ear="Digni. Earring",
+		left_ring="Niqmaddu Ring",
+		right_ring="Chirich Ring +1",
+		back={ name="Smertrios's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Store TP"+10','Phys. dmg. taken-10%',}},
+	}
+	
+-------------------------------------------------------------------------------------------------------------------
+-- Weapon sets
+-------------------------------------------------------------------------------------------------------------------
+	sets.weapons.GreatKatana = {main="Masamune", sub="Utu Grip"}
+	sets.weapons.Polearm = {main="Shining One", sub="Utu Grip"}
+	--sets.weapons.Dojikiri = {main="Dojikiri Yasutsuna",sub="Utu Grip"}
+	--sets.weapons.Bow = {main="Norifusa +1",sub="Utu Grip",range="Cibitshavore",ammo="Eminent Arrow"}
+	
+-------------------------------------------------------------------------------------------------------------------
+-- Misc. sets
+-------------------------------------------------------------------------------------------------------------------
 	sets.Cure_Received = {waist="Gishdubar Sash", legs="Flamma Dirs +2"}
 	sets.buff.Doom = set_combine(sets.buff.Doom, {neck="Nicander's Necklace", waist="Gishdubar Sash"})
 	sets.buff.Sleep = {neck="Vim Torque +1"}
