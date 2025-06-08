@@ -67,10 +67,10 @@ function init_gear_sets()
 		legs="Aya. Cosciales +2",
 		feet="Fili Cothurnes +3",
 		neck="Voltsurge Torque",
-		waist="Witful Belt",
+		waist="Embla Sash",
 		left_ear="Etiolation Earring",
 		right_ear="Loquac. Earring",
-		left_ring="Rahab Ring",
+		left_ring="Defending Ring",
 		right_ring="Kishar Ring",
 		back={ name="Intarabus's Cape", augments={'HP+60','Eva.+20 /Mag. Eva.+20','"Fast Cast"+10','Damage taken-5%',}},
 	}
@@ -92,7 +92,7 @@ function init_gear_sets()
 	--------------------------------------
 	-- Fast Cast for Bard Songs
 	--------------------------------------
-	sets.precast.FC.BardSong = set_combine(sets.precast.FC, {range="Miracle Cheer", ammo=empty, head="Fili Calot +3"})
+	sets.precast.FC.BardSong = set_combine(sets.precast.FC, {head="Fili Calot +3"})
 	
 	sets.precast.FC.SongDebuff = set_combine(sets.precast.FC.BardSong, {range="Miracle Cheer", ammo=empty})
 	sets.precast.FC.SongDebuff.Resistant = set_combine(sets.precast.FC.BardSong, {range="Miracle Cheer", ammo=empty})
@@ -149,16 +149,16 @@ function init_gear_sets()
 		legs="Aya. Cosciales +2",
 		feet="Fili Cothurnes +3",
 		neck="Voltsurge Torque",
-		waist="Witful Belt",
+		waist="Embla Sash",
 		left_ear="Etiolation Earring",
 		right_ear="Loquac. Earring",
-		left_ring="Rahab Ring",
+		left_ring="Defending Ring",
 		right_ring="Kishar Ring",
 		back={ name="Intarabus's Cape", augments={'HP+60','Eva.+20 /Mag. Eva.+20','"Fast Cast"+10','Damage taken-5%',}},
 	}
 	
 	--------------------------------------
-	-- Fast recast for general spells
+	-- Fast recast for specific spells
 	--------------------------------------
 	-- Cure Spells
 	sets.midcast.Cure = set_combine(sets.midcast.FastRecast, {
@@ -217,10 +217,29 @@ function init_gear_sets()
     sets.midcast.Utsusemi = sets.midcast.FastRecast
 
 	--------------------------------------
-	-- Fast recast for specific songs
+	-- Song duration and AF set procs
+	--------------------------------------
+	sets.midcast.SongEffect = {
+		main={ name="Kali", augments={'Mag. Acc.+15','String instrument skill +10','Wind instrument skill +10',}},
+		sub="Ammurapi Shield",
+		head="Fili Calot +3",
+		body="Fili Hongreline +3",
+		hands="Fili Manchettes +3",
+		legs="Inyanga Shalwar +2",
+		feet="Brioso Slippers +3",
+		neck="Mnbw. Whistle +1",
+	}
+	
+	sets.midcast.SongEffect.DW = {
+		main={ name="Kali", augments={'Mag. Acc.+15','String instrument skill +10','Wind instrument skill +10',}},
+		--sub={ name="Kali", augments={'Mag. Acc.+15','String instrument skill +10','Wind instrument skill +10',}},
+	} --Only weapons in this set. This set is overlayed onto SongEffect
+	
+	--------------------------------------
+	-- Midcast sets for specific songs
 	--------------------------------------
 	-- Ballad
-	sets.midcast.Ballad = {range="Miracle Cheer", legs="Fili Rhingrave +3"}
+	sets.midcast.Ballad = {range="Miracle Cheer"}
 	
 	-- Lullabies
 	sets.midcast.Lullaby = {range="Miracle Cheer"}
@@ -236,14 +255,15 @@ function init_gear_sets()
 	sets.midcast.Madrigal = {
 		range="Miracle Cheer",
 		head="Fili Calot +3",
+		feet="Fili Cothurnes +3",
 		back={ name="Intarabus's Cape", augments={'HP+60','Eva.+20 /Mag. Eva.+20','"Fast Cast"+10','Damage taken-5%',}},
 	}
 	
 	--Paeon
-	sets.midcast.Paeon = {range="Blurred Harp +1"}
+	sets.midcast.Paeon = {range="Blurred Harp +1", head="Brioso Roundlet +2"}
 	
 	--March
-	sets.midcast.March = {range="Miracle Cheer", hands="Fili Manchettes +3"}
+	sets.midcast.March = {range="Miracle Cheer"}
 	
 	-- Honor March
 	sets.midcast['Honor March'] = set_combine(sets.midcast.March, {range="Marsyas"})
@@ -260,6 +280,7 @@ function init_gear_sets()
 	--Prelude
 	sets.midcast.Prelude = {
 		range="Miracle Cheer",
+		feet="Fili Cothurnes +3",
 		back={ name="Intarabus's Cape", augments={'HP+60','Eva.+20 /Mag. Eva.+20','"Fast Cast"+10','Damage taken-5%',}},
 	}
 	
@@ -272,21 +293,7 @@ function init_gear_sets()
 	-- Mazurka
 	sets.midcast.Mazurka = {range="Miracle Cheer"}
 	
-	--------------------------------------
-	-- Song buff duration and AF set procs
-	--------------------------------------
-	sets.midcast.SongEffect = {
-		main={ name="Kali", augments={'Mag. Acc.+15','String instrument skill +10','Wind instrument skill +10',}},
-		sub="Ammurapi Shield",
-		body="Fili Hongreline +3",
-		legs="Inyanga Shalwar +2",
-	}
 	
-	sets.midcast.SongEffect.DW = {
-		main={ name="Kali", augments={'Mag. Acc.+15','String instrument skill +10','Wind instrument skill +10',}},
-		--sub={ name="Kali", augments={'Mag. Acc.+15','String instrument skill +10','Wind instrument skill +10',}},
-	} --Only weapons in this set. This set is overlayed onto SongEffect
-
 	--------------------------------------
 	-- Song defbuffs (duration primary, accuracy secondary)
 	-------------------------------------- 
@@ -356,54 +363,40 @@ function init_gear_sets()
 	-- Standard idle set
 	--------------------------------------
 	sets.idle = {
-		head="Bunzi's Hat",
+		head="Fili Calot +3",
 		body="Bunzi's Robe",
-		hands="Bunzi's Gloves",
-		legs="Bunzi's Pants",
-		feet="Bunzi's Sabots",
+		hands="Fili Manchettes +3",
+		legs="Fili Rhingrave +3",
+		feet="Fili Cothurnes +3",
 		neck="Warder's Charm +1",
 		waist="Carrier's Sash",
 		left_ear="Eabani Earring",
-		right_ear="Dawn Earring",
-		left_ring="Shneddick Ring",
-		right_ring="Moonlight Ring",
-		back={ name="Intarabus's Cape", augments={'HP+60','Eva.+20 /Mag. Eva.+20','"Fast Cast"+10','Damage taken-5%',}},
+		right_ear="Etiolation Earring",
+		left_ring="Icecrack Ring",
+		right_ring="Defending Ring",
+		back="Null Shawl",
 	}
 	
 	--------------------------------------
 	-- Refresh set
 	--------------------------------------
-	sets.idle.Refresh = {
+	sets.idle.Refresh = set_combine(sets.idle, {
 		head="Volte Beret",
-		body={ name="Nyame Mail", augments={'Path: B',}},
 		hands="Volte Gloves",
 		legs="Assid. Pants +1",
 		feet="Volte Gaiters",
 		neck="Sibyl Scarf",
 		waist="Fucho-no-Obi",
-		left_ear="Eabani Earring",
-		right_ear="Dawn Earring",
 		left_ring="Shneddick Ring",
-		right_ring="Defending Ring",
-		back={ name="Intarabus's Cape", augments={'HP+60','Eva.+20 /Mag. Eva.+20','"Fast Cast"+10','Damage taken-5%',}},
-	}
+	})
 	
 	--------------------------------------
 	-- Regen set
 	--------------------------------------
-	sets.idle.Regen = set_combine(sets.idle.Refresh, {
-		head="Fili Calot +3",
-		body="Fili Hongreline +3",
-		hands="Fili Manchettes +3",
-		legs="Fili Rhingrave +3",
-		feet="Fili Cothurnes +3",
-		neck="Sanctity Necklace",
-		waist="Plat. Mog. Belt",
-		left_ear="Eabani Earring",
+	sets.idle.Regen = set_combine(sets.idle, {
+		neck="Bathy Choker +1",
 		right_ear="Dawn Earring",
-		left_ring="Shneddick Ring",
-		right_ring="Defending Ring",
-		back={ name="Intarabus's Cape", augments={'HP+60','Eva.+20 /Mag. Eva.+20','"Fast Cast"+10','Damage taken-5%',}}, --Regen cape
+		left_ring="Chirich Ring +1",
 	})
 	
 -------------------------------------------------------------------------------------------------------------------
@@ -414,15 +407,15 @@ function init_gear_sets()
 	--------------------------------------
 	sets.defense.PDT = {
 		head="Fili Calot +3",
-		body={ name="Nyame Mail", augments={'Path: B',}},
+		body="Bunzi's Robe",
 		hands="Fili Manchettes +3",
 		legs="Fili Rhingrave +3",
 		feet="Fili Cothurnes +3",
-		neck="Loricate Torque +1",
-		waist="Plat. Mog. Belt",
+		neck="Warder's Charm +1",
+		waist="Carrier's Sash",
 		left_ear="Eabani Earring",
-		right_ear="Dawn Earring",
-		left_ring="Shneddick Ring",
+		right_ear="Etiolation Earring",
+		left_ring="Icecrack Ring",
 		right_ring="Defending Ring",
 		back={ name="Intarabus's Cape", augments={'HP+60','Eva.+20 /Mag. Eva.+20','"Fast Cast"+10','Damage taken-5%',}},
 	}
@@ -436,10 +429,11 @@ function init_gear_sets()
 	-- Magic Evasion
 	--------------------------------------
 	sets.defense.MEVA = set_combine(sets.defense.PDT, {
-		neck="Warder's Charm +1",
-		waist="Carrier's Sash",
+		head="Volte Cap",
+		body="Volte Jupon",
+		legs="Volte Hose",
 		right_ear="Hearty Earring",
-		left_ring="Icecrack Ring",
+		back="Null Shawl",
 	})
 
 	--------------------------------------
@@ -447,7 +441,7 @@ function init_gear_sets()
 	--------------------------------------
 	sets.Kiting = {left_ring="Shneddick Ring"}
 	sets.latent_refresh = {waist="Fucho-no-obi"}
-	sets.latent_refresh_grip = {sub="Oneiros Grip"}
+	--sets.latent_refresh_grip = {sub="Oneiros Grip"}
 	--sets.TPEat = {neck="Chrys. Torque"}
 
 
@@ -586,7 +580,7 @@ function init_gear_sets()
 		right_ear="Mache Earring +1", --dominance earring +1
 		left_ring="Cornelia's Ring",
 		right_ring="Ilabrat Ring",
-		back={ name="Intarabus's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','Weapon skill damage +10%','Damage taken-5%',}},
+		back={ name="Intarabus's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','Weapon skill damage +10%','Damage taken-5%',}},
 	}
 	
 	sets.precast.WS["Rudra's Storm"].Acc = set_combine(sets.precast.WS["Rudra's Storm"], {})
