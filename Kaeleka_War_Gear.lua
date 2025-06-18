@@ -254,33 +254,27 @@ function init_gear_sets()
 -- ENGAGED SETS
 -------------------------------------------------------------------------------------------------------------------
 	--------------------------------------
-	-- Engaged Set
+	-- Engaged Set, Single Wield
 	--------------------------------------
-	sets.engaged = { -- 1334 Acc, 
-		ammo={ name="Coiste Bodhar", augments={'Path: A',}},
-		head="Boii Mask +3",
-		body="Hjarrandi Breast.",
+	sets.engaged = { 
+		head="Flam. Zucchetto +2",
+		body={ name="Tatena. Harama. +1", augments={'Path: A',}},
 		hands={ name="Sakpata's Gauntlets", augments={'Path: A',}},
 		legs="Pumm. Cuisses +3",
 		feet="Pumm. Calligae +3",
-		neck={ name="War. Beads +2", augments={'Path: A',}},
+		neck={ name="Vim Torque +1", augments={'Path: A',}},
 		waist={ name="Sailfi Belt +1", augments={'Path: A',}},
 		left_ear={ name="Schere Earring", augments={'Path: A',}},
-		right_ear={ name="Boii Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+12','Mag. Acc.+12','Crit.hit rate+4',}},
-		left_ring="Niqmaddu Ring",
-		right_ring="Petrov Ring",
+		right_ear={ name="Boii Earring +2", augments={'System: 1 ID: 1676 Val: 0','Accuracy+18','Mag. Acc.+18','Crit.hit rate+7','STR+11 VIT+11',}},
+		left_ring="Moonlight Ring",
+		right_ring="Niqmaddu Ring",
 		back={ name="Cichol's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
 	}
 	
-	--------------------------------------
 	-- Accuracy Set
-	--------------------------------------
 	sets.engaged.Acc = set_combine(sets.engaged, {waist="Ioskeha Belt +1", right_ring="Regal Ring"})
 	
-	
-	--------------------------------------
 	-- Max Accuracy Set
-	--------------------------------------
 	sets.engaged.MaxAcc = set_combine(sets.engaged, { -- 1440 Acc
 		ammo="Seething Bomblet",
 		body={ name="Tatena. Harama. +1", augments={'Path: A',}},
@@ -293,10 +287,7 @@ function init_gear_sets()
 		right_ring="Chirich Ring +1",
 	})
 
-
-	--------------------------------------
 	-- Fodder set
-	--------------------------------------
 	sets.engaged.Fodder = set_combine(sets.engaged, {
 		head="Flam. Zucchetto +2",
 		body={ name="Tatena. Harama. +1", augments={'Path: A',}},
@@ -307,7 +298,45 @@ function init_gear_sets()
 		left_ring="Niqmaddu Ring",
 	})
 	
-
+	-- Subtle Blow set
+	
+	-- Hybrid DT Set
+	sets.engaged.DT = set_combine(sets.engaged, {
+		head="Hjarrandi Helm",
+		body="Boii Lorica +3",
+		waist="Ioskeha Belt +1",
+	})
+	
+	
+	--------------------------------------
+	-- Engaged Set, Dual Wield
+	--------------------------------------
+	sets.engaged.DW = { 
+		head="Flam. Zucchetto +2",
+		body={ name="Tatena. Harama. +1", augments={'Path: A',}},
+		hands={ name="Sakpata's Gauntlets", augments={'Path: A',}},
+		legs="Pumm. Cuisses +3",
+		feet="Pumm. Calligae +3",
+		neck={ name="Vim Torque +1", augments={'Path: A',}},
+		waist="Reiki Yotai",
+		left_ear="Eabani Earring",
+		right_ear={ name="Boii Earring +2", augments={'System: 1 ID: 1676 Val: 0','Accuracy+18','Mag. Acc.+18','Crit.hit rate+7','STR+11 VIT+11',}},
+		left_ring="Moonlight Ring",
+		right_ring="Niqmaddu Ring",
+		back={ name="Cichol's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
+	}
+	
+	-- Accuracy set
+	
+	-- Max Accuracy set
+	
+	-- Fodder set
+	
+	-- Hybrid DT set
+	sets.engaged.DW.DT = set_combine(sets.engaged.DW, {
+		head="Hjarrandi Helm",
+		body="Boii Lorica +3",
+	})
 
 -------------------------------------------------------------------------------------------------------------------
 -- WEAPON SETS
@@ -320,13 +349,12 @@ function init_gear_sets()
 	sets.weapons.Greataxe = {main="Chango", sub="Utu Grip"}
 	sets.weapons.Greatsword = {main="Agwu's Claymore", sub="Utu Grip"}
 	sets.weapons.Polearm = {main="Shining One", sub="Utu Grip"}
-	--sets.weapons.Staff = {main="", sub=""}
 	sets.weapons.Sword = {main="Naegling", sub="Blurred Shield +1"}
 	
 	--------------------------------------
 	-- Dual weapons
 	--------------------------------------
-	sets.weapons.DualWeapons = {main="Naegling",sub="Blurred Knife +1"}
+	sets.weapons.DualWeapons = {main="Naegling", sub="Blurred Knife +1"}
 	
 	
 	--------------------------------------
