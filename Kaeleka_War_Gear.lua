@@ -9,7 +9,7 @@ function user_job_setup()
 	state.IdleMode:options('Normal', 'Regen', 'Regain', 'Reraise')
     state.ExtraMeleeMode = M{['description']='Extra Melee Mode', 'None'}
 	state.Passive = M{['description'] = 'Passive Mode', 'None', 'Twilight'}
-	state.Weapons:options('Sword', 'Greataxe', 'Club', 'Polearm', 'Greatsword', 'Club', 'Axe', 'DualWeapons',
+	state.Weapons:options('Sword', 'Greataxe', 'Club', 'Polearm', 'Greatsword', 'Club', 'Axe', 'DualSword', 'DualDagger',
 		'ProcDagger', 'ProcSword', 'ProcGreatSword', 'ProcKatana', 'ProcScythe', 'ProcPolearm', 'ProcGreatKatana', 'ProcClub', 'ProcStaff')
 
 
@@ -350,25 +350,27 @@ function init_gear_sets()
 	sets.weapons.Greatsword = {main="Agwu's Claymore", sub="Utu Grip"}
 	sets.weapons.Polearm = {main="Shining One", sub="Utu Grip"}
 	sets.weapons.Sword = {main="Naegling", sub="Blurred Shield +1"}
+	sets.weapons.Dagger = {main="Crepuscular Knife", sub="Blurred Shield +1"}
 	
 	--------------------------------------
 	-- Dual weapons
 	--------------------------------------
-	sets.weapons.DualWeapons = {main="Naegling", sub="Blurred Knife +1"}
+	sets.weapons.DualSword = {main="Naegling", sub="Blurred Knife +1"}
+	sets.weapons.DualDagger = {main="Crepuscular Knife", sub="Blurred Knife +1"}
 	
 	
 	--------------------------------------
 	-- Proc weapons (Enabled in Abyssea only)
 	--------------------------------------
-	sets.weapons.ProcDagger = {main="Wind Knife", sub=empty}
+	sets.weapons.ProcDagger = {main="Qutrub Knife", sub=empty}
 	sets.weapons.ProcSword = {main="Ibushi Shinai", sub=empty}
 	sets.weapons.ProcGreatSword = {main="Lament", sub=empty}
 	sets.weapons.ProcKatana = {main="Debahocho", sub=empty}
 	sets.weapons.ProcScythe = {main="Lost Sickle", sub=empty}
 	sets.weapons.ProcPolearm = {main="Tzee Xicu's Blade", sub=empty}
 	sets.weapons.ProcGreatKatana = {main="Zanmato", sub=empty}
-	sets.weapons.ProcClub = {main="Magician's Rod", sub=empty}
-	sets.weapons.ProcStaff = {main="Caver's Shovel", sub=empty}
+	sets.weapons.ProcClub = {main="Soulflayer's Wand", sub=empty}
+	sets.weapons.ProcStaff = {main="Ranine Staff", sub=empty}
 	
 	
 -------------------------------------------------------------------------------------------------------------------
@@ -810,7 +812,11 @@ function init_gear_sets()
 	sets.buff.Retaliation = {hands="Pumm. Mufflers +2", feet="Boii Calligae +3"}
 	sets.buff.Restraint = {hands="Boii Mufflers +3"}
 	sets.buff.Sleep = {neck="Vim Torque +1"}
-	sets.TreasureHunter = set_combine(sets.TreasureHunter, {})
+	sets.TreasureHunter = set_combine(sets.TreasureHunter, {
+		head="Volte Cap",
+        body="Volte Jupon",
+		waist="Chaac Belt",
+	})
 end
 	
 -- Select default macro book on initial load or subjob change.
