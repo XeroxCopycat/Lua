@@ -9,7 +9,7 @@ function user_job_setup()
 	state.ResistDefenseMode:options('MEVA')
 	state.Weapons:options('Godhands', 'Staff', 'ProcStaff', 'ProcClub', 'Barehanded', 'ProcSword', 'ProcGreatSword', 'ProcScythe', 'ProcPolearm', 'ProcGreatKatana')
 
-    state.ExtraMeleeMode = M{['description']='Extra Melee Mode', 'None', 'MAMid', 'MAMax'}
+    state.ExtraMeleeMode = M{['description']='Extra Melee Mode', 'None', 'SubtleBlow'}
 
     update_melee_groups()
 	
@@ -43,7 +43,7 @@ function init_gear_sets()
 		right_ear="Loquac. Earring",
 		left_ring="Rahab Ring",
 		right_ring="Lebeche Ring",
-		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Damage taken-5%',}},
+		back={ name="Segomo's Mantle", augments={'AGI+20','Eva.+10 /Mag. Eva.+10','"Fast Cast"+10','"Regen"+5',}},
 	}
 
 	sets.precast.FC.Utsusemi = set_combine(sets.precast.FC, {neck="Magoraga Beads"})
@@ -160,7 +160,7 @@ function init_gear_sets()
 		right_ear="Loquac. Earring",
 		left_ring="Rahab Ring",
 		right_ring="Lebeche Ring",
-		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Damage taken-5%',}},
+		back={ name="Segomo's Mantle", augments={'AGI+20','Eva.+10 /Mag. Eva.+10','"Fast Cast"+10','"Regen"+5',}},
 	}
 	
 -- Midcast sets for specific spells
@@ -227,9 +227,11 @@ function init_gear_sets()
 	
 -- Regen set
 	sets.idle.Regen = set_combine(sets.idle, {
+		body="Hiza. Haramaki +2",
 		neck="Bathy Choker +1",
 		right_ear="Dawn Earring",
 		right_ring="Chirich Ring +1",
+		back={ name="Segomo's Mantle", augments={'AGI+20','Eva.+10 /Mag. Eva.+10','"Fast Cast"+10','"Regen"+5',}},
 	})
 
 -------------------------------------------------------------------------------------------------------------------
@@ -238,7 +240,7 @@ function init_gear_sets()
 -- Normal melee sets
 	sets.engaged = {
 		ammo="Coiste Bodhar",
-		 head={ name="Ryuo Somen +1", augments={'HP+65','"Store TP"+5','"Subtle Blow"+8',}},
+		head={ name="Ryuo Somen +1", augments={'HP+65','"Store TP"+5','"Subtle Blow"+8',}},
 		body="Mpaca's Doublet",
 		hands={ name="Adhemar Wrist. +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
 		legs="Bhikku Hose +3",
@@ -254,12 +256,16 @@ function init_gear_sets()
 	
 	sets.engaged.Acc = set_combine(sets.engaged, {})
 	sets.engaged.FullAcc = set_combine(sets.engaged, {})
-	sets.engaged.SubtleBlow = set_combine(sets.engaged, {left_ring="Chirich Ring +1", right_ring="Niqmaddu Ring"})
+	sets.engaged.SubtleBlow = set_combine(sets.engaged, {
+		head={ name="Adhemar Bonnet +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
+		feet={ name="Ryuo Sune-Ate +1", augments={'HP+65','"Store TP"+5','"Subtle Blow"+8',}},
+		right_ring="Niqmaddu Ring",
+	})
 
 -- Defensive melee hybrid sets
 	sets.engaged.DT = {
 		ammo="Coiste Bodhar",
-		 head={ name="Ryuo Somen +1", augments={'HP+65','"Store TP"+5','"Subtle Blow"+8',}},
+		head={ name="Ryuo Somen +1", augments={'HP+65','"Store TP"+5','"Subtle Blow"+8',}},
 		body="Mpaca's Doublet",
 		hands={ name="Adhemar Wrist. +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
 		legs="Bhikku Hose +3",
@@ -276,8 +282,8 @@ function init_gear_sets()
 	sets.engaged.Acc.DT = set_combine(sets.engaged.DT, {})
 	sets.engaged.FullAcc.DT = set_combine(sets.engaged.DT, {})
 	sets.engaged.SubtleBlow.DT = set_combine(sets.engaged.DT, {
-		feet="Bhikku Gaiters +3",
-		left_ring="Chirich Ring +1",
+		neck="Bathy Choker +1",
+		left_ring="Defending Ring",
 		right_ring="Niqmaddu Ring",
 	})
 
@@ -287,8 +293,7 @@ function init_gear_sets()
 	sets.buff.Impetus = {body="Bhikku Cyclas +3"}
 	sets.buff.Footwork = {feet="Bhikku Gaiters +3"}
 	--sets.buff.Boost = {} waist="Ask Sash"
-	
-	sets.FootworkWS = {feet="Bhikku Gaiters +3"}
+
 	sets.DayIdle = {}
 	sets.NightIdle = {}
     sets.Knockback = {}
@@ -376,11 +381,9 @@ function init_gear_sets()
 	})
 	
 	sets.precast.WS['Shijin Spiral'] = set_combine(sets.precast.WS, {
-		body="Nyame Mail",
-		hands="Mpaca's Gloves",
-		right_ear="Sherida Earring",
-		left_ring="Gere Ring",
-		right_ring="Niqmaddu Ring",
+		body="Bhikku Cyclas +3",
+		feet="Mummu Gamash. +2",
+		left_ear="Sherida Earring",
 		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
 	})
 	
@@ -404,10 +407,10 @@ function init_gear_sets()
 		neck="Fotia Gorget",
 		waist="Moonbow Belt",
 		left_ear="Odr Earring",
-		right_ear="Schere Earring",
-		left_ring="Gere Ring",
+		left_ear="Sherida Earring",
+		right_ear="Odr Earring",
 		right_ring="Niqmaddu Ring",
-		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Damage taken-5%',}},
+		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Crit.hit rate+10','Damage taken-5%',}},
 	})
 
  -- Staff Weaponskills
@@ -427,10 +430,18 @@ function init_gear_sets()
 		back="Null Shawl",
 	}
 	
+-- Gearswaps using WS with either Footwork and/or Impetus
+	sets.buff.FootworkWS = {feet="Bhikku Gaiters +3"}
+	sets.buff.ImpetusWS = {
+		head={ name="Adhemar Bonnet +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
+		body="Bhikku Cyclas +3",
+		hands="Bhikku Gloves +2",
+		--feet="Ken. Sune-Ate +1",
+	}
+
 -- Gear swaps using WS if at 3000 TP
 	sets.MaxTP = {left_ear="Brutal Earring", right_ear="Sherida Earring",}
 	sets.AccMaxTP = {left_ear="Mache Earring +1", right_ear="Telos Earring"}
-	
 	
 -------------------------------------------------------------------------------------------------------------------
 -- Weapon Sets
@@ -467,8 +478,13 @@ function init_gear_sets()
 	
 -- Extra Melee sets.  Apply these on top of melee sets.
     sets.Knockback = {}
-	sets.MAMid = {left_ear="Sherida Earring", right_ear="Macha Earring +1"}
-	sets.MAMax = {body="Bhikku Cyclas +3", left_ear="Sherida Earring", right_ear="Macha Earring +1"}
+	sets.SubtleBlow = {
+		head={ name="Adhemar Bonnet +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
+		feet={ name="Ryuo Sune-Ate +1", augments={'HP+65','"Store TP"+5','"Subtle Blow"+8',}},
+		waist="Moonbow Belt",
+		left_ear="Sherida Earring",
+		right_ring="Niqmaddu Ring",
+	}
 	
 -- Actions we want to use to tag TH.
     sets.precast.Step = sets.TreasureHunter	
