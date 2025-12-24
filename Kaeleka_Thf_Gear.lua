@@ -9,13 +9,10 @@ function user_job_setup()
     state.PhysicalDefenseMode:options('PDT')
 	state.MagicalDefenseMode:options('MDT')
 	state.ResistDefenseMode:options('MEVA')
-	state.Weapons:options('Rudras', 'Aeolian', 'Evisceration', 'Exenterator', 'Savage', 'Dynamis')
+	state.Weapons:options('Rudras', 'Aeolian', 'Evisceration', 'Exenterator', 'Savage')
 
-    state.ExtraMeleeMode = M{['description']='Extra Melee Mode', 'None', 'Suppa', 'DWMax', 'Parry'}
+    state.ExtraMeleeMode = M{['description']='Extra Melee Mode', 'None', 'DWMid', 'DWMax'}
 	state.AmbushMode = M(false, 'Ambush Mode')
-
-	gear.da_jse_back = {name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','"Dbl.Atk."+10',}}
-	gear.wsd_jse_back = {name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Weapon skill damage +10%',}}
 
     -- Additional local binds
     send_command('bind ^` input /ja "Flee" <me>')
@@ -340,7 +337,7 @@ function init_gear_sets()
 -- Dagger weaponskills
   --Aeolian Edge
 	sets.precast.WS['Aeolian Edge'] = {
-		ammo="Seething Bomblet +1", -- Upgrade to +1
+		ammo="Seething Bomblet +1",
 		head="Nyame Helm",
 		body="Nyame Mail",
 		hands="Gleti's Gauntlets",
@@ -434,7 +431,7 @@ function init_gear_sets()
 -- Sword weaponskills	
   --Savage Blade
 	sets.precast.WS["Savage Blade"] = set_combine(sets.precast.WS, {
-		ammo="Seething Bomblet +1", -- Upgrade to +1/Augment
+		ammo="Seething Bomblet +1",
 		head="Pill. Bonnet +4",
 		body="Skulker's Vest +3",
 		hands="Nyame Gauntlets",
