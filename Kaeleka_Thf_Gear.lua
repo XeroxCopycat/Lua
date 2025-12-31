@@ -65,13 +65,13 @@ function init_gear_sets()
     sets.precast.JA['Steal'] = {head="Plun. Bonnet +3", feet="Pillager's Poulaines +3"} 
     sets.precast.JA['Despoil'] = {legs="Skulker's Culottes +3", feet="Skulk. Poulaines +3"}
     sets.precast.JA['Perfect Dodge'] = {hands="Plunderer's Armlets +1"} -- Upgrade to +4
-    sets.precast.JA['Feint'] = {legs="Plun. Culottes +3"} -- Upgrade to +4
+    sets.precast.JA['Feint'] = {legs="Plun. Culottes +4"} -- Upgrade to +4
 	sets.precast.JA['Mug'] = {
 		ammo="Aurgelmir Orb",
 		head="Plun. Bonnet +3", -- Upgrade to +4
 		body="Skulker's Vest +3",
 		hands="Skulk. Armlets +3",
-		legs="Plun. Culottes +3", -- Upgrade to +4
+		legs="Plun. Culottes +4", -- Upgrade to +4
 		feet="Skulk. Poulaines +3",
 		neck={ name="Asn. Gorget +2", augments={'Path: A',}},
 		waist="Svelt. Gouriz +1",
@@ -109,7 +109,7 @@ function init_gear_sets()
 	
 -- Ranged Snapshot Gear
     sets.precast.RA = {
-		range="Cmb.Cst. B'merang",
+		range="Antitail",
 		head="Volte Tiara",
 		body="Volte Harness",
 		hands="Volte Mittens",
@@ -149,7 +149,7 @@ function init_gear_sets()
 
 -- Ranged attack midcast
     sets.midcast.RA = {
-		range="Cmb.Cst. B'merang",
+		range="Antitail",
 		head="Malignance Chapeau",
 		body="Malignance Tabard",
 		hands="Malignance Gloves",
@@ -315,12 +315,12 @@ function init_gear_sets()
 		head="Pill. Bonnet +4",
 		body="Skulker's Vest +3",
 		hands="Nyame Gauntlets",
-		legs="Plun. Culottes +3", -- Upgrade to +4
+		legs="Plun. Culottes +4",
 		feet="Nyame Sollerets",
 		neck={ name="Asn. Gorget +2", augments={'Path: A',}},
 		waist="Kentarch Belt +1", -- Augment
 		left_ear="Moonshade Earring",
-		right_ear="Odr Earring",
+		right_ear="Domin. Earring +1",
 		left_ring="Cornelia's Ring",
 		right_ring="Regal Ring",
 		back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
@@ -332,6 +332,7 @@ function init_gear_sets()
 		ammo="Crepuscular Pebble",
 		head="Skulker's Bonnet +3",
 		hands="Gleti's Gauntlets",
+		right_ear="Odr Earring",
 	})
 
 -- Dagger weaponskills
@@ -363,7 +364,6 @@ function init_gear_sets()
 		neck="Fotia Gorget",
 		waist="Fotia Belt",
 		left_ear="Sherida Earring",
-		right_ear="Odr Earring",
 		left_ring="Cornelia's Ring",
 		right_ring="Regal Ring",
 		back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','Crit.hit rate+10','Phys. dmg. taken-10%',}},
