@@ -38,41 +38,43 @@ function init_gear_sets()
 -------------------------------------------------------------------------------------------------------------------
 -- Precast Sets
 -------------------------------------------------------------------------------------------------------------------
--- Fast cast sets for spells
+-- Fast cast sets for spells 
 	sets.precast.FC = {
-		range="Dunna",
+		range="Dunna", -- FC 3/3
 		head="Jhakri Coronal +2",
 		body="Jhakri Robe +2",
 		hands="Jhakri Cuffs +2",
-		legs="Jhakri Slops +2",
+		legs="Geomancy Pants +1", -- FC 11/11
 		feet="Jhakri Pigaches +2",
 		neck={ name="Bagua Charm +2", augments={'Path: A',}},
 		waist="Acuity Belt +1",
 		left_ear="Sortiarius Earring",
 		right_ear="Friomisi Earring",
-		left_ring="Jhakri Ring",
+		left_ring="Jhakri Ring", -- FC 12/12 (5 piece)
 		right_ring="Mujin Band",
-		back={ name="Lifestream Cape", augments={'Geomancy Skill +8','Indi. eff. dur. +20','Damage taken-4%',}},
+		back={ name="Lifestream Cape", augments={'Geomancy Skill +8','Indi. eff. dur. +20','Damage taken-4%',}}, -- FC 7/7
 	}
 	
--- Elemental Magic Fast Cast
-    sets.precast.FC['Elemental Magic'] = set_combine(sets.precast.FC, {})
+  -- Elemental Magic Fast Cast
+    sets.precast.FC['Elemental Magic'] = set_combine(sets.precast.FC, {
+		hands="Bagua Mitaines +3",
+	})
 	
--- Geomancy Fast Cast
-	sets.precast.FC.Geomancy = set_combine(sets.precast.FC, {range="Dunna", ammo=empty}) --Augment to R15
+  -- Geomancy Fast Cast
+	sets.precast.FC.Geomancy = set_combine(sets.precast.FC, {range="Dunna", ammo=empty})
 
--- Healing Magic Fast Cast
+  -- Healing Magic Fast Cast
 	sets.precast.FC.Cure = set_combine(sets.precast.FC, {})
 	sets.precast.FC.Curaga = sets.precast.FC.Cure
 	sets.Self_Healing = {neck="Phalaina Locket", waist="Gishdubar Sash"}
 	sets.Cure_Received = {neck="Phalaina Locket", waist="Gishdubar Sash"}
 	sets.Self_Refresh = {waist="Gishdubar Sash"}
 	
--- Enhancing Magic Fast Cast
+  -- Enhancing Magic Fast Cast
     sets.precast.FC['Enhancing Magic'] = set_combine(sets.precast.FC, {waist="Siegel Sash"})
 	sets.precast.FC.Stoneskin = set_combine(sets.precast.FC['Enhancing Magic'], {})
 
--- Specific Spells Fast Cast
+  -- Specific Spells Fast Cast
   -- Impact (Requires Crepuscular Cloak)
 	--sets.precast.FC.Impact = set_combine(sets.precast.FC, {head=empty, body="Crepuscular Cloak"})
 	
@@ -81,7 +83,7 @@ function init_gear_sets()
 
 
 -- Precast sets to enhance JAs
-	sets.precast.JA.Bolster = {body="Bagua Tunic +1"}
+	sets.precast.JA.Bolster = {body="Bagua Tunic +3"}
 	sets.precast.JA['Life Cycle'] = {
 		body="Geomancy Tunic",
 		back={ name="Nantosuelta's Cape", augments={'HP+60','Eva.+20 /Mag. Eva.+20','Mag. Evasion+5','Pet: "Regen"+10','Pet: "Regen"+5',}},
@@ -96,9 +98,9 @@ function init_gear_sets()
 		feet="Azimuth Gaiters",
 		back={ name="Nantosuelta's Cape", augments={'HP+60','Eva.+20 /Mag. Eva.+20','Mag. Evasion+5','Pet: "Regen"+10','Pet: "Regen"+5',}},
 	}
-	
-	-- Relic hat for Blaze of Glory HP increase.
-	sets.buff['Blaze of Glory'] = {head="Bagua Galero +1"}
+
+-- Relic hat for Blaze of Glory HP increase.
+	sets.buff['Blaze of Glory'] = {head="Bagua Galero +3"}
 
 ------------------------------------------------------------------------------------------------------------------- 
 -- Midcast Sets
@@ -165,16 +167,16 @@ function init_gear_sets()
     sets.midcast['Elemental Magic'] = {
 		ammo="Ghastly Tathlum +1",
 		head="Jhakri Coronal +2",
-		body="Jhakri Robe +2",
-		hands="Jhakri Cuffs +2",
-		legs="Jhakri Slops +2",
+		body="Bagua Tunic +3",
+		hands="Bagua Mitaines +3",
+		legs="Bagua Pants +3",
 		feet="Jhakri Pigaches +2",
 		neck={ name="Bagua Charm +2", augments={'Path: A',}},
 		waist="Acuity Belt +1",
 		left_ear="Sortiarius Earring",
 		right_ear="Friomisi Earring",
-		left_ring="Jhakri Ring",
-		right_ring="Mujin Band",
+		left_ring="Metamor. Ring +1",
+		right_ring="Jhakri Ring",
 		back={ name="Nantosuelta's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','INT+10','"Mag.Atk.Bns."+10','Damage taken-5%',}},
 	}
 
@@ -235,7 +237,7 @@ function init_gear_sets()
 	sets.midcast.Refresh = set_combine(sets.midcast['Enhancing Magic'], {})
 	
 	-- Aquaveil
-	sets.midcast.Aquaveil = set_combine(sets.midcast['Enhancing Magic'], {main="Vadose Rod", sub="Ammurapi Shield"})
+	sets.midcast.Aquaveil = set_combine(sets.midcast['Enhancing Magic'], {main="Vadose Rod"}) --sub="Ammurapi Shield"
 	
 	-- Barspell
 	sets.midcast.BarElement = set_combine(sets.precast.FC['Enhancing Magic'], {legs="Shedir Seraweels"})
@@ -255,7 +257,7 @@ function init_gear_sets()
 		sub="Sors Shield",
 		range="Dunna",
 		head="Azimuth Hood",
-		body="Bagua Tunic +1",
+		body="Bagua Tunic +3",
 		hands="Geomancy Mitaines",
 		legs="Bagua Pants +3",
 		feet="Bagua Sandals",
@@ -278,8 +280,8 @@ function init_gear_sets()
 	
 -- Healing Magic
 	sets.midcast.Cure = {
-		--main="Daybreak",
-		--sub="Sors Shield",
+		main="Vadose Rod", --main="Daybreak",
+		sub="Sors Shield",
 		--ammo="Hasty Pinion +1",
 		--head={ name="Nyame Helm", augments={'Path: B',}},
 		--body={ name="Nyame Mail", augments={'Path: B',}},
@@ -291,7 +293,7 @@ function init_gear_sets()
 		--left_ear="Malignance Earring",
 		--right_ear="Mendi. Earring",
 		--left_ring="Lebeche Ring",
-		--right_ring="Defending Ring",
+		right_ring="Murky Ring",
 		--back="Solemnity Cape",
 	}
 	
@@ -303,15 +305,15 @@ function init_gear_sets()
 	sets.idle = {
 		head="Jhakri Coronal +2",
 		body="Jhakri Robe +2",
-		hands="Bagua Mitaines",
+		hands="Bagua Mitaines +3",
 		legs="Assid. Pants +1",
-		feet="Geomancy Sandals",
+		feet="Geo. Sandals +3",
 		neck={ name="Bagua Charm +2", augments={'Path: A',}},
 		waist="Acuity Belt +1",
 		left_ear="Sortiarius Earring",
-		right_ear="Friomisi Earring",
+		right_ear="Alabaster Earring",
 		left_ring="Jhakri Ring",
-		right_ring="Mujin Band",
+		right_ring="Murky Ring",
 		back={ name="Nantosuelta's Cape", augments={'HP+60','Eva.+20 /Mag. Eva.+20','Mag. Evasion+5','Pet: "Regen"+10','Pet: "Regen"+5',}},
 	}
 	
@@ -319,7 +321,7 @@ function init_gear_sets()
 	sets.idle.Pet = set_combine(sets.idle, {
 		range="Dunna",
 		head="Azimuth Hood",
-		feet="Bagua Sandals",
+		--feet="Bagua Sandals",
 		back={ name="Nantosuelta's Cape", augments={'HP+60','Eva.+20 /Mag. Eva.+20','Mag. Evasion+5','Pet: "Regen"+10','Pet: "Regen"+5',}},
 	})
 
@@ -337,7 +339,7 @@ function init_gear_sets()
 		--sub="Ammurapi Shield",
 		--head="Volte Beret",
 		body="Jhakri Robe +2",
-		hands="Bagua Mitaines",
+		hands="Bagua Mitaines +3",
 		legs="Assid. Pants +1",
 		--feet="Volte Gaiters",
 		--neck="Sibyl Scarf",
@@ -495,7 +497,7 @@ function init_gear_sets()
     sets.MagicBurst = {
 		head="Ea Hat +1",
 		--body={ name="Agwu's Robe", augments={'Path: A',}},
-		--hands={ name="Agwu's Gages", augments={'Path: A',}},
+		hands="Bagua Mitaines +3", --hands={ name="Agwu's Gages", augments={'Path: A',}},
 		--legs={ name="Agwu's Slops", augments={'Path: A',}},
 		feet="Jhakri Pigaches +2",
 		--neck="Mizu. Kubikazari",
