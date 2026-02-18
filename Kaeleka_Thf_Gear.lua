@@ -9,7 +9,7 @@ function user_job_setup()
     state.PhysicalDefenseMode:options('PDT')
 	state.MagicalDefenseMode:options('MDT')
 	state.ResistDefenseMode:options('MEVA')
-	state.Weapons:options('Rudras', 'Aeolian', 'Evisceration', 'Exenterator', 'Savage')
+	state.Weapons:options('Rudras', 'Savage', 'Aeolian', 'Evisceration', 'Exenterator')
 
     state.ExtraMeleeMode = M{['description']='Extra Melee Mode', 'None', 'DWMid', 'DWMax'}
 	state.AmbushMode = M(false, 'Ambush Mode')
@@ -39,21 +39,21 @@ function init_gear_sets()
 -------------------------------------------------------------------------------------------------------------------
 -- Precast Sets
 -------------------------------------------------------------------------------------------------------------------
--- Fast cast sets for spells
+-- Fast cast sets for spells (FC +34/80)
     sets.precast.FC = {
-		ammo="Impatiens",
+		ammo="Impatiens", --QC +2
 		head="Nyame Helm",
-		body={ name="Taeon Tabard", augments={'DEF+19','"Fast Cast"+4',}},
-		hands={ name="Leyline Gloves", augments={'Accuracy+14','Mag. Acc.+13','"Mag.Atk.Bns."+13','"Fast Cast"+2',}},
+		body={ name="Taeon Tabard", augments={'DEF+19','"Fast Cast"+4',}}, --FC +8
+		hands={ name="Leyline Gloves", augments={'Accuracy+14','Mag. Acc.+13','"Mag.Atk.Bns."+13','"Fast Cast"+2',}}, --FC +7
 		legs="Skulk. Culottes +3",
-		feet="Skulk. Poulaines +3",
-		neck="Voltsurge Torque",
+		feet="Skulk. Poulaines +3", 
+		neck="Voltsurge Torque", --FC +4
 		waist="Plat. Mog. Belt",
-		left_ear="Etiolation Earring",
-		right_ear="Loquac. Earring",
-		left_ring="Rahab Ring",
-		right_ring="Lebeche Ring",
-		back={ name="Toutatis's Cape", augments={'AGI+20','Eva.+20 /Mag. Eva.+20','AGI+4','"Fast Cast"+10','"Regen"+5',}},
+		left_ear="Etiolation Earring", --FC +1
+		right_ear="Loquac. Earring", --FC +2
+		left_ring="Rahab Ring", --FC +2
+		right_ring="Lebeche Ring", --QC +2
+		back={ name="Toutatis's Cape", augments={'AGI+20','Eva.+20 /Mag. Eva.+20','AGI+4','"Fast Cast"+10','"Regen"+5',}}, --+10
 	}
 	
 -- Precast sets to enhance JAs
@@ -301,10 +301,10 @@ function init_gear_sets()
 -------------------------------------------------------------------------------------------------------------------
 	-- Weapons sets
 	sets.weapons.Rudras = {main="Aeneas", sub="Centovente"}
+	sets.weapons.Savage = {main="Naegling", sub="Centovente"}
 	sets.weapons.Aeolian = {main="Aeneas", sub="Centovente"}
 	sets.weapons.Evisceration = {main="Tauret", sub="Gleti's Knife"}
 	sets.weapons.Exenterator = {main="Aeneas", sub="Centovente"}
-	sets.weapons.Savage = {main="Naegling", sub="Centovente"}
 	
 -------------------------------------------------------------------------------------------------------------------
 -- Weaponskill Sets
@@ -486,7 +486,7 @@ function init_gear_sets()
 	sets.Knockback = {}
 
   -- Mid-Level Dual Wield 
-	sets.DWMid = {left_ear="Eabani Earring",right_ear="Suppanomimi"}
+	sets.DWMid = {left_ear="Eabani Earring", right_ear="Suppanomimi"}
 
   -- Max Level Dual Wield (used when weakened)
 	sets.DWMax = {
