@@ -52,7 +52,7 @@ function init_gear_sets()
 		right_ear="Alabaster Earring",
 		left_ring="Jhakri Ring", -- FC +9 (4 piece)
 		right_ring="Lebeche Ring", -- QC +2
-		back={ name="Nantosuelta's Cape", augments={'HP+60','Eva.+20 /Mag. Eva.+20','Mag. Evasion+10','"Fast Cast"+10','Damage taken-4%',}}, -- FC +10
+		back={ name="Nantosuelta's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20','MND+10','"Fast Cast"+10','Phys. dmg. taken-10%',}}, -- FC +10
 	}
 	
   -- Elemental Magic Fast Cast
@@ -88,7 +88,7 @@ function init_gear_sets()
 -- Precast sets to enhance JAs
 	sets.precast.JA.Bolster = {body="Bagua Tunic +3"}
 	sets.precast.JA['Life Cycle'] = {
-		body="Geo. Tunic +1",
+		body="Geomancy Tunic +3",
 		back={ name="Nantosuelta's Cape", augments={'HP+60','Eva.+20 /Mag. Eva.+20','Mag. Evasion+5','Pet: "Regen"+10','Pet: "Regen"+5',}},
 	} 
 	sets.precast.JA['Radial Arcana'] = {feet="Bagua Sandals +3"}
@@ -124,28 +124,23 @@ function init_gear_sets()
 		right_ear="Alabaster Earring",
 		left_ring="Jhakri Ring", -- FC +9 (4 pc.)
 		right_ring="Murky Ring",
-		back={ name="Lifestream Cape", augments={'Geomancy Skill +8','Indi. eff. dur. +20','Damage taken-4%',}},
+		back={ name="Nantosuelta's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20','MND+10','"Fast Cast"+10','Phys. dmg. taken-10%',}},
 	}
 
 
 -- Dark Magic
-    sets.midcast['Dark Magic'] = {
+    sets.midcast['Dark Magic'] = set_combine(sets.midcast.FastRecast, {
 		main="Maxentius",
 		sub="Sors Shield",
 		ammo="Ghastly Tathlum +1",
 		head="Bagua Galero +3",
-		body="Jhakri Robe +2",
-		hands="Jhakri Cuffs +2",
 		legs="Azimuth Tights +1",
 		feet="Geo. Sandals +3",
 		neck="Erra Pendant",
 		waist="Refoccilation Stone",
-		left_ear="Friomisi Earring",
-		right_ear="Alabaster Earring",
-		left_ring="Jhakri Ring",
 		right_ring="Metamor. Ring +1",
 		back={ name="Nantosuelta's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','INT+10','"Mag.Atk.Bns."+10','Damage taken-5%',}},
-	}
+	})
 	
   -- Specific Dark Magic Spells
 	-- Aspir
@@ -171,23 +166,23 @@ function init_gear_sets()
 	
 	
 -- Elemental Magic
-    sets.midcast['Elemental Magic'] = {
-		main="Maxentius",
-		sub="Sors Shield",
+    sets.midcast['Elemental Magic'] = set_combine(sets.midcast.FastRecast, {
+		main="Marin Staff +1",
+		sub="Khonsu",
 		ammo="Ghastly Tathlum +1",
 		head="Bagua Galero +3",
 		body="Bagua Tunic +3",
 		hands="Bagua Mitaines +3",
 		legs="Bagua Pants +3",
 		feet="Jhakri Pigaches +2",
-		neck={ name="Bagua Charm +2", augments={'Path: A',}},
+		neck="Sybil Scarf",
 		waist="Refoccilation Stone",
 		left_ear="Friomisi Earring",
 		right_ear="Sortiarius Earring",
 		left_ring="Metamor. Ring +1",
-		right_ring="Mujin Band",
+		right_ring="Mujin Band", -- Medada's Ring OR Freke Ring
 		back={ name="Nantosuelta's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','INT+10','"Mag.Atk.Bns."+10','Damage taken-5%',}},
-	}
+	})
 
   -- Elemental Magic Magic Accuracy
     sets.midcast['Elemental Magic'].Resistant = set_combine(sets.midcast['Elemental Magic'], {})
@@ -197,23 +192,17 @@ function init_gear_sets()
 	
 
 -- Enfeebling Magic
-	sets.midcast['Enfeebling Magic'] = {
-		main={ name="Solstice", augments={'Mag. Acc.+20','Pet: Damage taken -4%','"Fast Cast"+5',}},
-		sub="Sors Shield",
-		range="Dunna",
+	sets.midcast['Enfeebling Magic'] = set_combine(sets.midcast.FastRecast, {
+		main="Marin Staff +1",
+		sub="Khonsu",
 		head="Bagua Galero +3",
-		body="Jhakri Robe +2",
-		hands="Jhakri Cuffs +2",
 		legs="Jhakri Slops +2",
-		feet="Jhakri Pigaches +2",
 		neck={ name="Bagua Charm +2", augments={'Path: A',}},
 		waist="Refoccilation Stone",
 		left_ear="Friomisi Earring",
 		right_ear="Alabaster Earring",
 		left_ring="Metamor. Ring +1",
-		right_ring="Murky Ring",
-		back={ name="Nantosuelta's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','INT+10','"Mag.Atk.Bns."+10','Damage taken-5%',}},
-	}
+	})
 	
   -- Enfeebling Magic, Resistant
 	sets.midcast['Enfeebling Magic'].Resistant = {}
@@ -273,21 +262,12 @@ function init_gear_sets()
 	
 -- Geomancy
 	sets.midcast.Geomancy = {
-		main={ name="Gada", augments={'"Cure" potency +6%','Mag. Acc.+4','"Mag.Atk.Bns."+2','DMG:+6',}}, -- Cure Pot +24
-		sub="Sors Shield", -- Cure Pot +3
-		range="Dunna", 
 		head="Azimuth Hood +1",
 		body="Bagua Tunic +3",
 		hands="Geo. Mitaines +3",
 		legs="Bagua Pants +3",
 		feet="Azimuth Gaiters +1",
 		neck={ name="Bagua Charm +2", augments={'Path: A',}},
-		waist="Acuity Belt +1",
-		left_ear="Friomisi Earring",
-		right_ear="Alabaster Earring",
-		left_ring="Metamor. Ring +1",
-		right_ring="Murky Ring",
-		back={ name="Lifestream Cape", augments={'Geomancy Skill +8','Indi. eff. dur. +20','Damage taken-4%',}},
 	}
 
 	-- Indi Duration
@@ -310,28 +290,29 @@ function init_gear_sets()
 		--right_ear="Mendi. Earring",
 		left_ring="Metamor. Ring +1",
 		right_ring="Lebeche Ring", -- Cure Pot +3
-		back="Solemnity Cape", -- Cure Pot +7
 	}
 	
 
 -------------------------------------------------------------------------------------------------------------------
 -- Idle Sets
 -------------------------------------------------------------------------------------------------------------------
--- Base Idle Set
+-- Base Idle Set --DT 34/50 (PDT 44), Refresh +7~8, Movement Speed +18%
 	sets.idle = {
+		main="Marin Staff +1",
+		sub="Khonsu", --6/6
 		range="Dunna",
-		head="Bagua Galero +3",
-		body="Jhakri Robe +2",
-		hands="Bagua Mitaines +3",
-		legs="Assid. Pants +1",
-		feet="Geo. Sandals +3",
-		neck="Loricate Torque +1",
-		waist="Acuity Belt +1",
-		left_ear="Loquac. Earring",
-		right_ear="Alabaster Earring",
-		left_ring="Metamor. Ring +1",
-		right_ring="Murky Ring",
-		back={ name="Nantosuelta's Cape", augments={'HP+60','Eva.+20 /Mag. Eva.+20','Mag. Evasion+10','"Fast Cast"+10','Damage taken-4%',}},
+		head={ name="Nyame Helm", augments={'Path: B',}}, --7/7 --Null Masque
+		body="Jhakri Robe +2", --Refresh +4
+		hands="Bagua Mitaines +3", --Refresh +2
+		legs="Assid. Pants +1", --Refresh +1~2
+		feet="Geo. Sandals +3", --Movement Speed +18%
+		neck="Loricate Torque +1", --6/6
+		waist="Acuity Belt +1", --Null Belt
+		left_ear="Loquac. Earring", --Lugalbanda Earring
+		right_ear="Alabaster Earring", --5/5
+		left_ring="Metamor. Ring +1", --Stikini Ring +1
+		right_ring="Murky Ring", --10/10 
+		back={ name="Nantosuelta's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20','MND+10','"Fast Cast"+10','Phys. dmg. taken-10%',}}, 
 	}
 	
   -- Idle Set When Luopan Active
@@ -353,7 +334,7 @@ function init_gear_sets()
 		hands="Bagua Mitaines +3",
 		legs="Assid. Pants +1",
 		--feet="Volte Gaiters",
-		--neck="Sibyl Scarf",
+		neck="Sibyl Scarf",
 	})
 	
 -- Regen Set
@@ -370,21 +351,19 @@ function init_gear_sets()
 -------------------------------------------------------------------------------------------------------------------
 -- Physical Damage Taken
 	sets.defense.PDT = {
-		--main="Malignance Pole",
-		--sub="Ajja Grip",
 		--ammo="Staunch Tathlum +1",
-		--head={ name="Nyame Helm", augments={'Path: B',}},
-		--body={ name="Nyame Mail", augments={'Path: B',}},
-		--hands={ name="Nyame Gauntlets", augments={'Path: B',}},
-		--legs={ name="Nyame Flanchard", augments={'Path: B',}},
-		--feet={ name="Nyame Sollerets", augments={'Path: B',}},
+		head={ name="Nyame Helm", augments={'Path: B',}},
+		body={ name="Nyame Mail", augments={'Path: B',}},
+		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
+		legs={ name="Nyame Flanchard", augments={'Path: B',}},
+		feet={ name="Nyame Sollerets", augments={'Path: B',}},
 		neck="Loricate Torque +1",
 		--waist="Plat. Mog. Belt",
 		--left_ear="Odnowa Earring +1",
 		right_ear="Alabaster Earring",
 		left_ring="Gelatinous Ring +1",
 		right_ring="Murky Ring",
-		back="Solemnity Cape",
+		back={ name="Nantosuelta's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20','MND+10','"Fast Cast"+10','Phys. dmg. taken-10%',}}, 
 	}
 
 -- Magic Damage Taken
