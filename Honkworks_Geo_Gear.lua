@@ -301,18 +301,18 @@ function init_gear_sets()
 		main="Marin Staff +1",
 		sub="Khonsu", --6/6
 		range="Dunna",
-		head={ name="Nyame Helm", augments={'Path: B',}}, --7/7 --Null Masque
-		body="Jhakri Robe +2", --Refresh +4
-		hands="Bagua Mitaines +3", --Refresh +2
-		legs="Assid. Pants +1", --Refresh +1~2
-		feet="Geo. Sandals +3", --Movement Speed +18%
-		neck="Loricate Torque +1", --6/6
-		waist="Acuity Belt +1", --Null Belt
-		left_ear="Loquac. Earring", --Lugalbanda Earring
-		right_ear="Alabaster Earring", --5/5
-		left_ring="Metamor. Ring +1", --Stikini Ring +1
-		right_ring="Murky Ring", --10/10 
-		back={ name="Nantosuelta's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20','MND+10','"Fast Cast"+10','Phys. dmg. taken-10%',}}, 
+		head="Nyame Helm",
+		body="Jhakri Robe +2",
+		hands="Bagua Mitaines +3",
+		legs="Assid. Pants +1",
+		feet="Nyame Sollerets",
+		neck="Loricate Torque +1",
+		waist="Acuity Belt +1",
+		left_ear="Loquac. Earring",
+		right_ear="Alabaster Earring",
+		left_ring="Shneddick Ring",
+		right_ring="Murky Ring",
+		back={ name="Nantosuelta's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20','MND+10','"Fast Cast"+10','Phys. dmg. taken-10%',}},
 	}
 	
   -- Idle Set When Luopan Active
@@ -329,7 +329,7 @@ function init_gear_sets()
 	sets.idle.Refresh = set_combine(sets.idle, {
 		--main="Daybreak",
 		--sub="Ammurapi Shield",
-		--head="Volte Beret",
+		head="Befouled Crown",
 		body="Jhakri Robe +2",
 		hands="Bagua Mitaines +3",
 		legs="Assid. Pants +1",
@@ -388,7 +388,7 @@ function init_gear_sets()
 	sets.defense.GeoLock = sets.midcast.Geomancy.Indi
 
 -- Misc. Defensive Sets
-	sets.Kiting = {feet="Geo. Sandals +3"}
+	sets.Kiting = {left_ring="Shneddick Ring"}
 	--sets.latent_refresh = {waist="Fucho-no-obi"}
 	--sets.latent_refresh_grip = {sub="Oneiros Grip"}
 	--sets.DayIdle = {}
