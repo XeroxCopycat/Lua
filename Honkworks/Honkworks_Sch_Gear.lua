@@ -3,8 +3,8 @@ function user_job_setup()
     state.OffenseMode:options('Normal')
     state.CastingMode:options('Normal', 'Resistant', 'Proc', 'OccultAcumen', '9k')
     state.IdleMode:options('Normal', 'Refresh')
-	state.HybridMode:options('Normal','PDT')
-	state.Weapons:options('None', 'SpiritTaker')
+	state.HybridMode:options('Normal', 'DT')
+	state.Weapons:options('None', 'Club', 'Staff', 'Prime')
 
 	gear.nuke_jse_back = {name="Lugh's Cape",augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10'}}
 	
@@ -12,7 +12,7 @@ function user_job_setup()
 	send_command('bind ^` gs c cycle ElementalMode')
 	send_command('bind !` gs c scholar power')
 	send_command('bind @` gs c cycle MagicBurstMode')
-	send_command('bind ^q gs c weapons Khatvanga;gs c set CastingMode OccultAcumen')
+	send_command('bind ^q gs c weapons Staff;gs c set CastingMode OccultAcumen')
 	send_command('bind !q gs c weapons default;gs c reset CastingMode')
 	send_command('bind @f10 gs c cycle RecoverMode')
 	send_command('bind @f8 gs c toggle AutoNukeMode')
@@ -42,56 +42,71 @@ function init_gear_sets()
 --------------------------------------
 -- Precast sets to enhance JAs
 --------------------------------------
-    sets.precast.JA['Tabula Rasa'] = {} --legs="Peda. Pants +1"
-	sets.precast.JA['Enlightenment'] = {} --body="Peda. Gown +1"
+    sets.precast.JA['Tabula Rasa'] = {legs="Peda. Pants +1"} --
+	sets.precast.JA['Enlightenment'] = {body="Peda. Gown +1"} --
 
 --------------------------------------
 -- Fast cast sets for spells
 --------------------------------------
-    sets.precast.FC = {
-		ammo="Ghastly Tathlum +1",
-		head={ name="Merlinic Hood", augments={'"Mag.Atk.Bns."+6','"Fast Cast"+6','INT+9','Mag. Acc.+12',}},
-		body="Jhakri Robe +2",
-		hands="Jhakri Cuffs +2",
-		legs="Jhakri Slops +2",
-		feet="Jhakri Pigaches +2",
-		neck="Voltsurge Torque",
-		waist="Acuity Belt +1",
-		left_ear="Loquac. Earring",
-		right_ear="Alabaster Earring",
-		left_ring="Jhakri Ring",
-		right_ring="Lebeche Ring",
-		back="Solemnity Cape",
+    sets.precast.FC = { --FC +36, QC +2, Spellcasting time -8%
+		main="Marin Staff +1", --FC +3
+		sub="Khonsu",
+		ammo="Ghastly Tathlum +1", -- Sapiance Orb
+		head={ name="Merlinic Hood", augments={'"Mag.Atk.Bns."+6','"Fast Cast"+6','INT+9','Mag. Acc.+12',}}, --FC +14
+		body="Jhakri Robe +2", -- Pinga Robe +1
+		hands="Acad. Bracers +1", -- Upgrade to +3/+4, FC +5
+		legs="Jhakri Slops +2", -- Pinga Pants +1
+		feet="Peda. Loafers +1", -- Upgrade to +3/+4, FC +6
+		neck="Voltsurge Torque", -- FC +5
+		waist="Acuity Belt +1", -- Embla Sash
+		left_ear="Etiolation Earring", -- FC +1, Malignance Earring
+		right_ear="Loquac. Earring", -- FC +2, Enchanter's Earring +1
+		left_ring="Jhakri Ring", -- FC +6 (3 piece), Kishar Ring
+		right_ring="Lebeche Ring", -- QC +2, Medada's Ring
+		back="Solemnity Cape", -- Lugh's Cape w/ FC +10
 	}
 
+
 --------------------------------------
--- Arts?
+-- Grimoire Spellcasting Time
 --------------------------------------
-	sets.precast.FC.Arts = {}
+	sets.precast.FC.Arts = set_combine(sets.precast.FC, {
+		head="Peda. M.Board +3",
+		--hands="Acad. Bracers +1", --Upgrade to +3/+4
+		feet="Acad. Loafers +1", --Upgrade to +3/+4
+	})
+
 	
 --------------------------------------
 -- Enhancing Magic Precast
 --------------------------------------
     sets.precast.FC['Enhancing Magic'] = set_combine(sets.precast.FC, {}) --waist="Siegel Sash"
 
+
 --------------------------------------
 -- Elemental Magic Precast
 --------------------------------------
     sets.precast.FC['Elemental Magic'] = set_combine(sets.precast.FC, {}) --left_ear="Malignance Earring"
 
+
 --------------------------------------
 -- Precast for Specific Spells
 --------------------------------------
 -- Cure
-	sets.precast.FC.Cure = set_combine(sets.precast.FC, {main="Vadose Rod", sub="Sors Shield"})
-    sets.precast.FC.Curaga = sets.precast.FC.Cure
+	sets.precast.FC.Cure = set_combine(sets.precast.FC, {
+		main="Vadose Rod",
+		sub="Sors Shield",
+	})
+    
+	sets.precast.FC.Curaga = sets.precast.FC.Cure
   
 -- Dispelga (Requires Daybreak)
 	sets.precast.FC.Dispelga = set_combine(sets.precast.FC, {}) --main="Daybreak", sub="Ammurapi Shield",
   
 -- Impact (Requires Crespcular / Twilight Cloak)
 	sets.precast.FC.Impact = set_combine(sets.precast.FC['Elemental Magic'], {}) --body="Crespcular Cloak",
-	
+
+
 -------------------------------------------------------------------------------------------------------------------
 -- Midcast Sets
 -------------------------------------------------------------------------------------------------------------------
@@ -99,19 +114,21 @@ function init_gear_sets()
 -- Fast Recast
 --------------------------------------
 	sets.midcast.FastRecast = {
-		ammo="Ghastly Tathlum +1",
-		head={ name="Merlinic Hood", augments={'"Mag.Atk.Bns."+6','"Fast Cast"+6','INT+9','Mag. Acc.+12',}},
-		body="Jhakri Robe +2",
-		hands="Jhakri Cuffs +2",
-		legs="Jhakri Slops +2",
-		feet="Jhakri Pigaches +2",
-		neck="Voltsurge Torque",
-		waist="Acuity Belt +1",
-		left_ear="Loquac. Earring",
-		right_ear="Alabaster Earring",
-		left_ring="Jhakri Ring",
-		right_ring="Lebeche Ring",
-		back="Solemnity Cape",
+		main="Marin Staff +1", --FC +3
+		sub="Khonsu",
+		ammo="Ghastly Tathlum +1", -- Sapiance Orb
+		head={ name="Merlinic Hood", augments={'"Mag.Atk.Bns."+6','"Fast Cast"+6','INT+9','Mag. Acc.+12',}}, --FC +14
+		body="Jhakri Robe +2", -- Pinga Robe +1
+		hands="Acad. Bracers +1", -- Upgrade to +3/+4, FC +5
+		legs="Jhakri Slops +2", -- Pinga Pants +1
+		feet="Peda. Loafers +1", -- Upgrade to +3/+4, FC +6
+		neck="Voltsurge Torque", -- FC +5
+		waist="Acuity Belt +1", -- Embla Sash
+		left_ear="Etiolation Earring", -- FC +1, Malignance Earring
+		right_ear="Loquac. Earring", -- FC +2, Enchanter's Earring +1
+		left_ring="Jhakri Ring", -- FC +6 (3 piece), Kishar Ring
+		right_ring="Lebeche Ring", -- QC +2, Medada's Ring
+		back="Solemnity Cape", -- Lugh's Cape w/ FC +10
 	}
 	
 	sets.TreasureHunter = set_combine(sets.TreasureHunter, {feet=gear.chironic_treasure_feet})
@@ -119,42 +136,49 @@ function init_gear_sets()
 -- Gear that converts elemental damage done to recover MP.	
 	sets.RecoverMP = {}
 	
--- Gear for specific elemental nukes.
+-- Gear for specific elemental nukes (Kaustra).
 	sets.element.Dark = {head="Pixie Hairpin +1"} --ring2="Archon Ring"
 
 
 --------------------------------------	
 -- Divine Magic
 --------------------------------------
-	sets.midcast['Divine Magic'] = set_combine(sets.midcast['Enfeebling Magic'], {ring2="Stikini Ring +1",feet=gear.chironic_nuke_feet})
+	sets.midcast['Divine Magic'] = set_combine(sets.midcast['Enfeebling Magic'], {}) --ring2="Stikini Ring +1",feet=gear.chironic_nuke_feet
 
 
 --------------------------------------
 -- Dark Magic 
 --------------------------------------
-    sets.midcast['Dark Magic'] = {}
+    sets.midcast['Dark Magic'] = {
+		main="Marin Staff +1", --Rubicundity
+		sub="Khonsu", --Ammurapi Shield
+		ammo="Ghastly Tathlum +1", --Staunch Tathlum +1 (?)
+		head="Pixie Hairpin +1",
+		body="Jhakri Robe +2", --Merlinic Jubbah w/ Drain/Aspir Potency
+		hands="Jhakri Cuffs +2", --Merlinic Dastanas w/ Drain/Aspir Potency
+		legs="Peda. Pants +3", 
+		feet="Jhakri Pigaches +2", --Agwu's Pigaches
+		neck="Erra Pendant",
+		waist="Acuity Belt +1", --Fucho-no-Obi
+		left_ear="Etiolation Earring", --Hirudinea Earring
+		right_ear="Loquac. Earring", --Mani Earring
+		left_ring="Jhakri Ring", --Evanescence Ring
+		right_ring="Metamor. Ring +1", --Archon Ring
+		back={ name="Bookworm's Cape", augments={'INT+2','Helix eff. dur. +10','"Regen" potency+8',}},
+	}
 
 -- Specific Dark Magic Spells
+  -- Drain
+    sets.midcast.Drain = set_combine(sets.midcast['Dark Magic'], {})
+	
+  -- Drain, Resistant
+    sets.midcast.Drain.Resistant = set_combine(sets.midcast['Dark Magic'], {})
+	
   -- Aspir
     sets.midcast.Aspir = sets.midcast.Drain
 	
   -- Aspir, Resistant
-	--sets.midcast.Aspir.Resistant = sets.midcast.Drain.Resistant
-	
-  -- Drain
-    sets.midcast.Drain = {
-        head="Pixie Hairpin +1",
-		neck="Erra Pendant",
-	}
-	
-  -- Drain, Resistant
-    sets.midcast.Drain.Resistant = {}
-	
-  -- Kaustra
-    sets.midcast.Kaustra = {}
-		
-  -- Kaustra, Resistant
-    sets.midcast.Kaustra.Resistant = {}
+	sets.midcast.Aspir.Resistant = sets.midcast.Drain.Resistant
 
   -- Stun
     sets.midcast.Stun = {}
@@ -167,21 +191,21 @@ function init_gear_sets()
 -- Elemental Magic
 --------------------------------------
     sets.midcast['Elemental Magic'] = {
-		main="Marin Staff +1",
-		sub="Khonsu",
-		ammo="Ghastly Tathlum +1",
-		head="Jhakri Coronal +2",
-		body="Jhakri Robe +2",
-		hands="Jhakri Cuffs +2",
-		legs="Jhakri Slops +2",
-		feet="Jhakri Pigaches +2",
-		neck="Sibyl Scarf",
-		waist="Refoccilation Stone",
-		left_ear="Sortiarius Earring",
-		right_ear="Friomisi Earring",
-		left_ring="Metamor. Ring +1",
-		right_ring="Jhakri Ring",
-		back="Solemnity Cape",
+		main="Marin Staff +1", -- Bunzi's Rod
+		sub="Khonsu", --Ammurapi Shield
+		ammo="Ghastly Tathlum +1", --Augment to R15
+		head="Peda. M.Board +3", --Agwu's Cap
+		body="Jhakri Robe +2", --Arbatel Gown +3
+		hands="Jhakri Cuffs +2", --Arbatel Bracers +3
+		legs="Peda. Pants +3", --Arbatel Pants +3
+		feet="Jhakri Pigaches +2", --Arbatel Loafers +3
+		neck="Sibyl Scarf", --Argute Stole +2
+		waist="Acuity Belt +1", --Hachirin-no-Obi
+		left_ear="Sortiarius Earring", --Regal Earring
+		right_ear="Friomisi Earring", --Malignance Earring
+		left_ring="Jhakri Ring", --Medada's Ring
+		right_ring="Metamor. Ring +1",
+		back={ name="Bookworm's Cape", augments={'INT+2','Helix eff. dur. +10','"Regen" potency+8',}}, --Lugh's Cape
 	}
   
 -- Elemental Magic, Resistant
@@ -193,17 +217,23 @@ function init_gear_sets()
 -- Elemental Magic, Proc
     sets.midcast['Elemental Magic'].Proc = {}
 		
--- Elemental Magic, Occult Acument
+-- Elemental Magic, Occult Acumen
     sets.midcast['Elemental Magic'].OccultAcumen = {}
 		
 -- Gear for Magic Burst
   -- Elemental Magic Burst
     sets.MagicBurst = set_combine(sets.midcast['Elemental Magic'], {
-		right_ring="Mujin Band",
+		head="Peda. M.Board +3",
+		hands="Jhakri Cuffs +2",
+		left_ring="Mujin Band",
 	})
 
   -- Helix Burst
-    sets.HelixBurst = {right_ring="Mujin Band"}
+    sets.HelixBurst = set_combine(sets.midcast['Elemental Magic'], {
+		head="Peda. M.Board +3",
+		hands="Jhakri Cuffs +2",
+		left_ring="Mujin Band",
+	})
 		
   -- Helix Burst, Resistant
     sets.ResistantHelixBurst = {}
@@ -230,12 +260,34 @@ function init_gear_sets()
 		
   -- Impact, Occult Acumen
     sets.midcast.Impact.OccultAcumen = set_combine(sets.midcast['Elemental Magic'].OccultAcumen, {})
+	
+  -- Kaustra
+    sets.midcast.Kaustra = {}
+		
+  -- Kaustra, Resistant
+    sets.midcast.Kaustra.Resistant = {}
 
 
 --------------------------------------
 -- Enhancing Magic
 --------------------------------------
-	sets.midcast['Enhancing Magic'] = {}
+	sets.midcast['Enhancing Magic'] = {
+		main={ name="Gada", augments={'"Cure" potency +6%','Mag. Acc.+4','"Mag.Atk.Bns."+2','DMG:+6',}},
+		sub="Sors Shield",
+		ammo="Ghastly Tathlum +1",
+		head="Befouled Crown",
+		body="Peda. Gown +1",
+		hands="Nyame Gauntlets",
+		legs="Acad. Pants +1",
+		feet="Nyame Sollerets",
+		neck="Loricate Torque +1",
+		waist="Acuity Belt +1",
+		left_ear="Etiolation Earring",
+		right_ear="Alabaster Earring",
+		left_ring="Shneddick Ring",
+		right_ring="Murky Ring",
+		back="Solemnity Cape",
+	}
 
 -- Specific Enhancing Spells
   -- Aquaveil
@@ -245,7 +297,9 @@ function init_gear_sets()
 	})
 	
   -- Barspells
-	sets.midcast.BarElement = set_combine(sets.precast.FC['Enhancing Magic'], {legs="Shedir Seraweels"})
+	sets.midcast.BarElement = set_combine(sets.precast.FC['Enhancing Magic'], {
+		legs="Shedir Seraweels",
+	})
 	
   -- Protect/Protectra
     sets.midcast.Protect = set_combine(sets.midcast['Enhancing Magic'], {})
@@ -259,16 +313,16 @@ function init_gear_sets()
 	})
 
   -- Refresh
-	sets.midcast.Refresh = set_combine(sets.midcast['Enhancing Magic'], {head="Amalric Coif +1"})
+	sets.midcast.Refresh = set_combine(sets.midcast['Enhancing Magic'], {})
 	
   -- Shell/Shellra
-    sets.midcast.Shell = set_combine(sets.midcast['Enhancing Magic'], {ring2="Sheltered Ring"})
+    sets.midcast.Shell = set_combine(sets.midcast['Enhancing Magic'], {})
     sets.midcast.Shellra = sets.midcast.Shell
 	
   -- Stoneskin
     sets.midcast.Stoneskin = set_combine(sets.midcast['Enhancing Magic'], {
 		legs="Shedir Seraweels",
-		waist="Siegel Sash",
+		--waist="Siegel Sash",
 	})
 	
   -- Storm
@@ -278,7 +332,23 @@ function init_gear_sets()
 --------------------------------------
 -- Enfeebling Magic
 --------------------------------------
-	sets.midcast['Enfeebling Magic'] = {}
+	sets.midcast['Enfeebling Magic'] = {
+		main="Maxentius",
+		sub="Sors Shield",
+		ammo="Ghastly Tathlum +1",
+		head="Jhakri Coronal +2",
+		body="Jhakri Robe +2",
+		hands="Jhakri Cuffs +2",
+		legs="Jhakri Slops +2",
+		feet="Jhakri Pigaches +2",
+		neck="Sibyl Scarf",
+		waist="Acuity Belt +1",
+		left_ear="Etiolation Earring",
+		right_ear="Alabaster Earring",
+		left_ring="Jhakri Ring",
+		right_ring="Metamor. Ring +1",
+		back="Solemnity Cape",
+	}
 	
 -- Enfeebling Magic, Resistant
 	sets.midcast['Enfeebling Magic'].Resistant = {}
@@ -310,22 +380,26 @@ function init_gear_sets()
 -- Healing Magic
 --------------------------------------
     sets.midcast.Cure = set_combine(sets.midcast.FastRecast, {
-		main="Gada",
+		main={ name="Gada", augments={'"Cure" potency +6%','Mag. Acc.+4','"Mag.Atk.Bns."+2','DMG:+6',}},
 		sub="Sors Shield",
+		ammo="Ghastly Tathlum +1",
 		head={ name="Vanya Hood", augments={'Healing magic skill +20','"Cure" spellcasting time -7%','Magic dmg. taken -3',}},
 		body={ name="Vanya Robe", augments={'Healing magic skill +20','"Cure" spellcasting time -7%','Magic dmg. taken -3',}},
 		hands={ name="Vanya Cuffs", augments={'Healing magic skill +20','"Cure" spellcasting time -7%','Magic dmg. taken -3',}},
 		legs={ name="Vanya Slops", augments={'Healing magic skill +20','"Cure" spellcasting time -7%','Magic dmg. taken -3',}},
 		feet={ name="Vanya Clogs", augments={'Healing magic skill +20','"Cure" spellcasting time -7%','Magic dmg. taken -3',}},
 		neck="Loricate Torque +1",
-		left_ring="Metamor. Ring +1",
+		waist="Acuity Belt +1",
+		left_ear="Etiolation Earring",
+		right_ear="Alabaster Earring",
+		left_ring="Naji's Loop",
+		right_ring="Lebeche Ring",
 		back="Solemnity Cape",
 	})
 		
 -- Healing Magic, Lightsday/Light Weather
     sets.midcast.LightWeatherCure = {}
     sets.midcast.LightDayCure = {}
-
 
 -- Self Healing/Refresh
 	sets.Self_Healing = {}
@@ -349,27 +423,26 @@ function init_gear_sets()
 --------------------------------------
 -- Base idle set
 --------------------------------------
-    sets.idle = { -- Refresh +4
-		ammo="Ghastly Tathlum +1", -- Homilary
-		head="Nyame Helm",
-		body="Jhakri Robe +2",
-		hands="Nyame Gauntlets",
-		legs="Nyame Flanchard",
-		feet="Nyame Sollerets",
-		neck="Loricate Torque +1",
-		waist="Acuity Belt +1",
-		left_ear="Etiolation Earring",
-		right_ear="Alabaster Earring",
+    sets.idle = { -- DT -45, Refresh +6~7
+		main="Marin Staff +1", -- Mpaca's Staff
+		sub="Khonsu", --DT -6
+		ammo="Ghastly Tathlum +1", -- Homiliary
+		head="Befouled Crown", --Refresh +1
+		body="Jhakri Robe +2", --Refresh +4
+		hands="Nyame Gauntlets", -- DT -7
+		legs="Assid. Pants +1", --Refresh +1 to +2
+		feet="Nyame Sollerets", -- DT -7
+		neck="Loricate Torque +1", -- DT -6 
+		waist="Acuity Belt +1", -- Plat. Moogle Belt
+		left_ear="Etiolation Earring", 
+		right_ear="Alabaster Earring", -- DT -5
 		left_ring="Shneddick Ring",
-		right_ring="Murky Ring",
-		back="Solemnity Cape", -- Lugh's Cape (Regen, DT -5)
+		right_ring="Murky Ring", -- DT -10
+		back="Solemnity Cape", -- DT -4
 	}
 		
 -- Refresh Set
 	sets.idle.Refresh = set_combine(sets.idle, {
-		head="Befouled Crown",
-		body="Jhakri Robe +2",
-		legs="Assid. Pants +1",
 		neck="Sibyl Scarf",
 	})
 
@@ -383,7 +456,7 @@ function init_gear_sets()
 --------------------------------------
 -- Physical damage taken -- DT 64/50
 --------------------------------------
-    sets.defense.PDT = {
+    sets.defense.PDT = { 
 		ammo="Ghastly Tathlum +1",
 		head="Nyame Helm",
 		body="Nyame Mail",
@@ -411,7 +484,7 @@ function init_gear_sets()
 	
 -- Misc. Defense Sets
   -- Kiting
-	sets.Kiting = {} --left_ring="Shnedick Ring"
+	sets.Kiting = {left_ring="Shnedick Ring"}
     
   -- Latent refresh effect
 	sets.latent_refresh = {} --waist="Fucho-no-obi"
@@ -433,51 +506,53 @@ function init_gear_sets()
 --------------------------------------
 -- Engaged Sets
 --------------------------------------
-    --sets.engaged = {
-		--ammo="Hasty Pinion +1",
-		--head={ name="Blistering Sallet +1", augments={'Path: A',}},
-		--body={ name="Nyame Mail", augments={'Path: B',}},
-		--hands={ name="Gazu Bracelets +1", augments={'Path: A',}},
-		--legs="Jhakri Slops +2",
-		--feet={ name="Nyame Sollerets", augments={'Path: B',}},
-		--neck="Combatant's Torque",
-		--waist="Grunfeld Rope",
-		--left_ear="Digni. Earring",
-		--right_ear="Telos Earring",
-		--left_ring="Chirich Ring +1",
-		--right_ring="Chirich Ring +1",
-		--back="Null Shawl",
-	--}
+    sets.engaged = {
+		ammo="Oshasha's Treatise",
+		head="Nyame Helm",
+		body="Nyame Mail",
+		hands="Nyame Gauntlets",
+		legs="Jhakri Slops +2",
+		feet="Nyame Sollerets",
+		neck="Loricate Torque +1",
+		waist="Acuity Belt +1",
+		left_ear="Etiolation Earring",
+		right_ear="Alabaster Earring",
+		left_ring="Rajas Ring",
+		right_ring="Murky Ring",
+		back="Solemnity Cape",
+	}
 	
 	--sets.engaged.Acc = set_combine(sets.engaged, {})
 	--sets.engaged.FullAcc = set_combine(sets.engaged, {})
 	--sets.engaged.SubtleBlow = set_combine(sets.engaged, {})
 		
 -- Engaged DT set
-	--sets.engaged.DT = {
-		--ammo="Staunch Tathlum +1",
-		--head={ name="Nyame Helm", augments={'Path: B',}},
-		--body={ name="Nyame Mail", augments={'Path: B',}},
-		--hands={ name="Nyame Gauntlets", augments={'Path: B',}},
-		--legs={ name="Nyame Flanchard", augments={'Path: B',}},
-		--feet={ name="Nyame Sollerets", augments={'Path: B',}},
-		--neck="Combatant's Torque",
-		--waist="Grunfeld Rope",
-		--left_ear="Digni. Earring",
-		--right_ear="Telos Earring",
-		--left_ring="Chirich Ring +1",
-		--right_ring="Defending Ring",
-		--back="Null Shawl",
-	--}
+	sets.engaged.DT = {
+		main="Marin Staff +1",
+		sub="Khonsu",
+		ammo="Oshasha's Treatise",
+		head="Nyame Helm",
+		body="Nyame Mail",
+		hands="Nyame Gauntlets",
+		legs="Jhakri Slops +2",
+		feet="Nyame Sollerets",
+		neck="Loricate Torque +1",
+		waist="Acuity Belt +1",
+		left_ear="Etiolation Earring",
+		right_ear="Alabaster Earring",
+		left_ring="Rajas Ring",
+		right_ring="Murky Ring",
+		back="Solemnity Cape",
+	}
 
 
 ---------------------------------------------------------------------------------------------------------------
 -- Weapon sets
 ---------------------------------------------------------------------------------------------------------------
 	sets.weapons.None = {main=empty, sub=empty}
-	sets.weapons.SpiritTaker = {main="Marin Staff +1", sub="Khonsu"}
-	--sets.weapons.Akademos = {main="Akademos",sub="Enki Strap"}
-	--sets.weapons.Khatvanga = {main="Khatvanga",sub="Bloodrain Strap"}
+	sets.weapons.Club = {main="Maxentius", sub="Sors Shield"} 
+	sets.weapons.Staff = {main="Marin Staff +1",sub="Khonsu"}
+	sets.weapons.Prime = {main="Prime Staff",sub="Khonsu"}
 
 
 ---------------------------------------------------------------------------------------------------------------
@@ -486,21 +561,21 @@ function init_gear_sets()
 --------------------------------------
 -- Default weaponskill gear
 --------------------------------------
-    --sets.precast.WS = {
-		--ammo="Oshasha's Treatise",
-		--head={ name="Nyame Helm", augments={'Path: B',}},
-		--body={ name="Nyame Mail", augments={'Path: B',}},
-		--hands={ name="Nyame Gauntlets", augments={'Path: B',}},
-		--legs={ name="Nyame Flanchard", augments={'Path: B',}},
-		--feet={ name="Nyame Sollerets", augments={'Path: B',}},
-		--neck="Combatant's Torque",
-		--waist="Grunfeld Rope",
-		--left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
-		--right_ear="Ishvara Earring",
-		--left_ring="Cornelia's Ring",
-		--right_ring="Chirich Ring +1",
-		--back="Null Shawl",
-	--}
+    sets.precast.WS = {
+		ammo="Oshasha's Treatise",
+		head="Nyame Helm",
+		body="Nyame Mail",
+		hands="Jhakri Cuffs +2",
+		legs="Nyame Flanchard",
+		feet="Nyame Sollerets",
+		neck="Loricate Torque +1",
+		waist="Acuity Belt +1",
+		left_ear="Etiolation Earring",
+		right_ear="Alabaster Earring",
+		left_ring="Rajas Ring",
+		right_ring="Murky Ring",
+		back="Solemnity Cape",
+	}
 	
 	--sets.precast.WS.Acc = set_combine(sets.precast.WS, {
 		--right_ear="Mache Earring +1",
@@ -530,13 +605,10 @@ function init_gear_sets()
 -- Staff weaponskills
 --------------------------------------
 -- Cataclysm
-	--sets.precast.WS['Cataclysm'] = set_combine(sets.precast.WS, {
+	sets.precast.WS['Cataclysm'] = set_combine(sets.precast.WS, {
 		--ammo="Sroda Tathlum",
-		--head="Pixie Hairpin +1",
-		--body={ name="Nyame Mail", augments={'Path: B',}},
-		--hands="Jhakri Cuffs +2",
-		--legs={ name="Nyame Flanchard", augments={'Path: B',}},
-		--feet={ name="Nyame Sollerets", augments={'Path: B',}},
+		head="Pixie Hairpin +1",
+		hands="Jhakri Cuffs +2",
 		--neck="Saevus Pendant +1",
 		--waist="Hachirin-no-Obi",
 		--left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
@@ -544,7 +616,7 @@ function init_gear_sets()
 		--left_ring="Cornelia's Ring",
 		--right_ring="Archon Ring",
 		--back="Null Shawl",
-	--})
+	})
 	
 -- Myrkr
 	--sets.precast.WS['Myrkr'] = set_combine(sets.precast.WS, {})
@@ -556,9 +628,7 @@ function init_gear_sets()
 -------------------------------------------------------------------------------------------------------------------
 -- Miscelaneous Sets
 -------------------------------------------------------------------------------------------------------------------	
---------------------------------------
 -- Buff sets: Gear that needs to be worn to actively enhance a current player buff.
---------------------------------------
     --sets.buff['Ebullience'] = {head="Arbatel Bonnet +1"}
     --sets.buff['Rapture'] = {head="Arbatel Bonnet +1"}
     --sets.buff['Perpetuance'] = {hands="Arbatel Bracers +1"}
@@ -577,17 +647,27 @@ function init_gear_sets()
         --head="Gende. Caubeen +1",neck="Unmoving Collar +1",ear1="Gifted Earring",ear2="Mendi. Earring",
         --body="Kaykaus Bliaut",hands="Kaykaus Cuffs",ring1="Gelatinous Ring +1",ring2="Meridian Ring",
         --back="Moonlight Cape",waist="Luminary Sash",legs="Carmine Cuisses +1",feet="Kaykaus Boots"}
-	
-	--sets.buff.Doom = set_combine(sets.buff.Doom, {})
-	--sets.buff['Light Arts'] = {} --legs="Academic's Pants +3"
-	--sets.buff['Dark Arts'] = {} --body="Academic's Gown +3"
 
-    --sets.buff.Sublimation = {
-		--head="Acad. Mortar. +3",
-		--waist="Embla Sash",
-	--}
+-- Vs. Debuffs
+  -- Doom
+	sets.buff.Doom = set_combine(sets.buff.Doom, {
+		neck="Nicander's Necklace",
+		--waist="Gishdubar Sash",
+	})
+
+  --Sleep
+	sets.buff.Sleep = {main="Prime Staff"}
 	
-    --sets.buff.DTSublimation = {waist="Embla Sash"}
+-- Light & Dark Arts
+	sets.buff['Light Arts'] = {legs="Academic's Pants +1"} 
+	sets.buff['Dark Arts'] = {body="Acad. Gown +1"}
+
+-- Sublimation
+    sets.buff.Sublimation = {
+		head="Acad. Mortar. +1", --Upgrade to +3/+4
+		hands="Peda. Bracers +1", --Upgrade to +3/+4
+		--waist="Embla Sash",
+	}
 end
 
 --------------------------------------
