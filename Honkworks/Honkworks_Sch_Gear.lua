@@ -48,17 +48,14 @@ function init_gear_sets()
 --------------------------------------
 -- Fast cast sets for spells
 --------------------------------------
-    sets.precast.FC = { --FC +52/80
-		main="Marin Staff +1", --FC +3
-		sub="Khonsu",
-		ammo="Ghastly Tathlum +1", -- Sapiance Orb
+    sets.precast.FC = { --FC +56/80
 		head={ name="Merlinic Hood", augments={'"Mag.Atk.Bns."+6','"Fast Cast"+6','INT+9','Mag. Acc.+12',}}, --FC +14
 		body="Jhakri Robe +2", -- Pinga Robe +1
 		hands="Acad. Bracers +1", -- Upgrade to +3/+4, FC +5
 		legs="Jhakri Slops +2", -- Pinga Pants +1
-		feet="Peda. Loafers +1", -- Upgrade to +3/+4, FC +6
-		neck="Voltsurge Torque", -- FC +5
-		waist="Acuity Belt +1", -- Embla Sash
+		feet="Peda. Loafers +3", --FC +8
+		neck="Voltsurge Torque", --FC +5
+		waist="Embla Sash", --FC +5
 		left_ear="Etiolation Earring", -- FC +1, Malignance Earring
 		right_ear="Loquac. Earring", -- FC +2, Enchanter's Earring +1
 		left_ring="Jhakri Ring", -- FC +6 (3 piece), Kishar Ring
@@ -94,7 +91,7 @@ function init_gear_sets()
 --------------------------------------
 -- Cure
 	sets.precast.FC.Cure = set_combine(sets.precast.FC, {
-		main="Vadose Rod",
+		main="Gada",
 		sub="Sors Shield",
 	})
     
@@ -114,16 +111,13 @@ function init_gear_sets()
 -- Fast Recast
 --------------------------------------
 	sets.midcast.FastRecast = {
-		main="Marin Staff +1", --FC +3
-		sub="Khonsu",
-		ammo="Ghastly Tathlum +1", -- Sapiance Orb
 		head={ name="Merlinic Hood", augments={'"Mag.Atk.Bns."+6','"Fast Cast"+6','INT+9','Mag. Acc.+12',}}, --FC +14
 		body="Jhakri Robe +2", -- Pinga Robe +1
 		hands="Acad. Bracers +1", -- Upgrade to +3/+4, FC +5
 		legs="Jhakri Slops +2", -- Pinga Pants +1
-		feet="Peda. Loafers +1", -- Upgrade to +3/+4, FC +6
+		feet="Peda. Loafers +3", --FC +8
 		neck="Voltsurge Torque", -- FC +5
-		waist="Acuity Belt +1", -- Embla Sash
+		waist="Embla Sash", --FC +5
 		left_ear="Etiolation Earring", -- FC +1, Malignance Earring
 		right_ear="Loquac. Earring", -- FC +2, Enchanter's Earring +1
 		left_ring="Jhakri Ring", -- FC +6 (3 piece), Kishar Ring
@@ -191,21 +185,21 @@ function init_gear_sets()
 -- Elemental Magic
 --------------------------------------
     sets.midcast['Elemental Magic'] = {
-		main="Marin Staff +1", -- Bunzi's Rod
-		sub="Khonsu", --Ammurapi Shield
-		ammo="Ghastly Tathlum +1", --Augment to R15
-		head="Peda. M.Board +3", --Agwu's Cap
-		body="Jhakri Robe +2", --Arbatel Gown +3
-		hands="Jhakri Cuffs +2", --Arbatel Bracers +3
-		legs="Peda. Pants +3", --Arbatel Pants +3
-		feet="Jhakri Pigaches +2", --Arbatel Loafers +3
-		neck="Sibyl Scarf", --Argute Stole +2
-		waist="Acuity Belt +1", --Hachirin-no-Obi
-		left_ear="Sortiarius Earring", --Regal Earring
-		right_ear="Friomisi Earring", --Malignance Earring
-		left_ring="Metamor. Ring +1", 
-		right_ring="Medada's Ring", 
-		back={ name="Bookworm's Cape", augments={'INT+2','Helix eff. dur. +10','"Regen" potency+8',}}, --Lugh's Cape
+		main="Marin Staff +1",
+		sub="Khonsu",
+		ammo="Ghastly Tathlum +1",
+		head="Peda. M.Board +3",
+		body="Peda. Gown +3",
+		hands="Peda. Bracers +3",
+		legs="Peda. Pants +3",
+		feet="Peda. Loafers +3",
+		neck="Sibyl Scarf",
+		waist="Refoccilation Stone",
+		left_ear="Friomisi Earring",
+		right_ear="Sortiarius Earring",
+		left_ring="Metamor. Ring +1",
+		right_ring="Medada's Ring",
+		back="Solemnity Cape",
 	}
   
 -- Elemental Magic, Resistant
@@ -276,15 +270,15 @@ function init_gear_sets()
 		sub="Sors Shield",
 		ammo="Ghastly Tathlum +1",
 		head="Befouled Crown",
-		body="Peda. Gown +1",
+		body="Peda. Gown +3",
 		hands="Nyame Gauntlets",
 		legs="Acad. Pants +1",
 		feet="Nyame Sollerets",
 		neck="Loricate Torque +1",
-		waist="Acuity Belt +1",
+		waist="Embla Sash",
 		left_ear="Etiolation Earring",
 		right_ear="Alabaster Earring",
-		left_ring="Shneddick Ring",
+		left_ring="Metamor. Ring +1",
 		right_ring="Murky Ring",
 		back="Solemnity Cape",
 	}
@@ -429,16 +423,16 @@ function init_gear_sets()
 		ammo="Ghastly Tathlum +1", -- Homiliary
 		head="Befouled Crown", --Refresh +1
 		body="Jhakri Robe +2", --Refresh +4
-		hands="Nyame Gauntlets", -- DT -7
+		hands="Nyame Gauntlets", --DT -7
 		legs="Assid. Pants +1", --Refresh +1 to +2
-		feet="Nyame Sollerets", -- DT -7
-		neck="Loricate Torque +1", -- DT -6 
-		waist="Plat. Mog. Belt", -- DT -3
+		feet="Nyame Sollerets", --DT -7
+		neck="Loricate Torque +1", --DT -6 
+		waist="Plat. Mog. Belt", --DT -3
 		left_ear="Etiolation Earring", --Odnowa Earring +1?
-		right_ear="Alabaster Earring", -- DT -5
+		right_ear="Alabaster Earring", --DT -5
 		left_ring="Shneddick Ring",
-		right_ring="Murky Ring", -- DT -10
-		back="Solemnity Cape", -- DT -4
+		right_ring="Murky Ring", --DT -10
+		back="Solemnity Cape", --DT -4
 	}
 		
 -- Refresh Set
@@ -467,7 +461,7 @@ function init_gear_sets()
 		waist="Acuity Belt +1",
 		left_ear="Loquac. Earring",
 		right_ear="Alabaster Earring",
-		left_ring="Metamor. Ring +1",
+		left_ring="Shneddick Ring",
 		right_ring="Murky Ring",
 		back="Solemnity Cape",
 	}
@@ -682,8 +676,8 @@ function init_gear_sets()
 --------------------------------------
     sets.buff.Sublimation = {
 		head="Acad. Mortar. +1", --Upgrade to +3/+4
-		hands="Peda. Bracers +1", --Upgrade to +3/+4
-		--waist="Embla Sash",
+		body="Peda. Gown +3",
+		waist="Embla Sash",
 	}
 end
 

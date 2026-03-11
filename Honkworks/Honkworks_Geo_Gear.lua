@@ -314,7 +314,7 @@ function init_gear_sets()
 		main={ name="Solstice", augments={'Mag. Acc.+20','Pet: Damage taken -4%','"Fast Cast"+5',}},
 		sub="Sors Shield",
 		range="Dunna",
-		head="Azimuth Hood +1",
+		head="Azimuth Hood +2",
 		body="Bagua Tunic +3",
 		hands="Geo. Mitaines +3",
 		legs="Bagua Pants +3",
@@ -356,13 +356,13 @@ function init_gear_sets()
 -- Idle Sets
 -------------------------------------------------------------------------------------------------------------------
 --------------------------------------
--- Base Idle Set --DT 42/50, Refresh +8~9, Movement Speed +18%
+-- Base Idle Set --DT 53/50, Refresh +7~8, Movement Speed +18%
 --------------------------------------
 	sets.idle = {
 		main="Marin Staff +1",
 		sub="Khonsu", -- DT -6
 		range="Dunna", -- Staunch Tathlum +1
-		head="Befouled Crown", -- Refresh +1
+		head="Azimuth Hood +2", -- DT -11
 		body="Jhakri Robe +2", -- Refresh +4
 		hands="Bagua Mitaines +3", -- Refresh +2
 		legs="Assid. Pants +1", -- Refresh +1~2
@@ -378,7 +378,6 @@ function init_gear_sets()
 	
   -- Idle Set When Luopan Active
 	sets.idle.Pet = set_combine(sets.idle, {
-		head="Azimuth Hood +1",
 		feet="Bagua Sandals +3",
 		back={ name="Nantosuelta's Cape", augments={'HP+60','Eva.+20 /Mag. Eva.+20','Mag. Evasion+5','Pet: "Regen"+10','Pet: "Regen"+5',}},
 	})
@@ -387,7 +386,7 @@ function init_gear_sets()
 	sets.idle.PetPDT = set_combine(sets.idle, {
 		main={ name="Solstice", augments={'Mag. Acc.+20','Pet: Damage taken -4%','"Fast Cast"+5',}},
 		sub="Sors Shield",
-		head="Azimuth Hood +1",
+		head="Azimuth Hood +2",
 		body="Nyame Mail", -- DT -9
 		hands="Nyame Gauntlets", -- DT -7
 		legs="Nyame Flanchard",-- DT -8
@@ -401,6 +400,7 @@ function init_gear_sets()
 	sets.idle.Refresh = set_combine(sets.idle, {
 		--main="Mpaca's Staff",
 		--sub="Khonsu",
+		head="Befouled Crown",
 		--feet="Volte Gaiters",
 		neck="Sibyl Scarf",
 		--left_ring="Stikini Ring +1",
