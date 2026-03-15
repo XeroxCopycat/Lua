@@ -330,7 +330,6 @@ function init_gear_sets()
 		feet="Azimuth Gaiters +2",
 		waist="Plat. Mog. Belt",
 		back={ name="Lifestream Cape", augments={'Geomancy Skill +8','Indi. eff. dur. +20','Damage taken-4%',}},
-
 	})
 	
 
@@ -420,8 +419,9 @@ function init_gear_sets()
 -- Defense sets
 -------------------------------------------------------------------------------------------------------------------
 --------------------------------------
--- Physical Damage Taken
+-- DT sets
 --------------------------------------
+-- Physical Damage Taken
 	sets.defense.PDT = { --DT -73
 		main="Marin Staff +1",
 		sub="Khonsu", -- DT -6
@@ -440,14 +440,14 @@ function init_gear_sets()
 		back={ name="Nantosuelta's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','INT+10','"Mag.Atk.Bns."+10','Damage taken-5%',}}, --DT -5
 	}
 
-  -- Magic Damage Taken
+-- Magic Damage Taken
 	--sets.defense.MDT = set_combine(sets.defense.PDT, {
 		--neck="Warder's Charm +1",
 		--waist="Carrier's Sash",
 		--right_ring="Archon Ring",
 	--})
 	
-  -- Magic Evasion
+-- Magic Evasion
     sets.defense.MEVA = set_combine(sets.defense.PDT, {
 		head="Azimuth Hood +2",
 		feet="Azimuth Gaiters +2",
@@ -460,19 +460,7 @@ function init_gear_sets()
   -- Pet Physical Damage Taken
  	sets.defense.PetPDT = sets.idle.PetPDT
 	
-  -- Equipment Locked Sets
-	sets.defense.NukeLock = sets.midcast['Elemental Magic']
-	sets.defense.GeoLock = sets.midcast.Geomancy.Indi
-
-  -- Vs. Buff Effects
-    -- Doom
-	sets.buff.Doom = set_combine(sets.buff.Doom, {
-		neck="Nicander's Necklace", 
-		waist="Gishdubar Sash",
-	})
-	
-	-- Sleep
-	sets.buff.Sleep = set_combine(sets.buff.Sleep, {})
+  
 
 
 -------------------------------------------------------------------------------------------------------------------
@@ -545,7 +533,7 @@ function init_gear_sets()
 -- Weapons sets
 -------------------------------------------------------------------------------------------------------------------
 	sets.weapons.None = {}
-	--sets.weapons.Club = {main="Beryllium Mace +1", sub="Ammurapi Shield"}
+	sets.weapons.Club = {main="Maxentius", sub="Sors Shield"}
 	--sets.weapons.Staff = {main="Malignance Pole", sub="Ajja Grip"}
 	
 
@@ -580,6 +568,26 @@ function init_gear_sets()
 -- Gearswaps for Sublimation (/SCH)
 	sets.buff.Sublimation = {waist="Embla Sash"}
     sets.buff.DTSublimation = {waist="Embla Sash"}
+	
+-- Equipment Locked Sets
+	sets.defense.NukeLock = sets.midcast['Elemental Magic']
+	sets.defense.GeoLock = sets.midcast.Geomancy.Indi
+
+-- Equip when a buff effect is active
+    -- Doom
+	sets.buff.Doom = set_combine(sets.buff.Doom, {
+		neck="Nicander's Necklace", 
+		waist="Gishdubar Sash",
+	})
+	
+	-- Sleep
+	sets.buff.Sleep = set_combine(sets.buff.Sleep, {})
+	
+	-- Reive Mark
+	sets.buff["Reive Mark"] = set_combine(sets.buff["Reive Mark"], {
+		neck="Arciela's Grace +1",
+	})
+	
 end
 
 -- Select default macro book on initial load or subjob change.
