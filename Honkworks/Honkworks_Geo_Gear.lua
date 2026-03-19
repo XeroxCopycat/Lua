@@ -190,35 +190,42 @@ function init_gear_sets()
     sets.midcast['Elemental Magic'] = set_combine(sets.midcast.FastRecast, {
 		main="Marin Staff +1",
 		sub="Khonsu",
-		range="Ghastly Tathlum +1",
-		head="Agwu's Cap",
+		ammo="Ghastly Tathlum +1",
+		head="Bagua Galero +3",
 		body="Bagua Tunic +3",
-		hands="Agwu's Gages",
+		hands="Bagua Mitaines +3",
 		legs="Bagua Pants +3",
+		feet="Bagua Sandals +3",
 		neck="Sibyl Scarf",
 		waist="Acuity Belt +1",
-		left_ear="Sortiarius Earring",
-		right_ear="Friomisi Earring",
+		left_ear="Friomisi Earring",
+		right_ear="Sortiarius Earring",
 		left_ring="Metamor. Ring +1",
+		right_ring="Medada's Ring",
 		back={ name="Nantosuelta's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','INT+10','"Mag.Atk.Bns."+10','Damage taken-5%',}},
 	})
 
   -- Elemental Magic Magic Accuracy
-    sets.midcast['Elemental Magic'].Resistant = set_combine(sets.midcast['Elemental Magic'], {})
+    sets.midcast['Elemental Magic'].Resistant = set_combine(sets.midcast['Elemental Magic'], {
+		head="Azimuth Hood +2",
+		body="Azimuth Coat +2",
+		feet="Azimuth Gaiters +2",
+		neck={ name="Bagua Charm +2", augments={'Path: A',}},
+	})
 	
   -- Elemental Magic Fodder
-    sets.midcast['Elemental Magic'].Fodder = set_combine(sets.midcast['Elemental Magic]'], {})
+    sets.midcast['Elemental Magic'].Fodder = set_combine(sets.midcast['Elemental Magic'], {})
 	
   -- Magic Burst Gearswaps
-    sets.MagicBurst = {
-		head="Ea Hat +1",
-		body="Agwu's Robe",
-		hands="Agwu's Gages",
-		legs="Agwu's Slops", 
-		feet="Jhakri Pigaches +2",
-		--neck="Mizu. Kubikazari",
-		left_ring="Mujin Band",
-	}
+    sets.MagicBurst = set_combine(sets.midcast['Elemental Magic'], { --MBD 35/40, MBD2 16/xx
+		head="Ea Hat +1", --MBD +7/MBD2 +7
+		body="Azimuth Coat +2", --MBD2 +4
+		hands="Agwu's Gages", --MBD +8
+		legs="Agwu's Slops", --MBD +9
+		feet="Jhakri Pigaches +2", --MBD +7
+		--neck="Mizu. Kubikazari", --MBD +8
+		left_ring="Mujin Band", --MBD2 +5
+	})
 	
 	sets.ResistantMagicBurst = set_combine(sets.MagicBurst, {})
 	
@@ -534,7 +541,7 @@ function init_gear_sets()
 -------------------------------------------------------------------------------------------------------------------
 	sets.weapons.None = {}
 	sets.weapons.Club = {main="Maxentius", sub="Sors Shield"}
-	--sets.weapons.Staff = {main="Malignance Pole", sub="Ajja Grip"}
+	sets.weapons.Staff = {main="Marin Staff +1", sub="Khonsu"}
 	
 
 -------------------------------------------------------------------------------------------------------------------
