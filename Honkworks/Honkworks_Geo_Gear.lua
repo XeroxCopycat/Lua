@@ -68,9 +68,9 @@ function init_gear_sets()
 	sets.precast.FC.Cure = set_combine(sets.precast.FC, {})
 	
 	sets.precast.FC.Curaga = sets.precast.FC.Cure
-	--sets.Self_Healing = {neck="Phalaina Locket", waist="Gishdubar Sash"}
-	--sets.Cure_Received = {neck="Phalaina Locket", waist="Gishdubar Sash"}
-	--sets.Self_Refresh = {waist="Gishdubar Sash"}
+	sets.Self_Healing = { waist="Gishdubar Sash"} --neck="Phalaina Locket"
+	sets.Cure_Received = {waist="Gishdubar Sash"} --neck="Phalaina Locket"
+	sets.Self_Refresh = {waist="Gishdubar Sash"}
 	
   -- Enhancing Magic Fast Cast
     sets.precast.FC['Enhancing Magic'] = set_combine(sets.precast.FC, {waist="Siegel Sash"})
@@ -432,7 +432,7 @@ function init_gear_sets()
 	sets.defense.PDT = { --DT -73
 		main="Marin Staff +1",
 		sub="Khonsu", -- DT -6
-		--ammo="Staunch Tathlum +1",
+		--ammo="Staunch Tathlum +1", --DT -3
 		head="Nyame Helm", --DT -7
 		body="Nyame Mail", --DT -9
 		hands="Nyame Gauntlets", --DT -7
@@ -448,11 +448,11 @@ function init_gear_sets()
 	}
 
 -- Magic Damage Taken
-	--sets.defense.MDT = set_combine(sets.defense.PDT, {
-		--neck="Warder's Charm +1",
-		--waist="Carrier's Sash",
+	sets.defense.MDT = set_combine(sets.defense.PDT, {
+		neck="Warder's Charm +1",
+		waist="Carrier's Sash",
 		--right_ring="Archon Ring",
-	--})
+	})
 	
 -- Magic Evasion
     sets.defense.MEVA = set_combine(sets.defense.PDT, {
