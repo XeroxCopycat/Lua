@@ -68,9 +68,9 @@ function init_gear_sets()
 	sets.precast.FC.Cure = set_combine(sets.precast.FC, {})
 	
 	sets.precast.FC.Curaga = sets.precast.FC.Cure
-	sets.Self_Healing = { waist="Gishdubar Sash"} --neck="Phalaina Locket"
-	sets.Cure_Received = {waist="Gishdubar Sash"} --neck="Phalaina Locket"
-	sets.Self_Refresh = {waist="Gishdubar Sash"}
+	--sets.Self_Healing = {neck="Phalaina Locket", waist="Gishdubar Sash"}
+	--sets.Cure_Received = {neck="Phalaina Locket", waist="Gishdubar Sash"}
+	--sets.Self_Refresh = {waist="Gishdubar Sash"}
 	
   -- Enhancing Magic Fast Cast
     sets.precast.FC['Enhancing Magic'] = set_combine(sets.precast.FC, {waist="Siegel Sash"})
@@ -194,7 +194,7 @@ function init_gear_sets()
 		head="Bagua Galero +3",
 		body="Bagua Tunic +3",
 		hands="Bagua Mitaines +3",
-		legs="Bagua Pants +3",
+		legs="Azimuth Tights +2",
 		feet="Bagua Sandals +3",
 		neck="Sibyl Scarf",
 		waist="Acuity Belt +1",
@@ -217,11 +217,11 @@ function init_gear_sets()
     sets.midcast['Elemental Magic'].Fodder = set_combine(sets.midcast['Elemental Magic'], {})
 	
   -- Magic Burst Gearswaps
-    sets.MagicBurst = set_combine(sets.midcast['Elemental Magic'], { --MBD 35/40, MBD2 16/xx
+    sets.MagicBurst = set_combine(sets.midcast['Elemental Magic'], { --MBD 36/40, MBD2 16/xx
 		head="Ea Hat +1", --MBD +7/MBD2 +7
 		body="Azimuth Coat +2", --MBD2 +4
 		hands="Agwu's Gages", --MBD +8
-		legs="Agwu's Slops", --MBD +9
+		legs="Azimuth Tights +2", --MBD +10
 		feet="Jhakri Pigaches +2", --MBD +7
 		--neck="Mizu. Kubikazari", --MBD +8
 		left_ring="Mujin Band", --MBD2 +5
@@ -375,10 +375,10 @@ function init_gear_sets()
 		body="Jhakri Robe +2", -- Refresh +4
 		hands="Bagua Mitaines +3", -- Refresh +2
 		legs="Assid. Pants +1", -- Refresh +1~2
-		feet="Azimuth Gaiters", -- DT -10
+		feet="Azimuth Gaiters +2", -- DT -10
 		neck="Sibyl Scarf", --Refresh +1
 		waist="Plat. Mog. Belt", -- DT -3
-		left_ear="Etiolation Earring",
+		left_ear="Lugalbanda Earring",
 		right_ear="Alabaster Earring", -- DT -5
 		left_ring="Shneddick Ring",
 		right_ring="Murky Ring", -- DT -10
@@ -386,16 +386,16 @@ function init_gear_sets()
 	}
 	
   -- Idle Set When Luopan Active
-	sets.idle.Pet = set_combine(sets.idle, { --DT 52/50, Pet DT -13, Pet Regen +20
+	sets.idle.Pet = set_combine(sets.idle, { --DT 52/50, Pet DT -74/87.5, Pet Regen +24
 		main={ name="Solstice", augments={'Mag. Acc.+20','Pet: Damage taken -4%','"Fast Cast"+5',}}, --Pet DT -6
 		sub="Sors Shield",
-		range="Dunna",
-		head="Azimuth Hood +2", -- DT -11
+		range="Dunna", --Pet DT -5
+		head="Azimuth Hood +2", -- DT -11, Pet Regen +4
 		body="Nyame Mail", --DT -9
 		hands="Geo. Mitaines +3", -- Pet DT -13
 		legs="Nyame Flanchard", --DT -8
 		feet="Bagua Sandals +3", -- Pet Regen +5
-		neck="Loricate Torque +1", --DT -6
+		neck={ name="Bagua Charm +2", augments={'Path: A',}},
 		waist="Plat. Mog. Belt", --DT -3
 		left_ear="Lugalbanda Earring",
 		right_ear="Alabaster Earring", --DT -5
@@ -408,7 +408,6 @@ function init_gear_sets()
 	sets.idle.Refresh = set_combine(sets.idle, {
 		head="Befouled Crown",
 		--feet="Volte Gaiters",
-		neck="Sibyl Scarf",
 		--left_ring="Stikini Ring +1",
 		--right_ring=Stikini Ring +1",
 	})
@@ -432,7 +431,7 @@ function init_gear_sets()
 	sets.defense.PDT = { --DT -73
 		main="Marin Staff +1",
 		sub="Khonsu", -- DT -6
-		--ammo="Staunch Tathlum +1", --DT -3
+		--ammo="Staunch Tathlum +1",
 		head="Nyame Helm", --DT -7
 		body="Nyame Mail", --DT -9
 		hands="Nyame Gauntlets", --DT -7
@@ -448,17 +447,17 @@ function init_gear_sets()
 	}
 
 -- Magic Damage Taken
-	sets.defense.MDT = set_combine(sets.defense.PDT, {
+	--sets.defense.MDT = set_combine(sets.defense.PDT, {
 		neck="Warder's Charm +1",
 		waist="Carrier's Sash",
 		--right_ring="Archon Ring",
-	})
+	--})
 	
 -- Magic Evasion
     sets.defense.MEVA = set_combine(sets.defense.PDT, {
 		head="Azimuth Hood +2",
 		feet="Azimuth Gaiters +2",
-		--waist="Null Loop",
+		--waist="Null Belt",
 		left_ear="Lugalbanda Earring"
 		--right_ear="Eabani Earring",
 		--right_ring="Vengeful Ring",
