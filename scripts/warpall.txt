@@ -1,0 +1,7 @@
+send Honkworks /p <call6> Warp in progress, don't move!;
+wait 1;
+send Honkworks /ma "Warp II" <p1>;
+wait 5;
+send Honkworks /ma "Warp II" <p2>;
+wait 5;
+send Honkworks /ma "Warp" <me>;

@@ -1,0 +1,7 @@
+input /pcmd add Honkworks;
+wait 1;
+send Honkworks /join;
+wait 1;
+input /pcmd add Maldavius;
+wait 1;
+send Maldavius /join;

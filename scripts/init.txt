@@ -1,0 +1,99 @@
+keyboard_allowmmf 1
+
+//Set console variables
+console_position 15 50
+console_color 255 255 0 0
+console_displayactivity 1
+console_fadedelay 3500
+console_chatopen 1
+console_screendir screenshots
+
+//Set game variables
+game_forceambientlight 0
+game_ambientlight 255 75 75 75
+game_gamma 50
+game_allowsetcursorpos 0
+game_exittype 1
+game_exitprompt 1
+game_allowresize 0
+
+//Set general variables
+//showfps 1
+// FPS Position - Use -75 1 to position it on the top right corner.
+fps_position 20 20 //top left
+//fps_position -75 1 //top right
+
+drawdistance set 10
+//Bind keys
+//Bind syntax is "bind <key> <up> <command>
+// ^ represents control- and ! is alt, eg !1 is alt-1
+bind !f10 drawdistance set 10
+bind ^f10 drawdistance set 1
+//bind %end game_forceambientlight
+//bind sysrq screenshot png hide
+bind ^v paste
+echo Toggle Lighting = End (Bump mapping must be off to work properly)
+echo Toggle FPS = F12
+echo DrawDistance Lv 10: Alt-F10
+echo DrawDistance Lv 1: Ctrl-F10
+echo Paste Clipboard = Ctrl-V
+
+//Sets ConsoleBG Background Position
+consolebg position 15 50
+
+// *** ALLIANCE TARGET KEYS ***
+// This lets you push Alt+F1-6 and Ctrl+F1-6 to  to target Alliance members.
+bind ^f1 input /ta <a10>
+bind ^f2 input /ta <a11>
+bind ^f3 input /ta <a12>
+bind ^f4 input /ta <a13>
+bind ^f5 input /ta <a14>
+bind ^f6 input /ta <a15>
+bind !f1 input /ta <a20>
+bind !f2 input /ta <a21>
+bind !f3 input /ta <a22>
+bind !f4 input /ta <a23>
+bind !f5 input /ta <a24>
+bind !f6 input /ta <a25>
+
+// *** SILMARIL AND SEND COMMANDS ***
+// Allows us to send commands via Send to have alt characters follow and start Silmaril
+bind delete sm all follow 
+bind %end sm mirror
+bind pagedown sm all toggle 
+bind ^!f3 send @all /item "Silent Oil" <me>;wait 5;send @all /item "Prism Powder" <me>
+bind ^!f4 send Honkworks /say Hello!
+
+// NEXTGames Edits:
+// The below line is to enable DressUp BlinkMeNot Functionality.  Remove the // from the line below if you use DressUp.
+// du blinking all all on
+
+// The below four lines are to load these addons when FFXI loads.  Remove the // from before the addons that you use below.
+lua load XIPivot
+// lua load PartyBuffs
+// lua load parse
+// lua load skillchains
+
+// The below four lines are to activate the different common texture packs.  Remove the // from before the texture packs that you use below.  Texture packs that load first take precedence.  
+Pivot a AshenbubsHD-Basic
+// Pivot a NextHD
+// Pivot a FFXI-XD
+// Pivot a FFXI-SD
+
+// The below command will make sure scoreboard is visible when you load the game.  Remove the // from the line below if you want the scorebaord addon to appear by default.
+// sb visible
+
+// The below commands are to set the location of equipviewer.  Remove the // from the lines below for proper positioning of the EquipViewer addon if you use it.  The first line is for 1920x1080 resolutions, the second is for 4k Resotuions.  Only use one!
+equipviewer pos 2192 990
+
+// The below wait command is to make sure that any further commands run LAST and 30 seconds after we login.
+wait 30
+
+// Loads Silmaril on all characters, don't forget to launch the program!
+lua load Silmaril
+
+// The below command loads GearInfo.  If it's loaded before this step it has problems.    Remove the // from before the line below if you use GearInfo.
+// lua load GearInfo
+
+// The below command uncaps FPS to 60.  Setting it to 0 uncaps it and setting it to 2 is the default setting of 30.
+config FrameRateDivisor 1

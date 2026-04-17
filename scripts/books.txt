@@ -1,0 +1,5 @@
+/item "Leujaoam Log" <t>;
+/item "Mamool Ja Journal" <t>;
+/item "Lebros Chronicle" <t>;
+/item "Periqia Diary" <t>;
+/item "Ilrusi Ledger" <t>;
