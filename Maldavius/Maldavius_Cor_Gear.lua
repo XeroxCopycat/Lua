@@ -7,7 +7,7 @@ function user_job_setup()
     state.IdleMode:options('Normal', 'Regen', 'Refresh')
 	state.HybridMode:options('Normal', 'DT')
 	state.ExtraMeleeMode = M{['description']='Extra Melee Mode', 'None', 'DWMid', 'DWMax'}
-	state.Weapons:options('Savage', 'LeadenSalute', 'LastStand', 'Aeolian')
+	state.Weapons:options('Savage', 'Aeolian')
 	state.CompensatorMode:options('Always', '300', '1000', 'Never')
 
     gear.RAbullet = "Bronze Bullet"
@@ -58,7 +58,7 @@ function init_gear_sets()
 		--left_ear="Etiolation Earring", --FC +1
 		--right_ear="Loquac. Earring", --FC +2
 		--left_ring="Rahab Ring", --FC +2
-		--right_ring="Kishar Ring", --FC +4
+		right_ring="Kishar Ring", --FC +4
 		back={ name="Camulus's Mantle", augments={'VIT+20','Eva.+20 /Mag. Eva.+20','VIT+10','"Fast Cast"+10','Damage taken-5%',}},
 	}
 
@@ -73,47 +73,47 @@ function init_gear_sets()
 -- Phantom Roll precast
 --------------------------------------
     sets.precast.CorsairRoll = {
-		--main={ name="Rostam", augments={'Path: C',}},
+		main={ name="Rostam", augments={'Path: C',}},
 		range={ name="Compensator", augments={'DMG:+15','AGI+15','Rng.Acc.+15',}},
-		head="Comm. Tricorne", --(Reforge)
-		--body="Chasseur's Frac +4",
+		head="Lanun Tricorne", --(upgrade to +4)
+		body="Chasseur's Frac",
 		--hands="Nyame Gauntlets",
-		--legs="Chas. Culottes +3",
+		legs="Chas. Culottes",
 		--feet="Nyame Sollerets",
 		--neck="Regal Necklace",
 		--waist="Plat. Mog. Belt",
 		--left_ear="Eabani Earring",
 		--right_ear="Alabaster Earring",
-		--left_ring="Luzaf's Ring",
-		right_ring="Merirosvo Ring",
+		left_ring="Luzaf's Ring",
+		--right_ring="Merirosvo Ring",
 		back={ name="Camulus's Mantle", augments={'VIT+20','Eva.+20 /Mag. Eva.+20','VIT+10','"Fast Cast"+10','Damage taken-5%',}},
 	}
 
 -- Larger AOE on Phantom Roll
-	--sets.precast.LuzafRing = {right_ring="Luzaf's Ring"}
+	sets.precast.LuzafRing = {left_ring="Luzaf's Ring"}
     
 -- Precast sets for Specific rolls
-	--sets.precast.CorsairRoll["Caster's Roll"] = set_combine(sets.precast.CorsairRoll, {legs="Chasseur's Culottes +3"})
-	--sets.precast.CorsairRoll["Courser's Roll"] = set_combine(sets.precast.CorsairRoll, {feet="Chasseur's Bottes +4"})
-	--sets.precast.CorsairRoll["Blitzer's Roll"] = set_combine(sets.precast.CorsairRoll, {head="Chasseur's Tricorne +3"})
-	--sets.precast.CorsairRoll["Tactician's Roll"] = set_combine(sets.precast.CorsairRoll, {body="Chasseur's Frac +4"})
-	--sets.precast.CorsairRoll["Allies' Roll"] = set_combine(sets.precast.CorsairRoll, {hands="Chasseur's Gants +3"})
+	sets.precast.CorsairRoll["Caster's Roll"] = set_combine(sets.precast.CorsairRoll, {legs="Chasseur's Culottes"})
+	sets.precast.CorsairRoll["Courser's Roll"] = set_combine(sets.precast.CorsairRoll, {feet="Chasseur's Bottes"})
+	sets.precast.CorsairRoll["Blitzer's Roll"] = set_combine(sets.precast.CorsairRoll, {head="Chasseur's Tricorne"})
+	--sets.precast.CorsairRoll["Tactician's Roll"] = set_combine(sets.precast.CorsairRoll, {body="Chasseur's Frac"})
+	sets.precast.CorsairRoll["Allies' Roll"] = set_combine(sets.precast.CorsairRoll, {hands="Chasseur's Gants"})
 
 --------------------------------------
 -- Precast sets to enhance JAs
 --------------------------------------
 	--sets.precast.JA['Triple Shot'] = {body="Chasseur's Frac +4"}
-	--sets.precast.JA['Snake Eye'] = {legs="Lanun Trews +3"}
-    --sets.precast.JA['Wild Card'] = {feet="Lanun Bottes +4"}
-	sets.precast.JA['Random Deal'] = {body="Commodore Frac"} --(Reforge)
-	--sets.precast.FoldDoubleBust = {hands="Lanun Gants +3"}
+	sets.precast.JA['Snake Eye'] = {legs="Lanun Trews +3"} --(Upgrade to +4)
+    sets.precast.JA['Wild Card'] = {feet="Lanun Bottes"} --(Upgrade to +4)
+	sets.precast.JA['Random Deal'] = {body="Lanun Frac"} --(Upgrade to +4)
+	sets.precast.FoldDoubleBust = {hands="Lanun Gants"} --(Upgrade to +4)
 
 --------------------------------------
 -- Quick Draw Sests
 --------------------------------------
 -- Quick Draw, Normal
 	sets.precast.CorsairShot = {
-		--ammo="Hauksbok Bullet",
+		ammo="Hauksbok Bullet",
 		--head="Ikenga's Hat",
 		--body="Lanun Frac +4",
 		--hands={ name="Carmine Fin. Ga. +1", augments={'Rng.Atk.+20','"Mag.Atk.Bns."+12','"Store TP"+6',}},
@@ -123,7 +123,7 @@ function init_gear_sets()
 		--waist="Eschan Stone", -- Skrymir Belt +1
 		--left_ear="Moonshade Earring",
 		--right_ear="Friomisi Earring",
-		--left_ring="Metamor. Ring +1", -- Fenrir Ring +1
+		left_ring="Fenrir Ring +1",
 		--right_ring="Dingir Ring",
 		--back={ name="Camulus's Mantle", augments={'AGI+20','Mag. Acc+20 /Mag. Dmg.+20','AGI+10','Weapon skill damage +10%','Mag. Evasion+15',}}, 
 	}
@@ -140,7 +140,7 @@ function init_gear_sets()
 --------------------------------------
 -- No Flurry / Snapshot 60%
     sets.precast.RA = {
-		--head="Chass. Tricorne +3",
+		head="Chass. Tricorne",
 		--body="Oshosi Vest +1",
 		--hands={ name="Carmine Fin. Ga. +1", augments={'Rng.Atk.+20','"Mag.Atk.Bns."+12','"Store TP"+6',}},
 		--legs={ name="Adhemar Kecks +1", augments={'AGI+12','"Rapid Shot"+13','Enmity-6',}},
@@ -165,11 +165,11 @@ function init_gear_sets()
 -- Step Sets for /DNC
 --------------------------------------
 	sets.precast.Steps = {
-		--head="Chass. Tricorne +3",
-		--body="Chasseur's Frac +4",
-		--hands="Chasseur's Gants +3",
-		--legs="Chas. Culottes +3",
-		--feet="Chass. Bottes +4",
+		head="Chass. Tricorne",
+		body="Chasseur's Frac",
+		hands="Chasseur's Gants",
+		legs="Chas. Culottes",
+		feet="Chass. Bottes",
 		--neck="Null Loop",
 		--waist="Kentarch Belt +1",
 		--left_ear="Odr Earring",
@@ -284,8 +284,8 @@ function init_gear_sets()
 --------------------------------------	
 	sets.buff['Triple Shot'] = set_combine(sets.midcast.RA, {
 		--head="Oshosi Mask +1",
-		--body="Chasseur's Frac +4",
-		--hands={ name="Lanun Gants +3", augments={'Enhances "Fold" effect',}}, --(Upgrade to +4)
+		body="Chasseur's Frac",
+		hands={ name="Lanun Gants +3", augments={'Enhances "Fold" effect',}}, --(Upgrade to +4)
 		--legs="Osh. Trousers +1",
 		--feet="Osh. Leggings +1",
 	})
@@ -297,20 +297,22 @@ function init_gear_sets()
 -- Physical damage taken
 --------------------------------------
     sets.defense.PDT = { --PDT -35/50, DT 10/50
-        head="Meghanada Visor +2", --PDT -5
-		body="Meg. Cuirie +2", --PDT -8
-		hands="Meg. Gloves +2", --PDT -4
-		legs="Mummu Kecks +2", --DT -5
-		feet="Meg. Jam. +2", --PDT --3
+        head="Meghanada Visor +2",
+		body="Meg. Cuirie +2",
+		hands="Meg. Gloves +2",
+		legs="Mummu Kecks +2",
+		feet="Meg. Jam. +2",
+		neck="Loricate Torque +1",
+		waist="Eschan Stone",
 		left_ear="Sortiarius Earring",
-		left_ring="Warp Ring",
-		right_ring="Merirosvo Ring",
-		back={ name="Camulus's Mantle", augments={'VIT+20','Eva.+20 /Mag. Eva.+20','VIT+10','"Fast Cast"+10','Damage taken-5%',}}, --DT -5
+		left_ring="Archon Ring",
+		right_ring="Mummu Ring",
+		back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Damage taken-5%',}},
 	}
 
 -- Magical damage taken
     sets.defense.MDT = set_combine(sets.defense.PDT, {
-		--neck="Warder's Charm +1",
+		neck="Warder's Charm +1",
 		--waist="Carrier's Sash",
 		right_ring="Archon Ring",
 	})
@@ -332,7 +334,7 @@ function init_gear_sets()
 		head="Meghanada Visor +2", --PDT -5
 		body="Meg. Cuirie +2", --PDT -8
 		hands="Meg. Gloves +2", --PDT -4
-		legs="Mummu Kecks +2", --DT -5
+		legs="Carmine Cuisses +1", -- Mv Spd +18%
 		feet="Meg. Jam. +2", --PDT --3
 		left_ear="Sortiarius Earring",
 		left_ring="Warp Ring",
@@ -363,10 +365,6 @@ function init_gear_sets()
 --------------------------------------
 -- Engaged set, Single Wield	
     sets.engaged = {
-		main="Kaja Sword",
-		sub="Blurred Knife +1",
-		range="Compensator",
-		ammo="Bronze Bullet",
 		head="Mummu Bonnet +2",
 		body="Mummu Jacket +2",
 		hands="Meg. Gloves +2",
@@ -394,10 +392,10 @@ function init_gear_sets()
 ---------------------------------------------------------------------------------------------------------------
 -- Weapon Sets
 ---------------------------------------------------------------------------------------------------------------
-	--sets.weapons.Savage = {main="Naegling", sub="Gleti's Knife", range="Ataktos"}
+	sets.weapons.Savage = {main="Kaja Sword", sub="Demersal Degen +1", range="Compensator"}
 	--sets.weapons.LeadenSalute = {main="Naegling", sub="Tauret", range="Death Penalty"}
 	--sets.weapons.LastStand = {main="Naegling", sub="Gleti's Knife", range="Fomalhaut"}
-	--sets.weapons.Aeolian = {main={ name="Rostam", augments={'Path: B',}}, sub="Gleti's Knife", range="Ataktos",}
+	sets.weapons.Aeolian = {main={ name="Rostam", augments={'Path: C',}}, sub="Blurred Knife", range="Compensator"}
 	
 ---------------------------------------------------------------------------------------------------------------
 -- Weaponskill Sets
