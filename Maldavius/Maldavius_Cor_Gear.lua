@@ -74,18 +74,11 @@ function init_gear_sets()
 --------------------------------------
     sets.precast.CorsairRoll = {
 		main={ name="Rostam", augments={'Path: C',}},
-		range={ name="Compensator", augments={'DMG:+15','AGI+15','Rng.Acc.+15',}},
-		head="Lanun Tricorne", --(upgrade to +4)
-		body="Chasseur's Frac",
-		--hands="Nyame Gauntlets",
-		legs="Chas. Culottes",
-		--feet="Nyame Sollerets",
-		--neck="Regal Necklace",
-		--waist="Plat. Mog. Belt",
-		--left_ear="Eabani Earring",
-		--right_ear="Alabaster Earring",
+		range="Compensator",
+		head="Lanun Tricorne +3",
+		body="Chasseur's Frac +1",
+		hands="Chasseur's Gants +1",
 		left_ring="Luzaf's Ring",
-		--right_ring="Merirosvo Ring",
 		back={ name="Camulus's Mantle", augments={'VIT+20','Eva.+20 /Mag. Eva.+20','VIT+10','"Fast Cast"+10','Damage taken-5%',}},
 	}
 
@@ -93,20 +86,20 @@ function init_gear_sets()
 	sets.precast.LuzafRing = {left_ring="Luzaf's Ring"}
     
 -- Precast sets for Specific rolls
-	sets.precast.CorsairRoll["Caster's Roll"] = set_combine(sets.precast.CorsairRoll, {legs="Chasseur's Culottes"})
-	sets.precast.CorsairRoll["Courser's Roll"] = set_combine(sets.precast.CorsairRoll, {feet="Chasseur's Bottes"})
-	sets.precast.CorsairRoll["Blitzer's Roll"] = set_combine(sets.precast.CorsairRoll, {head="Chasseur's Tricorne"})
-	--sets.precast.CorsairRoll["Tactician's Roll"] = set_combine(sets.precast.CorsairRoll, {body="Chasseur's Frac"})
-	sets.precast.CorsairRoll["Allies' Roll"] = set_combine(sets.precast.CorsairRoll, {hands="Chasseur's Gants"})
+	sets.precast.CorsairRoll["Caster's Roll"] = set_combine(sets.precast.CorsairRoll, {legs="Chas. Culottes +1"})
+	sets.precast.CorsairRoll["Courser's Roll"] = set_combine(sets.precast.CorsairRoll, {feet="Chass. Bottes +1"})
+	sets.precast.CorsairRoll["Blitzer's Roll"] = set_combine(sets.precast.CorsairRoll, {head="Chass. Tricorne +1"})
+	sets.precast.CorsairRoll["Tactician's Roll"] = set_combine(sets.precast.CorsairRoll, {body="Chasseur's Frac +1"})
+	sets.precast.CorsairRoll["Allies' Roll"] = set_combine(sets.precast.CorsairRoll, {hands="Chasseur's Gants +1"})
 
 --------------------------------------
 -- Precast sets to enhance JAs
 --------------------------------------
-	--sets.precast.JA['Triple Shot'] = {body="Chasseur's Frac +4"}
+	sets.precast.JA['Triple Shot'] = {body="Chasseur's Frac +1"}
 	sets.precast.JA['Snake Eye'] = {legs="Lanun Trews +3"} --(Upgrade to +4)
-    sets.precast.JA['Wild Card'] = {feet="Lanun Bottes"} --(Upgrade to +4)
-	sets.precast.JA['Random Deal'] = {body="Lanun Frac"} --(Upgrade to +4)
-	sets.precast.FoldDoubleBust = {hands="Lanun Gants"} --(Upgrade to +4)
+    sets.precast.JA['Wild Card'] = {feet="Lanun Bottes +3"} --(Upgrade to +4)
+	sets.precast.JA['Random Deal'] = {body="Lanun Frac +3"} --(Upgrade to +4)
+	sets.precast.FoldDoubleBust = {hands="Lanun Gants +3"} --(Upgrade to +4)
 
 --------------------------------------
 -- Quick Draw Sests
@@ -115,12 +108,12 @@ function init_gear_sets()
 	sets.precast.CorsairShot = {
 		ammo="Hauksbok Bullet",
 		--head="Ikenga's Hat",
-		--body="Lanun Frac +4",
+		body="Lanun Frac +3",
 		--hands={ name="Carmine Fin. Ga. +1", augments={'Rng.Atk.+20','"Mag.Atk.Bns."+12','"Store TP"+6',}},
 		--legs="Nyame Flanchard",
-		--feet="Lanun Bottes +4",
+		feet="Lanun Bottes +3",
 		--neck="Baetyl Pendant",
-		--waist="Eschan Stone", -- Skrymir Belt +1
+		waist="Eschan Stone", -- Skrymir Belt +1
 		--left_ear="Moonshade Earring",
 		--right_ear="Friomisi Earring",
 		left_ring="Fenrir Ring +1",
@@ -128,8 +121,8 @@ function init_gear_sets()
 		--back={ name="Camulus's Mantle", augments={'AGI+20','Mag. Acc+20 /Mag. Dmg.+20','AGI+10','Weapon skill damage +10%','Mag. Evasion+15',}}, 
 	}
 
-  -- Quick Draw, Fodder (Chass. Bottes +4 for +31% elemental bonus on quick draw)
-	--sets.precast.CorsairShot.Fodder = set_combine(sets.precast.CorsairShot, {feet="Chass. Bottes +4"})
+  -- Quick Draw, Fodder (Chass. Bottes +3 for +31% elemental bonus on quick draw)
+	sets.precast.CorsairShot.Fodder = set_combine(sets.precast.CorsairShot, {feet="Chass. Bottes +1"}) --(Upgrade to +31)
 		
   -- Specific Quickdraw shots
 	--sets.precast.CorsairShot['Dark Shot'] = set_combine(sets.precast.CorsairShot['Light Shot'], {})
@@ -184,18 +177,15 @@ function init_gear_sets()
 --------------------------------------
 -- Curing Waltz on others
     sets.precast.Waltz = {
-		--head="Nyame Helm",
-		--body="Nyame Mail",
-		--hands="Nyame Gauntlets",
-		--legs="Dashing Subligar",
-		--feet="Rawhide Boots",
-		--neck="Unmoving Collar +1",
-		--waist="Chaac Belt",
-		--left_ear="Handler's Earring",
-		--right_ear="Alabaster Earring",
-		--left_ring="Murky Ring",
-		--right_ring="Metamor. Ring +1",
-		--back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
+		head="Lanun Tricorne +3",
+		body="Lanun Frac +3",
+		hands="Lanun Gants +3",
+		legs="Lanun Trews +3",
+		feet="Lanun Bottes +3",
+		neck="Loricate Torque +1",
+		left_ring="Archon Ring",
+		right_ring="Murky Ring",
+		back={ name="Camulus's Mantle", augments={'VIT+20','Eva.+20 /Mag. Eva.+20','VIT+10','"Fast Cast"+10','Damage taken-5%',}},
 	}
 		
   -- Curing Waltz on aelf
@@ -238,19 +228,17 @@ function init_gear_sets()
 --------------------------------------
 -- Ranged Attack, Normal
 	sets.midcast.RA = {
-        --ammo="Bronze Bullet",
-		--head="Ikenga's Hat",
-		--body="Ikenga's Vest",
-		--hands="Ikenga's Gloves",
-		--legs="Chas. Culottes +3",
-		--feet="Ikenga's Clogs",
-		--neck="Iskur Gorget",
-		--waist="Yemaya Belt",
-		--left_ear="Dedition Earring",
-		--right_ear="Telos Earring",
-		--left_ring="Ilabrat Ring",
-		--right_ring="Crepuscular Ring",
-		--back={ name="Camulus's Mantle", augments={'AGI+20','Rng.Acc.+20 Rng.Atk.+20','Rng.Acc.+10','"Store TP"+10','Mag. Evasion+15',}},
+        head="Lanun Tricorne +3",
+		body="Lanun Frac +3",
+		hands="Lanun Gants +3",
+		legs="Lanun Trews +3",
+		feet="Lanun Bottes +3",
+		neck="Loricate Torque +1",
+		waist="Eschan Stone",
+		right_ear="Neritic Earring",
+		left_ring="Mummu Ring",
+		right_ring="Murky Ring",
+		back={ name="Camulus's Mantle", augments={'VIT+20','Eva.+20 /Mag. Eva.+20','VIT+10','"Fast Cast"+10','Damage taken-5%',}},
 	}
 
 -- Ranged Attack, Accuracy 
@@ -260,13 +248,9 @@ function init_gear_sets()
 	
 -- Ranged Attack, Full Accuracy
 	sets.midcast.RA.FullAcc = set_combine(sets.midcast.RA, {
-		--head="Chass. Tricorne +3",
-		--body="Chasseur's Frac +4",
-		--hands="Chasseur's Gants +3",
-		--feet="Chass. Bottes +4",
-		--waist="K. Kachina Belt +1",
-		--left_ear="Beyla Earring",
-		--left_ring="Cacoethic Ring +1",
+		head="Mummu Bonnet +2",
+		body="Meg. Cuirie +2",
+		feet="Meg. Jam. +2",
 	})
 	
 -- Ranged Attack, Subtble Blow
@@ -296,18 +280,15 @@ function init_gear_sets()
 --------------------------------------
 -- Physical damage taken
 --------------------------------------
-    sets.defense.PDT = { --PDT -35/50, DT 10/50
-        head="Meghanada Visor +2",
-		body="Meg. Cuirie +2",
-		hands="Meg. Gloves +2",
-		legs="Mummu Kecks +2",
-		feet="Meg. Jam. +2",
-		neck="Loricate Torque +1",
-		waist="Eschan Stone",
-		left_ear="Sortiarius Earring",
-		left_ring="Archon Ring",
-		right_ring="Mummu Ring",
-		back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Damage taken-5%',}},
+    sets.defense.PDT = { --PDT -23/50, DT -26/50
+        head="Meghanada Visor +2",  --PDT -5
+		body="Meg. Cuirie +2", --PDT -8
+		head="Meghanada Visor +2", --PDT -4
+		legs="Mummu Kecks +2", --DT -5
+		feet="Lanun Bottes +3", --PDT -6
+		neck="Loricate Torque +1", --DT -6
+		right_ring="Murky Ring", --DT -10
+		back={ name="Camulus's Mantle", augments={'VIT+20','Eva.+20 /Mag. Eva.+20','VIT+10','"Fast Cast"+10','Damage taken-5%',}}, --DT -5
 	}
 
 -- Magical damage taken
@@ -335,10 +316,9 @@ function init_gear_sets()
 		body="Meg. Cuirie +2", --PDT -8
 		hands="Meg. Gloves +2", --PDT -4
 		legs="Carmine Cuisses +1", -- Mv Spd +18%
-		feet="Meg. Jam. +2", --PDT --3
-		left_ear="Sortiarius Earring",
-		left_ring="Warp Ring",
-		right_ring="Merirosvo Ring",
+		feet="Lanun Bottes +3", --PDT -6
+		neck="Loricate Torque +1", --DT -6
+		right_ring="Murky Ring", --DT -10
 		back={ name="Camulus's Mantle", augments={'VIT+20','Eva.+20 /Mag. Eva.+20','VIT+10','"Fast Cast"+10','Damage taken-5%',}}, --DT -5
 	}
 		
@@ -347,7 +327,6 @@ function init_gear_sets()
 		head="Meghanada Visor +2",
 		body="Meg. Cuirie +2",
 		hands="Meg. Gloves +2",
-		legs="Meg. Chausses +2",
 		feet="Meg. Jam. +2",
 		--neck="Bathy Choker +1",
 		--left_ear="Dawn Earring",
@@ -363,16 +342,17 @@ function init_gear_sets()
 --------------------------------------
 -- Engaged Sets
 --------------------------------------
--- Engaged set, Single Wield	
-    sets.engaged = {
+	sets.engaged = {
 		head="Mummu Bonnet +2",
-		body="Mummu Jacket +2",
+		body="Meg. Cuirie +2",
 		hands="Meg. Gloves +2",
 		legs="Meg. Chausses +2",
 		feet="Mummu Gamash. +2",
-		left_ear="Sortiarius Earring",
-		left_ring="Warp Ring",
-		right_ring="Merirosvo Ring",
+		neck="Loricate Torque +1",
+		waist="Eschan Stone",
+		right_ear="Neritic Earring",
+		left_ring="Rajas Ring",
+		right_ring="Murky Ring",
 		back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Damage taken-5%',}},
     }
 	
@@ -407,13 +387,14 @@ function init_gear_sets()
 		head="Mummu Bonnet +2",
 		body="Meg. Cuirie +2",
 		hands="Meg. Gloves +2",
-		legs="Meg. Chausses +2",
-		feet="Mummu Gamash. +2",
-		left_ear="Sortiarius Earring",
-		left_ring="Warp Ring",
-		right_ring="Merirosvo Ring",
+		legs="Mummu Kecks +2",
+		feet="Lanun Bottes +3",
+		neck="Loricate Torque +1",
+		waist="Eschan Stone",
+		left_ring="Mummu Ring",
+		right_ring="Murky Ring",
 		back={ name="Camulus's Mantle", augments={'STR+20','Accuracy+20 Attack+20','Weapon skill damage +10%','Damage taken-5%',}},
-    }
+	}
 
   -- Default weaponskill accuracy gear
     sets.precast.WS.Acc = set_combine(sets.precast.WS, {})
@@ -439,7 +420,6 @@ function init_gear_sets()
 --------------------------------------
 -- Hot Shot
     sets.precast.WS['Hot Shot'] = set_combine(sets.precast.WS, {})
-	
 	sets.precast.WS['Hot Shot'].Acc = set_combine(sets.precast.WS, {})
 	sets.precast.WS['Hot Shot'].Fodder = set_combine(sets.precast.WS, {})
 
