@@ -9,7 +9,7 @@ function user_job_setup()
     state.PhysicalDefenseMode:options('PDT')
 	state.MagicalDefenseMode:options('MDT')
 	state.ResistDefenseMode:options('MEVA')
-	state.Weapons:options('Rudras', 'Savage', 'Aeolian', 'Evisceration', 'Exenterator')
+	state.Weapons:options('Rudras', 'Savage', 'Aeolian', 'Evisceration', 'Exenterator', 'Mpu', 'None')
 
     state.ExtraMeleeMode = M{['description']='Extra Melee Mode', 'None', 'DWMid', 'DWMax'}
 	state.AmbushMode = M(false, 'Ambush Mode')
@@ -71,7 +71,7 @@ function init_gear_sets()
 		head="Plun. Bonnet +3", -- Upgrade to +4
 		body="Skulker's Vest +3",
 		hands="Skulk. Armlets +3",
-		legs="Plun. Culottes +4", -- Upgrade to +4
+		legs="Plun. Culottes +4",
 		feet="Skulk. Poulaines +3",
 		neck={ name="Asn. Gorget +2", augments={'Path: A',}},
 		waist="Svelt. Gouriz +1",
@@ -87,16 +87,16 @@ function init_gear_sets()
 
 -- Waltz sets
     sets.precast.Waltz = {
-		ammo="Aurgelmir Orb", -- Yamarang
+		ammo="Yamarang",
 		head="Pill. Bonnet +4",
-		body="Gleti's Cuirass", -- Upgrade to R25+ 
+		body="Passion Jacket", 
 		hands="Regal Gloves",
 		legs="Dashing Subligar",
 		feet="Rawhide Boots",
 		neck="Unmoving Collar +1",
 		waist="Chaac Belt",
 		left_ear="Handler's Earring",
-		right_ear="Alabaster Earring", -- Upgrade to R30
+		right_ear="Alabaster Earring",
 		left_ring="Metamor. Ring +1",
 		right_ring="Regal Ring", -- Asklepian Ring (?)
 		back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Phys. dmg. taken-10%',}},
@@ -105,7 +105,7 @@ function init_gear_sets()
 	sets.Self_Waltz = {head="Mummu Bonnet +2"}
 	sets.precast.Waltz['Healing Waltz'] = {}
 
-    sets.precast.FC.Utsusemi = set_combine(sets.precast.FC, {neck="Magoraga Beads"})
+    sets.precast.FC.Utsusemi = set_combine(sets.precast.FC, {body="Passion Jacket", neck="Magoraga Beads"})
 	
 -- Ranged Snapshot Gear
     sets.precast.RA = {
@@ -305,6 +305,8 @@ function init_gear_sets()
 	sets.weapons.Aeolian = {main="Aeneas", sub="Centovente"}
 	sets.weapons.Evisceration = {main="Tauret", sub="Gleti's Knife"}
 	sets.weapons.Exenterator = {main="Aeneas", sub="Centovente"}
+	sets.weapons.Mpu = {main="Mpu Gandring", sub="Centovente"}
+	sets.weapons.None = {main=empty, sub=empty}
 	
 -------------------------------------------------------------------------------------------------------------------
 -- Weaponskill Sets
