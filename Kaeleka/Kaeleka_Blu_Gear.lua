@@ -1,10 +1,10 @@
 function user_job_setup()
 	-- Options: Override default values
-    state.OffenseMode:options('Fodder','Normal','Acc','FullAcc')
+    state.OffenseMode:options('Fodder', 'Normal', 'Acc', 'FullAcc')
 	state.HybridMode:options('Normal','DT')
-    state.WeaponskillMode:options('Match','Normal','Acc','FullAcc','Fodder')
-    state.CastingMode:options('Normal','SIRD','Resistant','FullMacc','Fodder','Proc')
-    state.IdleMode:options('Normal','Sphere','PDT','DTHippo')
+    state.WeaponskillMode:options('Normal', 'Acc', 'FullAcc', 'Fodder')
+    state.CastingMode:options('Normal', 'SIRD', 'MAcc', 'FullMacc', 'Fodder')
+    state.IdleMode:options('Normal', 'Refresh', 'Regain', 'Regen')
 	state.PhysicalDefenseMode:options('PDT')
 	state.MagicalDefenseMode:options('MDT')
 	state.ResistDefenseMode:options('MEVA')
@@ -150,11 +150,12 @@ function init_gear_sets()
 	}
 	
 	sets.midcast['Blue Magic'] = {}
-	
+
 
 --------------------------------------
--- Blue Magic Spells, Physical
+-- Blue Magic Spells
 --------------------------------------
+-- Blue Magic Spells, Physical
 	sets.midcast['Blue Magic'].Physical = {
 		ammo="Aurgelmir Orb",
 		head="Gleti's Mask",
@@ -169,6 +170,18 @@ function init_gear_sets()
 		left_ring="Chirich Ring +1",
 		right_ring="Chirich Ring +1",
 		back="Null Shawl",
+	}
+	
+	sets.midcast['Blue Magic'].Physical.SIRD = {
+		ammo="Staunch Tathlum +1", --SIRD -11
+		head="Adhara Turban", --SIRD -20
+		--hands="Rawhide Gloves", --SIRD -15
+		legs="Assim. Shalwar +2", --SIRD -22
+		--feet="Amalric Nails" --SIRD -15
+		neck="Loricate Torque +1", --(Augment to R15, SIRD -5)
+		--waist="Rumination Sash", --SIRD -10
+		left_ring="Evanescence Ring", --SIRD -5
+		right_ring="Murky Ring", --SIRD -3
 	}
 	
 	sets.midcast['Blue Magic'].Physical.Resistant = {}
@@ -340,7 +353,7 @@ function init_gear_sets()
 --------------------------------------
 -- Blue Magic Spells, Magical
 --------------------------------------
-	sets.midcast['Blue Magic'] = {
+	sets.midcast['Blue Magic'].Magical = {
 		ammo="Pemphredo Tathlum",
 		head="Nyame Helm",
 		body="Nyame Mail",
@@ -355,16 +368,33 @@ function init_gear_sets()
 		right_ring="Murky Ring",
 		back="Aurist's Cape",
 	}
+	
+-- Blue Magic Spells, Magical SIRD (SIRD 61/102)
+	sets.midcast['Blue Magic'].Magical.SIRD = set_combine(sets.midcast['Blue Magic'], {
+		ammo="Staunch Tathlum +1", --SIRD -11
+		head="Adhara Turban", --SIRD -20
+		--hands="Rawhide Gloves", --SIRD -15
+		legs="Assim. Shalwar +2", --SIRD -22
+		--feet="Amalric Nails" --SIRD -15
+		neck="Loricate Torque +1", --(Augment to R15, SIRD -5)
+		--waist="Rumination Sash", --SIRD -10
+		left_ring="Evanescence Ring", --SIRD -5
+		right_ring="Murky Ring", --SIRD -3
+	})
+	
+	sets.midcast['Blue Magic'].Magical.MAcc = set_combine(sets.midcast['Blue Magic'], {})
+	sets.midcast['Blue Magic'].Magical.FullMAcc = set_combine(sets.midcast['Blue Magic'], {})
+	sets.midcast['Blue Magic'].Magical.Fodder = set_combine(sets.midcast['Blue Magic'], {})
 
 -- Breath Based Blue Magic Spells
 	sets.midcast['Blue Magic'].Breath = set_combine(sets.midcast['Blue Magic'], {head="Luh. Keffiyeh +1"})
 
--- Buffing Blue Magic Spells
-	sets.midcast['Blue Magic'].SkillBasedBuff = set_combine(sets.midcast['Blue Magic'], {
-		head="Luh. Keffiyeh +1",
-		body="Assim. Jubbah",
-		feet="Luhlaza Charuqs +3",
-		right_ear={ name="Hashi. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+11','Mag. Acc.+11','"Dbl.Atk."+3',}},
+-- Buffing Blue Magic Spells (Blue Magic Skill +61)
+	sets.midcast['Blue Magic'].SkillBasedBuff = set_combine(sets.midcast['Blue Magic'], { 
+		head="Luh. Keffiyeh +3", --Blue Magic +17
+		body="Assim. Jubbah +2", --Blue Magic +22
+		feet="Luhlaza Charuqs +3", --Blue Magic +12
+		right_ear={ name="Hashi. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+11','Mag. Acc.+11','"Dbl.Atk."+3',}},	--Blue Magic +11
 	})
 	
 	sets.midcast['Blue Magic'].Buff = {}
@@ -504,13 +534,13 @@ function init_gear_sets()
 		head="Nyame Helm",
 		body="Jhakri Robe +2",
 		hands="Nyame Gauntlets",
-		legs="Nyame Flanchard",
+		legs={ name="Carmine Cuisses +1", augments={'Accuracy+20','Attack+12','"Dual Wield"+6',}},
 		feet="Nyame Sollerets",
 		neck="Sibyl Scarf",
 		waist="Fucho-no-Obi",
 		left_ear="Eabani Earring",
 		right_ear="Alabaster Earring",
-		left_ring="Shneddick Ring",
+		left_ring="Chirich Ring +1",
 		right_ring="Murky Ring",
 		back="Null Shawl",
 	}
@@ -524,15 +554,20 @@ function init_gear_sets()
 -- Regen
 	sets.idle.Regen = set_combine(sets.idle, {
 		body="Nyame Mail",
-		legs={ name="Carmine Cuisses +1", augments={'Accuracy+20','Attack+12','"Dual Wield"+6',}},
 		neck="Bathy Choker +1",
 		left_ear="Dawn Earring",
 		left_ring="Chirich Ring +1",
 		right_ring="Chirich Ring +1",
-		})
+	})
 	
 -- Regain
-	sets.idle.Regain = set_combine(sets.idle, {})
+	sets.idle.Regain = set_combine(sets.idle, {
+		head="Gleti's Mask",
+		body="Gleti's Cuirass",
+		hands="Gleti's Gauntlets",
+		legs="Gleti's Breeches",
+		feet="Gleti's Boots",
+	})
 
 
 -------------------------------------------------------------------------------------------------------------------
@@ -682,7 +717,7 @@ function init_gear_sets()
 -- Weapons sets
 	sets.weapons.Naegling = {main="Naegling", sub="Sakpata's Sword"}
 	sets.weapons.Maxentius = {main="Maxentius", sub="Sakpata's Sword"}
-	sets.weapons.None = {main=empty, sub=empty}
+	sets.weapons.None = {main="Machaera", sub=empty}
 	sets.weapons.ProcDagger = {main="Qutrub Knife", sub=empty}
 	sets.weapons.ProcSword = {main="Ibushi Shinai", sub=empty}
 	sets.weapons.ProcGreatSword = {main="Lament", sub=empty}
