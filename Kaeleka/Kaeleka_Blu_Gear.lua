@@ -1,8 +1,8 @@
 function user_job_setup()
 	-- Options: Override default values
-    state.OffenseMode:options('Fodder', 'Normal', 'Acc', 'FullAcc')
-	state.HybridMode:options('Normal','DT')
-    state.WeaponskillMode:options('Normal', 'Acc', 'FullAcc', 'Fodder')
+    state.OffenseMode:options('Normal', 'Acc', 'FullAcc', 'SubtleBlow', 'Fodder')
+	state.HybridMode:options('Normal', 'DT')
+    state.WeaponskillMode:options('Match', 'Normal', 'Acc', 'FullAcc', 'SubtleBlow', 'Fodder')
     state.CastingMode:options('Normal', 'SIRD', 'MAcc', 'FullMacc', 'Fodder')
     state.IdleMode:options('Normal', 'Refresh', 'Regain', 'Regen')
 	state.PhysicalDefenseMode:options('PDT')
@@ -65,16 +65,16 @@ function init_gear_sets()
 --------------------------------------
 -- Precast sets to enhance JAs
 --------------------------------------
-	sets.buff['Burst Affinity'] = {}
-	sets.buff['Chain Affinity'] = {}
-	sets.buff.Convergence = {head="Luh. Keffiyah +1"}
+	sets.buff['Burst Affinity'] = {legs="Assim. Shalwar +2", feet="Hashi. Basmak +2"}
+	sets.buff['Chain Affinity'] = {head="Hashishin Kavuk +3", feet="Assim. Charuqs +2"}
+	sets.buff.Convergence = {head="Luh. Keffiyah +3"}
 	sets.buff.Diffusion = {feet="Luhlaza Charuqs +3"}
-	sets.buff.Enchainment = {body="Luhlaza Jubbah +1"}
-	sets.buff.Efflux = {}
+	sets.buff.Enchainment = {body="Luhlaza Jubbah +3"}
+	sets.buff.Efflux = {legs="Hashishin Tayt +2"}
 	sets.buff.Doom = set_combine(sets.buff.Doom, {})
 	sets.HPDown = {}
 	sets.HPCure = {}
-	sets.precast.JA['Azure Lore'] = {hands="Luh. Bazubands +1"}
+	sets.precast.JA['Azure Lore'] = {hands="Luh. Bazubands +3"}
 
 --------------------------------------
 -- Waltz sets for /DNC
@@ -355,15 +355,15 @@ function init_gear_sets()
 --------------------------------------
 	sets.midcast['Blue Magic'].Magical = {
 		ammo="Pemphredo Tathlum",
-		head="Nyame Helm",
-		body="Nyame Mail",
-		hands="Nyame Gauntlets",
-		legs="Nyame Flanchard",
-		feet="Nyame Sollerets",
-		neck="Sibyl Scarf",
+		head="Hashishin Kavuk +3",
+		body="Hashishin Mintan +2",
+		hands="Hashi. Bazu. +2",
+		legs="Luhlaza Shalwar +3",
+		feet="Hashi. Basmak +2",
+		neck="Baetyl Pendant",
 		waist="Orpheus's Sash",
-		left_ear="Regal Earring",
-		right_ear="Friomisi Earring",
+		left_ear="Friomisi Earring",
+		right_ear="Regal Earring",
 		left_ring="Metamor. Ring +1",
 		right_ring="Murky Ring",
 		back="Aurist's Cape",
@@ -637,23 +637,38 @@ function init_gear_sets()
 --------------------------------------
 	sets.precast.WS = {
 		ammo="Oshasha's Treatise",
-		head="Nyame Helm",
+		head="Hashishin Kavuk +3",
 		body="Nyame Mail",
 		hands="Nyame Gauntlets",
 		legs="Nyame Flanchard",
 		feet="Nyame Sollerets",
-		neck="Rep. Plat. Medal",
+		neck="Combatant's Torque",
 		waist="Sailfi Belt +1",
 		left_ear="Moonshade Earring",
 		right_ear="Ishvara Earring",
 		left_ring="Cornelia's Ring",
-		right_ring="Sroda Ring",
-		back="Null Shawl",
+		right_ring="Petrov Ring",
+		back={ name="Rosmerta's Cape", augments={'STR+20','Accuracy+20 Attack+20','Weapon skill damage +10%','Damage taken-5%',}},
 	}
 	
-	sets.precast.WS.Acc = {}
-	sets.precast.WS.FullAcc = {}
-	sets.precast.WS.DT = {}
+	sets.precast.WS.Acc = set_combine(sets.precast.WS, {
+		neck="Combatant's Torque",
+		right_ear={ name="Hashi. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+11','Mag. Acc.+11','"Dbl.Atk."+3',}},
+		right_ring="Chirich Ring +1",
+	})
+	
+	sets.precast.WS.FullAcc = set_combine(sets.precast.WS, {
+		body="Hashishin Mintan +2",
+		hands="Hashi. Bazu. +2",
+		legs="Luhlaza Shalwar +3",
+		neck="Null Loop",
+		waist="Kentarch Belt +1",
+		right_ear={ name="Hashi. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+11','Mag. Acc.+11','"Dbl.Atk."+3',}},
+		right_ring="Chirich Ring +1",
+	})
+	
+	sets.precast.WS.DT = set_combine(sets.precast.WS, {neck="Null Loop", right_ear="Alabaster Earring"})
+	
 	sets.precast.WS.Fodder = set_combine(sets.precast.WS, {
 		ammo="Crepuscular Pebble",
 		hands="Gleti's Gauntlets",
@@ -674,37 +689,76 @@ function init_gear_sets()
 	sets.precast.WS['Realmrazer'].Fodder = set_combine(sets.precast.WS['Realmrazer'], {})
 
 -- Sword Weaponskills
-	sets.precast.WS['Chant du Cygne'] = set_combine(sets.precast.WS, {})
+  -- Chant du Cygne
+	sets.precast.WS['Chant du Cygne'] = set_combine(sets.precast.WS, {
+		ammo="Coiste Bodhar",
+		head={ name="Adhemar Bonnet +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
+		body="Gleti's Cuirass",
+		hands={ name="Adhemar Wrist. +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
+		legs="Gleti's Breeches",
+		feet="Gleti's Boots",
+		neck="Null Loop",
+		waist="Fotia Belt",
+		right_ear="Odr Earring",
+		right_ring="Murky Ring",
+	})
+	
 	sets.precast.WS['Chant du Cygne'].Acc = set_combine(sets.precast.WS.Acc, {})
 	sets.precast.WS['Chant du Cygne'].FullAcc = set_combine(sets.precast.WS.FullAcc, {})
 	sets.precast.WS['Chant du Cygne'].DT = set_combine(sets.precast.WS.DT, {})
 	sets.precast.WS['Chant du Cygne'].Fodder = set_combine(sets.precast.WS['Chant du Cygne'], {})
-
-	sets.precast.WS['Requiescat'] = set_combine(sets.precast.WS, {})
-	sets.precast.WS['Requiescat'].Acc = set_combine(sets.precast.WS.Acc, {})
-	sets.precast.WS['Requiescat'].FullAcc = set_combine(sets.precast.WS.FullAcc, {})
-	sets.precast.WS['Requiescat'].DT = set_combine(sets.precast.WS.DT, {})
-	sets.precast.WS['Requiescat'].Fodder = set_combine(sets.precast.WS['Requiescat'], {})
 	
-	sets.precast.WS['Savage Blade'] = set_combine(sets.precast.WS, {})
-	sets.precast.WS['Savage Blade'].Acc = set_combine(sets.precast.WS.Acc, {})
-	sets.precast.WS['Savage Blade'].FullAcc = set_combine(sets.precast.WS.FullAcc, {})
-	sets.precast.WS['Savage Blade'].DT = set_combine(sets.precast.WS.DT, {})
-	sets.precast.WS['Savage Blade'].Fodder = set_combine(sets.precast.WS['Savage Blade'], {})
-
-	sets.precast.WS['Vorpal Blade'] = sets.precast.WS['Chant du Cygne']
-	sets.precast.WS['Vorpal Blade'].Acc = sets.precast.WS['Chant du Cygne'].Acc
-	sets.precast.WS['Vorpal Blade'].FullAcc = sets.precast.WS['Chant du Cygne'].FullAcc
-	sets.precast.WS['Vorpal Blade'].DT = sets.precast.WS['Chant du Cygne'].DT
-	sets.precast.WS['Vorpal Blade'].Fodder = sets.precast.WS['Chant du Cygne'].Fodder
-
+  -- Expiacion
 	sets.precast.WS['Expiacion'] = set_combine(sets.precast.WS, {})
 	sets.precast.WS['Expiacion'].Acc = set_combine(sets.precast.WS.Acc, {})
 	sets.precast.WS['Expiacion'].FullAcc = set_combine(sets.precast.WS.FullAcc, {})
 	sets.precast.WS['Expiacion'].DT = set_combine(sets.precast.WS.DT, {})
 	sets.precast.WS['Expiacion'].Fodder = set_combine(sets.precast.WS['Expiacion'], {})
 
-	sets.precast.WS['Sanguine Blade'] = {}
+  -- Red Lotus Blade
+	sets.precast.WS['Red Lotus Blade'] = set_combine(sets.precast.WS, {
+		ammo="Ghastly Tathlum +1",
+		hands="Jhakri Cuffs +2",
+		neck="Erra Pendant",
+		waist="Orpheus's Sash",
+		right_ear="Regal Earring",
+	})
+	
+	sets.precast.WS['Red Lotus Blade'].Acc = set_combine(sets.precast.WS.Acc, {})
+	sets.precast.WS['Red Lotus Blade'].FullAcc = set_combine(sets.precast.WS.FullAcc, {})
+	sets.precast.WS['Red Lotus Blade'].DT = set_combine(sets.precast.WS.DT, {})
+	sets.precast.WS['Red Lotus Blade'].Fodder = set_combine(sets.precast.WS.Fodder, {})
+  
+  -- Resquiescat
+	sets.precast.WS['Requiescat'] = set_combine(sets.precast.WS, {})
+	sets.precast.WS['Requiescat'].Acc = set_combine(sets.precast.WS.Acc, {})
+	sets.precast.WS['Requiescat'].FullAcc = set_combine(sets.precast.WS.FullAcc, {})
+	sets.precast.WS['Requiescat'].DT = set_combine(sets.precast.WS.DT, {})
+	sets.precast.WS['Requiescat'].Fodder = set_combine(sets.precast.WS['Requiescat'], {})
+	
+  -- Sanguine Blade
+	sets.precast.WS['Sanguine Blade'] = set_combine(sets.precast.WS, {
+		ammo="Ghastly Tathlum +1",
+		hands="Jhakri Cuffs +2",
+		legs="Luhlaza Shalwar +3",
+		feet="Hashi. Basmak +2",
+		neck="Sibyl Scarf",
+		waist="Orpheus's Sash",
+		right_ear="Regal Earring",
+		right_ring="Archon Ring",
+		back={ name="Rosmerta's Cape", augments={'STR+20','Accuracy+20 Attack+20','Weapon skill damage +10%','Damage taken-5%',}},
+	})
+  
+  -- Savage Blade
+	sets.precast.WS['Savage Blade'] = set_combine(sets.precast.WS, {
+		ammo="Coiste Bodhar", 
+		neck="Rep. Plat. Medal",
+	})
+	sets.precast.WS['Savage Blade'].Acc = set_combine(sets.precast.WS.Acc, {})
+	sets.precast.WS['Savage Blade'].FullAcc = set_combine(sets.precast.WS.FullAcc, {})
+	sets.precast.WS['Savage Blade'].DT = set_combine(sets.precast.WS.DT, {})
+	sets.precast.WS['Savage Blade'].Fodder = set_combine(sets.precast.WS['Savage Blade'], {})
+
 	
 --------------------------------------
 -- Misc. Weaponskill gear
@@ -769,17 +823,17 @@ end
 function select_default_macro_book()
 	-- Default macro set/book
 	if player.sub_job == 'DNC' then
-		set_macro_page(4, 2)
+		set_macro_page(4, 16)
 	elseif player.sub_job == 'NIN' then
-		set_macro_page(5, 2)
+		set_macro_page(5, 16)
 	elseif player.sub_job == 'WAR' then
-		set_macro_page(7, 2)
+		set_macro_page(7, 16)
 	elseif player.sub_job == 'RUN' then
-		set_macro_page(3, 2)
+		set_macro_page(3, 16)
 	elseif player.sub_job == 'THF' then
-		set_macro_page(2, 2)
+		set_macro_page(2, 16)
 	elseif player.sub_job == 'RDM' then
-		set_macro_page(1, 2)
+		set_macro_page(1, 16)
 	else
 		set_macro_page(6, 2)
 	end
