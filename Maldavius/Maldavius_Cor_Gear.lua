@@ -280,13 +280,17 @@ function init_gear_sets()
 --------------------------------------
 -- Physical damage taken
 --------------------------------------
-    sets.defense.PDT = { --PDT -23/50, DT -26/50
-        head="Meghanada Visor +2",  --PDT -5
-		body="Meg. Cuirie +2", --PDT -8
-		head="Meghanada Visor +2", --PDT -4
-		legs="Mummu Kecks +2", --DT -5
-		feet="Lanun Bottes +3", --PDT -6
+    sets.defense.PDT = { --DT -64/50
+        head="Nyame Helm", --DT -7
+		body="Nyame Mail", --DT -9
+		hands="Nyame Gauntlets", --DT -7
+		legs="Nyame Flanchard", --DT -8
+		feet="Nyame Sollerets", --DT -7
 		neck="Loricate Torque +1", --DT -6
+		waist="Eschan Stone",
+		left_ear="Neritic Earring",
+		right_ear="Alabaster Earring", --DT -5
+		left_ring="Archon Ring",
 		right_ring="Murky Ring", --DT -10
 		back={ name="Camulus's Mantle", augments={'VIT+20','Eva.+20 /Mag. Eva.+20','VIT+10','"Fast Cast"+10','Damage taken-5%',}}, --DT -5
 	}
@@ -295,7 +299,6 @@ function init_gear_sets()
     sets.defense.MDT = set_combine(sets.defense.PDT, {
 		neck="Warder's Charm +1",
 		--waist="Carrier's Sash",
-		right_ring="Archon Ring",
 	})
 	
 -- Magic Evasion
@@ -312,11 +315,11 @@ function init_gear_sets()
 -- Base Idle Set
 --------------------------------------
     sets.idle = {
-		head="Meghanada Visor +2", --PDT -5
-		body="Meg. Cuirie +2", --PDT -8
-		hands="Meg. Gloves +2", --PDT -4
+		head="Nyame Helm", --DT -7
+		body="Nyame Mail", --DT -9
+		hands="Nyame Gauntlets", --DT -7
 		legs="Carmine Cuisses +1", -- Mv Spd +18%
-		feet="Lanun Bottes +3", --PDT -6
+		feet="Nyame Sollerets", --DT -7
 		neck="Loricate Torque +1", --DT -6
 		right_ring="Murky Ring", --DT -10
 		back={ name="Camulus's Mantle", augments={'VIT+20','Eva.+20 /Mag. Eva.+20','VIT+10','"Fast Cast"+10','Damage taken-5%',}}, --DT -5
@@ -384,20 +387,25 @@ function init_gear_sets()
 -- Default weaponskill gear
 --------------------------------------
     sets.precast.WS = {
-		head="Mummu Bonnet +2",
-		body="Meg. Cuirie +2",
+		head="Lanun Tricorne +3",
+		body="Laksa. Frac +2",
 		hands="Meg. Gloves +2",
-		legs="Mummu Kecks +2",
+		legs="Nyame Flanchard",
 		feet="Lanun Bottes +3",
-		neck="Loricate Torque +1",
+		neck={ name="Comm. Charm +2", augments={'Path: A',}},
 		waist="Eschan Stone",
-		left_ring="Mummu Ring",
+		left_ear="Neritic Earring",
+		right_ear="Alabaster Earring",
+		left_ring="Rajas Ring",
 		right_ring="Murky Ring",
-		back={ name="Camulus's Mantle", augments={'STR+20','Accuracy+20 Attack+20','Weapon skill damage +10%','Damage taken-5%',}},
+		back={ name="Camulus's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Damage taken-5%',}},
 	}
 
   -- Default weaponskill accuracy gear
     sets.precast.WS.Acc = set_combine(sets.precast.WS, {})
+	
+  -- Defause weaponskill, full accuracy gear
+	sets.precast.WS.FullAcc = set_combine(sets.precast.WS, {})
 	
   -- Default weaponskill fodder gear
 	sets.precast.WS.Fodder = set_combine(sets.precast.WS, {})
@@ -407,7 +415,15 @@ function init_gear_sets()
 -- Dagger Weaponskills
 --------------------------------------
 	--Aeolian Edge
-	sets.precast.WS['Aeolian Edge'] = set_combine(sets.precast.WS, {})
+	sets.precast.WS['Aeolian Edge'] = set_combine(sets.precast.WS, {
+		head="Nyame Helm",
+		body="Nyame Mail",
+		hands="Nyame Gauntlets",
+		left_ear="Sortiarius Earring",
+		right_ear="Friomisi Earring",
+		left_ring="Fenrir Ring +1",
+		back={ name="Camulus's Mantle", augments={'AGI+20','Mag. Acc+20 /Mag. Dmg.+20','AGI+9','"Mag.Atk.Bns."+10','Damage taken-5%',}},
+	})
 	
     --Evisceration
 	sets.precast.WS['Evisceration'] = set_combine(sets.precast.WS, {})
