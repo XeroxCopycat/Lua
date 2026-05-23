@@ -358,7 +358,7 @@ function init_gear_sets()
 		head="Hashishin Kavuk +3",
 		body="Hashishin Mintan +2",
 		hands="Hashi. Bazu. +2",
-		legs="Luhlaza Shalwar +3",
+		legs="Luh. Shalwar +4",
 		feet="Hashi. Basmak +2",
 		neck="Baetyl Pendant",
 		waist="Orpheus's Sash",
@@ -660,7 +660,7 @@ function init_gear_sets()
 	sets.precast.WS.FullAcc = set_combine(sets.precast.WS, {
 		body="Hashishin Mintan +2",
 		hands="Hashi. Bazu. +2",
-		legs="Luhlaza Shalwar +3",
+		legs="Luhlaza Shalwar +4",
 		neck="Null Loop",
 		waist="Kentarch Belt +1",
 		right_ear={ name="Hashi. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+11','Mag. Acc.+11','"Dbl.Atk."+3',}},
@@ -719,6 +719,7 @@ function init_gear_sets()
 	sets.precast.WS['Red Lotus Blade'] = set_combine(sets.precast.WS, {
 		ammo="Ghastly Tathlum +1",
 		hands="Jhakri Cuffs +2",
+		legs="Luh. Shalwar +4",
 		neck="Erra Pendant",
 		waist="Orpheus's Sash",
 		right_ear="Regal Earring",
@@ -740,7 +741,7 @@ function init_gear_sets()
 	sets.precast.WS['Sanguine Blade'] = set_combine(sets.precast.WS, {
 		ammo="Ghastly Tathlum +1",
 		hands="Jhakri Cuffs +2",
-		legs="Luhlaza Shalwar +3",
+		legs="Luh. Shalwar +4",
 		feet="Hashi. Basmak +2",
 		neck="Sibyl Scarf",
 		waist="Orpheus's Sash",
@@ -751,9 +752,10 @@ function init_gear_sets()
   
   -- Savage Blade
 	sets.precast.WS['Savage Blade'] = set_combine(sets.precast.WS, {
-		ammo="Coiste Bodhar", 
+		ammo="Coiste Bodhar",
 		neck="Rep. Plat. Medal",
 	})
+	
 	sets.precast.WS['Savage Blade'].Acc = set_combine(sets.precast.WS.Acc, {})
 	sets.precast.WS['Savage Blade'].FullAcc = set_combine(sets.precast.WS.FullAcc, {})
 	sets.precast.WS['Savage Blade'].DT = set_combine(sets.precast.WS.DT, {})
