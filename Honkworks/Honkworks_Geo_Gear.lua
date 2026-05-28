@@ -144,17 +144,17 @@ function init_gear_sets()
     sets.midcast['Dark Magic'] = set_combine(sets.midcast.FastRecast, {
 		main="Marin Staff +1",
 		sub="Khonsu",
-		ammo="Ghastly Tathlum +1", --Augment R15
-		head="Bagua Galero +3", --Drain/Aspir Pot +35
-		body="Geomancy Tunic +3", --Dark Magic Skill +21
-		hands="Nyame Gauntlets",
-		legs="Azimuth Tights +1", --Dark Magic Skill +20
-		feet="Agwu's Pigaches", --Drain/Aspir Pot +20
-		neck="Erra Pendant", --Dark Magic Skill +10, Drain/Aspir Pot +5
-		waist="Acuity Belt +1",
+		range="Dunna",
+		head="Bagua Galero +3",
+		body="Geomancy Tunic +3",
+		hands={ name="Merlinic Dastanas", augments={'"Drain" and "Aspir" potency +7','Mag. Acc.+4','"Mag.Atk.Bns."+10',}},
+		legs="Azimuth Tights +2",
+		feet="Agwu's Pigaches",
+		neck="Erra Pendant",
+		waist="Eschan Stone",
 		left_ear="Lugalbanda Earring",
 		right_ear="Alabaster Earring",
-		left_ring="Metamor. Ring +1",
+		left_ring="Archon Ring",
 		right_ring="Medada's Ring",
 		back={ name="Nantosuelta's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','INT+10','"Mag.Atk.Bns."+10','Damage taken-5%',}},
 	})
@@ -372,7 +372,7 @@ function init_gear_sets()
 		sub="Khonsu", -- DT -6
 		range="Dunna", -- Homiliary
 		head="Azimuth Hood +2", -- DT -11, Null Masque
-		body="Jhakri Robe +2", -- Refresh +4
+		body="Shamash Robe", --PDT -10, Refresh +3
 		hands="Bagua Mitaines +3", -- Refresh +2
 		legs="Assid. Pants +1", -- Refresh +1~2
 		feet="Azimuth Gaiters +2", -- DT -10
@@ -391,7 +391,7 @@ function init_gear_sets()
 		sub="Sors Shield",
 		range="Dunna", --Pet DT -5
 		head="Azimuth Hood +2", -- DT -11, Pet Regen +4
-		body="Nyame Mail", --DT -9
+		body="Shamash Robe", --PDT -10, Refresh +3
 		hands="Geo. Mitaines +3", -- Pet DT -13
 		legs="Nyame Flanchard", --DT -8
 		feet="Bagua Sandals +3", -- Pet Regen +5
@@ -433,7 +433,7 @@ function init_gear_sets()
 		sub="Khonsu", -- DT -6
 		--ammo="Staunch Tathlum +1",
 		head="Nyame Helm", --DT -7
-		body="Nyame Mail", --DT -9
+		body="Shamash Robe", --DT -9
 		hands="Nyame Gauntlets", --DT -7
 		legs="Nyame Flanchard", --DT -8
 		feet="Nyame Sollerets", --DT -7
@@ -447,11 +447,11 @@ function init_gear_sets()
 	}
 
 -- Magic Damage Taken
-	--sets.defense.MDT = set_combine(sets.defense.PDT, {
+	sets.defense.MDT = set_combine(sets.defense.PDT, {
 		neck="Warder's Charm +1",
 		waist="Carrier's Sash",
 		--right_ring="Archon Ring",
-	--})
+	})
 	
 -- Magic Evasion
     sets.defense.MEVA = set_combine(sets.defense.PDT, {

@@ -132,20 +132,19 @@ function init_gear_sets()
 -- Dark Magic 
 --------------------------------------
     sets.midcast['Dark Magic'] = set_combine(sets.midcast.FastRecast, { --DMS +8, Potency +40
-		main="Marin Staff +1", --(Rubicundity (aug w/ dark magic skill +10))
-		sub="Khonsu", --(Ammurapi Shield)
+		ammo="Ghastly Tathlum +1",
 		head="Pixie Hairpin +1",
-		body="Acad. Gown +3", --(Merlinic Jubbah (aug w/ drain/aspir potency +11))
-		hands="Agwu's Gages", --(Merlinic Dastanas (aug w/ drain/aspir potency +11))
-		legs="Peda. Pants +3", --Potency +15
-		feet="Agwu's Pigaches", --Potency +20
-		neck="Erra Pendant", --Potency +5
-		waist="Acuity Belt +1", --(Fucho-no-Obi)
-		left_ear="Friomisi Earring", --(Hirudinea Earring)
-		right_ear={ name="Arbatel Earring", augments={'System: 1 ID: 1676 Val: 0','Mag. Acc.+7',}}, --(Mani Earring)
-		left_ring="Metamor. Ring +1", --(Evanescence Ring)
-		right_ring="Medada's Ring", --(Archon Ring)
-		back={ name="Bookworm's Cape", augments={'INT+2','Helix eff. dur. +10','"Regen" potency+8',}}, --Dark Magic Skill +8
+		body={ name="Merlinic Jubbah", augments={'"Mag.Atk.Bns."+9','"Drain" and "Aspir" potency +7','Mag. Acc.+6',}},
+		hands={ name="Merlinic Dastanas", augments={'"Drain" and "Aspir" potency +7','Mag. Acc.+4','"Mag.Atk.Bns."+10',}},
+		legs="Peda. Pants +3",
+		feet="Agwu's Pigaches",
+		neck="Erra Pendant",
+		waist="Eschan Stone",
+		left_ear="Lugalbanda Earring",
+		right_ear={ name="Arbatel Earring", augments={'System: 1 ID: 1676 Val: 0','Mag. Acc.+7',}},
+		left_ring="Metamor. Ring +1",
+		right_ring="Archon Ring",
+		back={ name="Bookworm's Cape", augments={'INT+2','Helix eff. dur. +10','"Regen" potency+8',}},
 	})
 
 -- Specific Dark Magic Spells
@@ -249,8 +248,8 @@ function init_gear_sets()
 -- Enhancing Magic
 --------------------------------------
 	sets.midcast['Enhancing Magic'] = set_combine(sets.midcast.FastRecast, {
-		main={ name="Gada", augments={'"Cure" potency +6%','Mag. Acc.+4','"Mag.Atk.Bns."+2','DMG:+6',}},
-		sub="Sors Shield",
+		main={ name="Musa", augments={'Path: C',}},
+		sub="Khonsu",
 		ammo="Ghastly Tathlum +1",
 		head="Befouled Crown",
 		body="Peda. Gown +3",
@@ -349,7 +348,7 @@ function init_gear_sets()
 --------------------------------------
 -- Healing Magic
 --------------------------------------
-    sets.midcast.Cure = set_combine(sets.midcast.FastRecast, { --Potency +54, CST -21, Skill +82, DT -36
+    sets.midcast.Cure = set_combine(sets.midcast.FastRecast, { --Potency +54, CST -24, Skill +82, DT -36
 		main="Bunzi's Rod", --Potency +30
 		sub="Sors Shield", --Potency +3, CST -3
 		ammo="Ghastly Tathlum +1", --(Staunch Tathlum +1)
@@ -392,9 +391,7 @@ function init_gear_sets()
 ---------------------------------------------------------------------------------------------------------------
 -- Idle Sets
 ---------------------------------------------------------------------------------------------------------------
---------------------------------------
 -- Base idle set
---------------------------------------
     sets.idle = { -- DT -50, Refresh +6~7
 		main="Marin Staff +1",
 		sub="Khonsu", --DT -6
@@ -528,7 +525,7 @@ function init_gear_sets()
 ---------------------------------------------------------------------------------------------------------------
 	sets.weapons.None = {main=empty, sub=empty}
 	sets.weapons.Club = {main="Maxentius", sub="Sors Shield"} 
-	sets.weapons.Staff = {main="Marin Staff +1",sub="Khonsu"}
+	sets.weapons.Staff = {main={name="Musa", augments={'Path: C',}},sub="Khonsu"}
 	sets.weapons.Prime = {main="Opashoro",sub="Khonsu"}
 
 
