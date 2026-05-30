@@ -41,31 +41,31 @@ function init_gear_sets()
 -------------------------------------------------------------------------------------------------------------------
 -- Fast cast sets for spells (FC +41/80)
     sets.precast.FC = {
-		ammo="Impatiens", --QC +2
-		head="Herculean Helm", -- FC +7
-		body={ name="Taeon Tabard", augments={'DEF+19','"Fast Cast"+4',}}, --FC +8
-		hands={ name="Leyline Gloves", augments={'Accuracy+14','Mag. Acc.+13','"Mag.Atk.Bns."+13','"Fast Cast"+2',}}, --FC +7
-		legs="Skulk. Culottes +3",
-		feet="Skulk. Poulaines +3", 
-		neck="Voltsurge Torque", --FC +4
+		ammo="Sapience Orb",
+		head={ name="Herculean Helm", augments={'Pet: Mag. Acc.+7','Accuracy+3','"Refresh"+1','Mag. Acc.+20 "Mag.Atk.Bns."+20',}},
+		body={ name="Taeon Tabard", augments={'DEF+19','"Fast Cast"+4','Phalanx +3',}},
+		hands={ name="Leyline Gloves", augments={'Accuracy+14','Mag. Acc.+13','"Mag.Atk.Bns."+13','"Fast Cast"+2',}},
+		legs="Nyame Flanchard",
+		feet="Nyame Sollerets",
+		neck="Voltsurge Torque",
 		waist="Plat. Mog. Belt",
-		left_ear="Etiolation Earring", --FC +1
-		right_ear="Loquac. Earring", --FC +2
-		left_ring="Rahab Ring", --FC +2
-		right_ring="Lebeche Ring", --QC +2
-		back={ name="Toutatis's Cape", augments={'AGI+20','Eva.+20 /Mag. Eva.+20','AGI+4','"Fast Cast"+10','"Regen"+5',}}, -- FC +10
+		left_ear="Etiolation Earring",
+		right_ear="Loquac. Earring",
+		left_ring="Rahab Ring",
+		right_ring="Lebeche Ring",
+		back={ name="Toutatis's Cape", augments={'AGI+20','Eva.+20 /Mag. Eva.+20','AGI+4','"Fast Cast"+10','"Regen"+5',}},
 	}
 	
 -- Precast sets to enhance JAs
-    sets.precast.JA['Collaborator'] = {"Skulker's Bonnet +3"}
-    sets.precast.JA['Accomplice'] = {"Skulker's Bonnet +3"}
+    sets.precast.JA['Collaborator'] = {head="Skulker's Bonnet +3"}
+    sets.precast.JA['Accomplice'] = {head="Skulker's Bonnet +3"}
     sets.precast.JA['Flee'] = {feet="Pillager's Poulaines +3"} -- Upgrade to +4
     sets.precast.JA['Hide'] = {body="Pill. Vest +4"}
     sets.precast.JA['Conspirator'] = {body="Skulker's Vest +3"} 
-    sets.precast.JA['Steal'] = {head="Plun. Bonnet +3", feet="Pillager's Poulaines +3"} 
+    sets.precast.JA['Steal'] = {head="Plun. Bonnet +3", feet="Pillager's Poulaines +3"} --Upgrade to +4
     sets.precast.JA['Despoil'] = {legs="Skulker's Culottes +3", feet="Skulk. Poulaines +3"}
     sets.precast.JA['Perfect Dodge'] = {hands="Plunderer's Armlets +1"} -- Upgrade to +4
-    sets.precast.JA['Feint'] = {legs="Plun. Culottes +4"} -- Upgrade to +4
+    sets.precast.JA['Feint'] = {legs="Plun. Culottes +4"}
 	sets.precast.JA['Mug'] = {
 		ammo="Aurgelmir Orb",
 		head="Plun. Bonnet +3", -- Upgrade to +4
@@ -125,13 +125,13 @@ function init_gear_sets()
 -- Midcast fast recast
 	sets.midcast.FastRecast = {
 		ammo="Sapience Orb",
-		head="Nyame Helm",
-		body={ name="Taeon Tabard", augments={'DEF+19','"Fast Cast"+4',}},
+		head={ name="Herculean Helm", augments={'Pet: Mag. Acc.+7','Accuracy+3','"Refresh"+1','Mag. Acc.+20 "Mag.Atk.Bns."+20',}},
+		body={ name="Taeon Tabard", augments={'DEF+19','"Fast Cast"+4','Phalanx +3',}},
 		hands={ name="Leyline Gloves", augments={'Accuracy+14','Mag. Acc.+13','"Mag.Atk.Bns."+13','"Fast Cast"+2',}},
-		legs="Skulk. Culottes +3",
-		feet="Skulk. Poulaines +3",
+		legs="Nyame Flanchard",
+		feet="Nyame Sollerets",
 		neck="Voltsurge Torque",
-		waist="Sailfi Belt +1",
+		waist="Plat. Mog. Belt",
 		left_ear="Etiolation Earring",
 		right_ear="Loquac. Earring",
 		left_ring="Rahab Ring",
@@ -140,7 +140,7 @@ function init_gear_sets()
 	}
 
 -- Midcast sets for specific spells
-	sets.midcast.Utsusemi = set_combine(sets.midcast.FastRecast, {})
+	sets.midcast.Utsusemi = set_combine(sets.midcast.FastRecast, {body="Passion Jacket"})
 	sets.midcast.Dia = set_combine(sets.midcast.FastRecast, sets.TreasureHunter)
 	sets.midcast.Diaga = set_combine(sets.midcast.FastRecast, sets.TreasureHunter)
 	sets.midcast['Dia II'] = set_combine(sets.midcast.FastRecast, sets.TreasureHunter)
@@ -183,8 +183,8 @@ function init_gear_sets()
 		feet="Nyame Sollerets",
 		neck="Null Loop",
 		waist="Plat. Mog. Belt",
-		left_ear="Eabani Earring",
-		right_ear="Alabaster Earring",
+		left_ear="Alabaster Earring",
+		right_ear="Eabani Earring",
 		left_ring="Warden's Ring",
 		right_ring="Murky Ring",
 		back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Phys. dmg. taken-10%',}},
@@ -192,6 +192,7 @@ function init_gear_sets()
 
 -- Magic Damage Taken
     sets.defense.MDT = set_combine(sets.defense.PDT, {
+		ammo="Yamarang",
 		neck="Warder's Charm +1",
 		waist="Carrier's Sash",
 		left_ring="Archon Ring",
@@ -199,6 +200,7 @@ function init_gear_sets()
 		
 -- Magic Evasion
 	sets.defense.MEVA = set_combine(sets.defense.PDT, {
+		ammo="Yamarang",
 		neck="Warder's Charm +1",
 		left_ring="Vengeful Ring", 
 		back="Null Shawl",
@@ -209,16 +211,16 @@ function init_gear_sets()
 -------------------------------------------------------------------------------------------------------------------
 -- Base idle set
 	sets.idle = {
-        ammo="Staunch Tathlum +1",
-		head="Nyame Helm",
+        ammo="Staunch Tathlum +1", 
+		head="Gleti's Mask", --(Null Masque)
 		body="Gleti's Cuirass",
-		hands="Nyame Gauntlets",
-		legs="Nyame Flanchard",
-		feet="Nyame Sollerets",
+		hands="Gleti's Gauntlets",
+		legs="Turms Subligar",
+		feet="Gleti's Boots",
 		neck="Bathy Choker +1",
-		waist="Plat. Mog. Belt",
-		left_ear="Dawn Earring",
-		right_ear="Alabaster Earring",
+		waist="Plat. Mog. Belt", --(Null Belt)
+		left_ear="Alabaster Earring",
+		right_ear="Dawn Earring", --(Infused Earring)
 		left_ring="Shneddick Ring",
 		right_ring="Murky Ring",
 		back={ name="Toutatis's Cape", augments={'AGI+20','Eva.+20 /Mag. Eva.+20','AGI+4','"Fast Cast"+10','"Regen"+5',}},
@@ -229,7 +231,6 @@ function init_gear_sets()
 		head="Meghanada Visor +2",
 		body="Meg. Cuirie +2",
 		hands="Meg. Gloves +2",
-		legs="Meg. Chausses +2",
 		feet="Meg. Jam. +2",
 		right_ring="Chirich Ring +1",
 	})
@@ -241,12 +242,7 @@ function init_gear_sets()
 
 -- Regain idle set
 	sets.idle.Regain = set_combine(sets.idle, {
-		head="Gleti's Mask",
-		body="Gleti's Cuirass",
-		hands="Gleti's Gauntlets",
 		legs="Gleti's Breeches",
-		feet="Gleti's Boots",
-		neck="Null Loop",
 	})
 
 -- Weakened idle set
@@ -277,7 +273,7 @@ function init_gear_sets()
 		right_ear={ name="Skulk. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+13','Mag. Acc.+13','"Store TP"+4',}},
 		left_ring="Gere Ring",
 		right_ring="Moonlight Ring",
-		back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Phys. dmg. taken-10%',}},
+		back="Null Shawl",
 	}
 	
 	-- Accuracy Set
@@ -285,6 +281,17 @@ function init_gear_sets()
 	
 	-- Max Accuracy Set
 	sets.engaged.FullAcc = set_combine(sets.engaged, {})
+	
+	-- Fodder Set
+	sets.engaged.Fodder = set_combine(sets.engaged, {
+		hands={ name="Adhemar Wrist. +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
+		legs="Pill. Culottes +3",
+		feet="Plun. Poulaines +3",
+		neck={ name="Asn. Gorget +2", augments={'Path: A',}},
+		waist="Reiki Yotai",
+		left_ear="Dedition Earring",
+		right_ring="Epona's Ring",
+	})
 
 	-- Hybrid DT
 	sets.engaged.DT = set_combine(sets.engaged, {
