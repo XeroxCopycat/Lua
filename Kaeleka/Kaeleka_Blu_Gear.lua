@@ -8,7 +8,7 @@ function user_job_setup()
 	state.PhysicalDefenseMode:options('PDT')
 	state.MagicalDefenseMode:options('MDT')
 	state.ResistDefenseMode:options('MEVA')
-	state.Weapons:options('Naegling', 'Archduke', 'Maxentius', 'ProcSword', 'ProcClub')
+	state.Weapons:options('Naegling', 'Archduke', 'Maxentius', 'Casting', 'None', 'ProcSword', 'ProcClub')
 
     state.ExtraMeleeMode = M{['description']='Extra Melee Mode','None','MP','SuppaBrutal','DWEarrings','DWMax'}
 
@@ -177,7 +177,7 @@ function init_gear_sets()
 		head="Adhara Turban", --SIRD -20
 		hands="Rawhide Gloves", --SIRD -15
 		legs="Assim. Shalwar +2", --SIRD -22
-		--feet="Amalric Nails" --SIRD -15
+		feet="Amalric Nails", --SIRD -15
 		neck="Loricate Torque +1", --(Augment to R15, SIRD -5)
 		--waist="Rumination Sash", --SIRD -10
 		left_ring="Evanescence Ring", --SIRD -5
@@ -362,16 +362,15 @@ function init_gear_sets()
 		back={ name="Rosmerta's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10','Damage taken-5%',}},
 	}
 	
--- Blue Magic Spells, Magical SIRD (SIRD 63/103)
+-- Blue Magic Spells, Magical SIRD (SIRD 103/103)
 	sets.midcast['Blue Magic'].Magical.SIRD = set_combine(sets.midcast['Blue Magic'], {
 		ammo="Staunch Tathlum +1", --SIRD -11
 		head="Adhara Turban", --SIRD -20
-		--hands="Rawhide Gloves", --SIRD -15
+		hands="Rawhide Gloves", --SIRD -15
 		legs="Assim. Shalwar +4", --SIRD -24
-		--feet="Amalric Nails" --SIRD -15
-		neck="Loricate Torque +1", --(Augment to R15, SIRD -5)
-		--waist="Rumination Sash", --SIRD -10
-		left_ring="Evanescence Ring", --SIRD -5
+		feet="Amalric Nails", --SIRD -15
+		neck="Loricate Torque +1", --SIRD -5
+		waist="Rumination Sash", --SIRD -10
 		right_ring="Murky Ring", --SIRD -3
 	})
 	
@@ -382,10 +381,11 @@ function init_gear_sets()
 -- Breath Based Blue Magic Spells
 	sets.midcast['Blue Magic'].Breath = set_combine(sets.midcast['Blue Magic'].Magical, {head="Luh. Keffiyeh +3"})
 
--- Buffing Blue Magic Spells (Blue Magic Skill +89)
+-- Buffing Blue Magic Spells (Blue Magic Skill +102)
 	sets.midcast['Blue Magic'].SkillBasedBuff = set_combine(sets.midcast['Blue Magic'], { 
 		head="Luh. Keffiyeh +3", --Blue Magic +17
-		body="Assim. Jubbah +2", --Blue Magic +22
+		body="Assim. Jubbah +3", --Blue Magic +24
+		hands="Rawhide Gloves", --Blue Magic +10
 		legs="Hashishin Tayt +2", --Blue Magic +28
 		feet="Luhlaza Charuqs +3", --Blue Magic +12
 		right_ear={ name="Hashi. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+11','Mag. Acc.+11','"Dbl.Atk."+3',}},	--Blue Magic +11
@@ -675,7 +675,7 @@ function init_gear_sets()
 		waist="Sailfi Belt +1",
 		left_ear="Suppanomimi",
 		right_ear="Dedition Earring",
-		left_ring="Epona Ring",
+		left_ring="Epona's Ring",
 		right_ring="Petrov Ring",
 		back={ name="Rosmerta's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Damage taken-5%',}},
 	}
@@ -859,6 +859,7 @@ function init_gear_sets()
 	sets.weapons.Naegling = {main="Naegling", sub="Thibron"}
 	sets.weapons.Maxentius = {main="Maxentius", sub="Thibron"}
 	sets.weapons.Archduke = {main="Archduke's Sword", sub="Bunzi's Rod"}
+	sets.weapons.Casting = {main="Maxentius", sub="Bunzi's Rod"}
 	sets.weapons.None = {main=empty, sub=empty}
 	
 -- Abyssea Proc Sets
