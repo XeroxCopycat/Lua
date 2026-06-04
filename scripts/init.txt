@@ -62,7 +62,7 @@ bind delete sm all follow
 bind %end sm mirror
 bind pagedown sm all toggle 
 bind ^!f3 send @all /item "Silent Oil" <me>;wait 5;send @all /item "Prism Powder" <me>
-bind ^!f4 send Honkworks /say Hello!
+bind ^!f4 send Maldavius /ja "Bolter's Roll" <me>;
 
 // NEXTGames Edits:
 // The below line is to enable DressUp BlinkMeNot Functionality.  Remove the // from the line below if you use DressUp.
@@ -97,3 +97,7 @@ lua load Silmaril
 
 // The below command uncaps FPS to 60.  Setting it to 0 uncaps it and setting it to 2 is the default setting of 30.
 config FrameRateDivisor 1
+
+// Alias commands to setup after login
+alias inviteall exec inviteall.txt
+alias warpall exec warpall.txt
