@@ -2,15 +2,14 @@
 function user_job_setup()
 	-- Options: Override default values
     state.OffenseMode:options('Normal', 'Acc', 'Fodder')
-    state.HybridMode:options('Normal','DT')
+    state.HybridMode:options('Normal','DT', 'Evasion')
     state.RangedMode:options('Normal', 'Acc')
     state.WeaponskillMode:options('Normal', 'Acc', 'Fodder')
 	state.IdleMode:options('Normal', 'Regen', 'Refresh', 'Regain', 'Sphere')
     state.PhysicalDefenseMode:options('PDT')
 	state.MagicalDefenseMode:options('MDT')
 	state.ResistDefenseMode:options('MEVA')
-	state.Weapons:options('Rudras', 'Savage', 'Aeolian', 'Evisceration', 'Exenterator', 'Mpu', 'None')
-
+	state.Weapons:options('Savage', 'Rudras', 'Aeolian', 'Ruthless', 'Evisceration', 'RudrasGleti', 'RuthlessGleti', 'SavageGleti', 'None')
     state.ExtraMeleeMode = M{['description']='Extra Melee Mode', 'None', 'DWMid', 'DWMax'}
 	state.AmbushMode = M(false, 'Ambush Mode')
 
@@ -261,19 +260,19 @@ function init_gear_sets()
 -------------------------------------------------------------------------------------------------------------------
 	-- Engaged Set
     sets.engaged = {
-		ammo="Aurgelmir Orb", -- Cait Palug Stone
+		ammo="Aurgelmir Orb",
 		head="Skulker's Bonnet +3",
-		body="Pill. Vest +4",
+		body="Malignance Tabard",
 		hands="Malignance Gloves",
-		legs="Pill. Culottes +3", -- Upgrade to +4
+		legs="Malignance Tights", --(Gleti's Breeches, augmented to R30)
 		feet="Malignance Boots",
-		neck="Null Loop",
+		neck={ name="Asn. Gorget +2", augments={'Path: A',}},
 		waist="Reiki Yotai",
 		left_ear="Sherida Earring",
 		right_ear={ name="Skulk. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+13','Mag. Acc.+13','"Store TP"+4',}},
 		left_ring="Gere Ring",
 		right_ring="Moonlight Ring",
-		back="Null Shawl",
+		back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Phys. dmg. taken-10%',}},
 	}
 	
 	-- Accuracy Set
@@ -284,35 +283,37 @@ function init_gear_sets()
 	
 	-- Fodder Set
 	sets.engaged.Fodder = set_combine(sets.engaged, {
+		body="Pill. Vest +4",
 		hands={ name="Adhemar Wrist. +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
-		legs="Pill. Culottes +3",
 		feet="Plun. Poulaines +3",
-		neck={ name="Asn. Gorget +2", augments={'Path: A',}},
-		waist="Reiki Yotai",
-		left_ear="Dedition Earring",
-		right_ring="Epona's Ring",
+		left_ring="Gere Ring",
+		right_ring="Chirich Ring +1",
 	})
 
 	-- Hybrid DT
 	sets.engaged.DT = set_combine(sets.engaged, {
-		ammo="Aurgelmir Orb", -- Upgrade to +1
-		legs="Skulk. Culottes +3",
-		feet="Skulk. Poulaines +3",
-		left_ring="Moonlight Ring",
-		right_ring="Murky Ring", -- Upgrade to R30
-		back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Phys. dmg. taken-10%',}},
+		left_ring="Murky Ring", -- Upgrade to R30
+	})
+	
+	-- Hybrid Evasion/MEVA
+	sets.engaged.DT.Evasion = set_combine(sets.engaged, {
+		ammo="Yamarang",
+		left_ring="Murky Ring", -- Upgrade to R30
+		back="Null Shawl",
 	})
 
 -------------------------------------------------------------------------------------------------------------------
 -- Weapon sets
 -------------------------------------------------------------------------------------------------------------------
 	-- Weapons sets
-	sets.weapons.Rudras = {main="Aeneas", sub="Centovente"}
 	sets.weapons.Savage = {main="Naegling", sub="Centovente"}
+	sets.weapons.Rudras = {main="Aeneas", sub="Centovente"}
+	sets.weapons.Ruthless = {main="Mpu Gandring", sub="Centovente"}
 	sets.weapons.Aeolian = {main="Aeneas", sub="Centovente"}
 	sets.weapons.Evisceration = {main="Tauret", sub="Gleti's Knife"}
-	sets.weapons.Exenterator = {main="Aeneas", sub="Centovente"}
-	sets.weapons.Mpu = {main="Mpu Gandring", sub="Centovente"}
+	sets.weapons.RudrasGleti = {main="Aeneas", sub="Gleti's Knife"}
+	sets.weapons.RuthlessGleti = {main="Mpu Gandring", sub="Gleti's Knife"}
+	sets.weapons.SavageGleti = {main="Naegling", sub="Gleti's Knife"}
 	sets.weapons.None = {main=empty, sub=empty}
 	
 -------------------------------------------------------------------------------------------------------------------
@@ -324,15 +325,15 @@ function init_gear_sets()
 		head="Pill. Bonnet +4",
 		body="Skulker's Vest +3",
 		hands="Nyame Gauntlets",
-		legs="Plun. Culottes +4",
+		legs="Nyame Flanchard",
 		feet="Nyame Sollerets",
-		neck={ name="Asn. Gorget +2", augments={'Path: A',}},
-		waist="Kentarch Belt +1", -- Augment
+		neck="Rep. Plat. Medal",
+		waist="Sailfi Belt +1",
 		left_ear="Moonshade Earring",
-		right_ear="Domin. Earring +1",
+		right_ear="Telos Earring",
 		left_ring="Cornelia's Ring",
 		right_ring="Regal Ring",
-		back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
+		back={ name="Toutatis's Cape", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
 	}
 	
     sets.precast.WS.Acc = set_combine(sets.precast.WS, {})
@@ -341,39 +342,33 @@ function init_gear_sets()
 		ammo="Crepuscular Pebble",
 		head="Skulker's Bonnet +3",
 		hands="Gleti's Gauntlets",
-		right_ear="Odr Earring",
+		right_ear={ name="Skulk. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+13','Mag. Acc.+13','"Store TP"+4',}},
 	})
 
 -- Dagger weaponskills
   --Aeolian Edge
-	sets.precast.WS['Aeolian Edge'] = {
-		ammo="Seething Bomblet +1",
+	sets.precast.WS['Aeolian Edge'] = set_combine(sets.precast.WS, {
+		ammo="Ghastly Tathlum +1",
 		head="Nyame Helm",
 		body="Nyame Mail",
-		hands="Gleti's Gauntlets",
-		legs="Nyame Flanchard",
-		feet="Nyame Sollerets",
 		neck="Baetyl Pendant",
 		waist="Orpheus's Sash",
-		left_ear="Moonshade Earring",
 		right_ear="Friomisi Earring",
-		left_ring="Cornelia's Ring",
 		right_ring="Dingir Ring",
 		back={ name="Toutatis's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','INT+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
-	}
+	})
 	
   --Evisceration
 	sets.precast.WS['Evisceration'] = set_combine(sets.precast.WS, {
         ammo="Yetshila +1",
 		head="Blistering Sallet +1",
 		body="Plunderer's Vest +3",
-		hands="Gleti's Gauntlets",
-		legs="Gleti's Breeches",
-		feet="Gleti's Boots",
+		hands={ name="Adhemar Wrist. +1", augments={'DEX+12','AGI+12','Accuracy+20',}}, --(Path B)
+		legs="Skulk. Culottes +3",
+		feet={ name="Adhe. Gamashes +1", augments={'STR+12','DEX+12','Attack+20',}},
 		neck="Fotia Gorget",
 		waist="Fotia Belt",
-		left_ear="Sherida Earring",
-		left_ring="Cornelia's Ring",
+		right_ear="Odr Earring",
 		right_ring="Regal Ring",
 		back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','Crit.hit rate+10','Phys. dmg. taken-10%',}},
 	})
@@ -382,7 +377,10 @@ function init_gear_sets()
 	
 	sets.precast.WS['Evisceration'].Fodder = set_combine(sets.precast.WS['Evisceration'], {
 		head="Skulker's Bonnet +3",
-		body="Gleti's Cuirass",
+		hands="Gleti's Gauntlets", --(Augment to R30)
+		legs="Gleti's Breeches", --(Augment to R30)
+		feet="Gleti's Boots", --(Augment to R30)
+		left_ear="Mache Earring +1",
 		left_ring="Gere Ring",
 	})
 	
@@ -439,24 +437,8 @@ function init_gear_sets()
     
 -- Sword weaponskills	
   --Savage Blade
-	sets.precast.WS["Savage Blade"] = set_combine(sets.precast.WS, {
-		ammo="Seething Bomblet +1",
-		head="Pill. Bonnet +4",
-		body="Skulker's Vest +3",
-		hands="Nyame Gauntlets",
-		legs="Nyame Flanchard",
-		feet="Nyame Sollerets",
-		neck="Rep. Plat. Medal",
-		waist="Sailfi Belt +1",
-		left_ear="Moonshade Earring",
-		right_ear="Sherida Earring",
-		left_ring="Cornelia's Ring",
-		right_ring="Regal Ring",
-		back={ name="Toutatis's Cape", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
-	})
-	
+	sets.precast.WS["Savage Blade"] = set_combine(sets.precast.WS, {})
     sets.precast.WS["Savage Blade"].Acc = set_combine(sets.precast.WS.Acc, {})
-	
 	sets.precast.WS["Savage Blade"].Fodder = set_combine(sets.precast.WS["Savage Blade"], {
 		ammo="Crepuscular Pebble",
 		head="Skulker's Bonnet +3",
@@ -473,6 +455,25 @@ function init_gear_sets()
 -------------------------------------------------------------------------------------------------------------------
 -- Miscelaneous Sets
 -------------------------------------------------------------------------------------------------------------------
+-- Phalanx Received
+	-- Phalanx Received
+	sets.Phalanx_Received = { --Phalanx +13
+		ammo="Staunch Tathlum +1",
+		head={ name="Taeon Chapeau", augments={'Phalanx +3',}},
+		body={ name="Taeon Tabard", augments={'DEF+19','"Fast Cast"+4','Phalanx +3',}},
+		hands={ name="Taeon Gloves", augments={'Phalanx +2',}},
+		legs={ name="Taeon Tights", augments={'Phalanx +3',}},
+		feet={ name="Taeon Boots", augments={'Accuracy+19 Attack+19','"Dual Wield"+5','Phalanx +2',}},
+		neck="Loricate Torque +1",
+		waist="Plat. Mog. Belt",
+		left_ear="Alabaster Earring",
+		right_ear="Dawn Earring",
+		left_ring="Defending Ring",
+		right_ring="Murky Ring",
+		back={ name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Phys. dmg. taken-10%',}},
+	}
+	
+
 -- Treasure Hunter
 	sets.TreasureHunter = {feet="Skulk. Poulaines +3"}
     
