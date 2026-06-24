@@ -1,20 +1,13 @@
 -- Setup vars that are user-dependent.  Can override this in a sidecar file.
 function user_job_setup()
-    state.OffenseMode:options('Normal','Acc')
-    state.CastingMode:options('Normal','Resistant','SIRD','DT')
-    state.IdleMode:options('Normal','PDT','MDT')
+    state.OffenseMode:options('Normal', 'Acc', 'FullAcc', 'SubtleBlow')
+    state.CastingMode:options('Normal', 'Resistant', 'SIRD', 'DT')
+    state.IdleMode:options('Normal', 'Refresh', 'RefreshDT', 'Regen', 'RegenDT')
 	state.PhysicalDefenseMode:options('PDT')
 	state.MagicalDefenseMode:options('MDT')
 	state.ResistDefenseMode:options('MEVA')
-	state.Weapons:options('None','DualWeapons','MeleeWeapons')
-	state.WeaponskillMode:options('Normal','Fodder')
-
-	gear.obi_cure_waist = "Austerity Belt +1"
-	gear.obi_cure_back = "Alaunus's Cape"
-
-	gear.obi_nuke_waist = "Sekhmet Corset"
-	gear.obi_high_nuke_waist = "Yamabuki-no-Obi"
-	gear.obi_nuke_back = "Toro Cape"
+	state.Weapons:options('None', 'DualWeapons', 'MeleeWeapons')
+	state.WeaponskillMode:options('Normal', 'Fodder')
 
 		-- Additional local binds
 	send_command('bind ^` input /ma "Arise" <t>')
@@ -46,9 +39,10 @@ function init_gear_sets()
 -- Precast Sets
 -------------------------------------------------------------------------------------------------------------------
 -- ## Fast cast sets for spells ##	
-    sets.precast.FC = { --FC +10, QC +2
+    sets.precast.FC = { --FC +15~17, QC +2
 		ammo="Impatiens", --QC +2
-		head={ name="Vanya Hood", augments={'MP+50','"Fast Cast"+10','Haste+2%',}},
+		head={ name="Vanya Hood", augments={'MP+50','"Fast Cast"+10','Haste+2%',}}, --FC +10
+		feet="Regal Pumps +1", --FC +5~7
 	}
 	
 	sets.precast.FC.DT = {}
@@ -170,7 +164,7 @@ function init_gear_sets()
 		back="Solemnity Cape",
 	}
 	
-	sets.midcast.CureSolace = {}
+	sets.midcast.CureSolace = {back={ name="Alaunus's Cape", augments={'MND+20','Eva.+11 /Mag. Eva.+11',}},}
 	sets.midcast.LightWeatherCure = {}
 	sets.midcast.LightWeatherCureSolace = {}
 	sets.midcast.LightDayCureSolace = {}
@@ -182,11 +176,13 @@ function init_gear_sets()
 	sets.midcast.LightWeatherCuraga = {}
 	sets.midcast.LightDayCuraga = {}
 	
-	-- Cursna
-	sets.midcast.Cursna = {
-		feet={ name="Vanya Clogs", augments={'"Cure" potency +5%','"Cure" spellcasting time -15%','"Conserve MP"+6',}},
-		left_ring="Haoma's Ring",
-		right_ring="Menelaus's Ring",
+	-- Cursna 
+	sets.midcast.Cursna = { --Cursna +80
+		feet={ name="Vanya Clogs", augments={'"Cure" potency +5%','"Cure" spellcasting time -15%','"Conserve MP"+6',}}, --Cursena +5
+		neck="Debilis Medallion", --Cursna +15
+		left_ring="Haoma's Ring", --Cursna +15
+		right_ring="Menelaus's Ring", --Cursna +20
+		back={ name="Alaunus's Cape", augments={'MND+20','Eva.+11 /Mag. Eva.+11',}}, --Cursna +25
 	}
 
 	-- Erase
@@ -257,24 +253,31 @@ function init_gear_sets()
 -------------------------------------------------------------------------------------------------------------------
 -- Idle & Resting Sets
 -------------------------------------------------------------------------------------------------------------------
--- Idle sets
-	sets.idle = {
-		feet="Herald's Gaiters",
-		body="Cleric's Bliaut",
+-- ## Idle sets ##
+	sets.idle = { --Refresh +2~3
+		body="Cleric's Bliaut", --Refresh +1
+		legs="Assid. Pants +1", --Refresh +1~2
+		feet="Herald's Gaiters", --MV +12%
 		neck="Loricate Torque +1",
+		waist="Carrier's Sash",
 	}
 	
-	sets.idle.Refresh = {}
+	sets.idle.Refresh = set_combine(sets.idle, {})
 	
-	sets.idle.Regen = {}
+	sets.idle.Regen = set_combine(sets.idle, {right_ring="Sheltered Ring"})
 
--- Resting Sets
-	sets.resting = {}
+-- ## Resting Sets ##
+	sets.resting = { --Refresh +2~3
+		main="Chatoyant Staff",
+		body="Cleric's Bliaut", --Refresh +1
+		legs="Assid. Pants +1", --Refresh +1~2
+		right_ring="Sheltered Ring"
+	}
 
 -------------------------------------------------------------------------------------------------------------------
 -- Defense Sets
 -------------------------------------------------------------------------------------------------------------------
--- Physical damage taken
+-- ## Physical damage taken ##
 	sets.defense.PDT = { --DT -16/50
 		body={ name="Vanya Robe", augments={'MP+50','"Cure" potency +7%','Enmity-6',}}, --DT -1
 		feet="MGF Ledelsens +1", --DT -5
@@ -282,27 +285,28 @@ function init_gear_sets()
 		back="Solemnity Cape", --DT -4
 	}
 	
-  -- Magic damage taken
+  -- ## Magic damage taken ##
 	sets.defense.MDT = set_combine(sets.defense.PDT, {neck="Warder's Charm +1", right_ring="Archon Ring"})
 	
-  -- Magic evasion
-    sets.defense.MEVA = set_combine(sets.defense.PDT, {neck="Warder's Charm +1"})
+  -- ##Magic evasion ##
+    sets.defense.MEVA = set_combine(sets.defense.PDT, {neck="Warder's Charm +1", waist="Carrier's Sash"})
 
 -------------------------------------------------------------------------------------------------------------------
 -- Engaged Sets
 -------------------------------------------------------------------------------------------------------------------
--- Engaged sets, single wield
+-- ## Engaged sets, single wield ##
 	sets.engaged = {}
     sets.engaged.Acc = {}
 	
--- Engaged sets, dual wield
+-- ## Engaged sets, dual wield ##
 	sets.engaged.DW = {}
     sets.engaged.DW.Acc = {}
 
 -------------------------------------------------------------------------------------------------------------------
 -- Weapon sets
 -------------------------------------------------------------------------------------------------------------------
--- Weapons sets
+-- ## Weapons sets ##
+	sets.weapons.None ={}
 	sets.weapons.MeleeWeapons = {}
 	sets.weapons.DualWeapons = {}
 
