@@ -33,30 +33,26 @@ function init_gear_sets()
 -------------------------------------------------------------------------------------------------------------------
 -- Precast Sets
 -------------------------------------------------------------------------------------------------------------------
---------------------------------------
--- Enmity set
---------------------------------------
-	sets.Enmity = {
-		ammo="Sapience Orb",
-		head="Loess Barbuta +1",
-		body="Kasuga Domaru +3",
-		hands="Macabre Gaunt. +1",
-		legs="Zoar Subligar +1",
-		feet="Nyame Sollerets",
-		neck="Unmoving Collar +1",
-		waist="Plat. Mog. Belt",
-		left_ear="Alabaster Earring",
-		right_ear="Friomisi Earring",
-		left_ring="Murky Ring",
-		right_ring="Vengeful Ring",
-		back={ name="Smertrios's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Store TP"+10','Phys. dmg. taken-10%',}},
+-- ### Enmity set ###
+	sets.Enmity = { --DT -49 (PDT -63), Enmity +39~44
+		ammo="Sapience Orb", --Enmity +2
+		head="Loess Barbuta +1", --DT -10, Enmity +9~+14
+		body="Kasuga Domaru +3", --DT -14
+		hands="Macabre Gaunt. +1", --Enmity +7, PDT -4
+		legs="Zoar Subligar +1", --Enmity +6
+		feet="Nyame Sollerets", --DT -7
+		neck="Unmoving Collar +1", --Enmity +10
+		waist="Plat. Mog. Belt", --DT -3
+		left_ear="Alabaster Earring", --DT -5
+		right_ear="Friomisi Earring", --Enmity +2
+		left_ring="Murky Ring", --DT -10
+		right_ring="Vengeful Ring", --Enmity +3
+		back={ name="Smertrios's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Store TP"+10','Phys. dmg. taken-10%',}}, --PDT -10
 	}
 
---------------------------------------
--- Fast cast sets for spells
---------------------------------------
-    sets.precast.FC = { --FC +28/80
-		ammo="Sapience Orb", --FC +2
+-- ### Fast cast sets for spells ###
+    sets.precast.FC = { --FC +26/80, QC +4
+		ammo="Impatiens", --QC +2
 		head="Nyame Helm",
 		body="Sacro Breastplate", --FC +10
 		hands={ name="Leyline Gloves", augments={'Accuracy+14','Mag. Acc.+13','"Mag.Atk.Bns."+13','"Fast Cast"+2',}}, --FC +7
@@ -66,64 +62,58 @@ function init_gear_sets()
 		waist="Plat. Mog. Belt",
 		left_ear="Etiolation Earring", --FC +1
 		right_ear="Loquac. Earring", --FC +2
-		left_ring="Murky Ring",
+		left_ring="Lebeche Ring", --QC +2
 		right_ring="Rahab Ring", --FC +2
 		back={ name="Smertrios's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Store TP"+10','Phys. dmg. taken-10%',}}, --(Fast Cast Cape)
 	}
 
---------------------------------------
--- Precast sets to enhance JAs
---------------------------------------
--- Meditate
+-- ### Precast sets to enhance JAs ###
+  -- Meditate
 	sets.precast.JA.Meditate = {
 		head="Wakido Kabuto +1", --Upgrade to +4
 		--hands="Sakonji Kote +1", --Upgrade to +4
 		back={ name="Smertrios's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Store TP"+10','Phys. dmg. taken-10%',}},
 	}
 	
--- Warding Circle
+  -- Warding Circle
     sets.precast.JA['Warding Circle'] = {head="Wakido Kabuto +1"} --Upgrade to +4
     
--- Blade Bash
+  -- Blade Bash
 	--sets.precast.JA['Blade Bash'] = {hands="Sakonji Kote +1"} --Upgrade to +4
 	
--- Sekkanoki
+  -- Sekkanoki
 	sets.precast.JA['Sekkanoki'] = {hands="Kasuga Kote +3"}
 	
--- Sengikori
+  -- Sengikori
 	sets.precast.JA['Sengikori'] = {feet="Kas. Sune-Ate +3"}
 
---------------------------------------	
--- Ranged Attack / Preshot
---------------------------------------
-    sets.precast.RA = {
+-- ### Ranged Attack / Preshot ### 
+	sets.precast.RA = { --Rapid Shot +5, Snapshot +17
 		range="Exalted Bow",
 		ammo="Stone Arrow",
-		head="Volte Tiara",
-		body="Volte Harness",
-		hands="Volte Mittens",
-		legs="Volte Tights",
-		feet="Volte Spats",
-		waist="Yemaya Belt",
-		left_ring="Crepuscular Ring",
+		head="Volte Tiara", --Snapshot +3
+		body="Volte Harness", --Snapshot +2
+		hands="Volte Mittens", --Snapshot +2
+		legs="Volte Tights", --Snapshot +5
+		feet="Volte Spats", --Snapshot +2
+		waist="Yemaya Belt", --Rapid Shot +5
+		left_ring="Crepuscular Ring", --Snapshot +3
 	}
 
---------------------------------------
--- Waltz sets
---------------------------------------
--- Curing Waltz
-    sets.precast.Waltz = {
+-- ### Waltz sets ###
+  -- Curing Waltz
+    sets.precast.Waltz = { --VIt +186, CHA +170, Waltz Pot +10%
 		head="Kasuga Kabuto +3",
 		body="Kasuga Domaru +3",
 		hands="Kasuga Kote +3",
-		legs="Dashing Subligar",
+		legs="Dashing Subligar", --Waltz Pot. +10%
 		feet="Kas. Sune-Ate +3",
 		neck="Unmoving Collar +1",
 		waist="Chaac Belt",
-		left_ear="Handler's Earring",
-		right_ear="Alabaster Earring",
-		left_ring="Metamor. Ring +1",
-		right_ring="Murky Ring",
+		left_ear="Alabaster Earring",
+		right_ear_ear="Handler's Earring",
+		left_ring="Murky Ring",
+		right_ring="Metamor. Ring +1",
 		back={ name="Smertrios's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
 	}
 	
@@ -133,10 +123,8 @@ function init_gear_sets()
 ------------------------------------------------------------------------------------------------------------------- 
 -- Midcast Sets
 -------------------------------------------------------------------------------------------------------------------
---------------------------------------
--- Fast Recast Set
---------------------------------------
-    sets.midcast.FastRecast = {
+-- ### Fast Recast Set ###
+    sets.midcast.FastRecast = { --FC +28/80
 		ammo="Sapience Orb", --FC +2
 		head="Nyame Helm",
 		body="Sacro Breastplate", --FC +10
@@ -152,51 +140,55 @@ function init_gear_sets()
 		back={ name="Smertrios's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Store TP"+10','Phys. dmg. taken-10%',}}, --(Fast Cast Cape)
 	}
 	
--- Fast Recast for Specific spells
+  -- Fast Recast for Specific spells
     sets.midcast.Utsusemi = set_combine(sets.midcast.FastRecast, {})
 	
---------------------------------------
--- Ranged Attack / Midshot
---------------------------------------
-    sets.midcast.RA = {
+-- ### Ranged Attack / Midshot ###
+    sets.midcast.RA = {  --Rapid Shot +5, Snapshot +17, STP +79, SB +36, Latent: Regain +20
 		range="Exalted Bow",
 		ammo="Stone Arrow",
-        head="Volte Tiara",
-		body="Volte Harness",
-		hands="Volte Mittens",
-		legs="Volte Tights",
-		feet="Volte Spats",
-		neck="Combatant's Torque",
-		waist="Yemaya Belt",
-		left_ear="Alabaster Earring",
-		right_ear="Telos Earring",
-		left_ring="Cacoethic Ring +1",
-		right_ring="Crepuscular Ring",
-		back="Null Shawl",
+        head="Volte Tiara", --Snapshot +3, STP +6, SB +6
+		body="Volte Harness", --Snapshot +2, STP +10, SB +10
+		hands="Volte Mittens", --Snapshot +2, STP +6, SB +6
+		legs="Volte Tights", --Snapshot +5, STP +8, SB +8
+		feet="Volte Spats", --Snapshot +2, STP +6, SB +6
+		neck="Vim Torque +1", --STP +10, Latent: Regain +20
+		waist="Yemaya Belt", --Rapid Shot +5, STP +4
+		left_ear="Dedition Earring", --STP +8
+		right_ear="Telos Earring", --STP +5
+		left_ring="Cacoethic Ring +1", 
+		right_ring="Crepuscular Ring", --Snapshot +3, STP +6
+		back="Null Shawl", --STP +10
 	}
 	
--- Ranged Attack / Midshot Acc
-    sets.midcast.RA.Acc = set_combine(sets.midcast.RA, {
-		head="Ken. Jinpachi +1",
-		body="Ken. Samue +1",
+  -- Ranged Attack / Midshot Acc
+    sets.midcast.RA.Acc = set_combine(sets.midcast.RA, { --Rapid Shot +5, Snapshot +10, STP 57, SB +40
+		head="Ken. Jinpachi +1", --SB +8
+		body="Ken. Samue +1", --SB +12
 		hands="Kasuga Kote +3",
+		left_ear="Enervating Earring", --STP +4
 	})
 	
--- Ranged Attack / Midshot FullAcc
+  -- Ranged Attack / Midshot FullAcc
 	sets.midcast.RA.FullAcc = set_combine(sets.midcast.RA, {})
 	
--- Ranged Attack / Midshot Fodder
-	sets.midcast.RA.Fodder = set_combine(sets.midcast.RA, {})
+  -- Ranged Attack / Midshot PDL
+	sets.midcast.RA.PDL = set_combine(sets.midcast.RA, {})
 	
--- Ranged Attack / Midcast Subtle Blow
+  -- Ranged Attack / Midcast Subtle Blow
 	sets.midcast.RA.SubtleBlow = set_combine(sets.midcast.RA, {})
+	
+-- ### Effects received on self ###
+  -- Cure potency received
+	sets.Cure_Received = {waist="Gishdubar Sash", legs="Flamma Dirs +2"}
+	
+  -- Phalanx received
+	sets.Phalanx_Received = 
 
 -------------------------------------------------------------------------------------------------------------------
 -- Idle Sets
 -------------------------------------------------------------------------------------------------------------------
---------------------------------------
--- Base Idle Set
---------------------------------------
+-- ### Base Idle Set ###
     sets.idle = { --DT -50, Regen +17
 		ammo="Staunch Tathlum +1", --DT -3
 		head="Nyame Helm", --DT -7 (Null Masque)
@@ -213,35 +205,33 @@ function init_gear_sets()
 		back={ name="Smertrios's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Store TP"+10','Phys. dmg. taken-10%',}}, --(Regen cape)
 	}
 
--- Regain set
+  -- Regain set
 	sets.idle.Regain = set_combine(sets.idle, {
 		--head="Null Masque", --(Wakido Kabuto +4)
 		body="Makora Meikogai",
 	})
 	
--- Regen set
+  -- Regen set
 	sets.idle.Regen = set_combine(sets.idle, {
 		head="Twilight Helm", --(Null Masque)
 		left_ear="Dawn Earring",
 		left_ring="Chirich Ring +1",
 	})
 	
--- Refresh set
+  -- Refresh set
 	-- sets.idle.refresh = set_combine(sets.idle, {})
 	
--- Reraise Set
+  -- Reraise Set
 	--sets.idle.Reraise = set_combine(sets.idle, {head="Twilight Helm", body="Twilight Mail",})
 	
--- Weakened set
+  -- Weakened set
     --sets.idle.Weak = {head="Twilight Helm", body="Twilight Mail"}
     
 
 -------------------------------------------------------------------------------------------------------------------
 -- Defense Sets
 -------------------------------------------------------------------------------------------------------------------
---------------------------------------
--- Physical Damage Reduction
---------------------------------------
+-- ### Physical Damage Reduction ###
     sets.defense.PDT = {
 		ammo="Eluder's Sachet",
 		head="Nyame Helm",
@@ -260,7 +250,7 @@ function init_gear_sets()
 	
 	--sets.defense.PDTReraise = set_combine(sets.defense.PDT, {head="Twilight Helm",body="Twilight Mail"})
 	
--- Magical Damage Reduction
+  -- Magical Damage Reduction
     sets.defense.MDT = set_combine(sets.defense.PDT, {
 		ammo="Staunch Tathlum +1",
 		neck="Warder's Charm +1",
@@ -271,7 +261,7 @@ function init_gear_sets()
 	
 	--sets.defense.MDTReraise = set_combine(sets.defense.MDT, {head="Twilight Helm",body="Twilight Mail"})
 	
--- Magic Evasion
+  -- Magic Evasion
 	sets.defense.MEVA = set_combine(sets.defense.PDT, {
 		ammo="Staunch Tathlum +1",
 		neck="Warder's Charm +1",
@@ -280,19 +270,15 @@ function init_gear_sets()
 		back="Null Shawl",
 	})
 
---------------------------------------
--- Misc. Defensive Sets
---------------------------------------
-	sets.Kiting = {left_ring="Shneddick Ring"}
+
+-- ### Misc. Defensive Sets ###
+	sets.Kiting = {right_ring="Shneddick Ring"}
 	--sets.Reraise = {head="Twilight Helm",body="Twilight Mail"}
-	sets.TreasureHunter = set_combine(sets.TreasureHunter, {head="Volte Cap", body="Volte Jupon", waist="Chaac Belt"})
-	sets.DayIdle = {left_ear="Dawn Earring"}
-	sets.NightIdle = {}
 	
 -------------------------------------------------------------------------------------------------------------------
 -- Offense Sets
 -------------------------------------------------------------------------------------------------------------------
--- Engaged Set
+-- ### Engaged Set ###
     sets.engaged = {
 		ammo="Aurgelmir Orb", --(Aurgelmir Orb +1)
 		head="Kasuga Kabuto +3",
@@ -309,7 +295,7 @@ function init_gear_sets()
 		back={ name="Smertrios's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Store TP"+10','Phys. dmg. taken-10%',}},
 	}
 
--- Engaged accuracy set
+  -- Engaged accuracy set
     sets.engaged.Acc = set_combine(sets.engaged, {
 		ammo="Coiste Bodhar",
 		feet="Tatena. Sune. +1",
@@ -319,7 +305,7 @@ function init_gear_sets()
 		back={ name="Smertrios's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Store TP"+10','Phys. dmg. taken-10%',}},
 	})
 
--- Engaged full accuracy set
+  -- Engaged full accuracy set
 	sets.engaged.FullAcc = set_combine(sets.engaged, {
 		ammo="Amar Cluster",
 		feet="Wakido Sune. +3",
@@ -328,8 +314,11 @@ function init_gear_sets()
 		right_ring="Regal Ring",
 		back={ name="Smertrios's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Store TP"+10','Phys. dmg. taken-10%',}},
 	})
-	
--- Subtle Blow set
+
+  -- Engaged PDL set
+	sets.engaged.PDL = set_combine(sets.engaged, {
+  
+  -- Subtle Blow set
 	sets.engaged.SubtleBlow = set_combine(sets.engaged, {
 		hands="Volte Mittens", --(Ken. Tekko +1)
 		waist="Ioskeha Belt +1",
@@ -338,7 +327,7 @@ function init_gear_sets()
 		right_ring="Chirich Ring +1",
 	})
     
--- Hybrid DT set
+  -- Hybrid DT set
 	sets.engaged.DT = set_combine(sets.engaged, {
 		ammo="Coiste Bodhar",
 		hands="Nyame Gauntlets",
@@ -349,9 +338,7 @@ function init_gear_sets()
 -------------------------------------------------------------------------------------------------------------------
 -- Weaponskill Sets
 -------------------------------------------------------------------------------------------------------------------
---------------------------------------
--- Default weaponskill gear
---------------------------------------
+-- ### Default weaponskill gear ###
     sets.precast.WS = {
 		ammo="Knobkierrie",
 		head="Mpaca's Cap",
@@ -368,27 +355,26 @@ function init_gear_sets()
 		back={ name="Smertrios's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
 	}
     
--- Weaponskill accuracy gear
+  -- Weaponskill accuracy gear
 	sets.precast.WS.Acc = set_combine(sets.precast.WS, {})
 	
--- Weaponskill fodder gear
-	sets.precast.WS.Fodder = set_combine(sets.precast.WS, {feet="Kas. Sune-Ate +3", right_ring="Sroda Ring"})
+  -- Weaponskill full accuracy set
+    sets.precast.WS.FullAcc = set_combine(sets.precast.WS, {})
 	
--- Weaponskill DT gear
+  -- Weaponskill PDL gear
+	sets.precast.WS.PDL = set_combine(sets.precast.WS, {feet="Kas. Sune-Ate +3", right_ring="Sroda Ring"})
+	
+  -- Weaponskill DT gear
 	sets.precast.WS.DT = set_combine(sets.precast.WS, {})
 
---------------------------------------
--- Bow Weaponskills
---------------------------------------
--- Apex Arrow
+-- ### Bow Weaponskills ###
+  -- Apex Arrow
 	sets.precast.WS['Apex Arrow'] = {}
     sets.precast.WS['Apex Arrow'].Acc = set_combine(sets.precast.WS['Apex Arrow'], {})
-    sets.precast.WS['Apex Arrow'].Fodder = set_combine(sets.precast.WS['Apex Arrow'], {})
+    sets.precast.WS['Apex Arrow'].PDT = set_combine(sets.precast.WS['Apex Arrow'], {})
 	
---------------------------------------
--- Great Katana Weaponskills
---------------------------------------
--- Tach: Ageha
+-- ### Great Katana Weaponskills ###
+  -- Tach: Ageha
     sets.precast.WS['Tachi: Ageha'] = set_combine(sets.precast.WS, {
 		ammo="Pemphredo Tathlum",
 		head="Kasuga Kabuto +3",
@@ -405,17 +391,17 @@ function init_gear_sets()
 		back="Null Shawl",
 	})
 	
--- Tachi: Fudo
+  -- Tachi: Fudo
 	sets.precast.WS['Tachi: Fudo'] = set_combine(sets.precast.WS, {})
     sets.precast.WS['Tachi: Fudo'].Acc = set_combine(sets.precast.WS.Acc, {})
     sets.precast.WS['Tachi: Fudo'].Fodder = set_combine(sets.precast.WS.Fodder, {})
 	
--- Tachi: Gekko
+  -- Tachi: Gekko
 	sets.precast.WS['Tachi: Gekko'] = set_combine(sets.precast.WS, {})
     sets.precast.WS['Tachi: Gekko'].Acc = set_combine(sets.precast.WS.Acc, {})
     sets.precast.WS['Tachi: Gekko'].Fodder = set_combine(sets.precast.WS.Fodder, {})
 	
--- Tachi: Jinpu
+  -- Tachi: Jinpu
 	sets.precast.WS['Tachi: Jinpu'] = set_combine(sets.precast.WS, {
 		head="Nyame Helm",
 		body="Nyame Mail",
@@ -428,22 +414,22 @@ function init_gear_sets()
 	sets.precast.WS['Tachi: Jinpu'].Acc = set_combine(sets.precast.WS.Acc, {})
 	sets.precast.WS['Tachi: Jinpu'].Fodder = set_combine(sets.precast.WS.Fodder, {})
 
--- Tacki: Kasha
+  -- Tacki: Kasha
 	sets.precast.WS['Tacki: Kasha'] = set_combine(sets.precast.WS, {})
 	sets.precast.WS['Tacki: Kasha'].Acc = set_combine(sets.precast.WS.Acc, {})
 	sets.precast.WS['Tacki: Kasha'].Fodder = set_combine(sets.precast.WS.Fodder, {})
 
--- Tachi: Koki
+  -- Tachi: Koki
 	sets.precast.WS['Tachi: Koki'] = set_combine(sets.precast.WS, {})
 	sets.precast.WS['Tachi: Koki'].Acc = set_combine(sets.precast.WS.Acc, {})
 	sets.precast.WS['Tachi: Koki'].Fodder = set_combine(sets.precast.WS.Fodder, {})
 
--- Tachi: Mumei
+  -- Tachi: Mumei
 	sets.precast.WS['Tachi: Mumei'] = set_combine(sets.precast.WS, {})
 	sets.precast.WS['Tachi: Mumei'].Acc = set_combine(sets.precast.WS.Acc, {})
 	sets.precast.WS['Tachi: Mumei'].Fodder = set_combine(sets.precast.WS.Fodder, {})
 
--- Tachi: Shoha
+  -- Tachi: Shoha
     sets.precast.WS['Tachi: Shoha'] = set_combine(sets.precast.WS, {
 		body="Nyame Mail",
 		left_ring="Niqmaddu Ring",
@@ -456,25 +442,23 @@ function init_gear_sets()
 		left_ring="Niqmaddu Ring",
 	})
 
--- Tachi: Yukikaze
+  -- Tachi: Yukikaze
 	sets.precast.WS['Tachi: Yukikaze'] = set_combine(sets.precast.WS, {})
     sets.precast.WS['Tachi: Yukikaze'].Acc = set_combine(sets.precast.WS.Acc, {})
     sets.precast.WS['Tachi: Yukikaze'].Fodder = set_combine(sets.precast.WS.Fodder, {})
 
---------------------------------------
--- Polearm Weaponskills
---------------------------------------
--- Impulse Drive
+-- ### Polearm Weaponskills ###
+  -- Impulse Drive
 	sets.precast.WS['Impulse Drive'] = set_combine(sets.precast.WS, {})
     sets.precast.WS['Impulse Drive'].Acc = set_combine(sets.precast.WS['Impulse Drive'], {})
     sets.precast.WS['Impulse Drive'].Fodder = set_combine(sets.precast.WS['Impulse Drive'], {})
 	
--- Sonic Thrust
+  -- Sonic Thrust
 	sets.precast.WS['Sonic Thrust'] = set_combine(sets.precast.WS, {})
     sets.precast.WS['Sonic Thrust'].Acc = set_combine(sets.precast.WS, {})
     sets.precast.WS['Sonic Thrust'].Fodder = set_combine(sets.precast.WS, {})
 	
--- Stardiver
+  -- Stardiver
 	sets.precast.WS['Stardiver'] = set_combine(sets.precast.WS, {
 		ammo="Coiste Bodhar",
 		body="Mpaca's Doublet",
@@ -490,9 +474,8 @@ function init_gear_sets()
     sets.precast.WS['Stardiver'].Acc = set_combine(sets.precast.WS, { })
     sets.precast.WS['Stardiver'].Fodder = set_combine(sets.precast.WS, { })
 
---------------------------------------
--- Misc. weaponskill sets
---------------------------------------
+-- ### Misc. weaponskill sets ###
+  -- Skillchain bonus gear
 	sets.Skillchain = {
 		head="Mpaca's Cap",
 		legs="Nyame Flanchard",
@@ -500,6 +483,7 @@ function init_gear_sets()
 		back={ name="Smertrios's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
 	}
 
+  -- WS gear when at max TP
 	sets.MaxTP = {left_ear="Thrud Earring", right_ear="Lugra Earring +1",}
 	sets.AccMaxTP = {left_ear="Mache Earring +1", right_ear="Telos Earring"}
 	sets.AccDayMaxTPWSEars = {left_ear="Mache Earring +1", right_ear="Telos Earring"}
@@ -512,44 +496,42 @@ function init_gear_sets()
 -------------------------------------------------------------------------------------------------------------------
 	sets.weapons.Masamune = {main="Masamune", sub="Utu Grip"}
 	sets.weapons.ShiningOne = {main="Shining One", sub="Utu Grip"}
-	--sets.weapons.Malevolance = {main="Malevolance", sub="Malevolance"}
+	sets.weapons.Malevolance = {main="Malevolance", sub=empty}
 	
 -------------------------------------------------------------------------------------------------------------------
 -- Misc. sets
 -------------------------------------------------------------------------------------------------------------------
--- Resting sets
+-- ### Resting sets ###
     sets.resting = {}
 
-
--- Treasure Hunter	
+-- ### Treasure Hunter ###	
 	sets.TreasureHunter = {
 		head="Volte Cap",
 		body="Volte Jupon",
-		legs="Volte Hose",	
+		legs="Chaac Belt",	
 	}
 	
--- Cure received
-	sets.Cure_Received = {waist="Gishdubar Sash", legs="Flamma Dirs +2"}
-	
--- Vs. Doomed
+-- ### Equipped vs. critical debuffs ###
+  -- Doomed
 	sets.buff.Doom = set_combine(sets.buff.Doom, {neck="Nicander's Necklace", waist="Gishdubar Sash"})
 	
--- Vs. Sleep
+  -- Sleep
 	sets.buff.Sleep = {neck="Vim Torque +1"}
 	
--- Hasso
+-- ### Gear to be equipped when a buff is active ###
+  -- Hasso
 	sets.buff.Hasso = {hands="Wakido Kote +3"}
 	
--- Meikyo Shisui
+  -- Meikyo Shisui
     --sets.buff['Meikyo Shisui'] = {feet="Sak. Sune-Ate +1"}
     
--- Sekkanoki
+  -- Sekkanoki
 	sets.buff.Sekkanoki = {hands="Kasuga Kote +3"}
 	
--- Sengikori
+  -- Sengikori
     sets.buff.Sengikori = {feet="Kas. Sune-Ate +3"}
 	
--- Third Eye	
+  -- Third Eye	
 	sets.buff['Third Eye'] = {} --legs="Sakonji Haidate +3"
 end
 
