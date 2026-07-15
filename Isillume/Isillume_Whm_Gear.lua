@@ -39,23 +39,24 @@ function init_gear_sets()
 -- Precast Sets
 -------------------------------------------------------------------------------------------------------------------
 -- ### Fast cast sets for spells ###	
-    sets.precast.FC = { --FC +47~49, QC +2
+    sets.precast.FC = { --FC +52~54, QC +2
 		ammo="Impatiens", --QC +2
-		head={ name="Vanya Hood", augments={'MP+50','"Fast Cast"+10','Haste+2%',}}, --FC +10
+		head={ name="Vanya Hood", augments={'MP+50','"Fast Cast"+10','Haste+2%',}}, --FC +10 (Ebers Cap +3)
 		body="Inyanga Jubbah +2", --FC +14
-		legs="Aya. Cosciales +2", --FC +6
+		hands="Aya. Manopolas +2", --(Fanatic Gloves)
+		legs="Aya. Cosciales +2", --FC +6 (Volte Brais)
 		feet="Regal Pumps +1", --FC +5~7
-		neck="Warder's Charm +1",
-		waist="Carrier's Sash",
-		left_ear="Loquac. Earring", --FC +2
-		right_ear="Hearty Earring",
-		left_ring="Mephitas's Ring +1",
-		right_ring="Archon Ring",
-		back={ name="Alaunus's Cape", augments={'MND+20','Eva.+20 /Mag. Eva.+20','MND+10','"Fast Cast"+10','Mag. Evasion+15',}}, --FC +10
+		neck={ name="Clr. Torque +2", augments={'Path: A',}}, --FC +5/10 (Aug to R25)
+		waist="Carrier's Sash", --(Witful Belt)
+		left_ear="Alabaster Earring", --(Malignance Earring)
+		right_ear="Loquac. Earring", --FC +2
+		left_ring="Murky Ring", --(Lebeche Ring)
+		right_ring="Mephitas's Ring +1", --(Kishar Ring)
+		back={ name="Alaunus's Cape", augments={'MND+20','Eva.+20 /Mag. Eva.+20','MND+10','"Fast Cast"+10','Mag. Evasion+15',}}, --FC +10 (Perimede Cape)
 	}
 
   -- Fast cast, damage taken	
-	sets.precast.FC.DT = set_combine(sets.precast.FC, { --FC +37~39, QC +2, DT -18
+	sets.precast.FC.DT = set_combine(sets.precast.FC, {
 		hands="Aya. Manopolas +2", --DT -3
 		legs="Aya. Cosciales +2", --DT -5, FC +6
 		neck="Loricate Torque +1", --DT -6
@@ -63,9 +64,9 @@ function init_gear_sets()
 	})
     
   -- Enhancing magic fast cast
-	sets.precast.FC['Enhancing Magic'] = set_combine(sets.precast.FC, { --Enh. Magic Skill +55
+	sets.precast.FC['Enhancing Magic'] = set_combine(sets.precast.FC, { --Enh. Magic Skill 472/500
 		hands="Inyan. Dastanas +2", --Magic Skill +20
-		legs="Piety Pantaloons", --Enhancing Skill +20
+		legs="Piety Pantaloons +1", --Enhancing Skill +22
 		feet="Theo. Duckbills", --Enhancing Skill +15
 	})
 		
@@ -98,7 +99,7 @@ function init_gear_sets()
 -- ### Precast sets to enhance JAs ###
     sets.precast.JA.Benediction = {body="Piety Bliaut +1"}
 	sets.precast.JA.Devotion = {head="Piety Cap +1"}
-	sets.precast.JA.Martyr = {hands="Piety Mitts"}
+	sets.precast.JA.Martyr = {hands="Piety Mitts +1"}
 
 -- ### Waltz set for /DNC (CHA + VIT) ###
     sets.precast.Waltz = {}
@@ -107,19 +108,20 @@ function init_gear_sets()
 -- Midcast Sets
 -------------------------------------------------------------------------------------------------------------------   
 -- ### Fast Recast ### 
-	sets.midcast.FastRecast = { --FC +47~49, QC +2
-		ammo="Impatiens", --QC +2
-		head={ name="Vanya Hood", augments={'MP+50','"Fast Cast"+10','Haste+2%',}}, --FC +10
+	sets.midcast.FastRecast = { --FC +52~54, QC +2
+		ammo="Impatiens", --QC +2 (Sapience Orb)
+		head={ name="Vanya Hood", augments={'MP+50','"Fast Cast"+10','Haste+2%',}}, --FC +10 (Ebers Cap +3)
 		body="Inyanga Jubbah +2", --FC +14
+		hands="Aya. Manopolas +2", 
 		legs="Aya. Cosciales +2", --FC +6 (Volte Brais)
 		feet="Regal Pumps +1", --FC +5~7
-		neck="Warder's Charm +1", --(Cleric's Torque +2 R25)
+		neck={ name="Clr. Torque +2", augments={'Path: A',}}, --FC +5/10 (Aug to R25)
 		waist="Carrier's Sash", --(Witful Belt)
-		left_ear="Loquac. Earring", --FC +2
-		right_ear="Hearty Earring", --(Malignance Earring)
-		left_ring="Mephitas's Ring +1", --(Lebeche Ring)
-		right_ring="Archon Ring", --(Kishar Ring)
-		back={ name="Alaunus's Cape", augments={'MND+20','Eva.+20 /Mag. Eva.+20','MND+10','"Fast Cast"+10','Mag. Evasion+15',}}, --FC +10
+		left_ear="Alabaster Earring", --(Malignance Earring)
+		right_ear="Loquac. Earring", --FC +2
+		left_ring="Murky Ring", --(Lebeche Ring)
+		right_ring="Mephitas's Ring +1", --(Kishar Ring)
+		back={ name="Alaunus's Cape", augments={'MND+20','Eva.+20 /Mag. Eva.+20','MND+10','"Fast Cast"+10','Mag. Evasion+15',}}, --FC +10 (Perimede Cape)
 	}
 	
 -- ## Dark Magic ## 
@@ -145,7 +147,6 @@ function init_gear_sets()
 		body={ name="Vanya Robe", augments={'MP+50','"Cure" potency +7%','Enmity-6',}}, --Divine Magic +20
 		hands="Inyan. Dastanas +2", --Magic Skill +20
 		legs="Theo. Pantaloons", --Divine Magic +17
-		feet="Piety Duckbills",
 	})
 	
 	sets.midcast.Holy = {}
@@ -179,14 +180,14 @@ function init_gear_sets()
 
 -- ### Enhancing Magic ### 
 	sets.midcast['Enhancing Magic'] = set_combine(sets.midcast.FastRecast, {
-		hands="Inyan. Dastanas +1", --Enhancing Magic +18
-		legs="Shedir Seraweels", --Enhancing Magic +15
+		hands="Inyan. Dastanas +1", --Magic skills +20
+		legs="Piety Pantaln. +1", --Enhancing Magic +22
 	})
 
   -- Specific Enhancing magic spells
     -- Barspells
 	sets.midcast.BarElement = set_combine(sets.midcast['Enhancing Magic'], {
-		legs="Cleric's Pantaln.",
+		legs="Piety Pantaln.", --Elemental resist spells +30
 	})
 	
 	-- Auspice
@@ -200,9 +201,9 @@ function init_gear_sets()
 	sets.midcast.Protectra = set_combine(sets.midcast['Enhancing Magic'], {right_ring="Sheltered Ring"})
 	
 	-- Regen
-	sets.midcast.Regen = set_combine(sets.midcast['Enhancing Magic'], {
-		head="Inyanga Tiara +2",
-		body="Piety Bliaut +1",
+	sets.midcast.Regen = set_combine(sets.midcast['Enhancing Magic'], { --Regen potency +50%
+		head="Inyanga Tiara +2", --Regen potency +14%
+		body="Piety Bliaut +1", --Regen potency +36%
 	})
 	
 	-- Shell
@@ -218,35 +219,35 @@ function init_gear_sets()
 	
   -- Specific healing magic spells
 	-- Cure
-	sets.midcast.Cure = set_combine(sets.midcast['Healing Magic'], { --Cure Pot. +72/50, Cure Pot. II +10, Enmity -23, Cure Spellcast Time -23%, Conserve MP +23
-		main="Raetic Rod +1",
-		sub="Sors Shield",
-		head={ name="Vanya Hood", augments={'MP+50','"Fast Cast"+10','Haste+2%',}},
-		body={ name="Vanya Robe", augments={'MP+50','"Cure" potency +7%','Enmity-6',}},
-		hands={ name="Vanya Cuffs", augments={'MP+50','"Cure" potency +7%','Enmity-6',}},
-		legs={ name="Vanya Slops", augments={'MP+50','"Cure" potency +7%','Enmity-6',}},
-		feet={ name="Vanya Clogs", augments={'"Cure" potency +5%','"Cure" spellcasting time -15%','"Conserve MP"+6',}},
-		right_ear="Nourish. Earring",
+	sets.midcast.Cure = set_combine(sets.midcast['Healing Magic'], { --Cure Potency +69/50, Cure Pot. II +10, "Cure" +50, Conserve MP +22
+		main="Raetic Rod +1", --Cure Pot. +23, Cure Pot. II +10, "Cure" +50
+		sub="Archduke's Shield",
+		ammo="Impatiens", --SIRD -10
+		head={ name="Vanya Hood", augments={'MP+50','"Fast Cast"+10','Haste+2%',}}, --Cure Pot. +10, Conserve MP +6
+		body={ name="Vanya Robe", augments={'MP+50','"Cure" potency +7%','Enmity-6',}}, --Cure Pot. +7
+		hands={ name="Vanya Cuffs", augments={'MP+50','"Cure" potency +7%','Enmity-6',}}, --Cure Pot. +7
+		legs="Aya. Cosciales +2", --DT -5 (Ebers Pantaloons)
+		feet={ name="Vanya Clogs", augments={'"Cure" potency +5%','"Cure" spellcasting time -15%','"Conserve MP"+6',}}, --Cure Pot. +5, Conserve MP +6 (Theo. Duckbills +4) 
+		neck={ name="Clr. Torque +2", augments={'Path: A',}}, --Cure Pot. +10
+		waist="Carrier's Sash",
+		left_ear="Alabaster Earring", --DT -5
+		right_ear="Magnetic Earring", --Conserve MP +5, SIRD -8
+		left_ring="Murky Ring", --DT -10, SIRD -3
 		right_ring="Mephitas's Ring +1",
-		back="Solemnity Cape",
+		back="Solemnity Cape", --Cure Pot. +7, Conserve MP +5, DT -4
 	})
 	
 	-- Cure with Afflatius Solace active
 	sets.midcast.CureSolace = set_combine(sets.midcast.Cure, {
-		back={ name="Alaunus's Cape", augments={'MND+20','Eva.+20 /Mag. Eva.+20','MND+5','"Fast Cast"+10'}},
+		feet="Piety Duckbills +1",
+		back={ name="Alaunus's Cape", augments={'MND+20','Eva.+20 /Mag. Eva.+20','MND+10','"Fast Cast"+10','Mag. Evasion+15',}},
 	})
 	
 	sets.midcast.LightWeatherCure = {}
 	sets.midcast.LightWeatherCureSolace = {}
 	sets.midcast.LightDayCureSolace = {}
 	sets.midcast.LightDayCure = {}
-	sets.midcast.Cure.DT = {
-		hands="Aya. Manopolas +2", --DT -3
-		legs="Aya. Cosciales +2", --DT -5, FC +6
-		neck="Loricate Torque +1", --DT -6
-		right_ear="Nourish. Earring", --CPot +5~6, CST -3
-		back="Solemnity Cape", --DT -4
-	}
+	sets.midcast.Cure.DT = {}
 	
 	-- Curaga
 	sets.midcast.Curaga = set_combine(sets.midcast.Cure, {})
@@ -259,11 +260,13 @@ function init_gear_sets()
 		neck="Debilis Medallion", --Cursna +15
 		left_ring="Haoma's Ring", --Cursna +15
 		right_ring="Menelaus's Ring", --Cursna +20
-		back={ name="Alaunus's Cape", augments={'MND+20','Eva.+11 /Mag. Eva.+11',}}, --Cursna +25
+		back={ name="Alaunus's Cape", augments={'MND+20','Eva.+20 /Mag. Eva.+20','MND+10','"Fast Cast"+10','Mag. Evasion+15',}}, --Cursna +25
 	}
 
 	-- Erase
-	sets.midcast.Erase = set_combine(sets.midcast.StatusRemoval, {})
+	sets.midcast.Erase = set_combine(sets.midcast.StatusRemoval, {
+		neck={ name="Clr. Torque +2", augments={'Path: A',}},
+	})
 
 	-- Full Cure
 	sets.midcast['Full Cure'] = sets.midcast.FastRecast
@@ -317,11 +320,12 @@ function init_gear_sets()
 	sets.Self_Refresh = {}
 
 -- ## Conserve Mp set for spells that don't need anything else, for set_combine. ##
-	sets.ConserveMP = { --CMP +23
-		head={ name="Vanya Hood", augments={'MP+50','"Fast Cast"+10','Haste+2%',}},
-		legs={ name="Vanya Slops", augments={'MP+50','"Cure" potency +7%','Enmity-6',}},
-		feet={ name="Vanya Clogs", augments={'"Cure" potency +5%','"Cure" spellcasting time -15%','"Conserve MP"+6',}},
-		back="Solemnity Cape",
+	sets.ConserveMP = { --Conserve MP +28
+		head={ name="Vanya Hood", augments={'MP+50','"Fast Cast"+10','Haste+2%',}}, --Conserve MP +6
+		legs={ name="Vanya Slops", augments={'MP+50','"Cure" potency +7%','Enmity-6',}}, --Conserve MP +6
+		feet={ name="Vanya Clogs", augments={'"Cure" potency +5%','"Cure" spellcasting time -15%','"Conserve MP"+6',}}, --Conserve MP +6
+		right_ear="Magnetic Earring", --Conserve MP +5
+		back="Solemnity Cape", --Conserve MP +5
 	}
 	
 	sets.midcast.Teleport = sets.ConserveMP
@@ -333,30 +337,34 @@ function init_gear_sets()
 -- Idle & Resting Sets
 -------------------------------------------------------------------------------------------------------------------
 -- ## Idle sets ##
-	sets.idle = { --Refresh +6~7, Regen +1, MDT -27, PDT -10
-		main="Queller Rod",
-		sub="Archduke's Shield",
-		ammo="Impatiens",
-		head="Inyanga Tiara +2",
-		body="Piety Bliaut +1",
-		hands="Inyan. Dastanas +2",
-		legs="Assid. Pants +1",
-		feet="Herald's Gaiters", --Mv. Speed +12%
-		neck="Loricate Torque +1",
-		waist="Carrier's Sash",
-		left_ear="Loquac. Earring",
+	sets.idle = { --Refresh +5-6, DT -31
+		main="Queller Rod", --Refresh +1
+		sub="Archduke's Shield", --Refresh +1
+		head="Aya. Zucchetto +2", --DT -3
+		body="Piety Bliaut +1", --Refresh +2
+		hands="Aya. Manopolas +2", --DT -3
+		legs="Assid. Pants +1", --Refresh +1~2
+		feet="Herald's Gaiters",
+		neck="Loricate Torque +1", --DT -6
+		waist="Carrier's Sash", 
+		left_ear="Alabaster Earring", --DT -5
 		right_ear="Hearty Earring",
-		left_ring="Sheltered Ring",
+		left_ring="Murky Ring", --DT -10
 		right_ring="Archon Ring",
-		back="Solemnity Cape",
+		back="Solemnity Cape", --DT -4
 	}
 	
-	sets.idle.Refresh = set_combine(sets.idle, {})
+	sets.idle.Refresh = set_combine(sets.idle, { --Refresh +6~7, DT -25
+		head="Inyanga Tiara +2",
+		hands="Inyan. Dastanas +2",
+	})
 	
 	sets.idle.Regen = set_combine(sets.idle, {right_ring="Sheltered Ring"})
 
 -- ## Resting Sets ##
-	sets.resting = set_combine(sets.idle, {
+	sets.resting = set_combine(sets.idle, { --Refresh +7~8, DT -25
+		head="Inyanga Tiara +2",
+		hands="Inyan. Dastanas +2",
 		feet="Inyan. Crackows +2",
 	})
 
@@ -364,7 +372,7 @@ function init_gear_sets()
 -- Defense Sets
 -------------------------------------------------------------------------------------------------------------------
 -- ## Physical damage taken ##
-	sets.defense.PDT = { --DT -32/50
+	sets.defense.PDT = { --DT -47/50
 		head="Aya. Zucchetto +2", --DT -3
 		body="Ayanmo Corazza +2", --DT -6
 		hands="Aya. Manopolas +2", --DT -3
@@ -372,9 +380,9 @@ function init_gear_sets()
 		feet="MGF Ledelsens +1", --DT -5
 		neck="Loricate Torque +1", --DT -6
 		waist="Carrier's Sash",
-		left_ear="Loquac. Earring",
+		left_ear="Alabaster Earring", --DT -5
 		right_ear="Hearty Earring",
-		left_ring="Mephitas's Ring +1",
+		left_ring="Murky Ring", --DT -10
 		right_ring="Archon Ring",
 		back="Solemnity Cape", --DT -4
 	}
@@ -390,6 +398,7 @@ function init_gear_sets()
 		sub="Archduke's Shield",
 		neck="Warder's Charm +1", 
 		waist="Carrier's Sash",
+		back={ name="Alaunus's Cape", augments={'MND+20','Eva.+20 /Mag. Eva.+20','MND+10','"Fast Cast"+10','Mag. Evasion+15',}},
 	})
 
 -------------------------------------------------------------------------------------------------------------------
@@ -460,7 +469,7 @@ end
 
 -- Select default macro book on initial load or subjob change.
 function select_default_macro_book()
-	set_macro_page(3, 6)
+	set_macro_page(3, 1)
 end
 
 autows_list = {['DualWeapons']='Realmrazer',['MeleeWeapons']='Realmrazer'}
