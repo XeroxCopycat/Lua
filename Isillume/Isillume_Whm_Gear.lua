@@ -66,7 +66,7 @@ function init_gear_sets()
   -- Enhancing magic fast cast
 	sets.precast.FC['Enhancing Magic'] = set_combine(sets.precast.FC, { --Enh. Magic Skill 472/500
 		hands="Inyan. Dastanas +2", --Magic Skill +20
-		legs="Piety Pantaloons +1", --Enhancing Skill +22
+		legs="Piety Pantaloons +3", --Enhancing Skill +26
 		feet="Theo. Duckbills", --Enhancing Skill +15
 	})
 		
@@ -74,13 +74,16 @@ function init_gear_sets()
 	sets.precast.FC.Stoneskin = set_combine(sets.precast.FC['Enhancing Magic'], {legs="Shedir Seraweels"})
     
   -- Healing Magic fast cast
-	sets.precast.FC['Healing Magic'] = set_combine(sets.precast.FC, {})
+	sets.precast.FC['Healing Magic'] = set_combine(sets.precast.FC, {
+		legs="Ebers Pant. +1", --Converts 6% of cure amount to MP (Upgrade to +3)
+	})
 	
   -- Fast cast sets for specific spells
 	-- Cure spells
-	sets.precast.FC.Cure = set_combine(sets.precast.FC['Healing Magic'], {
+	sets.precast.FC.Cure = set_combine(sets.precast.FC['Healing Magic'], { --FC 41/80, CST 36
 		main="Raetic Rod +1",
 		sub="Sors Shield", --CST -5%
+		legs="Ebers Pant. +1", --CST -13%, Converts 6% of cure amount to MP (Upgrade to +3)
 		feet={ name="Vanya Clogs", augments={'"Cure" potency +5%','"Cure" spellcasting time -15%','"Conserve MP"+6',}}, --CST -15%
 		right_ear="Nourish. Earring", --CST -3
 	})
@@ -215,7 +218,7 @@ function init_gear_sets()
 
 -- ### Healing Magic ###
 -- Base healing magic set
-	sets.midcast['Healing Magic'] = sets.midcast.FastRecast
+	sets.midcast['Healing Magic'] = sets.midcast.FastRecast 
 	
   -- Specific healing magic spells
 	-- Cure
@@ -226,7 +229,7 @@ function init_gear_sets()
 		head={ name="Vanya Hood", augments={'MP+50','"Fast Cast"+10','Haste+2%',}}, --Cure Pot. +10, Conserve MP +6
 		body={ name="Vanya Robe", augments={'MP+50','"Cure" potency +7%','Enmity-6',}}, --Cure Pot. +7
 		hands={ name="Vanya Cuffs", augments={'MP+50','"Cure" potency +7%','Enmity-6',}}, --Cure Pot. +7
-		legs="Aya. Cosciales +2", --DT -5 (Ebers Pantaloons)
+		legs="Ebers Pant. +1" --Converts 6% of cure amount to MP (Upgrade to +3)
 		feet={ name="Vanya Clogs", augments={'"Cure" potency +5%','"Cure" spellcasting time -15%','"Conserve MP"+6',}}, --Cure Pot. +5, Conserve MP +6 (Theo. Duckbills +4) 
 		neck={ name="Clr. Torque +2", augments={'Path: A',}}, --Cure Pot. +10
 		waist="Carrier's Sash",
