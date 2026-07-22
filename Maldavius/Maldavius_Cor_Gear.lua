@@ -342,24 +342,21 @@ function init_gear_sets()
   -- Refresh idle set
 	sets.idle.Refresh = set_combine(sets.idle, {})
 	
--------------------------------------------------------------------------------------------------------------------
--- Offensive Sets
--------------------------------------------------------------------------------------------------------------------
---------------------------------------
--- Engaged Sets
---------------------------------------
+------------------------------------------------------------------------------------------------------------- Offensive Sets
+-----------------------------------------------------------------------------------------------------------
+-- ### Engaged Sets ###
 	sets.engaged = {
-		head="Mummu Bonnet +2",
+		head="Null Masque", --DT -10
 		body="Mummu Jacket +2",
-		hands="Mummu Wrists +2",
-		legs="Meg. Chausses +2",
-		feet="Mummu Gamash. +2",
-		neck="Loricate Torque +1",
-		waist="Eschan Stone",
-		left_ear="Neritic Earring",
-		right_ear="Alabaster Earring",
-		left_ring="Rajas Ring",
-		right_ring="Murky Ring",
+		hands={ name="Carmine Fin. Ga. +1", augments={'Rng.Atk.+20','"Mag.Atk.Bns."+12','"Store TP"+6',}},
+		legs="Chas. Culottes +1",
+		feet="Lanun Bottes +4",
+		neck="Null Loop", --DT -5
+		waist="Null Belt",
+		left_ear="Neritic Earring", 
+		right_ear="Suppanomimi",
+		left_ring="Crepuscular Ring",
+		right_ring="Rajas Ring",
 		back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Damage taken-5%',}},
 	}
 	
@@ -375,33 +372,36 @@ function init_gear_sets()
   -- Engaged set, hybrid DT
     sets.engaged.DT = set_combine(sets.engaged, {})
 	
-	
----------------------------------------------------------------------------------------------------------------
+-- ### Dual Wield Sets ###
+	sets.DWMid = {right_ear="Suppanomimi"}
+	sets.DWMax = {}
+		
+-----------------------------------------------------------------------------------------------------------
 -- Weapon Sets
----------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------
 	sets.weapons.Savage = {main="Naegling", sub="Demersal Degen +1", range="Compensator"}
 	--sets.weapons.LeadenSalute = {main="Naegling", sub="Tauret", range="Death Penalty"}
 	--sets.weapons.LastStand = {main="Naegling", sub="Gleti's Knife", range="Fomalhaut"}
 	sets.weapons.Aeolian = {main={ name="Rostam", augments={'Path: C',}}, sub="Blurred Knife", range="Compensator"}
 	
----------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------
 -- Weaponskill Sets
----------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------
 --------------------------------------
 -- Default weaponskill gear
 --------------------------------------
     sets.precast.WS = {
-		head="Mummu Bonnet +2",
+		head="Nyame Helm",
 		body="Laksa. Frac +2",
 		hands="Meg. Gloves +2",
-		legs="Meg. Chausses +2",
+		legs="Nyame Flanchard",
 		feet="Lanun Bottes +4",
 		neck={ name="Comm. Charm +2", augments={'Path: A',}},
-		waist="Eschan Stone",
-		left_ear="Neritic Earring",
-		right_ear="Alabaster Earring",
-		left_ring="Rajas Ring",
-		right_ring="Murky Ring",
+		waist="Null Belt",
+		left_ear="Alabaster Earring",
+		right_ear="Odr Earring",
+		left_ring="Sroda Ring",
+		right_ring="Rajas Ring",
 		back={ name="Camulus's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Damage taken-5%',}},
 	}
 
@@ -469,27 +469,16 @@ function init_gear_sets()
 --------------------------------------
 -- Swaps when using WS at 3000 TP
 --------------------------------------
-	sets.MaxTP = {left_ear="Lugra Earring +1"} -- right_ear="Lugra Earring"
+	sets.MaxTP = {} -- right_ear="Lugra Earring"
 	sets.AccMaxTP = {}
  
--------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------
 -- Miscelaneous Sets
--------------------------------------------------------------------------------------------------------------------
--- Kiting
-    sets.Kiting = {right_ring="Shneddick Ring"}
+------------------------------------------------------------------------------------------------------------- Kiting
+    sets.Kiting = {legs="Carmine Cuisses +1"}
 	
 -- Treasure Hunter
-	sets.TreasureHunter = set_combine(sets.TreasureHunter, {
-		head="Volte Cap",
-		body="Volte Jupon",
-		legs="Volte Hose",	
-	})
-
---------------------------------------
--- Dual Wield Sets
---------------------------------------
-	sets.DWMid = {}
-	sets.DWMax = {}
+	sets.TreasureHunter = set_combine(sets.TreasureHunter, {feet="Volte Boots"})
 	
 -- Doom
 	sets.buff.Doom = set_combine(sets.buff.Doom, {})
@@ -501,9 +490,9 @@ function init_gear_sets()
 	sets.BulletPouch = {}
 end
 
--------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------
 -- Miscelaneous
--------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------
 	-- Selects default macro book on initial load or subjob change.
 	function select_default_macro_book()
 		set_macro_page(1, 17)
