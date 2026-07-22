@@ -38,40 +38,40 @@ end
 
 -- Define sets and vars used by this job file.
 function init_gear_sets()
--------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------
 -- START DEFINING THE SETS
--------------------------------------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------
 -- PRECAST SETS
--------------------------------------------------------------------------------------------------------------------
---------------------------------------
--- Fast Cast gear
---------------------------------------
-    sets.precast.FC = { --FC +51/80
-		--head={ name="Carmine Mask +1", augments={'Accuracy+20','Mag. Acc.+12','"Fast Cast"+4',}}, --FC +14
-		--body={ name="Taeon Tabard", augments={'DEF+19','"Fast Cast"+4',}}, --FC +8
-		--hands={ name="Leyline Gloves", augments={'Accuracy+14','Mag. Acc.+13','"Mag.Atk.Bns."+13','"Fast Cast"+2',}}, --FC +7
-		--legs="Chas. Culottes +3", --(Taeon Tights, Aug FC +5)
-		--feet="Carmine Greaves +1", --FC +8  
-		--neck="Voltsurge Torque", --FC +5
-		--waist="Plat. Mog. Belt", 
-		--left_ear="Etiolation Earring", --FC +1
-		--right_ear="Loquac. Earring", --FC +2
-		--left_ring="Rahab Ring", --FC +2
+-----------------------------------------------------------------------------------------------------------
+-- ### Fast Cast gear ###
+    sets.precast.FC = { --FC +19/80
+		head="Nyame Helm",
+		body="Nyame Mail",
+		hands="Nyame Gauntlets",
+		legs="Nyame Flanchard",
+		feet="Nyame Sollerets",
+		neck="Voltsurge Torque", --FC +5
+		waist="Null Belt",
+		left_ear="Alabaster Earring",
+		right_ear="Odr Earring",
+		left_ring="Murky Ring",
 		right_ring="Kishar Ring", --FC +4
-		back={ name="Camulus's Mantle", augments={'VIT+20','Eva.+20 /Mag. Eva.+20','VIT+10','"Fast Cast"+10','Damage taken-5%',}},
+		back={ name="Camulus's Mantle", augments={'VIT+20','Eva.+20 /Mag. Eva.+20','VIT+10','"Fast Cast"+10','Damage taken-5%',}}, --FC +10
 	}
 
--- Fast cast for specific spells
-  -- Cure
+  -- Fast cast for specific spells
+    -- Cure
 	--sets.precast.FC.Cure = set_combine(sets.precast.FC, {right_ear="Mendi. Earring"})
 	
-  -- Utsusemi
-    --sets.precast.FC.Utsusemi = set_combine(sets.precast.FC, {neck="Magoraga Beads"}) -- body="Passion Jacket"
+    -- Utsusemi
+    sets.precast.FC.Utsusemi = set_combine(sets.precast.FC, {
+		body="Passion Jacket", --Utsusemi Spellcasting Time -10
+		--neck="Magoraga Beads",
+	}) 
 
---------------------------------------
--- Phantom Roll precast
---------------------------------------
+
+-- ### Phantom Roll precast ###
     sets.precast.CorsairRoll = {
 		main={ name="Rostam", augments={'Path: C',}},
 		range="Compensator",
@@ -82,29 +82,25 @@ function init_gear_sets()
 		back={ name="Camulus's Mantle", augments={'VIT+20','Eva.+20 /Mag. Eva.+20','VIT+10','"Fast Cast"+10','Damage taken-5%',}},
 	}
 
--- Larger AOE on Phantom Roll
+  -- Larger AOE on Phantom Roll
 	sets.precast.LuzafRing = {left_ring="Luzaf's Ring"}
     
--- Precast sets for Specific rolls
+  -- Precast sets for Specific rolls
 	sets.precast.CorsairRoll["Caster's Roll"] = set_combine(sets.precast.CorsairRoll, {legs="Chas. Culottes +1"})
 	sets.precast.CorsairRoll["Courser's Roll"] = set_combine(sets.precast.CorsairRoll, {feet="Chass. Bottes +1"})
 	sets.precast.CorsairRoll["Blitzer's Roll"] = set_combine(sets.precast.CorsairRoll, {head="Chass. Tricorne +1"})
 	sets.precast.CorsairRoll["Tactician's Roll"] = set_combine(sets.precast.CorsairRoll, {body="Chasseur's Frac +1"})
 	sets.precast.CorsairRoll["Allies' Roll"] = set_combine(sets.precast.CorsairRoll, {hands="Chasseur's Gants +1"})
 
---------------------------------------
--- Precast sets to enhance JAs
---------------------------------------
+-- ### Precast sets to enhance JAs ###
 	sets.precast.JA['Triple Shot'] = {body="Chasseur's Frac +1"}
 	sets.precast.JA['Snake Eye'] = {legs="Lanun Trews +3"} --(Upgrade to +4)
     sets.precast.JA['Wild Card'] = {feet="Lanun Bottes +4"}
 	sets.precast.JA['Random Deal'] = {body="Lanun Frac +3"} --(Upgrade to +4)
 	sets.precast.FoldDoubleBust = {hands="Lanun Gants +3"} --(Upgrade to +4)
 
---------------------------------------
--- Quick Draw Sests
---------------------------------------
--- Quick Draw, Normal
+-- ### Quick Draw Sests ###
+  -- Quick Draw, Normal
 	sets.precast.CorsairShot = {
 		ammo="Hauksbok Bullet",
 		head="Laksa. Tricorne +2",
