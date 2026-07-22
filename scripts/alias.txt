@@ -1,0 +1,21 @@
+// ### Bolter's Roll, sends a Bolter's Roll request to Maldavius ##
+alias bolt send Maldavius /ja "Bolter's Roll" <me>
+
+// ### Forbidden Key ###
+alias fkey input /item "Forbidden Key" <t>
+
+// ### Invites all members of the group to the party and accepts sent invites ###
+alias inviteall input /pcmd add Honkworks;wait 1;send Honkworks /join;wait 1;input /pcmd add Maldavius;wait 1;send Maldavius /join;wait 1;input /pcmd add Isillume;wait 1;send Isillume /join;
+
+// ### Mounts everyone in group on a randomized mount
+alias mount send @all mountroulette
+
+// ### Teleports everyone in group to the selected crag ###
+alias tmea send Isillume /ma "Teleport-Mea" <me>;
+alias tdem send Isillume /ma "Teleport-Dem" <me>;
+alias tholla send Isillume /ma "Teleport-Holla" <me>;
+alias rjung send Isillume /ma "Recall-Jugner" <me>
+alias rmerp send Isillume /ma "Recall-M
+
+// ### Warp II on all group members ###
+alias warpall send Isillume /ma "Haste" Honkworks;wait 1;send Honkworks /ma "Warp II" <p1>;wait 6;send Honkworks /ma "Warp II" <p2>;send Isillume /ja "Devotion" Honkworks;wait 6;send Honkworks /ma "Warp II" <p3>;wait 6;send Honkworks /ma "Warp" <me>;
