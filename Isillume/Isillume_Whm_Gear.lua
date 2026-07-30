@@ -35,23 +35,23 @@ function init_gear_sets()
 -----------------------------------------------------------------------------------------------------------
 -- Start Defining the Sets
 -----------------------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------------------------ 
+-----------------------------------------------------------------------------------------------------------
 -- Precast Sets
 -----------------------------------------------------------------------------------------------------------
 -- ### Fast cast sets for spells ###	
-    sets.precast.FC = { --FC +58~60, QC +7
+    sets.precast.FC = { --FC +60~62, QC +7
 		ammo="Impatiens", --QC +2
-		head={ name="Vanya Hood", augments={'MP+50','"Fast Cast"+10','Haste+2%',}}, --FC +10
+		head="Ebers Cap +2", --FC +10 (Upgrade to +3)
 		body="Inyanga Jubbah +2", --FC +14
-		hands="Aya. Manopolas +2", --DT -5 (Fanatic Gloves)
+		hands="Aya. Manopolas +2", --DT -5 (Fanatic Gloves w/ FC +7)
 		legs="Aya. Cosciales +2", --FC +6
 		feet="Regal Pumps +1", --FC +5~7
-		neck={ name="Clr. Torque +2", augments={'Path: A',}}, --FC +8
+		neck={ name="Clr. Torque +2", augments={'Path: A',}}, --FC +10
 		waist="Witful Belt", --FC +3, QC +3
-		left_ear="Alabaster Earring", --DT -5
+		left_ear="Alabaster Earring", --DT -5 (Malignance Earring)
 		right_ear="Loquac. Earring", --FC +2
 		left_ring="Lebeche Ring", --QC +2
-		right_ring="Inyanga Ring", 
+		right_ring="Inyanga Ring", --(Kishar Ring)
 		back={ name="Alaunus's Cape", augments={'MND+20','Eva.+20 /Mag. Eva.+20','MND+10','"Fast Cast"+10','Damage taken-5%',}}, --FC +10
 	}
 
@@ -198,8 +198,8 @@ function init_gear_sets()
 
 	-- Barspells
 	sets.midcast.BarElement = set_combine(sets.midcast['Enhancing Magic'], {
-		head="Ebers Cap +1",
-		feet="Ebers Duckbills +1", --Enh. magic skill +25
+		head="Ebers Cap +2",
+		hands="Ebers Mitts +1",
 	})
 	
 	-- Protect
@@ -294,8 +294,9 @@ function init_gear_sets()
 	sets.midcast.LightDayCuraga = {}
 	
 	-- Cursna 
-	sets.midcast.Cursna = set_combine(sets.midcast['Healing Magic'], { --Cursna +97, Divine Veil +22
-		head="Ebers Cap +1", --Divine Veil +22
+	sets.midcast.Cursna = set_combine(sets.midcast['Healing Magic'], { --Cursna +112, Divine Veil +22
+		head="Ebers Cap +2", --Divine Veil +24
+		hands="Fanatic Gloves", --Cursna +15
 		legs="Th. Pantaloons +2", --Cursna +17
 		feet={ name="Vanya Clogs", augments={'"Cure" potency +5%','"Cure" spellcasting time -15%','"Conserve MP"+6',}}, --Cursna +5
 		neck="Debilis Medallion", --Cursna +15
@@ -312,7 +313,7 @@ function init_gear_sets()
 	
 	-- Status Removal	
 	sets.midcast.StatusRemoval = set_combine(sets.midcast['Healing Magic'], {
-		head="Ebers Cap +1", --Divine Veil +22
+		head="Ebers Cap +2", --Divine Veil +24
 	}) 
   
 	--Melee Curesets are used whenever your Weapons state is set to anything but None.
