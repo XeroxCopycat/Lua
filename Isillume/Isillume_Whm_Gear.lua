@@ -248,7 +248,7 @@ function init_gear_sets()
 		body="Inyanga Jubbah +2",
 		hands="Inyan. Dastanas +2", --Magic skill +20
 		legs="Piety Pantaln. +3", --Enh. magic skill +26, Elemental resist spell +36
-		feet="Ebers Duckbills +1", --Enh. magic skill +25
+		feet="Ebers Duckbills +2", --Enh. magic skill +30
 		neck={ name="Clr. Torque +2", augments={'Path: A',}},
 		waist="Witful Belt",
 		left_ear="Alabaster Earring",
@@ -260,7 +260,7 @@ function init_gear_sets()
 
   -- Specific Enhancing magic spells
 	-- Auspice
-	sets.midcast.Auspice = set_combine(sets.midcast['Enhancing Magic'], {feet="Ebers Duckbills +1"})
+	sets.midcast.Auspice = set_combine(sets.midcast['Enhancing Magic'], {feet="Ebers Duckbills +2"})
 	
 	-- Aquaveil
 	sets.midcast.Aquaveil = set_combine(sets.midcast['Enhancing Magic'], {
@@ -291,7 +291,7 @@ function init_gear_sets()
 		head="Inyanga Tiara +2", --Regen pot. +14
 		body="Piety Bliaut +3", --Regen pot. +52
 		hands="Ebers Mitts +1", --Regen duration +22
-		legs="Th. Pantaloons +2", --Regen duration +21
+		legs="Th. Pantaloons +3", --Regen duration +24
 		feet="Theo. Duckbills +2", --Enhancing magic duration +5%
 	})
 	
@@ -352,7 +352,7 @@ function init_gear_sets()
 	sets.midcast.Cursna = set_combine(sets.midcast['Healing Magic'], { --Cursna +112, Divine Veil +22
 		head="Ebers Cap +2", --Divine Veil +24
 		hands="Fanatic Gloves", --Cursna +15
-		legs="Th. Pantaloons +2", --Cursna +17
+		legs="Th. Pantaloons +3", --Cursna +17
 		feet={ name="Vanya Clogs", augments={'"Cure" potency +5%','"Cure" spellcasting time -15%','"Conserve MP"+6',}}, --Cursna +5
 		neck="Debilis Medallion", --Cursna +15
 		left_ring="Haoma's Ring", --Cursna +15
