@@ -291,7 +291,7 @@ function init_gear_sets()
 		head="Inyanga Tiara +2", --Regen pot. +14
 		body="Piety Bliaut +3", --Regen pot. +52
 		hands="Ebers Mitts +1", --Regen duration +22
-		legs="Th. Pantaloons +3", --Regen duration +24
+		legs="Th. Pant. +3", --Regen duration +24
 		feet="Theo. Duckbills +2", --Enhancing magic duration +5%
 	})
 	
@@ -352,7 +352,7 @@ function init_gear_sets()
 	sets.midcast.Cursna = set_combine(sets.midcast['Healing Magic'], { --Cursna +112, Divine Veil +22
 		head="Ebers Cap +2", --Divine Veil +24
 		hands="Fanatic Gloves", --Cursna +15
-		legs="Th. Pantaloons +3", --Cursna +17
+		legs="Th. Pant. +3", --Cursna +17
 		feet={ name="Vanya Clogs", augments={'"Cure" potency +5%','"Cure" spellcasting time -15%','"Conserve MP"+6',}}, --Cursna +5
 		neck="Debilis Medallion", --Cursna +15
 		left_ring="Haoma's Ring", --Cursna +15
