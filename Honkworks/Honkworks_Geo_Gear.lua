@@ -9,7 +9,7 @@ function user_job_setup()
 	state.PhysicalDefenseMode:options('PDT', 'PetPDT')
 	state.MagicalDefenseMode:options('MDT')
 	state.ResistDefenseMode:options('MEVA')
-	state.Weapons:options('None', 'Club', 'Staff')
+	state.Weapons:options('None', 'BlackHalo', 'Mykyr', 'Casting')
 
 	autoindi = "Haste"
 	autogeo = "Frailty"
@@ -38,122 +38,108 @@ function init_gear_sets()
 -------------------------------------------------------------------------------------------------------------------
 -- Precast Sets
 -------------------------------------------------------------------------------------------------------------------
---------------------------------------
--- Fast cast sets for spells (FC +80/80, QC +2)
---------------------------------------
-	sets.precast.FC = {
+-- ### Fast cast sets for spells ### 
+	sets.precast.FC = { --FC 82/80, QC +5, PDT/MDT -27/-17
+		main="Marin Staff +1", --FC +3
+		sub="Khonsu", --DT -6
+		range="Dunna", --FC +3
 		head={ name="Merlinic Hood", augments={'"Mag.Atk.Bns."+6','"Fast Cast"+6','INT+9','Mag. Acc.+12',}}, --FC +14
-		body="Agwu's Robe", --FC +8				
+		body="Agwu's Robe", --FC +8
 		hands="Agwu's Gages", --FC +6
-		legs="Geomancy Pants +3", --FC +15
+		legs="Geo. Pants +4", --FC +15
 		feet="Agwu's Pigaches", --FC +4
-		neck="Voltsurge Torque", --FC +5
-		waist="Embla Sash", --FC +5
-		left_ear="Etiolation Earring", --FC +1
-		right_ear="Loquac. Earring", --FC +2
+		neck="Loricate Torque +1", --DT -6
+		waist="Witful Belt", --FC +3, QC +3
+		left_ear="Alabaster Earring", --DT -5
+		right_ear="Malignance Earring", --FC +4
 		left_ring="Lebeche Ring", --QC +2
 		right_ring="Medada's Ring", --FC +10
-		back={ name="Nantosuelta's Cape", augments={'VIT+20','Eva.+20 /Mag. Eva.+20','Mag. Evasion+10','"Fast Cast"+10','Phys. dmg. taken-8%',}}, --FC +10
+		back={ name="Nantosuelta's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20','MND+10','"Fast Cast"+10','Phys. dmg. taken-10%',}}, --FC +10
 	}
 	
   -- Elemental Magic Fast Cast
-    sets.precast.FC['Elemental Magic'] = set_combine(sets.precast.FC, {
-		hands="Bagua Mitaines +3",
+    sets.precast.FC['Elemental Magic'] = set_combine(sets.precast.FC, { --FC 84/80, QC +5, PDT/MDT -37/-27
+		hands="Bagua Mitaines +4", --Elemental magic cast time -14%
+		feet="Azimuth Gaiters +2", --DT -10
 	})
-	
-  -- Geomancy Fast Cast
-	sets.precast.FC.Geomancy = set_combine(sets.precast.FC, {range="Dunna", ammo=empty})
 
-  -- Healing Magic Fast Cast
-	sets.precast.FC.Cure = set_combine(sets.precast.FC, {})
-	
-	sets.precast.FC.Curaga = sets.precast.FC.Cure
+
 	--sets.Self_Healing = {neck="Phalaina Locket", waist="Gishdubar Sash"}
 	--sets.Cure_Received = {neck="Phalaina Locket", waist="Gishdubar Sash"}
 	--sets.Self_Refresh = {waist="Gishdubar Sash"}
-	
-  -- Enhancing Magic Fast Cast
-    sets.precast.FC['Enhancing Magic'] = set_combine(sets.precast.FC, {waist="Siegel Sash"})
-	sets.precast.FC.Stoneskin = set_combine(sets.precast.FC['Enhancing Magic'], {})
 
-
---------------------------------------
--- Specific Spells Fast Cast
---------------------------------------
-  -- Impact (Requires Crepuscular Cloak)
+  -- Fast Cast for specific spells
+    -- Impact (Requires Crepuscular Cloak)
 	--sets.precast.FC.Impact = set_combine(sets.precast.FC, {head=empty, body="Crepuscular Cloak"})
 	
-  -- Dispelga (Requires Daybreak)
+    -- Dispelga (Requires Daybreak)
 	--sets.precast.FC.Dispelga = set_combine(sets.precast.FC, {main="Daybreak",sub="Genmei Shield"})
 
-
---------------------------------------
--- Precast sets to enhance JAs
---------------------------------------
+-- ### Precast sets to enhance JAs ###
+	-- Bolster
 	sets.precast.JA.Bolster = {body="Bagua Tunic +3"}
+	
+	-- Full Circle
+	sets.precast.JA['Full Circle'] = {head="Azimuth Hood +3"}
+	
+	-- Life Cycle
 	sets.precast.JA['Life Cycle'] = {
 		body="Geomancy Tunic +3",
 		back={ name="Nantosuelta's Cape", augments={'HP+60','Eva.+20 /Mag. Eva.+20','Mag. Evasion+5','Pet: "Regen"+10','Pet: "Regen"+5',}},
 	} 
-	sets.precast.JA['Radial Arcana'] = {feet="Bagua Sandals +3"}
-	sets.precast.JA['Mending Halation'] = {legs="Bagua Pants +3"}
-	sets.precast.JA['Full Circle'] = {head="Azimuth Hood +2"}
 	
+	-- Mending Halation
+	sets.precast.JA['Mending Halation'] = {legs="Bagua Pants +3"}
+	
+	-- Radial Arcana
+	sets.precast.JA['Radial Arcana'] = {feet="Bagua Sandals +3"}
 
---------------------------------------
--- Indi Duration in slots that would normally have skill here to make entrust more efficient.
---------------------------------------	
+-- ### Indi Duration in slots that would normally have skill here to make entrust more efficient ###
 	sets.buff.Entrust = {
 		legs="Bagua Pants +3",
 		feet="Azimuth Gaiters +2",
 		back={ name="Nantosuelta's Cape", augments={'HP+60','Eva.+20 /Mag. Eva.+20','Mag. Evasion+5','Pet: "Regen"+10','Pet: "Regen"+5',}},
 	}
-
-
---------------------------------------
--- Relic hat for Blaze of Glory HP increase.
---------------------------------------
+	
+-- ### Relic hat for Blaze of Glory HP increase. ###
 	sets.buff['Blaze of Glory'] = {head="Bagua Galero +3"}
-
 
 ------------------------------------------------------------------------------------------------------------------- 
 -- Midcast Sets
 -------------------------------------------------------------------------------------------------------------------
---------------------------------------
--- Fast Recast Set
---------------------------------------
-    sets.midcast.FastRecast = {
+-- ### Base fast recast set ###
+    sets.midcast.FastRecast = { --FC 82/80, PDT/MDT -37/-27
+		main="Marin Staff +1", --FC +3
+		sub="Khonsu", --DT -6
+		range="Dunna", --FC +3
 		head={ name="Merlinic Hood", augments={'"Mag.Atk.Bns."+6','"Fast Cast"+6','INT+9','Mag. Acc.+12',}}, --FC +14
-		body="Agwu's Robe", --FC +8				
+		body="Agwu's Robe", --FC +8
 		hands="Agwu's Gages", --FC +6
-		legs="Geomancy Pants +3", --FC +15
+		legs="Geo. Pants +4", --FC +15
 		feet="Agwu's Pigaches", --FC +4
-		neck="Voltsurge Torque", --FC +5
-		waist="Embla Sash", --FC +5
-		left_ear="Etiolation Earring", --FC +1
-		right_ear="Loquac. Earring", --FC +2
-		left_ring="Lebeche Ring", --QC +2
+		neck="Loricate Torque +1", --DT -6
+		waist="Witful Belt", --FC +3, QC +3
+		left_ear="Alabaster Earring", --DT -5
+		right_ear="Malignance Earring", --FC +4
+		left_ring="Murky Ring", --DT -10
 		right_ring="Medada's Ring", --FC +10
-		back={ name="Nantosuelta's Cape", augments={'VIT+20','Eva.+20 /Mag. Eva.+20','Mag. Evasion+10','"Fast Cast"+10','Phys. dmg. taken-8%',}}, --FC +10
+		back={ name="Nantosuelta's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20','MND+10','"Fast Cast"+10','Phys. dmg. taken-10%',}}, --FC +10
 	}
 
-
---------------------------------------
--- Dark Magic
---------------------------------------
-    sets.midcast['Dark Magic'] = set_combine(sets.midcast.FastRecast, {
+-- ### Dark Magic ###
+	sets.midcast['Dark Magic'] = set_combine(sets.midcast.FastRecast, {	
 		main="Marin Staff +1",
 		sub="Khonsu",
 		range="Dunna",
-		head="Bagua Galero +3",
-		body="Geomancy Tunic +3",
-		hands={ name="Merlinic Dastanas", augments={'"Drain" and "Aspir" potency +7','Mag. Acc.+4','"Mag.Atk.Bns."+10',}},
-		legs="Azimuth Tights +2",
-		feet="Agwu's Pigaches",
-		neck="Erra Pendant",
-		waist="Eschan Stone",
-		left_ear="Lugalbanda Earring",
-		right_ear="Alabaster Earring",
+		head="Geo. Galero +3",
+		body="Geomancy Tunic +3", --Dark Magic Skill +21
+		hands="Geo. Mitaines +3", 
+		legs="Azimuth Tights +2", --Dark Magic Skill +25
+		feet="Azimuth Gaiters +2",
+		neck="Erra Pendant", --Dark Magic Skill +10
+		waist="Acuity Belt +1", --(Augment to R15)
+		left_ear="Abyssal Earring", --Dark Magic Skill +5
+		right_ear={ name="Azimuth Earring +2", augments={'System: 1 ID: 1676 Val: 0','Mag. Acc.+16','Damage taken-6%','INT+7 MND+7',}},
 		left_ring="Archon Ring",
 		right_ring="Medada's Ring",
 		back={ name="Nantosuelta's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','INT+10','"Mag.Atk.Bns."+10','Damage taken-5%',}},
@@ -161,55 +147,47 @@ function init_gear_sets()
 	
 -- Specific Dark Magic Spells
   -- Aspir
-    sets.midcast.Aspir = sets.midcast.Drain
-	
+    sets.midcast.Aspir = set_combine(sets.midcast['Dark Magic'], {
+		head="Bagua Galero +4", --Drain/Aspir Potency +35
+		feet="Agwu's Pigaches", --Drain/Aspir Potency +20
+		neck="Erra Pendant", --Drain/Aspir Potency +5
+	})
+
   -- Bio
 	sets.midcast.Bio = set_combine(sets.midcast['Dark Magic'])
 	sets.midcast['Bio II'] = set_combine(sets.midcast['Dark Magic'])
-	
+
   -- Drain
-    sets.midcast.Drain = set_combine(sets.midcast['Dark Magic'], {})
-    
+    sets.midcast.Drain = sets.midcast.Aspir
+   
   -- Stun
 	sets.midcast.Stun = set_combine(sets.midcast['Dark Magic'], {})
 	sets.midcast.Stun.Resistant = set_combine(sets.midcast['Dark Magic'], {})
 	
-  -- Impact
-	sets.midcast.Impact = set_combine(sets.midcast['Dark Magic'], {})
-	
-
---------------------------------------
--- Divine Magic
---------------------------------------
+-- ### Divine Magic ###
 	sets.midcast['Divine Magic'] = set_combine(sets.midcast.FastRecast, {})
 	
-
---------------------------------------
--- Elemental Magic
---------------------------------------
+-- ### Elemental Magic ###
     sets.midcast['Elemental Magic'] = set_combine(sets.midcast.FastRecast, {
 		main="Marin Staff +1",
 		sub="Khonsu",
-		ammo="Ghastly Tathlum +1",
-		head="Bagua Galero +3",
-		body="Bagua Tunic +3",
-		hands="Bagua Mitaines +3",
-		legs="Azimuth Tights +2",
-		feet="Bagua Sandals +3",
-		neck="Sibyl Scarf",
-		waist="Acuity Belt +1",
-		left_ear="Friomisi Earring",
-		right_ear="Sortiarius Earring",
-		left_ring="Metamor. Ring +1",
+		range="Dunna", --(Ghastly Tathlum +1, augment to R15)
+		head="Azimuth Hood +3",
+		body="Azimuth Coat +2", --(Upgrade to +3)
+		hands="Azimuth Gloves +2", --(Upgrade to +3)
+		legs="Azimuth Tights +2", --(Upgrade to +3)
+		feet="Azimuth Gaiters +2", --(Upgrade to +3)
+		neck="Sibyl Scarf", --(Baetyl Pendant)
+		waist="Acuity Belt +1", --(Sacro Cord)
+		left_ear="Malignance Earring", --(Regal Earring)
+		right_ear={ name="Azimuth Earring +2", augments={'System: 1 ID: 1676 Val: 0','Mag. Acc.+16','Damage taken-6%','INT+7 MND+7',}},
+		left_ring="Metamor. Ring +1", --(Freke Ring)
 		right_ring="Medada's Ring",
 		back={ name="Nantosuelta's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','INT+10','"Mag.Atk.Bns."+10','Damage taken-5%',}},
 	})
 
   -- Elemental Magic Magic Accuracy
     sets.midcast['Elemental Magic'].Resistant = set_combine(sets.midcast['Elemental Magic'], {
-		head="Azimuth Hood +2",
-		body="Azimuth Coat +2",
-		feet="Azimuth Gaiters +2",
 		neck={ name="Bagua Charm +2", augments={'Path: A',}},
 	})
 	
@@ -217,45 +195,52 @@ function init_gear_sets()
     sets.midcast['Elemental Magic'].Fodder = set_combine(sets.midcast['Elemental Magic'], {})
 	
   -- Magic Burst Gearswaps
-    sets.MagicBurst = set_combine(sets.midcast['Elemental Magic'], { --MBD 36/40, MBD2 16/xx
-		head="Ea Hat +1", --MBD +7/MBD2 +7
-		body="Azimuth Coat +2", --MBD2 +4
-		hands="Agwu's Gages", --MBD +8
-		legs="Azimuth Tights +2", --MBD +10
-		feet="Jhakri Pigaches +2", --MBD +7
-		--neck="Mizu. Kubikazari", --MBD +8
-		left_ring="Mujin Band", --MBD2 +5
+    sets.MagicBurst = set_combine(sets.midcast['Elemental Magic'], { --Magic Burst Dmg. 41/40, Magic Burst Dmg, II 16
+		main="Bunzi's Rod", --Magic Burst Damage +10
+		sub="Sors Shield",
+		head="Ea Hat +1", --Magic Burst Damage +7, Magic Burst Damage II +7
+		body="Azimuth Coat +2", --Magic Burst Damage II +4
+		hands="Agwu's Gages", --Magic Burst Damage +8
+		legs="Agwu's Slops", --Magic Burst Damage +9
+		feet="Jhakri Pigaches +2", --Magic Burst Damage +7
+		left_ring="Mujin Band", --Magic Burst Damage II +5
 	})
 	
 	sets.ResistantMagicBurst = set_combine(sets.MagicBurst, {})
 	
-
---------------------------------------
--- Enfeebling Magic
---------------------------------------
+  -- Specific elemental magic spells
+	-- Elemental debuffs
+    sets.midcast.ElementalEnfeeble = set_combine(sets.midcast['Elemental Magic'], {})
+    sets.midcast.ElementalEnfeeble.Resistant = set_combine(sets.midcast['Elemental Magic'].Resistant, {})
+  
+    -- Impact
+	--sets.midcast.Impact = set_combine(sets.midcast['Dark Magic'], {})
+	
+-- ### Enfeebling Magic ###
 	sets.midcast['Enfeebling Magic'] = set_combine(sets.midcast.FastRecast, {
 		main="Marin Staff +1",
 		sub="Khonsu",
-		range="Ghastly Tathlum +1",
-		head="Bagua Galero +3",
-		legs="Agwu's Slops", 
+		range="Dunna", --(Ammo: Phemphedro Tathlum)
+		head="Geo. Galero +3", --(Upgrade to +4)
+		body="Geomancy Tunic +3", --(Upgrade to +4)
+		hands="Azimuth Gloves +2", --(Regal Cuffs)
+		legs="Geo. Pants +4", 
+		feet="Geo. Sandals +3", --(Upgrade to +4)
 		neck={ name="Bagua Charm +2", augments={'Path: A',}},
-		waist="Refoccilation Stone",
-		left_ear="Friomisi Earring",
-		right_ear="Alabaster Earring",
-		left_ring="Metamor. Ring +1",
+		waist="Eschan Stone", --(Luminary Sash)
+		left_ear="Malignance Earring",
+		right_ear={ name="Azimuth Earring +2", augments={'System: 1 ID: 1676 Val: 0','Mag. Acc.+16','Damage taken-6%','INT+7 MND+7',}},
+		left_ring="Metamor. Ring +1", --(Stikini Ring +1)
+		right_ring="Medada's Ring",
+		back={ name="Nantosuelta's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20','MND+10','"Fast Cast"+10','Phys. dmg. taken-10%',}},
 	})
 	
   -- Enfeebling Magic, Resistant
 	sets.midcast['Enfeebling Magic'].Resistant = {}
 	
-  -- Elemental Enfeebles
-    sets.midcast.ElementalEnfeeble = set_combine(sets.midcast['Enfeebling Magic'], {})
-    sets.midcast.ElementalEnfeeble.Resistant = set_combine(sets.midcast['Enfeebling Magic'].Resistant, {})
-	
   -- INT Based Enfeebles
-	sets.midcast.IntEnfeebles = set_combine(sets.midcast['Enfeebling Magic'], {})
-	sets.midcast.IntEnfeebles.Resistant = set_combine(sets.midcast['Enfeebling Magic'].Resistant, {})
+	sets.midcast.IntEnfeebles = set_combine(sets.midcast['Enfeebling Magic'], {waist="Acuity Belt +1"}) --(Augment to R15)
+	sets.midcast.IntEnfeebles.Resistant = set_combine(sets.midcast['Enfeebling Magic'].Resistant, {waist="Acuity Belt +1"}) --(Augment to R15)
 	
   -- MND Based Enfeebles
 	sets.midcast.MndEnfeebles = set_combine(sets.midcast['Enfeebling Magic'], {})
@@ -266,22 +251,27 @@ function init_gear_sets()
 	sets.midcast.Dia = set_combine(sets.midcast['Enfeebling Magic'], sets.TreasureHunter)
 	sets.midcast['Dia II'] = set_combine(sets.midcast['Enfeebling Magic'], sets.TreasureHunter)
 	
-	-- Dispel/gs
-	sets.midcast.Dispel = {main="Daybreak", sub="Ammurapi Shield"}
-	sets.midcast.Dispelga = set_combine(sets.midcast.Dispel, {})
+	-- Dispel/Dispelga
+	--sets.midcast.Dispel = {main="Daybreak", sub="Ammurapi Shield"}
+	--sets.midcast.Dispelga = set_combine(sets.midcast.Dispel, {})
 	
-
---------------------------------------
--- Enhancing Magic
---------------------------------------
-	sets.midcast['Enhancing Magic'] = set_combine(sets.midcast.FastRecast, {
-		main="Gada",
+-- ### Enhancing Magic ###
+	sets.midcast['Enhancing Magic'] = set_combine(sets.midcast.FastRecast, { --Enhancing Magic Skill +49, PDT -36/MDT -26
+		main={ name="Gada", augments={'"Cure" potency +6%','Mag. Acc.+4','"Mag.Atk.Bns."+2','DMG:+6',}}, --Enhancing Magic Skill +18
 		sub="Sors Shield",
-		ammo="Ghastly Tathlum +1",
-		head="Befouled Crown",
-		body={ name="Telchine Chas.", augments={'"Regen" potency+3',}},
-		legs="Shedir Seraweels",
-		waist="Embla Sash",w
+		range="Dunna",
+		head="Befouled Crown", --Enhancing Magic Skill +16
+		body="Shamash Robe", 
+		hands="Azimuth Gloves +2", --DT -11 (Regal Cuffs)
+		legs="Shedir Seraweels", --Enhancing Magic Skill +15, Enhances "Stoneskin" effect, Enhances "Aquaveil" effect
+		feet="Azimuth Gaiters +2", --DT -10
+		neck="Warder's Charm +1",
+		waist="Embla Sash", --Enhancing Magic Duration +10%
+		left_ear="Alabaster Earring", --DT -5
+		right_ear="Arete del Luna",
+		left_ring="Metamor. Ring +1", 
+		right_ring="Medada's Ring",
+		back={ name="Nantosuelta's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20','MND+10','"Fast Cast"+10','Phys. dmg. taken-10%',}}, --PDT -10
 	})
 	
   -- Specific Enhancing Spells
@@ -308,108 +298,94 @@ function init_gear_sets()
 	-- Stoneskin
 	sets.midcast.Stoneskin = set_combine(sets.midcast['Enhancing Magic'], {
 		legs="Shedir Seraweels",
-		--waist="Siegel Sash",
 	})
 	
-
---------------------------------------
--- Geomancy
---------------------------------------
+-- ### Geomancy ###
 	sets.midcast.Geomancy = set_combine(sets.midcast.FastRecast, {
-		main={ name="Solstice", augments={'Mag. Acc.+20','Pet: Damage taken -4%','"Fast Cast"+5',}},
+		main={ name="Solstice", augments={'Mag. Acc.+20','Pet: Damage taken -4%','"Fast Cast"+5',}}, --(Idris)
 		sub="Sors Shield",
 		range="Dunna",
-		head="Azimuth Hood +2",
-		hands="Geo. Mitaines +3",
-		legs="Agwu's Slops",
-		feet="Bagua Sandals +3",
+		head="Azimuth Hood +3",
+		body="Azimuth Coat +2", --(Upgrade to +3)
+		hands="Azimuth Gloves +2", --(Upgrade to +3)
+		legs="Azimuth Tights +2", --(Upgrade to +3)
+		feet="Azimuth Gaiters +2", --(Upgrade to +3)
 		neck={ name="Bagua Charm +2", augments={'Path: A',}},
-		waist="Plat. Mog. Belt", --Isa Belt
-		right_ear="Alabaster Earring",
-		right_ring="Murky Ring",
-		back={ name="Nantosuelta's Cape", augments={'HP+60','Eva.+20 /Mag. Eva.+20','Mag. Evasion+5','Pet: "Regen"+10','Pet: "Regen"+5',}},
+		waist="Plat. Mog. Belt", --(Isa Belt)
+		left_ear="Alabaster Earring",
+		right_ear={ name="Azimuth Earring +2", augments={'System: 1 ID: 1676 Val: 0','Mag. Acc.+16','Damage taken-6%','INT+7 MND+7',}},
+		left_ring="Murky Ring",
+		right_ring="Medada's Ring",
+		back={ name="Lifestream Cape", augments={'Geomancy Skill +8','Indi. eff. dur. +20','Damage taken-4%',}},
 	})
 
   -- Indi Duration
 	sets.midcast.Geomancy.Indi = set_combine(sets.midcast.Geomancy, {
-		hands="Geo. Mitaines +3",
-		legs="Bagua Pants +3",
-		feet="Azimuth Gaiters +2",
-		waist="Plat. Mog. Belt",
-		back={ name="Lifestream Cape", augments={'Geomancy Skill +8','Indi. eff. dur. +20','Damage taken-4%',}},
+		main={ name="Solstice", augments={'Mag. Acc.+20','Pet: Damage taken -4%','"Fast Cast"+5',}}, --Indi. Spell Duration +15 (Idris)
+		legs="Bagua Pants +3", --Indi. Spell Duration +21 (Upgrade to +4)
+		feet="Azimuth Gaiters +2", --Indi. Spell Duration +25 (Upgrade to +3)
+		back={ name="Lifestream Cape", augments={'Geomancy Skill +8','Indi. eff. dur. +20','Damage taken-4%',}}, --Indi. Spell Duration +20%
 	})
 	
-
---------------------------------------	
--- Healing Magic
---------------------------------------
-	sets.midcast.Cure = set_combine(sets.midcast.FastRecast, {
-		main="Bunzi's Rod", --Cure Pot +30
-		sub="Sors Shield", -- Cure Pot +3
-		--ammo="Hasty Pinion +1",
-		head={ name="Vanya Hood", augments={'Healing magic skill +20','"Cure" spellcasting time -7%','Magic dmg. taken -3',}}, -- Cure Pot +10
-		body={ name="Vanya Robe", augments={'Healing magic skill +20','"Cure" spellcasting time -7%','Magic dmg. taken -3',}},
-		hands={ name="Vanya Cuffs", augments={'Healing magic skill +20','"Cure" spellcasting time -7%','Magic dmg. taken -3',}},
-		legs={ name="Vanya Slops", augments={'Healing magic skill +20','"Cure" spellcasting time -7%','Magic dmg. taken -3',}}, -- Cure Pot +5
-		feet={ name="Vanya Clogs", augments={'Healing magic skill +20','"Cure" spellcasting time -7%','Magic dmg. taken -3',}},
-		--left_ear="Malignance Earring",
-		--right_ear="Mendi. Earring",
+-- ### Healing Magic ###
+	sets.midcast.Cure = set_combine(sets.midcast.FastRecast, { --Cure Pot. +48/50
+		main="Bunzi's Rod", --Cure Pot. +30
+		sub="Sors Shield", --Cure Pot. +3, Enmity -5
+		range="Dunna",
+		head={ name="Vanya Hood", augments={'Healing magic skill +20','"Cure" spellcasting time -7%','Magic dmg. taken -3',}}, --Cure Pot. +10, Conserve MP +6, Healing Magic Skill +20
+		body={ name="Vanya Robe", augments={'Healing magic skill +20','"Cure" spellcasting time -7%','Magic dmg. taken -3',}}, --Healing Magic Skill +20
+		hands={ name="Vanya Cuffs", augments={'Healing magic skill +20','"Cure" spellcasting time -7%','Magic dmg. taken -3',}}, --Healing Magic Skill +20
+		legs={ name="Vanya Slops", augments={'Healing magic skill +20','"Cure" spellcasting time -7%','Magic dmg. taken -3',}}, --Healing Magic Skill +20
+		feet={ name="Vanya Clogs", augments={'Healing magic skill +20','"Cure" spellcasting time -7%','Magic dmg. taken -3',}}, --Healing Magic Skill +20, Cursna +5
+		neck="Loricate Torque +1", --DT -6
+		waist="Plat. Mog. Belt", --DT -3
+		left_ear="Magnetic Earring", --Conserve MP +5
+		right_ear={ name="Azimuth Earring +2", augments={'System: 1 ID: 1676 Val: 0','Mag. Acc.+16','Damage taken-6%','INT+7 MND+7',}}, --DT -6
+		left_ring="Metamor. Ring +1",
+		right_ring="Lebeche Ring", --Cure Pot. +3
+		back="Solemnity Cape", --Cure Pot. +7, Conserve MP +5, DT -4
 	})
 	
   -- Specific healing magic spells
     -- Cursna
 	sets.midcast.Cursna = {}
 	
-
--------------------------------------------------------------------------------------------------------------------
--- Idle Sets
--------------------------------------------------------------------------------------------------------------------
---------------------------------------
--- Base Idle Set 
---------------------------------------
-	sets.idle = { --DT 50/50, Refresh +8~9, Movement Speed +18%
-		main="Marin Staff +1",
-		sub="Khonsu", -- DT -6
-		range="Dunna", -- Homiliary
-		head="Azimuth Hood +2", -- DT -11, Null Masque
+-- ### Idle Sets ###
+  -- Idle Set 
+	sets.idle = { --PDT/MDT -43/-33, Refresh +4~5. Pet: DT -24, Regen +25
+		main={ name="Solstice", augments={'Mag. Acc.+20','Pet: Damage taken -4%','"Fast Cast"+5',}}, --Pet: DT -6
+		sub="Sors Shield",
+		range="Dunna", --Pet: DT -5
+		head="Azimuth Hood +3", --DT -12, Pet: Regen +5
 		body="Shamash Robe", --PDT -10, Refresh +3
-		hands="Bagua Mitaines +3", -- Refresh +2
-		legs="Assid. Pants +1", -- Refresh +1~2
-		feet="Azimuth Gaiters +2", -- DT -10
-		neck="Sibyl Scarf", --Refresh +1
-		waist="Plat. Mog. Belt", -- DT -3
-		left_ear="Lugalbanda Earring",
-		right_ear="Alabaster Earring", -- DT -5
-		left_ring="Shneddick Ring",
-		right_ring="Murky Ring", -- DT -10
-		back={ name="Nantosuelta's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','INT+10','"Mag.Atk.Bns."+10','Damage taken-5%',}}, --DT -5
+		hands="Geo. Mitaines +3", --Pet: DT -13
+		legs="Assid. Pants +1", --Refresh +1~2
+		feet="Bagua Sandals +4", --Pet: Regen +5
+		neck={ name="Bagua Charm +2", augments={'Path: A',}}, --Luopon Duration +25%, Luopan: Absorb damage taken +10%
+		waist="Plat. Mog. Belt", --(Isa Belt)
+		left_ear="Alabaster Earring", --DT -5
+		right_ear={ name="Azimuth Earring +2", augments={'System: 1 ID: 1676 Val: 0','Mag. Acc.+16','Damage taken-6%','INT+7 MND+7',}}, --DT -6
+		left_ring="Murky Ring", --DT -10
+		right_ring="Shneddick Ring", --Mv. Speed +18%
+		back={ name="Nantosuelta's Cape", augments={'HP+60','Eva.+20 /Mag. Eva.+20','Mag. Evasion+5','Pet: "Regen"+10','Pet: "Regen"+5',}}, --Pet: Regen +15
 	}
 	
-  -- Idle Set When Luopan Active
-	sets.idle.Pet = set_combine(sets.idle, { --DT 52/50, Pet DT -74/87.5, Pet Regen +24
-		main={ name="Solstice", augments={'Mag. Acc.+20','Pet: Damage taken -4%','"Fast Cast"+5',}}, --Pet DT -6
-		sub="Sors Shield",
-		range="Dunna", --Pet DT -5
-		head="Azimuth Hood +2", -- DT -11, Pet Regen +4
-		body="Shamash Robe", --PDT -10, Refresh +3
-		hands="Geo. Mitaines +3", -- Pet DT -13
-		legs="Nyame Flanchard", --DT -8
-		feet="Bagua Sandals +3", -- Pet Regen +5
-		neck={ name="Bagua Charm +2", augments={'Path: A',}},
-		waist="Plat. Mog. Belt", --DT -3
-		left_ear="Lugalbanda Earring",
-		right_ear="Alabaster Earring", --DT -5
-		left_ring="Shneddick Ring",
-		right_ring="Murky Ring", --DT -10
-		back={ name="Nantosuelta's Cape", augments={'HP+60','Eva.+20 /Mag. Eva.+20','Mag. Evasion+5','Pet: "Regen"+10','Pet: "Regen"+5',}}, --Pet Regen +15
-})
-	
   -- Refresh Set
-	sets.idle.Refresh = set_combine(sets.idle, {
-		head="Befouled Crown",
-		--feet="Volte Gaiters",
-		--left_ring="Stikini Ring +1",
-		--right_ring=Stikini Ring +1",
+	sets.idle.Refresh = set_combine(sets.idle, { --PDT/MDT -47/-37, Refresh +9~10
+		main="Marin Staff +1",
+		sub="Khonsu", --DT -6
+		head="Befouled Crown", --Refresh +1 (Null Masque)
+		body="Jhakri Robe +2", --Refresh +4
+		hands="Bagua Mitaines +4", --Refresh +2
+		legs="Assid. Pants +1", --Refresh 1~2
+		feet="Azimuth Gaiters +2", --DT -10 (Geo. Sandels +4)
+		neck="Sibyl Scarf", --Refresh +1
+		waist="Carrier's Sash", --(Null Belt)
+		left_ear="Alabaster Earring", --DT -5
+		right_ear={ name="Azimuth Earring +2", augments={'System: 1 ID: 1676 Val: 0','Mag. Acc.+16','Damage taken-6%','INT+7 MND+7',}}, --DT -6
+		left_ring="Murky Ring", --DT -10 (Stikini Ring +1)
+		right_ring="Shneddick Ring", --Mv. Speed +18% (Stikini Ring +1)
+		back={ name="Nantosuelta's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20','MND+10','"Fast Cast"+10','Phys. dmg. taken-10%',}}, --PDT -10
 	})
 	
   -- Regen Set
@@ -424,33 +400,28 @@ function init_gear_sets()
 -------------------------------------------------------------------------------------------------------------------
 -- Defense sets
 -------------------------------------------------------------------------------------------------------------------
---------------------------------------
--- DT sets
---------------------------------------
--- Physical Damage Taken
-	sets.defense.PDT = { --DT -73
+-- ### Physical Damage Taken ###
+	sets.defense.PDT = { --DT -53
 		main="Marin Staff +1",
-		sub="Khonsu", -- DT -6
-		--ammo="Staunch Tathlum +1",
+		sub="Khonsu", --DT -6
+		range="Dunna",
 		head="Nyame Helm", --DT -7
-		body="Shamash Robe", --DT -9
+		body="Nyame Mail", --DT -9
 		hands="Nyame Gauntlets", --DT -7
 		legs="Nyame Flanchard", --DT -8
 		feet="Nyame Sollerets", --DT -7
-		neck="Loricate Torque +1", --DT -6
-		waist="Plat. Mog. Belt", --DT -3
-		left_ear="Lugalbanda Earring",
-		right_ear="Alabaster Earring", --DT -5
-		left_ring="Shneddick Ring",
-		right_ring="Murky Ring", --DT -10
-		back={ name="Nantosuelta's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','INT+10','"Mag.Atk.Bns."+10','Damage taken-5%',}}, --DT -5
+		neck="Warder's Charm +1",
+		waist="Carrier's Sash",
+		left_ear="Alabaster Earring", --DT -5
+		right_ear="Arete del Luna", 
+		left_ring="Metamor. Ring +1",
+		right_ring="Archon Ring",
+		back="Solemnity Cape", --DT -4
 	}
 
 -- Magic Damage Taken
 	sets.defense.MDT = set_combine(sets.defense.PDT, {
-		neck="Warder's Charm +1",
-		waist="Carrier's Sash",
-		--right_ring="Archon Ring",
+		right_ring="Lugalbanda Earring",
 	})
 	
 -- Magic Evasion
@@ -466,124 +437,76 @@ function init_gear_sets()
   -- Pet Physical Damage Taken
  	sets.defense.PetPDT = sets.idle.PetPDT
 	
-  
-
-
 -------------------------------------------------------------------------------------------------------------------
 -- Offense Sets
 -------------------------------------------------------------------------------------------------------------------
--- Engaged set
-	--sets.engaged = {
-		--ammo="Hasty Pinion +1",
-		--head={ name="Nyame Helm", augments={'Path: B',}},
-		--body={ name="Nyame Mail", augments={'Path: B',}},
-		--hands={ name="Nyame Gauntlets", augments={'Path: B',}},
-		--legs={ name="Nyame Flanchard", augments={'Path: B',}},
-		--feet={ name="Nyame Sollerets", augments={'Path: B',}},
-		--neck="Combatant's Torque",
-		--waist="Grunfeld Rope",
-		--left_ear="Telos Earring",
-		--right_ear="Cessance Earring",
-		--left_ring="Chirich Ring +1",
-		--right_ring="Cacoethic Ring +1",
-		--back="Solemnity Cape",
-	--}
+-- ### Engaged set ###
+	sets.engaged = {
+		main="Maxentius",
+		head="Nyame Helm",
+		body="Nyame Mail",
+		hands="Nyame Gauntlets",
+		legs="Nyame Flanchard",
+		feet="Nyame Sollerets",
+		neck="Warder's Charm +1",
+		waist="Carrier's Sash",
+		left_ear="Alabaster Earring",
+		right_ear={ name="Azimuth Earring +2", augments={'System: 1 ID: 1676 Val: 0','Mag. Acc.+16','Damage taken-6%','INT+7 MND+7',}},
+		left_ring="Murky Ring",
+		right_ring="Jhakri Ring",
+		back={ name="Nantosuelta's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20','MND+10','"Fast Cast"+10','Phys. dmg. taken-10%',}},}
 	
-	--sets.engaged.Acc = set_combine(sets.engaged, {})
-	--sets.engaged.Fodder = set_combine(sets.engaged, {})
+	sets.engaged.Acc = set_combine(sets.engaged, {})
+	sets.engaged.Fodder = set_combine(sets.engaged, {})
 	
 -- Hybrid Engaged Sets
-	--sets.engaged.DT = {
-		--ammo="Hasty Pinion +1",
-		--head={ name="Nyame Helm", augments={'Path: B',}},
-		--body={ name="Nyame Mail", augments={'Path: B',}},
-		--hands={ name="Nyame Gauntlets", augments={'Path: B',}},
-		--legs={ name="Nyame Flanchard", augments={'Path: B',}},
-		--feet={ name="Nyame Sollerets", augments={'Path: B',}},
-		--neck="Combatant's Torque",
-		--waist="Grunfeld Rope",
-		--left_ear="Telos Earring",
-		--right_ear="Cessance Earring",
-		--left_ring="Defending Ring",
-		--right_ring="Cacoethic Ring +1",
-		--back="Solemnity Cape",
-	--}
-	
-	--sets.engaged.DT.Acc = set_combine(sets.engaged.DT, {})
-	--sets.engaged.DT.Fodder = set_combine(sets.engaged.DT, {})
+	sets.engaged.DT = set_combine(sets.engaged, {})	
+	sets.engaged.DT.Acc = set_combine(sets.engaged.DT, {})
+	sets.engaged.DT.Fodder = set_combine(sets.engaged.DT, {})
 
 
 -------------------------------------------------------------------------------------------------------------------
 -- Weaponskill Sets
 -------------------------------------------------------------------------------------------------------------------
-	--------------------------------------
-	-- Default weaponskill gear
-	--------------------------------------
-	--sets.precast.WS = {
-		--ammo="Oshasha's Treatise",
-		--head={ name="Nyame Helm", augments={'Path: B',}},
-		--body={ name="Nyame Mail", augments={'Path: B',}},
-		--hands={ name="Nyame Gauntlets", augments={'Path: B',}},
-		--legs={ name="Nyame Flanchard", augments={'Path: B',}},
-		--feet={ name="Nyame Sollerets", augments={'Path: B',}},
-		--neck="Rep. Plat. Medal",
-		--waist="Grunfeld Rope",
-		--left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
-		--right_ear="Regal Earring",
-		--left_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
-		--right_ring="Cornelia's Ring",
-		--back={ name="Nantosuelta's Cape", augments={'Pet: "Regen"+10','Pet: Damage taken -5%',}},
-	--}
+-- ### Default weaponskill gear ###
+	sets.precast.WS = {
+		head="Nyame Helm",
+		body="Nyame Mail",
+		hands="Nyame Gauntlets",
+		legs="Nyame Flanchard",
+		feet="Nyame Sollerets",
+		neck="Warder's Charm +1",
+		waist="Carrier's Sash",
+		left_ear="Alabaster Earring",
+		right_ear={ name="Azimuth Earring +2", augments={'System: 1 ID: 1676 Val: 0','Mag. Acc.+16','Damage taken-6%','INT+7 MND+7',}},
+		left_ring="Murky Ring",
+		right_ring="Jhakri Ring",
+		back={ name="Nantosuelta's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20','MND+10','"Fast Cast"+10','Phys. dmg. taken-10%',}},
+	}
 
 -------------------------------------------------------------------------------------------------------------------
 -- Weapons sets
 -------------------------------------------------------------------------------------------------------------------
 	sets.weapons.None = {}
-	sets.weapons.Club = {main="Maxentius", sub="Sors Shield"}
-	sets.weapons.Staff = {main="Marin Staff +1", sub="Khonsu"}
-	
+	sets.weapons.BlackHalo = {main="Maxentius", sub="Sors Shield"}
+	sets.weapons.Mykyr = {main="Marin Staff +1", sub="Khonsu"}
+	sets.weapons.Casting = {main="Bunzi's Rod", sub="Sors Shield"}
 
 -------------------------------------------------------------------------------------------------------------------
 -- Miscelaneous Sets
 -------------------------------------------------------------------------------------------------------------------
---------------------------------------
--- Misc. Sets
---------------------------------------
--- Convert elemental damage taken to recover MP.	
+-- ### Convert elemental damage dealt to recover MP ###	
 	--sets.RecoverMP = {body="Seidr Cotehardie"}
-
--- Kiting
-	sets.Kiting = {left_ring="Shneddick Ring"}
 	
--- Latent Refresh Effects
-	--sets.latent_refresh = {waist="Fucho-no-obi"}
-	--sets.latent_refresh_grip = {sub="Oneiros Grip"}
-	
--- Day & Night Idle Effects
+-- ### Day & Night Idle Effects ###
 	--sets.DayIdle = {}
 	--sets.NightIdle = {}
 	
--- Treasure Hunter Effects
-	sets.TreasureHunter = set_combine(sets.TreasureHunter, {
-		ammo="Per. Lucky Egg",
-		--head="Volte Cap",
-		--feet="Volte Boots",
-		--waist="Chaac Belt",
-	})
-
--- Gearswaps for Sublimation (/SCH)
-	sets.buff.Sublimation = {waist="Embla Sash"}
-    sets.buff.DTSublimation = {waist="Embla Sash"}
-	
--- Equipment Locked Sets
-	sets.defense.NukeLock = sets.midcast['Elemental Magic']
-	sets.defense.GeoLock = sets.midcast.Geomancy.Indi
-
--- Equip when a buff effect is active
+-- ### Equip when a specific buff/debuff effect is active ###
     -- Doom
 	sets.buff.Doom = set_combine(sets.buff.Doom, {
 		neck="Nicander's Necklace", 
-		waist="Gishdubar Sash",
+		--waist="Gishdubar Sash",
 	})
 	
 	-- Sleep
@@ -594,6 +517,27 @@ function init_gear_sets()
 		neck="Arciela's Grace +1",
 	})
 	
+-- Equipment Locked Sets
+	sets.defense.NukeLock = sets.midcast['Elemental Magic']
+	sets.defense.GeoLock = sets.midcast.Geomancy.Indi
+	
+-- ### Kiting ###
+	sets.Kiting = {right_ring="Shneddick Ring"}
+	
+-- ### Latent Refresh Effects ###
+	--sets.latent_refresh = {waist="Fucho-no-obi"}
+	sets.latent_refresh_grip = {sub="Oneiros Grip"}
+
+-- ### Sublimation (/SCH) ###
+	sets.buff.Sublimation = {waist="Embla Sash"}
+    sets.buff.DTSublimation = {waist="Embla Sash"}
+
+-- ### Treasure Hunter Effects ###
+	sets.TreasureHunter = set_combine(sets.TreasureHunter, {
+		--head="Volte Cap",
+		--feet="Volte Boots",
+		--waist="Chaac Belt",
+	})
 end
 
 -- Select default macro book on initial load or subjob change.
