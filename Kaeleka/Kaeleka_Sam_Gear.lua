@@ -8,7 +8,7 @@ function user_job_setup()
     state.PhysicalDefenseMode:options('PDT')
 	state.MagicalDefenseMode:options('MDT')
 	state.ResistDefenseMode:options('MEVA')
-    state.Weapons:options('Masamune', 'ShiningOne', 'Malevolance', 'ProcWeapon')
+    state.Weapons:options('Masamune', 'ShiningOne', 'ProcWeapon')
     
 	
 	-- Additional local binds
@@ -189,7 +189,7 @@ function init_gear_sets()
 	sets.midcast.RA.SubtleBlow = set_combine(sets.midcast.RA, {})
 	
 -- ### Dark magic (Used for /DRK Amninon only) ###
-	sets.midcast['Dark Magic'] = set_combine(sets.midcst.FastRecast, {
+	sets.midcast['Dark Magic'] = set_combine(sets.midcast.FastRecast, {
 		head="Kasuga Kabuto +3",
 		body="Kasuga Domaru +3",
 		hands="Kasuga Kote +3",
@@ -312,24 +312,24 @@ function init_gear_sets()
 -- Offense Sets
 -------------------------------------------------------------------------------------------------------------------
 -- ### Engaged Set ###
-    sets.engaged = { --PDT -45/MDT -35, Acc 1328, Store TP +84, Zanshin +21
+    sets.engaged = { --PDT -45/MDT -35, Acc 1328, Store TP +82, Zanshin +36
 		ammo="Aurgelmir Orb",
 		head="Kasuga Kabuto +3",
 		body="Kasuga Domaru +3",
-		hands="Wakido Kote +3",
+		hands="Tatena. Gote +1",
 		legs="Kasuga Haidate +3",
 		feet={ name="Ryuo Sune-Ate +1", augments={'HP+65','"Store TP"+5','"Subtle Blow"+8',}},
-		neck={ name="Sam. Nodowa +2", augments={'Path: A',}}, --(Moonlight Nodowa)
+		neck="Moonlight Nodowa",
 		waist="Sailfi Belt +1", --(Sweordfatalis +1)
 		left_ear="Dedition Earring",
 		right_ear={ name="Kasuga Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+13','Mag. Acc.+13','Weapon skill damage +2%',}},
 		left_ring="Chirich Ring +1",
 		right_ring="Niqmaddu Ring",
-		back={ name="Smertrios's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Store TP"+10','Phys. dmg. taken-10%',}}, --(Takata Mantle w/ Store TP +3, Zanshin +5, Meditate duration +8)
+		back={ name="Takaha Mantle", augments={'STR+3','"Zanshin"+5','"Store TP"+2',}},
 	}
 
   -- Engaged accuracy set
-    sets.engaged.Acc = set_combine(sets.engaged, { --Acc 1387, Store TP +79, Zanshin +21
+    sets.engaged.Acc = set_combine(sets.engaged, { --Acc 1387, Store TP +75, Zanshin +31
 		waist="Kentarch Belt +1",
 		left_ear="Domin. Earring +1",
 		left_ring="Chirich Ring +1",
@@ -341,19 +341,19 @@ function init_gear_sets()
 	sets.engaged.FullAcc = set_combine(sets.engaged, {})
     
   -- Hybrid DT set
-	sets.engaged.DT = set_combine(sets.engaged, { --PDT -50/MDT -50, Acc 1343, Store TP +70, Zanshin +21
+	sets.engaged.DT = set_combine(sets.engaged, { --PDT -50/MDT -50, Acc 1343, Store TP +66, Zanshin +31
 		left_ear="Alabaster Earring",
 		left_ring="Murky Ring",
+		back={ name="Smertrios's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Store TP"+10','Phys. dmg. taken-10%',}}, 
     })
 	
   -- Extra melee mode sets, apply on top of melee sets
 	sets.engaged.SubtleBlow = set_combine(sets.engaged, { --Subtle Blow +50, Subtle Blow II +5
 		head="Ken. Jinpachi +1",
 		body="Flamma Korazin +2",
-		feet={ name="Ryuo Sune-Ate +1", augments={'HP+65','"Store TP"+5','"Subtle Blow"+8',}},
 		left_ear="Digni. Earring",
 		right_ear="Schere Earring", 
-	}
+	})
 
 -------------------------------------------------------------------------------------------------------------------
 -- Weaponskill Sets
