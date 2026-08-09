@@ -30,118 +30,109 @@ function init_gear_sets()
 -------------------------------------------------------------------------------------------------------------------
 -- Precast Sets
 -------------------------------------------------------------------------------------------------------------------
-	--------------------------------------
-	-- Fast Cast Sets for Spells
-	--------------------------------------
-	sets.precast.FC = {
-		ammo="Impatiens",
-		head={ name="Carmine Mask +1", augments={'Accuracy+20','Mag. Acc.+12','"Fast Cast"+4',}},
-		body="Sacro Breastplate",
-		hands={ name="Leyline Gloves", augments={'Accuracy+14','Mag. Acc.+13','"Mag.Atk.Bns."+13','"Fast Cast"+2',}},
-		legs={ name="Founder's Hose", augments={'MND+3','Breath dmg. taken -3%',}},
-		feet={ name="Odyssean Greaves", augments={'"Mag.Atk.Bns."+15','"Fast Cast"+3',}},
-		neck="Voltsurge Torque",
-		waist="Flume Belt +1",
-		left_ear="Loquac. Earring",
-		right_ear="Malignance Earring",
-		left_ring="Lebeche Ring",
-		right_ring="Kishar Ring",
-		back={ name="Ankou's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
+-- ### Enmity Set ###
+    sets.Enmity = { --PDT -35/MDT -25, Enmity +43
+		ammo="Sapience Orb", --Enmity +2
+		head="Loess Barbuta +1", --Enmity +9~14
+		body="Shab. Cuirass +1", --Enmity +6
+		hands="Macabre Gaunt. +1", --Enmity +7
+		legs="Zoar Subligar +1", --Enmity +6
+		feet="Nyame Sollerets", --DT -7
+		neck="Unmoving Collar +1", --Enmity +10
+		waist="Plat. Mog. Belt", --DT -3
+		left_ear="Alabaster Earring", --DT -5
+		right_ear="Arete del Luna",
+		left_ring="Murky Ring", --DT -10
+		right_ring="Vengeful Ring", --Enmity +3
+		back={ name="Ankou's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}}, -PDT -10
 	}
 
-
-	-- Impact
+-- ### Fast cast sets ###
+	sets.precast.FC = { --FC +64, QC +4 PDT -11/MDT -11
+		ammo="Impatiens", --QC +2
+		head={ name="Carmine Mask +1", augments={'Accuracy+20','Mag. Acc.+12','"Fast Cast"+4',}}, --FC +14
+		body="Sacro Breastplate", --FC +10
+		hands={ name="Leyline Gloves", augments={'Accuracy+15','Mag. Acc.+15','"Mag.Atk.Bns."+15','"Fast Cast"+3',}}, --FC +8
+		legs="Nyame Flanchard", --DT -8 (Sworn Brais)
+		feet={ name="Carmine Greaves +1", augments={'Accuracy+12','DEX+12','MND+20',}}, --FC +8
+		neck="Baetyl Pendant", --FC +4
+		waist="Plat. Mog. Belt", --DT -3 
+		left_ear="Loquac. Earring", --FC +2
+		right_ear="Malignance Earring", --FC +4
+		left_ring="Kishar Ring", --FC +4
+		right_ring="Lebeche Ring", --QC +2
+		back={ name="Ankou's Mantle", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Fast Cast"+10','Phys. dmg. taken-10%',}}, --FC +10
+	}
+	
+  -- Fast cast sets for specific spells
+    -- Impact
 	sets.precast.FC.Impact = set_combine(sets.precast.FC, {head=empty, body="Crepuscular Cloak"})
 	
-	
-	--------------------------------------
-	-- Enmity Set
-	--------------------------------------
-    sets.Enmity = {
-		ammo="Sapience Orb",
-		head="Loess Barbuta +1",
-		body={ name="Odyss. Chestplate", augments={'Accuracy+24 Attack+24','"Store TP"+7','AGI+2','Attack+2',}},
-		legs={ name="Odyssean Cuisses", augments={'Accuracy+1','"Dbl.Atk."+4','Attack+14',}},
-		neck="Unmoving Collar +1",
-		waist="Fotia Belt",
-		left_ear="Friomisi Earring",
-		left_ring="Cacoethic Ring +1",
-		right_ring="Vengeful Ring",
-		back="Impassive Mantle",
-	}
-	
-	
-	
-	--------------------------------------
-	-- Precast Sets to enhance JAs
-	--------------------------------------
-	sets.precast.JA['Diabolic Eye'] = {hands="Fall. Fin. Gaunt. +3"}
-	--sets.precast.JA['Arcane Circle'] = {feet="Ig. Sollerets +3"}
-	--sets.precast.JA['Souleater'] = {head="Ig. Burgeonet +3"}
-	--sets.precast.JA['Weapon Bash'] = {hands="Ig. Gauntlets +3"}
-	sets.precast.JA['Nether Void'] = {legs="Heath. Flanchard +3"}
-	sets.precast.JA['Blood Weapon'] = {body="Fall. Cuirass +3"}
-	sets.precast.JA['Dark Seal'] = {head="Fall. Burgeonet +3"}
+-- ### Precast sets to enhance JAs ###
+	sets.precast.JA['Diabolic Eye'] = {hands="Fall. Fin. Gaunt. +3"} --(Upgrade to +4)
+	sets.precast.JA['Arcane Circle'] = {feet="Ig. Sollerets +2"} --(Upgrade to +4)
+	sets.precast.JA['Souleater'] = {head="Ig. Burgeonet +2"} --(Upgrade to +4)
+	sets.precast.JA['Weapon Bash'] = {hands="Ig. Gauntlets +2"} --(Upgrade to +4)
+	sets.precast.JA['Nether Void'] = {legs="Heath. Flanchard +3"} 
+	sets.precast.JA['Blood Weapon'] = {body="Fall. Cuirass +3"} --(Upgrade to +4)
+	sets.precast.JA['Dark Seal'] = {head="Fall. Burgeonet +3"} --(Upgrade to +4)
 	sets.precast.JA['Last Resort'] = {
-		feet="Fallen's Sollerets +3",
+		feet="Fall. Sollerets +3", --(Upgrade to +4)
 		back={ name="Ankou's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
 	}
 
-
-	--------------------------------------
-	-- Waltz Sets
-	--------------------------------------
-	-- Curing Waltz
-	sets.precast.Waltz = {}
- 
- 
-	-- Don't need any special gear for Healing Waltz.
-	sets.precast.Waltz['Healing Waltz'] = {}
-    
-	
-	-- Steps
+-- ### /DNC flourishes, steps, and waltz sets ###
+  -- Flourishes
+    sets.precast.Flourish1 = {}
+    sets.precast.Flourish1['Animated Flourish'] = sets.Enmity
+	sets.precast.Flourish1['Desperate Flourish'] = set_combine(sets.precast.Flourish1['Violent Flourish'], {})
+	sets.precast.Flourish1['Violent Flourish'] = {}
+  
+  -- Steps
 	sets.precast.Step = {}
 	
-	
-	-- Flourishes
-	sets.precast.Flourish1 = {}
-	
-
-	--------------------------------------
-	-- Weapon Sets
-	--------------------------------------
-	sets.weapons.Greatsword = {main="Caladbolg", sub="Utu Grip"}
-	sets.weapons.Scythe = {main="Crepuscular Scythe", sub="Utu Grip"}
-	sets.weapons.Sword = {main="Naegling", sub="Blurred Shield +1"}
-	sets.weapons.Club = {main="Loxotic Mace +1", sub="Blurred Shield +1"}
-
+  -- Curing Waltz
+	sets.precast.Waltz = {}
+	sets.precast.Waltz['Healing Waltz'] = {}
 
 -------------------------------------------------------------------------------------------------------------------
 -- Midcast Sets
 -------------------------------------------------------------------------------------------------------------------
-	--------------------------------------
-	-- Fast Recast Set
-	--------------------------------------
+-- ### Fast recast ###
 	sets.midcast.FastRecast = {
-		ammo="Impatiens",
+		ammo="Sapience Orb",
 		head={ name="Carmine Mask +1", augments={'Accuracy+20','Mag. Acc.+12','"Fast Cast"+4',}},
-		body={ name="Fall. Cuirass +3", augments={'Enhances "Blood Weapon" effect',}},
-		hands={ name="Leyline Gloves", augments={'Accuracy+14','Mag. Acc.+13','"Mag.Atk.Bns."+13','"Fast Cast"+2',}},
-		legs={ name="Founder's Hose", augments={'MND+3','Breath dmg. taken -3%',}},
-		feet={ name="Odyssean Greaves", augments={'"Mag.Atk.Bns."+15','"Fast Cast"+3',}},
-		neck="Voltsurge Torque",
-		waist="Flume Belt +1",
+		body="Sacro Breastplate",
+		hands={ name="Leyline Gloves", augments={'Accuracy+15','Mag. Acc.+15','"Mag.Atk.Bns."+15','"Fast Cast"+3',}},
+		legs="Nyame Flanchard",
+		feet={ name="Carmine Greaves +1", augments={'Accuracy+12','DEX+12','MND+20',}},
+		neck="Baetyl Pendant",
+		waist="Sailfi Belt +1",
 		left_ear="Loquac. Earring",
 		right_ear="Malignance Earring",
-		left_ring="Lebeche Ring",
-		right_ring="Kishar Ring",
-		back={ name="Ankou's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
+		left_ring="Kishar Ring",
+		right_ring="Rahab Ring",
+		back={ name="Ankou's Mantle", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Fast Cast"+10','Phys. dmg. taken-10%',}},
 	}
-	
-	
-	--------------------------------------
+
+-- ### Dark magic spells ###
+	sets.midcast['Dark Magic'] = { 
+		ammo="Pemphredo Tathlum", 
+		head="Ig. Burgeonet +2",
+		body={ name="Carm. Sc. Mail +1", augments={'MP+80','INT+12','MND+12',}},
+		hands="Fall. Fin. Gaunt. +3",
+		legs="Heath. Flanchard +3",
+		feet="Heath. Sollerets +3",
+		neck="Erra Pendant",
+		waist="Eschan Stone",
+		left_ear="Alabaster Earring",
+		right_ear={ name="Heath. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+14','Mag. Acc.+14','Weapon skill damage +3%',}},
+		left_ring="Metamor. Ring +1",
+		right_ring="Evanescence Ring",
+		back={ name="Niht Mantle", augments={'Attack+5','Dark magic skill +8','"Drain" and "Aspir" potency +25',}},
+
+  -- Specific dark magic spell sets
 	-- Absorb Spells 
-	--------------------------------------
 	sets.midcast.Absorb = set_combine(sets.midcast['Dark Magic'], {
 		hands="Pavor Gauntlets",
 		--feet="Rat. Sollerets +1",
@@ -152,67 +143,47 @@ function init_gear_sets()
 		back="Chuparrosa Mantle",
 	})
 	
-	
-	--------------------------------------
-	-- Cure Spells 
-	--------------------------------------
-	sets.midcast.Cure = {}
-	
-	
-	--------------------------------------
-	-- Dark Magic Skill/Accuracy
-	--------------------------------------
-	sets.midcast['Dark Magic'] = { 
+	-- Drain/Aspir
+	sets.midcast.Drain = set_combine(sets.midcast['Dark Magic'], {
 		ammo="Pemphredo Tathlum",
-		head={ name="Fall. Burgeonet +3", augments={'Enhances "Dark Seal" effect',}},
+		head="Fall. Burgeonet +3",
 		body={ name="Carm. Sc. Mail +1", augments={'MP+80','INT+12','MND+12',}},
-		hands={ name="Carmine Fin. Ga. +1", augments={'Rng.Atk.+20','"Mag.Atk.Bns."+12','"Store TP"+6',}},
+		hands="Fall. Fin. Gaunt. +3",
 		legs="Heath. Flanchard +3",
 		feet="Heath. Sollerets +3",
 		neck="Erra Pendant",
-		waist="Eschan Stone",
-		left_ear="Malignance Earring",
-		right_ear={ name="Heathen's Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+10','Mag. Acc.+10',}},
-		left_ring="Archon Ring",
-		right_ring="Evanescence Ring",
-		back={ name="Niht Mantle", augments={'Attack+5','Dark magic skill +8','"Drain" and "Aspir" potency +25',}},
-	}
-	
-	
-	-- Dread Spikes
-	sets.midcast['Dread Spikes'] = {
-		ammo="Egoist's Tathlum",
-		head="Hjarrandi Helm",
-		body="Heath. Cuirass +3",
-		hands={ name="Sakpata's Gauntlets", augments={'Path: A',}},
-		legs={ name="Sakpata's Cuisses", augments={'Path: A',}},
-		feet={ name="Sakpata's Leggings", augments={'Path: A',}},
-		neck="Unmoving Collar +1",
 		waist="Plat. Mog. Belt",
-		left_ear="Eabani Earring",
-		right_ear="Odnowa Earring +1",
-		left_ring="Moonlight Ring",
-		right_ring="Gelatinous Ring +1",
-		back={ name="Ankou's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
-	}
-	
-	sets.DreadWeapon = {main="Crepuscular Scythe", sub="Utu Grip",}
-	
-	
-	-- Drain/Aspir
-	sets.midcast.Drain = set_combine(sets.midcast['Dark Magic'], {
-		waist="Orpheus's Sash",
+		left_ear="Alabaster Earring",
+		right_ear="Etiolation Earring",
+		left_ring="Evanescence Ring",
+		right_ring="Archon Ring",
+		back={ name="Niht Mantle", augments={'Attack+5','Dark magic skill +8','"Drain" and "Aspir" potency +25',}},
 	})
 	
-	
 	sets.midcast.Aspir = sets.midcast.Drain
-	--sets.DrainWeapon = {main="Misanthropy",sub="Alber Strap"}
 	
+	-- Dread Spikes
+	sets.midcast['Dread Spikes'] = { --PDT -36/MDT -28, HP 3395
+		main="Crepuscular Scythe", --"Dread Spikes" absorption +50%
+		sub="Utu Grip",
+		ammo="Staunch Tathlum +1", --DT -3 (Happy Egg)
+		head="Hjarrandi Helm", --(Ratri Sallet +1)
+		body="Heath. Cuirass +3", --DT -13, "Dread Spikes" potency +55%
+		hands="Fall. Fin. Gaunt. +3", --(Ratri Gadlings +1)
+		legs="Fall. Flanchard +3", --(Ratri Cuisses +1)
+		feet="Ig. Sollerets +2", --(Ratri Sollerets +1)
+		neck="Unmoving Collar +1", 
+		waist="Plat. Mog. Belt", --DT -3
+		left_ear="Alabaster Earring", --DT -5 (Tuisto Earring)
+		right_ear="Etiolation Earring", --(Odnowa Earring +1 aug to R15)
+		left_ring="Moonlight Ring", --DT -5
+		right_ring="Gelatinous Ring +1", --PDT -7, MDT +1 (Aug to R15)
+		back={ name="Niht Mantle", augments={'Attack+5','Dark magic skill +8','"Drain" and "Aspir" potency +25',}}, --(Moonlight Cape)
+	}
 	
 	-- Endark I/II
 	sets.midcast.Endark = set_combine(sets.midcast['Dark Magic'], {})
 	
-
 	-- Impact
 	sets.midcast.Impact = set_combine(sets.midcast['Dark Magic'], {
 		ammo="Pemphredo Tathlum",
@@ -224,14 +195,10 @@ function init_gear_sets()
 		back="Izdubar Mantle",
 	})
 	
-
 	-- Stun
 	sets.midcast.Stun = set_combine(sets.midcast['Dark Magic'], {})
 	
-	
-	--------------------------------------
-	-- Enfeebling Magic Accuracy
-	--------------------------------------
+-- ### Enfeebling Magic Accuracy ###
 	sets.midcast['Enfeebling Magic'] = {
 		ammo="Pemphredo Tathlum",
 		head={ name="Carmine Mask +1", augments={'Accuracy+20','Mag. Acc.+12','"Fast Cast"+4',}},
@@ -256,6 +223,14 @@ function init_gear_sets()
 	sets.Cure_Received = {neck="Phalaina Locket",hands="Buremte Gloves",ring2="Kunaji Ring",waist="Gishdubar Sash"}
 	sets.Self_Refresh = {waist="Gishdubar Sash"}
 	
+
+	--------------------------------------
+	-- Weapon Sets
+	--------------------------------------
+	sets.weapons.Greatsword = {main="Caladbolg", sub="Utu Grip"}
+	sets.weapons.Scythe = {main="Crepuscular Scythe", sub="Utu Grip"}
+	sets.weapons.Sword = {main="Naegling", sub="Blurred Shield +1"}
+	sets.weapons.Club = {main="Loxotic Mace +1", sub="Blurred Shield +1"}
 	
 -------------------------------------------------------------------------------------------------------------------
 -- Weaponskill Sets
