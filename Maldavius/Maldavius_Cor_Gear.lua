@@ -76,7 +76,7 @@ function init_gear_sets()
 		range="Compensator", --P. Roll Effect Duration +20
 		head="Lanun Tricorne +3", -- P. Roll Effect Duration +50
 		body="Chasseur's Frac +2", --DT -12
-		hands="Chasseur's Gants +2", -- P. Roll Effect Duration +55
+		hands="Chasseur's Gants +3", -- P. Roll Effect Duration +55
 		legs="Chas. Culottes +2", --DT -11
 		feet="Nyame Sollerets", --DT -7
 		neck="Warder's Charm +1",
@@ -96,7 +96,7 @@ function init_gear_sets()
 	sets.precast.CorsairRoll["Courser's Roll"] = set_combine(sets.precast.CorsairRoll, {feet="Chass. Bottes +2"})
 	sets.precast.CorsairRoll["Blitzer's Roll"] = set_combine(sets.precast.CorsairRoll, {head="Chass. Tricorne +2"})
 	sets.precast.CorsairRoll["Tactician's Roll"] = set_combine(sets.precast.CorsairRoll, {body="Chasseur's Frac +2"})
-	sets.precast.CorsairRoll["Allies' Roll"] = set_combine(sets.precast.CorsairRoll, {hands="Chasseur's Gants +2"})
+	sets.precast.CorsairRoll["Allies' Roll"] = set_combine(sets.precast.CorsairRoll, {hands="Chasseur's Gants +3"})
 
 -- ### Precast sets to enhance JAs ###
 	sets.precast.JA['Triple Shot'] = {body="Chasseur's Frac +2"} --(Upgrade to +3)
@@ -111,7 +111,7 @@ function init_gear_sets()
 		ammo="Hauksbok Bullet",
 		head="Laksa. Tricorne +2", --Quick Draw +10
 		body="Chasseur's Frac +2", --Set: Augments "Quick Draw" effect
-		hands="Chasseur's Gants +2", --Set: Augments "Quick Draw" effect
+		hands="Chasseur's Gants +3", --Set: Augments "Quick Draw" effect
 		legs="Chas. Culottes +2", --Set: Augments "Quick Draw" effect
 		feet="Chass. Bottes +2", --Quick Draw +28, Set: Augments "Quick Draw" effect
 		neck="Warder's Charm +1",
@@ -154,7 +154,7 @@ function init_gear_sets()
 	sets.precast.Steps = { --Acc 1376
 		head="Null Masque",
 		body="Chasseur's Frac +2",
-		hands="Chasseur's Gants +2",
+		hands="Chasseur's Gants +3",
 		legs="Chas. Culottes +2",
 		feet="Chass. Bottes +2",
 		neck="Null Loop",
@@ -240,7 +240,7 @@ function init_gear_sets()
 	sets.midcast.RA.FullAcc = set_combine(sets.midcast.RA, { --Ranged Acc. 1302, Ranged Atk 1319, Store TP +31
 		head="Chass. Tricorne +2",
 		body="Chasseur's Frac +2",
-		hands="Chasseur's Gants +2",
+		hands="Chasseur's Gants +3",
 		feet="Chass. Bottes +2",
 		right_ring="Mummu Ring",
 	})
@@ -384,7 +384,7 @@ function init_gear_sets()
 	sets.precast.WS = { --PDT -31/MDT -25, WSD -35, 
 		head="Nyame Helm",
 		body="Laksa. Frac +2",
-		hands="Chasseur's Gants +2",
+		hands="Chasseur's Gants +3",
 		legs="Nyame Flanchard",
 		feet="Lanun Bottes +4",
 		neck={ name="Comm. Charm +2", augments={'Path: A',}},
