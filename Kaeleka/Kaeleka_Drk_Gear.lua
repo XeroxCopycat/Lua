@@ -1,18 +1,18 @@
 -- Setup vars that are user-dependent.  Can override this function in a sidecar file.
 function user_job_setup()
 	-- Options: Override default values
-    state.OffenseMode:options('Normal', 'Acc', 'Fodder')
-    state.WeaponskillMode:options('Normal', 'Acc', 'Fodder')
+    state.OffenseMode:options('Normal', 'Acc', 'FullAcc')
+    state.WeaponskillMode:options('Normal', 'Acc', 'PDL')
     state.HybridMode:options('Normal', 'DT')
 	state.CastingMode:options('Normal', 'SIRD')
-    state.PhysicalDefenseMode:options('PDT', 'PDTReraise')
-    state.MagicalDefenseMode:options('MDT', 'MDTReraise')
+    state.PhysicalDefenseMode:options('PDT')
+    state.MagicalDefenseMode:options('MDT')
 	state.ResistDefenseMode:options('MEVA')
-	state.IdleMode:options('Normal', 'Refresh', 'Regen', 'Reraise')
-	state.Weapons:options('Greatsword', 'Scythe', 'Sword', 'Club')
-    state.ExtraMeleeMode = M{['description']='Extra Melee Mode' ,'None'}
-	state.Passive = M{['description'] = 'Passive Mode', 'None', 'MP', 'Twilight'}
-	state.DrainSwapWeaponMode = M{'Always', 'Never', '300', '1000'}
+	state.IdleMode:options('Normal', 'Refresh', 'Regen')
+	state.Weapons:options('Torcleaver', 'Resolution', 'Entropy', 'Savage', 'Judgement')
+    state.ExtraMeleeMode = M{['description']='Extra Melee Mode', 'None'}
+	--state.Passive = M{['description'] = 'Passive Mode', 'None', 'MP', 'Twilight'}
+	--state.DrainSwapWeaponMode = M{'Always', 'Never', '300', '1000'}
 
 	-- Additional local binds
 	send_command('bind ^` input /ja "Hasso" <me>')
@@ -44,7 +44,7 @@ function init_gear_sets()
 		right_ear="Arete del Luna",
 		left_ring="Murky Ring", --DT -10
 		right_ring="Vengeful Ring", --Enmity +3
-		back={ name="Ankou's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}}, -PDT -10
+		back={ name="Ankou's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}}, --PDT -10
 	}
 
 -- ### Fast cast sets ###
@@ -130,6 +130,7 @@ function init_gear_sets()
 		left_ring="Metamor. Ring +1",
 		right_ring="Evanescence Ring",
 		back={ name="Niht Mantle", augments={'Attack+5','Dark magic skill +8','"Drain" and "Aspir" potency +25',}},
+	}
 
   -- Specific dark magic spell sets
 	-- Absorb Spells 
@@ -215,122 +216,276 @@ function init_gear_sets()
 		back={ name="Ankou's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
 	}
 	
-	
-	--------------------------------------
-	-- Miscellaneous Midcast Sets
-	--------------------------------------
 	sets.Self_Healing = {neck="Phalaina Locket",hands="Buremte Gloves",ring2="Kunaji Ring",waist="Gishdubar Sash"}
 	sets.Cure_Received = {neck="Phalaina Locket",hands="Buremte Gloves",ring2="Kunaji Ring",waist="Gishdubar Sash"}
 	sets.Self_Refresh = {waist="Gishdubar Sash"}
 	
+-------------------------------------------------------------------------------------------------------------------
+-- Idle Sets
+-------------------------------------------------------------------------------------------------------------------
+-- ### Base idle set ###
+	sets.idle = { --PDT -50/MDT -48, Regen +22, Latent: Refresh +1
+		sub="Oneiros Grip", --Regen +1, Latent: Refresh +1
+		ammo="Staunch Tathlum +1", --DT -3
+		head="Volte Salade", --PDT -3, MDT -7, Regen +2
+		body="Sacro Breastplate", --Regen +13
+		hands="Volte Moufles", --PDT -6, MDT -4, Regen +2
+		legs="Heath. Flanchard +3", --DT -12
+		feet="Sakpata's Leggings", --DT -6
+		neck="Bathy Choker +1", --Regen +3
+		waist="Plat. Mog. Belt", --DT -3
+		left_ear="Alabaster Earring", --DT -5
+		right_ear="Infused Earring", --Regen +1
+		left_ring="Murky Ring", --DT -10
+		right_ring="Shneddick Ring", --Mv. Speed +18%
+		back={ name="Ankou's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}}, --PDT -10
+	}
+	
+  -- Refresh Set
+	sets.idle.Refresh = set_combine(sets.idle, { --PDT -50/MDT -46, Regen +9, Refresh +4, Latent: Refresh +1
+		head=empty,
+		body="Lugra Cloak +1", --MDT -3, Regen +3, Refresh +3
+		neck="Sibyl Scarf", --Refresh +1
+	}) 
+	
+  -- Regen Set
+    sets.idle.Regen = set_combine(sets.idle, {})
 
-	--------------------------------------
-	-- Weapon Sets
-	--------------------------------------
-	sets.weapons.Greatsword = {main="Caladbolg", sub="Utu Grip"}
-	sets.weapons.Scythe = {main="Crepuscular Scythe", sub="Utu Grip"}
-	sets.weapons.Sword = {main="Naegling", sub="Blurred Shield +1"}
-	sets.weapons.Club = {main="Loxotic Mace +1", sub="Blurred Shield +1"}
+  -- Reraise Set
+	sets.idle.Reraise = set_combine(sets.idle, {head="Twilight Helm", body="Twilight Mail",})
+	
+  -- Weakened Set
+	sets.idle.Weak = set_combine(sets.idle, {head="Twilight Helm", body="Twilight Mail",})
+
+-- ### Resting set ###
+	sets.resting = { --PDT -48/MDT -38, Regen +26, Latent: Refresh +1
+		main="Crepuscular Scythe",
+		sub="Oneiros Grip", --Regen +1, Latent: Refresh +1
+		ammo="Staunch Tathlum +1", --DT -3
+		head="Volte Salade", --PDT -3, MDT -7, Regen +2 
+		body="Sacro Breastplate", --Regen +13
+		hands="Volte Moufles", --PDT -6, MDT -4, Regen +2
+		legs="Heath. Flanchard +3", --DT -12
+		feet="Sakpata's Leggings", --DT -6
+		neck="Bathy Choker +1", --Regen +3
+		waist="Plat. Mog. Belt", --DT -3
+		left_ear="Alabaster Earring", --DT -5
+		right_ear="Infused Earring", --Regen +1
+		left_ring="Chirich Ring +1", --Regen +2
+		right_ring="Chirich Ring +1", --Regen +2
+		back={ name="Ankou's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}}, --PDT -10
+	}
+
+-------------------------------------------------------------------------------------------------------------------
+-- Defense Sets
+-------------------------------------------------------------------------------------------------------------------
+-- ### Physical Damage Reduction ###
+ 	sets.defense.PDT = { --PDT -50/MDT -50, Enemy crit hit rate -10%, Convert 2% of damage taken to MP
+		ammo="Eluder's Sachet", --DT +2, Enemy crit hit rate -5%
+		head="Sakpata's Helm",  --DT -7
+		body="Sakpata's Plate", --DT -10
+		hands="Sakpata's Gauntlets", --DT -8
+		legs="Sakpata's Cuisses", --DT -9
+		feet="Sakpata's Leggings", --DT -6
+		neck="Loricate Torque +1", --DT -6 
+		waist="Flume Belt +1", --PDT -4, Convert 2% of damage taken to MP
+		left_ear="Alabaster Earring", --DT -5
+		right_ear="Arete del Luna",
+		left_ring="Murky Ring", --DT -10
+		right_ring="Warden's Ring", --PDT -3, Enemy crit hit rate -5%
+		back={ name="Ankou's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}}, --PDT -10
+	}
+
+  -- Magical Damage Reduction
+	sets.defense.MDT = set_combine(sets.defense.PDT, { --PDT -50/MDT -50, Absorb magic damage taken 5%, Occ. annul severe magic damage taken
+		ammo="Staunch Tathlum +1", --DT -3
+		body="Tartarus Platemail", --DT -10, Absorb magic damage taken 5%
+		neck="Warder's Charm +1", 
+		waist="Carrier's Sash",
+		right_ring="Archon Ring", --Occasionally annuls severe magic damage taken
+	})
+	
+  -- Magic Evasion
+	sets.defense.MEVA = set_combine(sets.defense.PDT, {
+		ammo="Staunch Tathlum +1",
+		body="Nyame Mail",
+		neck="Warder's Charm +1", 
+		waist="Carrier's Sash",
+		right_ring="Icecrack Ring",
+		back="Null Shawl",
+	})
+	
+  -- Misc Defensive Sets
+	sets.Kiting = {left_ring="Shneddick Ring",}
+	sets.passive.Reraise = {head="Twilight Helm", body="Twilight Mail"}
+	sets.buff.Doom = set_combine(sets.buff.Doom, {neck="Nicander's Necklace", waist="Gishdubar Sash"})
+	sets.buff.Sleep = {neck="Vim Torque +1"}
+	sets.buff['Dark Seal'] = {}
+
+-------------------------------------------------------------------------------------------------------------------
+-- Engaged Sets
+-------------------------------------------------------------------------------------------------------------------
+-- ### Engaged Set ###
+	sets.engaged = { --Acc 1201, PDT -40/MDT -40, DA +38, TA +7, QA +3, Store TP +49
+		ammo="Coiste Bodhar", --DA +3, Store TP +3
+		head="Flam. Zucchetto +2", --TA +5, Store TP +6
+		body="Hjarrandi Breast.", --DT -12, Store TP +10
+		hands="Sakpata's Gauntlets", --DT -8, DA +6
+		legs="Sakpata's Cuisses", --DT -9, DA +7
+		feet="Sakpata's Leggings", --DT -6, DA +4
+		neck="Vim Torque +1", --Store TP +10, Latent: Regain +20
+		waist="Sailfi Belt +1", --DA +5, TA +2
+		left_ear="Cessance Earring", --DA +3
+		right_ear="Dedition Earring", --Store TP +8
+		left_ring="Niqmaddu Ring", --QA +3
+		right_ring="Moonlight Ring", --DT -5, Store TP +5
+		back="Null Shawl", --DA +7, Store TP +7
+	}
+
+  -- Engaged accuracy set
+	sets.engaged.Acc = set_combine(sets.engaged, { --Acc 1217, 
+		neck={ name="Abyssal Beads +2", augments={'Path: A',}}, --Store TP +7
+		waist="Kentarch Belt +1", --Store TP +1~5
+		right_ear="Digni. Earring", --Store TP +3
+		left_ring="Chirich Ring +1", --Store TP +6
+	})
+	
+  -- Engaged, full accuracy set
+	sets.engaged.FullAcc = set_combine(sets.engaged, {
+		head="Heath. Bur. +3",
+		body="Heath. Cuirass +3",
+		hands="Heath. Gauntlets +3",
+		legs="Heath. Flanchard +3",
+		feet="Heath. Sollerets +3",
+		neck={ name="Abyssal Beads +2", augments={'Path: A',}},
+		waist="Kentarch Belt +1",
+		left_ear="Schere Earring",
+		right_ear={ name="Heath. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+14','Mag. Acc.+14','Weapon skill damage +3%',}},
+		left_ring="Chirich Ring +1",
+		right_ring="Chirich Ring +1",
+	})
+	
+  -- Engaged Fodder Set
+    sets.engaged.Fodder = set_combine(sets.engaged, {})
+	
+  -- DT Hybrid Set 
+	sets.engaged.DT = set_combine(sets.engaged, { --PDT -50/MDT -50, DA +38, TA +7, Store TP +49
+		waist="Flume Belt +1",
+		left_ring="Murky Ring", --DT -10
+	})
+
+-- ### Extra melee mode sets ###
+	sets.DWMid = {waist="Reiki Yotai", left_ear="Suppanomimi"} --Dual Wield +12
+	sets.DWMax = { --Dual Wield +22
+		legs={ name="Carmine Cuisses +1", augments={'Accuracy+20','Attack+12','"Dual Wield"+6',}}, --Dual Wield +6
+		waist="Reiki Yotai", --Dual Wield +7
+		left_ear="Suppanomimi", --Dual Wield +5
+		right_ear="Eabani Earring", --Dual Wield +4
+	}
+	sets.SubtleBlow = { --Subtle Blow +50, Subtle Blow II +5
+		head="Volte Tiara", --Subtle Blow +6
+		body="Sacro Breastplate", --Subtle Blow +15
+		hands="Volte Mittens", --Subtle Blow +6
+		neck="Bathy Choker +1", --Subtle Blow +11
+		left_ear="Schere Earring", --Subtle Blow +3
+		left_ring="Niqmaddu Ring", --Subtle Blow II +5
+		right_ring="Chirich Ring +1", --Subtle Blow +10
+	}
+	
+-------------------------------------------------------------------------------------------------------------------
+-- Weapon Sets
+-------------------------------------------------------------------------------------------------------------------
+	sets.weapons.Torcleaver = {main="Caladbolg", sub="Utu Grip"}
+	sets.weapons.Resolution = {main="Agwu's Claymore", sub="Utu Grip"}
+	sets.weapons.Entropy = {main="Crepuscular Scythe", sub="Utu Grip"}
+	sets.weapons.Savage = {main="Naegling", sub="Blurred Shield +1"}
+	sets.weapons.Judgement = {main="Loxotic Mace +1", sub="Blurred Shield +1"}
 	
 -------------------------------------------------------------------------------------------------------------------
 -- Weaponskill Sets
 -------------------------------------------------------------------------------------------------------------------
-	--------------------------------------
-	-- Default Weaponskills
-	--------------------------------------
+-- ### Default Weaponskills ###
     sets.precast.WS = {
 		ammo="Knobkierrie",
-		head={ name="Nyame Helm", augments={'Path: B',}},
-		body={ name="Nyame Mail", augments={'Path: B',}},
-		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
-		legs={ name="Nyame Flanchard", augments={'Path: B',}},
-		feet={ name="Nyame Sollerets", augments={'Path: B',}},
+		head="Nyame Helm",
+		body="Nyame Mail", --(Ig. Cuisses +4)
+		hands="Nyame Gauntlets", 
+		legs="Fall. Flanchard +3", --(Upgrade to +4)
+		feet="Heath. Sollerets +3",
 		neck={ name="Abyssal Beads +2", augments={'Path: A',}},
-		waist={ name="Sailfi Belt +1", augments={'Path: A',}},
-		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
+		waist="Sailfi Belt +1",
+		left_ear="Moonshade Earring",
 		right_ear="Thrud Earring",
-		left_ring="Regal Ring",
-		right_ring="Niqmaddu Ring",
-		back={ name="Ankou's Mantle", augments={'STR+20','Accuracy+20 Attack+20','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
+		left_ring="Niqmaddu Ring",
+		right_ring="Regal Ring",
+		back={ name="Ankou's Mantle", augments={'VIT+20','Accuracy+20 Attack+20','VIT+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
 	}
 
-	sets.precast.WS.Acc = set_combine(sets.precast.WS, {right_ear="Telos Earring"})
-
-	sets.precast.WS.Fodder = set_combine(sets.precast.WS, {
-		neck={ name="Abyssal Beads +2", augments={'Path: A',}},
+	sets.precast.WS.Acc = set_combine(sets.precast.WS, {})
+	
+	sets.precast.WS.PDL = set_combine(sets.precast.WS, {
+		head="Heath. Bur. +3",
+		legs="Fall. Flanchard +3",
+		feet="Heath. Sollerets +3",
 		waist="Fotia Belt",
-		right_ear="Heath. Earring",
+		right_ear={ name="Heath. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+14','Mag. Acc.+14','Weapon skill damage +3%',}},
+		left_ring="Cornelia's Ring",
 		right_ring="Sroda Ring",
 	})
 
-
-	--------------------------------------
-	-- Club Weaponskills
-	--------------------------------------
+-- ### Specific weaponskill sets ###
+  -- Club Weaponskills
 	-- Judgement
-	sets.precast.WS['Judgement'] = set_combine(sets.precast.WS, {
-		feet="Heath. Sollerets +3",
-	})
-	
+	sets.precast.WS['Judgement'] = set_combine(sets.precast.WS, {})
 	
 	sets.precast.WS['Judgement'].Acc = set_combine(sets.precast.WS.Acc, {})
 	
+	sets.precast.WS['Judgement'].PDL = set_combine(sets.precast.WS.Fodder, {})
 	
-	sets.precast.WS['Judgement'].Fodder = set_combine(sets.precast.WS.Fodder, {})
+  -- Great Sword Weaponskills
+	-- Ground Strike
+	sets.precast.WS['Ground Strike'] = set_combine(sets.precast.WS, {
+		left_ring="Cornelia's Ring",
+		right_ring="Regal Ring",
+		back={ name="Ankou's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
+	})
 	
+	sets.precast.WS['Ground Strike'].Acc = set_combine(sets.precast.WS.Acc, {})
+	sets.precast.WS['Ground Strike'].PDL = set_combine(sets.precast.WS.PDL, {})
 	
-	--------------------------------------
-	-- Great Sword Weaponskills
-	--------------------------------------	
 	-- Resolution
 	sets.precast.WS['Resolution'] = set_combine(sets.precast.WS, {
-		ammo={ name="Coiste Bodhar", augments={'Path: A',}},
+		ammo="Coiste Bodhar", 
 		head="Heath. Bur. +3",
-		feet="Heath. Sollerets +3",
-		right_ear={ name="Schere Earring", augments={'Path: A',}},
-		left_ring="Sroda Ring",
+		body="Sakpata's Plate",
+		hands="Sakpata's Gauntlets",
+		legs="Nyame Flanchard",
+		feet="Sakpata's Leggings",
+		waist="Fotia Belt",
+		left_ear="Moonshade Earring",
+		right_ear="Schere Earring",
+		right_ring="Sroda Ring",
+		back={ name="Ankou's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}}, --(Ambu cape w/ STR, DA)
 	})
     
 	sets.precast.WS['Resolution'].Acc = set_combine(sets.precast.WS.Acc, {})
-    
+	
 	sets.precast.WS['Resolution'].Fodder = set_combine(sets.precast.WS['Resolution'], {
-		body={ name="Sakpata's Plate", augments={'Path: A',}},
-		hands={ name="Sakpata's Gauntlets", augments={'Path: A',}},
-		legs={ name="Sakpata's Cuisses", augments={'Path: A',}},
-		feet={ name="Sakpata's Leggings", augments={'Path: A',}},
-		waist="Fotia Belt",
-		right_ear={ name="Heathen's Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+10','Mag. Acc.+10',}},
+		legs="Sakpata's Cuisses",
+		right_ear={ name="Heath. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+14','Mag. Acc.+14','Weapon skill damage +3%',}},
 	})
-	
-	
-	-- Shockwave
-	sets.precast.WS['Shockwave'] = set_combine(sets.precast.WS, {waist="Fotia Belt"})
-	
 	
 	-- Torcleaver
-    sets.precast.WS['Torcleaver'] = set_combine(sets.precast.WS, {
-		feet="Heath. Sollerets +3",
-		waist="Fotia Belt",
-		back={ name="Ankou's Mantle", augments={'VIT+20','Accuracy+20 Attack+20','Weapon skill damage +10%','Phys. dmg. taken-8%',}},
-	})
-    
+    sets.precast.WS['Torcleaver'] = set_combine(sets.precast.WS, {})
+	
 	sets.precast.WS['Torcleaver'].Acc = set_combine(sets.precast.WS['Torcleaver'], {})
+    
+	sets.precast.WS['Torcleaver'].Fodder = set_combine(sets.precast.WS['Torcleaver'], {})
 	
-    sets.precast.WS['Torcleaver'].Fodder = set_combine(sets.precast.WS['Torcleaver'], {
-		head="Heath. Burgeon. +3",
-		waist="Fotia Belt",
-		left_ring="Sroda Ring",
-	})
-	
-	
-	--------------------------------------
-	-- Scythe Weaponskills
-	--------------------------------------
+  -- Scythe Weaponskills
 	-- Catastrophe
 	
-	
 	-- Cross Reaper
-	
 	
 	-- Entropy
 	sets.precast.WS['Entropy'] = set_combine(sets.precast.WS, {
@@ -342,9 +497,9 @@ function init_gear_sets()
 		left_ring={ name="Metamor. Ring +1", augments={'Path: A',}},
 	})
 	
-	sets.precast.WS['Entropy'].Acc = set_combine(sets.precast.WS['Entropy'], {})
+	sets.precast.WS['Entropy'].Acc = set_combine(sets.precast.WS.Acc, {})
 	
-	sets.precast.WS['Entropy'].Fodder = set_combine(sets.precast.WS['Entropy'], {
+	sets.precast.WS['Entropy'].PDL = set_combine(sets.precast.WS['Entropy'], {
 		body={ name="Sakpata's Plate", augments={'Path: A',}},
 		hands={ name="Sakpata's Gauntlets", augments={'Path: A',}},
 		legs={ name="Sakpata's Cuisses", augments={'Path: A',}},
@@ -354,57 +509,41 @@ function init_gear_sets()
 		left_ring="Sroda Ring",
 	})	
 	
-	
 	-- Origin
-	
 	
 	-- Quietus
 	
-
-	--------------------------------------
-	-- Sword Weaponskills
-	--------------------------------------
+  -- Sword Weaponskills
 	--Sanguine Blade
 	sets.precast.WS["Sanguine Blade"] = set_combine(sets.precast.WS, {
+		ammo="Pemphredo Tathlum",
 		head="Pixie Hairpin +1",
+		legs="Nyame Flanchard",
+		feet="Nyame Sollerets",
 		neck="Baetyl Pendant",
-		waist="Eschan Stone",
-		left_ear="Friomisi Earring",
+		waist="Orpheus's Sash",
 		right_ear="Malignance Earring",
+		left_ring="Cornelia's Ring",
 		right_ring="Archon Ring",
 		back={ name="Ankou's Mantle", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Fast Cast"+10','Phys. dmg. taken-10%',}},
 	})
 	
-	
-	--Savage Blade
+  --Savage Blade
 	sets.precast.WS["Savage Blade"] = {
-		feet="Heath. Sollerets +3",
-		neck={ name="Abyssal Beads +2", augments={'Path: A',}},
-		waist={ name="Sailfi Belt +1", augments={'Path: A',}},
-		left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
-		right_ear="Thrud Earring",
+		legs="Nyame Flanchard",
+		left_ring="Cornelia's Ring",
+		right_ring="Regal Ring",
 		back={ name="Ankou's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
 }
 	
-	sets.precast.WS["Savage Blade"].Acc = set_combine(sets.precast.WS["Savage Blade"], {})
+	sets.precast.WS["Savage Blade"].Acc = set_combine(sets.precast.WS.Acc, {})	
 	
-	sets.precast.WS["Savage Blade"].Fodder = set_combine(sets.precast.WS["Savage Blade"], {
-		left_ring="Sroda Ring",
+	sets.precast.WS["Savage Blade"].PDL = set_combine(sets.precast.WS["Savage Blade"], {
+		right_ear={ name="Heathen's Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+10','Mag. Acc.+10',}},
+		right_ring="Sroda Ring",
 	})
 	
-    
--------------------------------------------------------------------------------------------------------------------    
--- Sets to return to when not performing an action.
--------------------------------------------------------------------------------------------------------------------           
-    --------------------------------------
-	-- Resting Set
-	--------------------------------------
-    sets.resting = {}
-
-
-	--------------------------------------
-	-- Swaps when using WS at 3000 TP
-	--------------------------------------
+-- ### Misc. weaponskill swaps if at 3000 TP ###
 	--sets.MaxTP = {left_ear="Lugra Earring +1", right_ear="Lugra Earring",}
 	--sets.AccMaxTP = {left_ear="Mache Earring", right_ear="Telos Earring",}
 	--sets.AccDayMaxTPWSEars = {left_ear="Mache Earring", right_ear="Telos Earring",}
@@ -412,167 +551,41 @@ function init_gear_sets()
 	--sets.AccDayWSEars = {left_ear="Mache Earring", right_ear="Telos Earring",}
 	--sets.DayWSEars = {left_ear="Moonshade Earring", right_ear="Brutal Earring",}
 
-
--------------------------------------------------------------------------------------------------------------------
--- Idle Sets
--------------------------------------------------------------------------------------------------------------------
-	--------------------------------------
-	-- Base Idle Set
-	--------------------------------------
-    sets.idle = {
-		ammo="Staunch Tathlum +1",
-		head={ name="Nyame Helm", augments={'Path: B',}},
-		body={ name="Nyame Mail", augments={'Path: B',}},
-		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
-		legs={ name="Nyame Flanchard", augments={'Path: B',}},
-		feet={ name="Nyame Sollerets", augments={'Path: B',}},
-		neck="Loricate Torque +1",
-		waist="Plat. Mog. Belt",
-		left_ear="Odnowa Earring +1",
-		right_ear="Eabani Earring",
-		left_ring="Shneddick Ring",
-		right_ring="Defending Ring",
-		back={ name="Ankou's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
-	}
-	
-	
-	-- Refresh Set
-	sets.idle.Refresh = set_combine(sets.idle, {head=empty, body="Lugra Cloak +1", neck="Sibyl Scarf"})
-	
-
-	-- Regen Set
-    sets.idle.Regen = set_combine(sets.idle, {
-		head="Volte Salade",
-		body="Sacro Breastplate",
-		hands="Volte Moufles",
-		neck="Sanctity Necklace",
-		left_ear="Dawn Earring",
-		right_ring="Chirich Ring +1",
-	})
-
-
-	-- Reraise Set
-	sets.idle.Reraise = set_combine(sets.idle, {head="Twilight Helm", body="Twilight Mail",})
-	
-
-	-- Weakened Set
-	sets.idle.Weak = set_combine(sets.idle, {head="Twilight Helm", body="Twilight Mail",})
-
-
--------------------------------------------------------------------------------------------------------------------
--- Defense Sets
--------------------------------------------------------------------------------------------------------------------
-	--------------------------------------
-	-- Physical Damage Reduction
-	--------------------------------------
-	sets.defense.PDT = {
-		ammo="Staunch Tathlum +1",
-		head={ name="Nyame Helm", augments={'Path: B',}},
-		body={ name="Nyame Mail", augments={'Path: B',}},
-		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
-		legs={ name="Nyame Flanchard", augments={'Path: B',}},
-		feet={ name="Nyame Sollerets", augments={'Path: B',}},
-		neck="Loricate Torque +1",
-		waist="Flume Belt +1",
-		left_ear="Odnowa Earring +1",
-		right_ear="Eabani Earring",
-		left_ring="Moonlight Ring",
-		right_ring="Defending Ring",
-		back={ name="Ankou's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
-	}
-
-	--sets.defense.PDTReraise = set_combine(sets.defense.PDT, {head="Twilight Helm", body="Twilight Mail"})
-
-	
-	--------------------------------------
-	-- Magical Damage Reduction
-	--------------------------------------
-	sets.defense.MDT = set_combine(sets.defense.PDT, {
-		neck="Warder's Charm +1",
-		waist="Carrier's Sash",
-	})
-
-	--sets.defense.MDTReraise = set_combine(sets.defense.MDT, {head="Twilight Helm",body="Twilight Mail"})
-	
-	
-	--------------------------------------
-	-- Magic Evasion
-	--------------------------------------
-	sets.defense.MEVA = set_combine(sets.defense.PDT, {
-		neck="Unmoving Collar +1",
-		waist="Plat. Mog. Belt",
-		back="Solemnity Cape",
-	})
-	
-	
-	--------------------------------------
-	-- Misc Defensive Sets
-	--------------------------------------
-	sets.Kiting = {left_ring="Shneddick Ring",}
-	sets.passive.Reraise = {head="Twilight Helm", body="Twilight Mail"}
-	sets.buff.Doom = set_combine(sets.buff.Doom, {neck="Nicander's Necklace", waist="Gishdubar Sash"})
-	sets.buff.Sleep = {neck="Vim Torque +1"}
-	sets.buff['Dark Seal'] = {}
-	
-	
--------------------------------------------------------------------------------------------------------------------
--- Engaged Sets
--------------------------------------------------------------------------------------------------------------------
-	--------------------------------------
-	-- Engaged Set
-	--------------------------------------
-	sets.engaged = {
-		ammo={ name="Coiste Bodhar", augments={'Path: A',}},
-		head={ name="Sakpata's Helm", augments={'Path: A',}},
-		body={ name="Sakpata's Plate", augments={'Path: A',}},
-		hands={ name="Sakpata's Gauntlets", augments={'Path: A',}},
-		legs={ name="Sakpata's Cuisses", augments={'Path: A',}},
-		feet="Flam. Gambieras +2",
-		neck={ name="Abyssal Beads +2", augments={'Path: A',}},
-		waist={ name="Sailfi Belt +1", augments={'Path: A',}},
-		left_ear="Dedition Earring",
-		right_ear="Cessance Earring",
-		left_ring="Moonlight Ring",
-		right_ring="Niqmaddu Ring",
-		back={ name="Ankou's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
-	}
-
-	-- Engaged/Accuracy Set
-	sets.engaged.Acc = set_combine(sets.engaged, {left_ear="Telos Earring"})
-	
-	-- Engaged Fodder Set
-    sets.engaged.Fodder = set_combine(sets.engaged, {})
-	
-	--------------------------------------
-	-- DT Hybrid Set
-	--------------------------------------
-	sets.engaged.DT = set_combine(sets.engaged, {
-		head={ name="Nyame Helm", augments={'Path: B',}},
-		body={ name="Nyame Mail", augments={'Path: B',}},
-		hands={ name="Nyame Gauntlets", augments={'Path: B',}},
-		legs={ name="Nyame Flanchard", augments={'Path: B',}},
-		feet={ name="Nyame Sollerets", augments={'Path: B',}},
-		right_ring="Defending Ring",
-	})
-	
-	-- DT Hybrid / Acc Set
-	sets.engaged.Acc.DT = set_combine(sets.engaged.DT, {left_ear="Telos Earring"})
-	
-	-- DT Hybrid / Fodder Set
-	sets.engaged.Fodder.DT = set_combine(sets.engaged.DT, {})
-	
-	
--------------------------------------------------------------------------------------------------------------------
--- Special Sets
--------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------
+-- Misc. gear sets
+------------------------------------------------------------------------------------------------------------
+-- ### Gear that needs to be worn to actively enhance a current player buff. ###
 	sets.buff.Souleater = {}
+	
+-- ### Vs. Debuff gear ###
+  -- Doom
 	sets.buff.Doom = set_combine(sets.buff.Doom, {neck="Nicander's Necklace", waist="Gishdubar Sash"})
+
+  -- Sleep
 	sets.buff.Sleep = {neck="Vim Torque +1"}
-	sets.TreasureHunter = set_combine(sets.TreasureHunter, {})
+
+-- ### Treasure hunter gear ###
+	sets.TreasureHunter = set_combine(sets.TreasureHunter, {
+		head="Volte Cap",
+		body="Volte Jupon",
+		waist="Chaac Belt",
+	})
 end
 	
 -- Select default macro book on initial load or subjob change.
 function select_default_macro_book()
     -- Default macro set/book
-    set_macro_page(1, 8)
+		if player.sub_job == 'SAM' then
+			set_macro_page(1, 8)
+		elseif player.sub_job == 'WAR' then
+			set_macro_page(2, 8)
+		elseif player.sub_job == 'DRG' then
+			set_macro_page(3, 8)
+		elseif player.sub_job == 'DNC' then
+			set_macro_page(4, 8)
+		elseif player.sub_job == 'NIN' then
+			set_macro_page(5, 8)
+		else
+			set_macro_page(5, 19)
+	end
 end
