@@ -69,7 +69,7 @@ function init_gear_sets()
 -- ### Healing Magic Fast Cast ###
 	sets.precast.FC['Healing Magic'] = set_combine(sets.precast.FC, { --FC (HMCT) +73~75
 		main="Vadose Rod", --Healing Magic Casting time -5%
-		legs="Ebers Pant. +2", --Healing Magic Casting Time -14%
+		legs="Ebers Pant. +3", --Healing Magic Casting Time -14%
 	})
 	
 -- ### Cure Spell Fast Cast
@@ -77,7 +77,7 @@ function init_gear_sets()
 	sets.precast.FC.Cure = set_combine(sets.precast.FC, { --FC (HMCT + CST) +80
 		main="Vadose Rod", --Healing Magic Casting Time -5%
 		head="Piety Cap +3", --CST -12%
-		legs="Ebers Pant. +2", --Healing Magic Casting Time -14%
+		legs="Ebers Pant. +3", --Healing Magic Casting Time -14%
 		feet={ name="Kaykaus Boots +1", augments={'MP+80','"Cure" spellcasting time -7%','Enmity-6',}}, --Cure Spellcasting Time -7%
 		left_ear="Nourish. Earring", --Cure Spellcasting Time -3%
 	})
@@ -127,7 +127,7 @@ function init_gear_sets()
 		sub="Archduke's Shield",
 		body="Ebers Bliaut +2",
 		hands="Inyan. Dastanas +2",
-		legs="Ebers Pant. +2",
+		legs="Ebers Pant. +3",
 		feet="Inyan. Crackows +2",
 		waist="Refoccilation Stone",
 		right_ear="Magnetic Earring",
@@ -160,7 +160,7 @@ function init_gear_sets()
 		head="Ebers Cap +2",
 		body="Ebers Bliaut +2",
 		hands={ name="Fanatic Gloves", augments={'MP+10','Healing magic skill +2','"Conserve MP"+1',}},
-		legs="Ebers Pant. +2",
+		legs="Ebers Pant. +3",
 		feet="Inyan. Crackows +2",
 		neck={ name="Clr. Torque +2", augments={'Path: A',}},
 		waist="Refoccilation Stone",
@@ -189,7 +189,7 @@ function init_gear_sets()
 		head="Ebers Cap +2",
 		body="Ebers Bliaut +2",
 		hands={ name="Fanatic Gloves", augments={'MP+10','Healing magic skill +2','"Conserve MP"+1',}},
-		legs="Ebers Pant. +2",
+		legs="Ebers Pant. +3",
 		feet="Inyan. Crackows +2",
 		neck={ name="Clr. Torque +2", augments={'Path: A',}},
 		waist="Refoccilation Stone",
@@ -214,7 +214,7 @@ function init_gear_sets()
 		sub="Archduke's Shield",
 		body="Theo. Bliaut +2",
 		hands="Piety Mitts +3",
-		legs="Ebers Pant. +2",
+		legs="Ebers Pant. +3",
 		feet="Piety Duckbills +3",
 		waist="Refoccilation Stone",
 		right_ring="Inyanga Ring",
@@ -313,14 +313,14 @@ function init_gear_sets()
 	})
 
 -- ### Healing Magic ###
-	sets.midcast['Healing Magic'] = set_combine(sets.midcast.FastRecast, { --CPot +55/50, CPotII +19, Conserve MP +12, Enmity -57~61
+	sets.midcast['Healing Magic'] = set_combine(sets.midcast.FastRecast, { --CPot +55/50, CPotII +21, Conserve MP +12, Enmity -58~62
 		main="Raetic Rod +1", --Cure Pot. +23, Cure Pot. II +10, Cure +50, 
 		sub="Archduke's Shield", --(Thuellaic Ecu +1)
 		ammo="Impatiens", --(Pemphedo Tathlum)
 		head={ name="Kaykaus Mitra +1", augments={'MP+80','"Cure" spellcasting time -7%','Enmity-6',}}, --Cure Pot. +11, Set: Cure Pot. II +4, Enmity -6
 		body="Theo. Bliaut +2", --Cure Pot. II +3, Enmity -5 (Upgrade to +4)
-		hands="Theophany Mitts +2", --Cure Pot. II +2, Enmity -6 (Upgrade to +4)
-		legs="Ebers Pant. +2", --Convert 7% of cure amount to MP (Upgrade to +3)
+		hands="Theophany Mitts +3", --Cure Pot. II +4, Enmity -7 (Upgrade to +4)
+		legs="Ebers Pant. +3", --Convert 8% of cure amount to MP
 		feet={ name="Kaykaus Boots +1", augments={'MP+80','"Cure" spellcasting time -7%','Enmity-6',}}, --Cure Pot. +11, Enmity -12, Conserve MP +7
 		neck={ name="Clr. Torque +2", augments={'Path: A',}}, --Cure Pot. +10, Enmity -25
 		waist="Witful Belt",
@@ -467,7 +467,7 @@ function init_gear_sets()
 		head="Aya. Zucchetto +2",
 		body="Ayanmo Corazza +2",
 		hands="Ebers Mitts +2",
-		legs="Ebers Pant. +2",
+		legs="Ebers Pant. +3",
 		feet="MGF Ledelsens +1",
 		neck="Warder's Charm +1",
 		waist="Carrier's Sash",
