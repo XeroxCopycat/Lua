@@ -60,7 +60,7 @@ function init_gear_sets()
   -- Elemental Magic Fast Cast
     sets.precast.FC['Elemental Magic'] = set_combine(sets.precast.FC, { --FC 84/80, QC +5, PDT/MDT -37/-27
 		hands="Bagua Mitaines +4", --Elemental magic cast time -14%
-		feet="Azimuth Gaiters +2", --DT -10
+		feet="Azimuth Gaiters +3", --DT -10
 	})
 
 
@@ -97,7 +97,7 @@ function init_gear_sets()
 -- ### Indi Duration in slots that would normally have skill here to make entrust more efficient ###
 	sets.buff.Entrust = {
 		legs="Bagua Pants +3",
-		feet="Azimuth Gaiters +2",
+		feet="Azimuth Gaiters +3",
 		back={ name="Nantosuelta's Cape", augments={'HP+60','Eva.+20 /Mag. Eva.+20','Mag. Evasion+5','Pet: "Regen"+10','Pet: "Regen"+5',}},
 	}
 	
@@ -135,7 +135,7 @@ function init_gear_sets()
 		body="Geomancy Tunic +3", --Dark Magic Skill +21
 		hands="Geo. Mitaines +3", 
 		legs="Azimuth Tights +2", --Dark Magic Skill +25
-		feet="Azimuth Gaiters +2",
+		feet="Azimuth Gaiters +3",
 		neck="Erra Pendant", --Dark Magic Skill +10
 		waist="Acuity Belt +1", --(Augment to R15)
 		left_ear="Abyssal Earring", --Dark Magic Skill +5
@@ -176,7 +176,7 @@ function init_gear_sets()
 		body="Azimuth Coat +2", --(Upgrade to +3)
 		hands="Azimuth Gloves +2", --(Upgrade to +3)
 		legs="Azimuth Tights +2", --(Upgrade to +3)
-		feet="Azimuth Gaiters +2", --(Upgrade to +3)
+		feet="Azimuth Gaiters +3", --(Upgrade to +3)
 		neck="Sibyl Scarf", --(Baetyl Pendant)
 		waist="Acuity Belt +1", --(Sacro Cord)
 		left_ear="Malignance Earring", --(Regal Earring)
@@ -264,7 +264,7 @@ function init_gear_sets()
 		body="Shamash Robe", 
 		hands="Azimuth Gloves +2", --DT -11 (Regal Cuffs)
 		legs="Shedir Seraweels", --Enhancing Magic Skill +15, Enhances "Stoneskin" effect, Enhances "Aquaveil" effect
-		feet="Azimuth Gaiters +2", --DT -10
+		feet="Azimuth Gaiters +3", --DT -10
 		neck="Warder's Charm +1",
 		waist="Embla Sash", --Enhancing Magic Duration +10%
 		left_ear="Alabaster Earring", --DT -5
@@ -309,7 +309,7 @@ function init_gear_sets()
 		body="Azimuth Coat +2", --(Upgrade to +3)
 		hands="Azimuth Gloves +2", --(Upgrade to +3)
 		legs="Azimuth Tights +2", --(Upgrade to +3)
-		feet="Azimuth Gaiters +2", --(Upgrade to +3)
+		feet="Azimuth Gaiters +3", --(Upgrade to +3)
 		neck={ name="Bagua Charm +2", augments={'Path: A',}},
 		waist="Plat. Mog. Belt", --(Isa Belt)
 		left_ear="Alabaster Earring",
@@ -323,7 +323,7 @@ function init_gear_sets()
 	sets.midcast.Geomancy.Indi = set_combine(sets.midcast.Geomancy, {
 		main={ name="Solstice", augments={'Mag. Acc.+20','Pet: Damage taken -4%','"Fast Cast"+5',}}, --Indi. Spell Duration +15 (Idris)
 		legs="Bagua Pants +3", --Indi. Spell Duration +21 (Upgrade to +4)
-		feet="Azimuth Gaiters +2", --Indi. Spell Duration +25 (Upgrade to +3)
+		feet="Azimuth Gaiters +3", --Indi. Spell Duration +25 (Upgrade to +3)
 		back={ name="Lifestream Cape", augments={'Geomancy Skill +8','Indi. eff. dur. +20','Damage taken-4%',}}, --Indi. Spell Duration +20%
 	})
 	
@@ -378,7 +378,7 @@ function init_gear_sets()
 		body="Jhakri Robe +2", --Refresh +4
 		hands="Bagua Mitaines +4", --Refresh +2
 		legs="Assid. Pants +1", --Refresh 1~2
-		feet="Azimuth Gaiters +2", --DT -10 (Geo. Sandels +4)
+		feet="Azimuth Gaiters +3", --DT -10 (Geo. Sandels +4)
 		neck="Sibyl Scarf", --Refresh +1
 		waist="Carrier's Sash", --(Null Belt)
 		left_ear="Alabaster Earring", --DT -5
@@ -427,7 +427,7 @@ function init_gear_sets()
 -- Magic Evasion
     sets.defense.MEVA = set_combine(sets.defense.PDT, {
 		head="Azimuth Hood +2",
-		feet="Azimuth Gaiters +2",
+		feet="Azimuth Gaiters +3",
 		--waist="Null Belt",
 		left_ear="Lugalbanda Earring"
 		--right_ear="Eabani Earring",
