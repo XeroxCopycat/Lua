@@ -1,0 +1,17 @@
+sets.exported = {
+    main="Maxentius",
+    sub="Archduke's Shield",
+    ammo="Impatiens",
+    head="Ebers Cap +2",
+    body="Ebers Bliaut +3",
+    hands="Ebers Mitts +2",
+    legs="Ebers Pant. +3",
+    feet="Ebers Duckbills +2",
+    neck="Warder's Charm +1",
+    waist="Carrier's Sash",
+    left_ear="Alabaster Earring",
+    right_ear="Dominance Earring",
+    left_ring="Murky Ring",
+    right_ring="Rajas Ring",
+    back={ name="Alaunus's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Damage taken-5%',}},
+}
