@@ -68,6 +68,9 @@ function init_gear_sets()
 	}
 
 -- ### Precast sets to enhance JAs ###
+  -- Blade Bash
+	--sets.precast.JA['Blade Bash'] = {hands="Sakonji Kote +1"} --(Upgrade to +4)
+
   -- Meditate
 	sets.precast.JA.Meditate = {
 		head="Wakido Kabuto +1", --(Upgrade to +4)
@@ -75,10 +78,21 @@ function init_gear_sets()
 		back={ name="Smertrios's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Store TP"+10','Phys. dmg. taken-10%',}},
 	}
 	
-    sets.precast.JA['Warding Circle'] = {head="Wakido Kabuto +1"} --(Upgrade to +4)
-	--sets.precast.JA['Blade Bash'] = {hands="Sakonji Kote +1"} --(Upgrade to +4)
+  -- Hasso
+	sets.precast.JA['Hasso'] = {
+		hands="Wakido Kote +3", --(Upgrade to +4)
+		legs="Kasuga Haidate +3",
+		feet="Wakido Sune. +3", --(Upgrade to +4)
+	}
+	
+  -- Sekkanoki
 	sets.precast.JA['Sekkanoki'] = {hands="Kasuga Kote +3"}
+  
+  -- Sengikori
 	sets.precast.JA['Sengikori'] = {feet="Kas. Sune-Ate +3"}
+
+  -- Warding Circle
+	sets.precast.JA['Warding Circle'] = {head="Wakido Kabuto +1"} --(Upgrade to +4)
 	
 -- ### Ranged attack, preshot ###
     sets.precast.RA = {
@@ -515,7 +529,7 @@ function init_gear_sets()
 -- Misc. sets
 -------------------------------------------------------------------------------------------------------------------
 -- ### Gear that needs to be worn to actively enhance a current player buff. ###
-	sets.buff.Hasso = {hands="Wakido Kote +3"} --(Upgrade to +4)
+	sets.buff.Hasso = {legs="Kasuga Haidate +3"}
 	sets.buff['Meikyo Shisui'] = {} --(Sak. Sune-Ate +4)
 	sets.buff.Sekkanoki = {hands="Kasuga Kote +3"}
 	sets.buff.Sengikori = {feet="Kas. Sune-Ate +3"}
