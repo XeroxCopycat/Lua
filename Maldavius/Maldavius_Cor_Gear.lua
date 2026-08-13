@@ -133,11 +133,11 @@ function init_gear_sets()
 --------------------------------------
 -- Ranged preshot gear
 --------------------------------------
-    sets.precast.RA = { --Rapid Shot +78/100, Snapshot +33/70
+    sets.precast.RA = { --Rapid Shot +78/100, Snapshot +40/70
 		head="Chass. Tricorne +2", --Rapid Shot +16
 		body="Laksa. Frac +2", --Rapid Shot +18
 		hands={ name="Carmine Fin. Ga. +1", augments={'Rng.Atk.+20','"Mag.Atk.Bns."+12','"Store TP"+6',}}, --Rapid Shot +11, Snapshot +8
-		legs="Chas. Culottes +2", --Snapshot +8
+		legs="Laksa. Trews +3", --Snapshot +15
 		feet="Meg. Jam. +2", --Snapshot +10
 		neck={ name="Comm. Charm +2", augments={'Path: A',}}, --Snapshot +4
 		waist="Ponente Sash", --Rapid Shot +3
