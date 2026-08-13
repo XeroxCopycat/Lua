@@ -39,14 +39,14 @@ function init_gear_sets()
 -- Precast Sets
 -----------------------------------------------------------------------------------------------------------
 -- ### Fast cast sets for spells ###	
-    sets.precast.FC = { --FC +60~62, QC +7
+    sets.precast.FC = { --FC +62~64, QC +7
 		--main="Queller Rod", -- (Cait Palug Hammer)
 		--sub="Archduke's Shield", -- (Chanter's Shield)
 		ammo="Impatiens", --QC +2
 		head="Ebers Cap +2", --FC +10
 		body="Inyanga Jubbah +2", --FC +14
 		hands={ name="Fanatic Gloves", augments={'MP+10','Healing magic skill +2','"Conserve MP"+1',}}, --(Augment w/ FC +7)
-		legs="Aya. Cosciales +2", --FC +6
+		legs="Volte Brais", --FC +8
 		feet="Regal Pumps +1", --FC +5~7
 		neck={ name="Clr. Torque +2", augments={'Path: A',}}, --FC +10
 		waist="Witful Belt", --FC +3, QC +3
@@ -212,7 +212,7 @@ function init_gear_sets()
 	sets.midcast['Enfeebling Magic'] = set_combine(sets.midcast.FastRecast, {
 		main="Maxentius",
 		sub="Archduke's Shield",
-		body="Theo. Bliaut +2",
+		body="Theo. Bliaut +3",
 		hands="Piety Mitts +3",
 		legs="Ebers Pant. +3",
 		feet="Piety Duckbills +3",
@@ -313,12 +313,12 @@ function init_gear_sets()
 	})
 
 -- ### Healing Magic ###
-	sets.midcast['Healing Magic'] = set_combine(sets.midcast.FastRecast, { --CPot +55/50, CPotII +21, Conserve MP +12, Enmity -58~62
+	sets.midcast['Healing Magic'] = set_combine(sets.midcast.FastRecast, { --CPot +55/50, CPotII +24, Conserve MP +12, Enmity -59~63
 		main="Raetic Rod +1", --Cure Pot. +23, Cure Pot. II +10, Cure +50, 
 		sub="Archduke's Shield", --(Thuellaic Ecu +1)
 		ammo="Impatiens", --(Pemphedo Tathlum)
 		head={ name="Kaykaus Mitra +1", augments={'MP+80','"Cure" spellcasting time -7%','Enmity-6',}}, --Cure Pot. +11, Set: Cure Pot. II +4, Enmity -6
-		body="Theo. Bliaut +2", --Cure Pot. II +3, Enmity -5 (Upgrade to +4)
+		body="Theo. Bliaut +3", --Cure Pot. II +6, Enmity -6 (Upgrade to +4)
 		hands="Theophany Mitts +3", --Cure Pot. II +4, Enmity -7 (Upgrade to +4)
 		legs="Ebers Pant. +3", --Convert 8% of cure amount to MP
 		feet={ name="Kaykaus Boots +1", augments={'MP+80','"Cure" spellcasting time -7%','Enmity-6',}}, --Cure Pot. +11, Enmity -12, Conserve MP +7
