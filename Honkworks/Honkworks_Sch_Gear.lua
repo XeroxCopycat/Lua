@@ -39,117 +39,107 @@ function init_gear_sets()
 -------------------------------------------------------------------------------------------------------------------
 -- Precast Sets
 -------------------------------------------------------------------------------------------------------------------
---------------------------------------
--- Precast sets to enhance JAs
---------------------------------------
-    sets.precast.JA['Tabula Rasa'] = {legs="Peda. Pants +3"} --
-	sets.precast.JA['Enlightenment'] = {body="Peda. Gown +3"} --
+-- ### Precast sets to enhance JAs ###
+    sets.precast.JA['Tabula Rasa'] = {legs="Peda. Pants +3"} --(Upgrade to +4)
+	sets.precast.JA['Enlightenment'] = {body="Peda. Gown +3"} --(Upgrade to +4)
 
 --------------------------------------
 -- Fast cast sets for spells
 --------------------------------------
-    sets.precast.FC = { --FC +80/80, DT -21
-		main="Marin Staff +1", --FC +3 (Musa)
+    sets.precast.FC = { --FC +80, QC +5, DT -11
+		main={ name="Musa", augments={'Path: C',}}, --FC +10
 		sub="Khonsu", --DT -6
-		ammo="Ghastly Tathlum +1", --(Sapience Orb)
+		ammo="Ghastly Tathlum +1", --(Impatens)
 		head={ name="Merlinic Hood", augments={'"Mag.Atk.Bns."+6','"Fast Cast"+6','INT+9','Mag. Acc.+12',}}, --FC +14
-		body="Agwu's Robe", --FC +8
+		body="Agwu's Robe", --FC +8 (Pinga Tunic +1)
 		hands="Acad. Bracers +2", --FC +7
-		legs="Agwu's Slops", --FC +7
+		legs="Agwu's Slops", --FC +7 (Pinga Pants +1)
 		feet="Peda. Loafers +3", --FC +8
-		neck="Voltsurge Torque", --FC +5
-		waist="Embla Sash", --FC +5
-		left_ear="Etiolation Earring", --FC +1
-		right_ear="Loquac. Earring", --FC +2
-		left_ring="Medada's Ring", --FC +10
-		right_ring="Murky Ring", --DT -10
-		back={ name="Lugh's Cape", augments={'VIT+20','Eva.+20 /Mag. Eva.+20','"Fast Cast"+10','Damage taken-5%',}}, --FC +10, DT -5
+		neck="Voltsurge Torque", --FC +4
+		waist="Witful Belt", --FC +3, QC +3
+		left_ear="Loquac. Earring", --FC +2
+		right_ear="Malignance Earring", --FC +4
+		left_ring="Lebeche Ring", --QC +2 (Weatherspoon Ring +1?)
+		right_ring="Medada's Ring", --FC +10
+		back={ name="Lugh's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20','MND+10','"Fast Cast"+10','Damage taken-5%',}}, --FC +10, DT -5 (Perimede Cape)
 	}
 
   -- Grimoire Spellcasting Time
-	sets.precast.FC.Arts = set_combine(sets.precast.FC, { --FC +62/80, GST -23
-		head="Peda. M.Board +3", --GST -13
-		feet="Acad. Loafers +2", --GST -10 (Upgrade to +3/+4)
-		right_ring="Kishar Ring", --FC +4
+	sets.precast.FC.Arts = set_combine(sets.precast.FC, { --FC +71/80, Grimoire: Spellcasting time -23%
+		head="Peda. M.Board +3", --Grimoire: Spellcasting Time -13%
+		feet="Acad. Loafers +2", --Grimoire: Spellcasting time -10%
+		waist="Embla Sash", --FC +5
+		left_ring="Kishar Ring", --FC +4
 	})
-
-  -- Enhancing Magic Precast
-    sets.precast.FC['Enhancing Magic'] = set_combine(sets.precast.FC, {}) --waist="Siegel Sash"
-
-  -- Elemental Magic Precast
-	sets.precast.FC['Elemental Magic'] = set_combine(sets.precast.FC, {})
 
   -- Precast for Specific Spells
-	-- Cure
-	sets.precast.FC.Cure = set_combine(sets.precast.FC, {
-		main="Bunzi's Rod",
-		sub="Sors Shield",
-	})
-    
-	sets.precast.FC.Curaga = sets.precast.FC.Cure
-  
 	-- Dispelga (Requires Daybreak)
 	sets.precast.FC.Dispelga = set_combine(sets.precast.FC, {}) --main="Daybreak", sub="Ammurapi Shield",
   
 	-- Impact (Requires Crespcular / Twilight Cloak)
-	sets.precast.FC.Impact = set_combine(sets.precast.FC['Elemental Magic'], {}) --body="Crespcular Cloak",
-
+	sets.precast.FC.Impact = set_combine(sets.precast.FC, {}) --body="Crespcular Cloak",
 
 -------------------------------------------------------------------------------------------------------------------
 -- Midcast Sets
 -------------------------------------------------------------------------------------------------------------------
---------------------------------------
--- Fast Recast
---------------------------------------
-	sets.midcast.FastRecast = { --FC +80/80
-		main="Marin Staff +1", --FC +3 (Musa)
-		sub="Khonsu", --DT -6
+-- ### Fast Recast ###
+	sets.midcast.FastRecast = { --FC +79/80, Haste +xx%
 		ammo="Ghastly Tathlum +1", --(Sapience Orb)
-		head={ name="Merlinic Hood", augments={'"Mag.Atk.Bns."+6','"Fast Cast"+6','INT+9','Mag. Acc.+12',}}, --FC +14
-		body="Agwu's Robe", --FC +8
-		hands="Acad. Bracers +2", --FC +7
-		legs="Agwu's Slops", --FC +7
-		feet="Peda. Loafers +3", --FC +8
-		neck="Voltsurge Torque", --FC +5
+		head={ name="Merlinic Hood", augments={'"Mag.Atk.Bns."+6','"Fast Cast"+6','INT+9','Mag. Acc.+12',}}, --FC +14, Haste +6%
+		body="Agwu's Robe", --FC +8, Haste +3%
+		hands="Acad. Bracers +2", --FC +7, Haste +3%
+		legs="Agwu's Slops", --FC +7, Haste +5%
+		feet="Peda. Loafers +3", --FC +8, Haste +3%
+		neck="Voltsurge Torque", --FC +4, 
 		waist="Embla Sash", --FC +5
-		left_ear="Etiolation Earring", --FC +1
-		right_ear="Loquac. Earring", --FC +2
-		left_ring="Medada's Ring", --FC +10
-		right_ring="Murky Ring", --DT -10
-		back={ name="Lugh's Cape", augments={'VIT+20','Eva.+20 /Mag. Eva.+20','"Fast Cast"+10','Damage taken-5%',}}, --FC +10, DT -5
+		left_ear="Loquac. Earring", --FC +2, 
+		right_ear="Malignance Earring", --FC +4
+		left_ring="Lebeche Ring", --QC +2
+		right_ring="Medada's Ring", --FC +10
+		back={ name="Lugh's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20','MND+10','"Fast Cast"+10','Damage taken-5%',}}, --FC +10, DT -5
 	}
-	
-	sets.TreasureHunter = set_combine(sets.TreasureHunter, {feet=gear.chironic_treasure_feet})
 
-
---------------------------------------	
--- Divine Magic
---------------------------------------
+-- ### Divine Magic ###
 	sets.midcast['Divine Magic'] = set_combine(sets.midcast.FastRecast, {})
 
-
---------------------------------------
--- Dark Magic 
---------------------------------------
-    sets.midcast['Dark Magic'] = set_combine(sets.midcast.FastRecast, { --DMS +8, Potency +40
-		ammo="Ghastly Tathlum +1",
-		head="Pixie Hairpin +1",
-		body={ name="Merlinic Jubbah", augments={'"Mag.Atk.Bns."+9','"Drain" and "Aspir" potency +7','Mag. Acc.+6',}},
-		hands={ name="Merlinic Dastanas", augments={'"Drain" and "Aspir" potency +7','Mag. Acc.+4','"Mag.Atk.Bns."+10',}},
-		legs="Peda. Pants +3",
-		feet="Agwu's Pigaches",
+-- ### Dark Magic ### 
+    sets.midcast['Dark Magic'] = set_combine(sets.midcast.FastRecast, {
+		main={ name="Musa", augments={'Path: C',}},
+		sub="Khonsu", 
+		ammo="Ghastly Tathlum +1", --(Pemphredo Tathlum)
+		head="Acad. Mortar. +3", --(Upgrade to +4)
+		body="Acad. Gown +3", --(Upgrade to +4)
+		hands="Acad. Bracers +2", --(Upgrade to +4)
+		legs="Acad. Pants +2", --(Upgrade to +4)
+		feet="Acad. Loafers +2", --(Upgrade to +4)
 		neck="Erra Pendant",
-		waist="Eschan Stone",
-		left_ear="Lugalbanda Earring",
-		right_ear={ name="Arbatel Earring", augments={'System: 1 ID: 1676 Val: 0','Mag. Acc.+7',}},
-		left_ring="Metamor. Ring +1",
-		right_ring="Archon Ring",
-		back={ name="Bookworm's Cape", augments={'INT+2','Helix eff. dur. +10','"Regen" potency+8',}},
+		waist="Witful Belt",
+		left_ear="Abyssal Earring", --(Regal Earring)
+		right_ear="Malignance Earring",
+		left_ring="Metamor. Ring +1", --(Stikini Ring +1)
+		right_ring="Medada's Ring", --(Stikini Ring +1)
+		back={ name="Lugh's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','INT+10','"Mag.Atk.Bns."+10','Damage taken-5%',}},
 	})
 
 -- Specific Dark Magic Spells
   -- Drain
-    sets.midcast.Drain = set_combine(sets.midcast['Dark Magic'], {})
+    sets.midcast.Drain = set_combine(sets.midcast['Dark Magic'], {
+		main={ name="Musa", augments={'Path: C',}}, --(Rubicundity)
+		sub="Khonsu", --(Ammurapi Shield)
+		ammo="Ghastly Tathlum +1", --(Staunch Tathlum +1)
+		head="Pixie Hairpin +1",
+		body={ name="Merlinic Jubbah", augments={'"Mag.Atk.Bns."+9','"Drain" and "Aspir" potency +7','Mag. Acc.+6',}},
+		hands={ name="Merlinic Dastanas", augments={'"Drain" and "Aspir" potency +7','Mag. Acc.+4','"Mag.Atk.Bns."+10',}},
+		legs="Peda. Pants +3", --(Upgrade to +4)
+		feet="Agwu's Pigaches", --(Augment to R30)
+		neck="Erra Pendant", 
+		waist="Eschan Stone", --(Fucho-no-Obi)
+		left_ear="Abyssal Earring", --(Hirudinea Earring)
+		right_ear="Malignance Earring", --(Mani Earring)
+		left_ring="Metamor. Ring +1", --(Evanescence Ring)
+		right_ring="Archon Ring",
+		back={ name="Bookworm's Cape", augments={'INT+2','Helix eff. dur. +10','"Regen" potency+8',}},
+	})
 	
   -- Drain, Resistant
     sets.midcast.Drain.Resistant = set_combine(sets.midcast['Dark Magic'], {})
@@ -171,26 +161,12 @@ function init_gear_sets()
 	})
 
   -- Stun
-    sets.midcast.Stun = set_combine(sets.midcast['Dark Magic'], {
-		head="Acad. Mortar. +2",
-		hands="Acad. Bracers +2",
-		legs="Acad. Pants +2",
-		feet="Peda. Loafers +3",
-		--neck="Argute Stole +2",
-		--waist="Witful Belt",
-		left_ear="Etiolation Earring",
-		--left_ring="Stikini Ring +1",
-		--right_ring="Stikini Ring +1,
-		back={ name="Lugh's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','INT+10','"Mag.Atk.Bns."+10','Damage taken-5%',}},
-	})
+    sets.midcast.Stun = set_combine(sets.midcast['Dark Magic'], {})
 
   -- Stun, Resistant
     sets.midcast.Stun.Resistant = {}
 
-
---------------------------------------
--- Elemental Magic
---------------------------------------
+-- ### Elemental Magic ###
     sets.midcast['Elemental Magic'] = set_combine(sets.midcast.FastRecast, {
 		main="Bunzi's Rod", --(Aug to R30)
 		sub="Sors Shield", --Ammurapi Shield
@@ -653,9 +629,9 @@ function init_gear_sets()
 -- Sublimation
 --------------------------------------
     sets.buff.Sublimation = {
-		head="Acad. Mortar. +1", --Upgrade to +3/+4
-		body="Peda. Gown +3",
-		waist="Embla Sash",
+		head="Acad. Mortar. +3", --Sublimation +4
+		body="Peda. Gown +3", --Sublimation +5
+		waist="Embla Sash", --Sublimation +3
 	}
 end
 
