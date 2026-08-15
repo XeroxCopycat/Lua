@@ -44,42 +44,44 @@ function init_gear_sets()
 -----------------------------------------------------------------------------------------------------------
 -- PRECAST SETS
 -----------------------------------------------------------------------------------------------------------
+-- ### Precast sets to enhance JAs ###
+	sets.precast.JA['Triple Shot'] = {body="Chasseur's Frac +3"}
+	sets.precast.JA['Snake Eye'] = {legs="Lanun Trews +3"} --(Upgrade to +4)
+    sets.precast.JA['Wild Card'] = {feet="Lanun Bottes +4"}
+	sets.precast.JA['Random Deal'] = {body="Lanun Frac +3"} --(Upgrade to +4)
+	sets.precast.FoldDoubleBust = {hands="Lanun Gants +3"} --(Upgrade to +4)
+
 -- ### Fast Cast gear ###
-    sets.precast.FC = { --FC +19/80
-		head="Nyame Helm",
-		body="Nyame Mail",
-		hands="Nyame Gauntlets",
-		legs="Nyame Flanchard",
-		feet="Nyame Sollerets",
-		neck="Warder's Charm +1",
-		waist="Null Belt",
-		left_ear="Alabaster Earring",
-		right_ear="Arete del Luna",
-		left_ring="Murky Ring",
-		right_ring="Kishar Ring",
-		back={ name="Camulus's Mantle", augments={'VIT+20','Eva.+20 /Mag. Eva.+20','VIT+10','"Fast Cast"+10','Damage taken-5%',}},
+    sets.precast.FC = { --FC +19~21/80
+		sub="Derersal Degen +1", --FC +1~3
+		head="Null Masque", --(Herculean Helm, aug w/ FC +6)
+		body="Chasseur's Frac +3", --DT -13 (Dread Jupon)
+		hands="Nyame Gauntlets", --DT -7 (Leyline Gloves, aug with FC +3)
+		legs="Chas. Culottes +2", --DT -11
+		feet="Nyame Sollerets", --DT -7 (Carmine Greaves +1)
+		neck="Voltsurge Torque", --FC +4 (Baetyl Pendant)
+		waist="Carrier's Sash", --
+		left_ear="Alabaster Earring", --DT -5 (Locquacious Earring)
+		right_ear="Arete del Luna", --(Enchanter's Earring +1)
+		left_ring="Kishar Ring", --FC +4
+		right_ring="Shneddick Ring", --(Rahab Ring)
+		back={ name="Camulus's Mantle", augments={'VIT+20','Eva.+20 /Mag. Eva.+20','VIT+10','"Fast Cast"+10','Damage taken-5%',}}, --FC +10
 	}
 
   -- Fast cast for specific spells
-    -- Cure
 	--sets.precast.FC.Cure = set_combine(sets.precast.FC, {right_ear="Mendi. Earring"})
-	
-    -- Utsusemi
-    sets.precast.FC.Utsusemi = set_combine(sets.precast.FC, { --FC +29/80
-		body="Passion Jacket", --Utsusemi Spellcasting Time -10
-		--neck="Magoraga Beads",
-	}) 
+    sets.precast.FC.Utsusemi = set_combine(sets.precast.FC, {body="Passion Jacket"}) --(Magoraga Beads) 
 
 -- ### Phantom Roll precast ###
-    sets.precast.CorsairRoll = { --P. Roll Effect Duration +185, Phantom Roll +8, DT -50
+    sets.precast.CorsairRoll = { --P. Roll Effect Duration +185, Phantom Roll Effect +8, DT -50
 		main={ name="Rostam", augments={'Path: C',}}, -- P. Roll Effect Duration +60, Phantom Roll +8
 		range="Compensator", --P. Roll Effect Duration +20
 		head="Lanun Tricorne +3", -- P. Roll Effect Duration +50
-		body="Chasseur's Frac +2", --DT -12
+		body="Chasseur's Frac +3", --DT -13
 		hands="Chasseur's Gants +3", -- P. Roll Effect Duration +55
 		legs="Chas. Culottes +2", --DT -11
 		feet="Nyame Sollerets", --DT -7
-		neck="Warder's Charm +1",
+		neck="Warder's Charm +1", --(Regal Necklace)
 		waist="Null Belt", 
 		left_ear="Alabaster Earring", --DT -5
 		right_ear="Arete del Luna",
@@ -92,28 +94,21 @@ function init_gear_sets()
 	sets.precast.LuzafRing = {}
     
   -- Precast sets for Specific rolls
-	sets.precast.CorsairRoll["Caster's Roll"] = set_combine(sets.precast.CorsairRoll, {legs="Chas. Culottes +2"})
-	sets.precast.CorsairRoll["Courser's Roll"] = set_combine(sets.precast.CorsairRoll, {feet="Chass. Bottes +2"})
-	sets.precast.CorsairRoll["Blitzer's Roll"] = set_combine(sets.precast.CorsairRoll, {head="Chass. Tricorne +2"})
-	sets.precast.CorsairRoll["Tactician's Roll"] = set_combine(sets.precast.CorsairRoll, {body="Chasseur's Frac +2"})
+	sets.precast.CorsairRoll["Caster's Roll"] = set_combine(sets.precast.CorsairRoll, {legs="Chas. Culottes +2"}) --(Upgrade to +3)
+	sets.precast.CorsairRoll["Courser's Roll"] = set_combine(sets.precast.CorsairRoll, {feet="Chass. Bottes +2"}) --(Upgrade to +3)
+	sets.precast.CorsairRoll["Blitzer's Roll"] = set_combine(sets.precast.CorsairRoll, {head="Chass. Tricorne +2"}) --(Upgrade to +3)
+	sets.precast.CorsairRoll["Tactician's Roll"] = set_combine(sets.precast.CorsairRoll, {body="Chasseur's Frac +3"})
 	sets.precast.CorsairRoll["Allies' Roll"] = set_combine(sets.precast.CorsairRoll, {hands="Chasseur's Gants +3"})
-
--- ### Precast sets to enhance JAs ###
-	sets.precast.JA['Triple Shot'] = {body="Chasseur's Frac +2"} --(Upgrade to +3)
-	sets.precast.JA['Snake Eye'] = {legs="Lanun Trews +3"} --(Upgrade to +4)
-    sets.precast.JA['Wild Card'] = {feet="Lanun Bottes +4"}
-	sets.precast.JA['Random Deal'] = {body="Lanun Frac +3"} --(Upgrade to +4)
-	sets.precast.FoldDoubleBust = {hands="Lanun Gants +3"} --(Upgrade to +4)
 
 -- ### Quick Draw Sets ###
   -- Quick Draw, Normal
-	sets.precast.CorsairShot = {
+	sets.precast.CorsairShot = { --Quick Draw Damage +20 
 		ammo="Hauksbok Bullet",
-		head="Laksa. Tricorne +2", --Quick Draw +10
+		head="Laksa. Tricorne +2", --Quick Draw Damage +10
 		body="Chasseur's Frac +2", --Set: Augments "Quick Draw" effect
 		hands="Chasseur's Gants +3", --Set: Augments "Quick Draw" effect
 		legs="Chas. Culottes +2", --Set: Augments "Quick Draw" effect
-		feet="Chass. Bottes +2", --Quick Draw +28, Set: Augments "Quick Draw" effect
+		feet="Laksa. Bottes +2", --Quick Draw Damage +10
 		neck="Warder's Charm +1",
 		waist="Carrier's Sash",
 		left_ear="Alabaster Earring", --DT -5
@@ -130,12 +125,10 @@ function init_gear_sets()
 	--sets.precast.CorsairShot['Dark Shot'] = set_combine(sets.precast.CorsairShot['Light Shot'], {})
 	--sets.precast.CorsairShot['Light Shot'] = set_combine{sets.precast.CorsairShot.Resistant, {}}
 
---------------------------------------
--- Ranged preshot gear
---------------------------------------
-    sets.precast.RA = { --Rapid Shot +78/100, Snapshot +40/70
+-- ### Ranged preshot gear ###
+    sets.precast.RA = { --Rapid Shot +50, Snapshot +40/70
 		head="Chass. Tricorne +2", --Rapid Shot +16
-		body="Laksa. Frac +2", --Rapid Shot +18
+		body="Laksa. Frac +3", --Rapid Shot +20
 		hands={ name="Carmine Fin. Ga. +1", augments={'Rng.Atk.+20','"Mag.Atk.Bns."+12','"Store TP"+6',}}, --Rapid Shot +11, Snapshot +8
 		legs="Laksa. Trews +3", --Snapshot +15
 		feet="Meg. Jam. +2", --Snapshot +10
@@ -143,8 +136,8 @@ function init_gear_sets()
 		waist="Ponente Sash", --Rapid Shot +3
 		left_ear="Alabaster Earring", 
 		right_ear="Arete del Luna",
-		left_ring="Crepuscular Ring", --Snapshot +3
-		right_ring="Defending Ring",
+		left_ring="Murky Ring",
+		right_ring="Crepuscular Ring", --Snapshot +3
 		back={ name="Camulus's Mantle", augments={'AGI+20','Mag. Acc+20 /Mag. Dmg.+20','AGI+9','"Mag.Atk.Bns."+10','Damage taken-5%',}}, 
 	}
 
