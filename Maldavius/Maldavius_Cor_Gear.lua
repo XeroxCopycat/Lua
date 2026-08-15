@@ -52,7 +52,7 @@ function init_gear_sets()
 	sets.precast.FoldDoubleBust = {hands="Lanun Gants +3"} --(Upgrade to +4)
 
 -- ### Fast Cast gear ###
-    sets.precast.FC = { --FC +19~21/80
+    sets.precast.FC = { --FC +19~21/80, DT -48
 		sub="Derersal Degen +1", --FC +1~3
 		head="Null Masque", --(Herculean Helm, aug w/ FC +6)
 		body="Chasseur's Frac +3", --DT -13 (Dread Jupon)
@@ -141,9 +141,7 @@ function init_gear_sets()
 		back={ name="Camulus's Mantle", augments={'AGI+20','Mag. Acc+20 /Mag. Dmg.+20','AGI+9','"Mag.Atk.Bns."+10','Damage taken-5%',}}, 
 	}
 
---------------------------------------
--- Step Sets for /DNC
---------------------------------------
+-- ### Steps and Waltz sets for /DNC ###
 	sets.precast.Steps = { --Acc 1376
 		head="Null Masque",
 		body="Chasseur's Frac +2",
@@ -159,47 +157,41 @@ function init_gear_sets()
 		back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Damage taken-5%',}},
 	}
 	
---------------------------------------
--- Waltz sets for /DNC
---------------------------------------
--- Curing Waltz on others
+  -- Waltz
     sets.precast.Waltz = {
 		head="Null Masque",
-		body="Passion Jacket",
+		body="Passion Jacket", --Waltz Potency +13%
 		hands="Nyame Gauntlets",
-		legs="Nyame Flanchard",
-		feet="Nyame Sollerets",
+		legs="Nyame Flanchard", --(Dashing Subligar)
+		feet="Nyame Sollerets", --(Rawhide Boots)
 		neck="Warder's Charm +1",
 		waist="Null Belt",
 		left_ear="Alabaster Earring",
 		right_ear="Arete del Luna",
 		left_ring="Murky Ring",
-		right_ring="Mummu Ring",
+		right_ring="Mummu Ring", --(Valseur's Ring)
 		back={ name="Camulus's Mantle", augments={'VIT+20','Eva.+20 /Mag. Eva.+20','VIT+10','"Fast Cast"+10','Damage taken-5%',}},
 	}
 		
-  -- Curing Waltz on aelf
-	sets.Self_Waltz = set_combine(sets.precast.waltz, {head="Mummu Bonnet +2"})
-        
-  -- Healing Waltz
     sets.precast.Waltz['Healing Waltz'] = {}
-	
+	sets.Self_Waltz = set_combine(sets.precast.waltz, {head="Mummu Bonnet +2"}) --Waltz effect received +9%
+        
 ------------------------------------------------------------------------------------------------------------
 -- Midcast Sets
 ------------------------------------------------------------------------------------------------------------
 -- ### Fast Recast ###
     sets.midcast.FastRecast = { --FC +19
-        head="Nyame Helm",
-		body="Nyame Mail",
-		hands="Nyame Gauntlets",
-		legs="Nyame Flanchard",
-		feet="Nyame Sollerets",
-		neck="Voltsurge Torque", --FC +5
-		waist="Null Belt",
-		left_ear="Alabaster Earring",
-		right_ear="Arete del Luna",
-		left_ring="Murky Ring",
-		right_ring="Kishar Ring", --FC +4
+        head="Null Masque", --(Herculean Helm, aug w/ FC +6)
+		body="Chasseur's Frac +3", --DT -13 (Dread Jupon)
+		hands="Nyame Gauntlets", --DT -7 (Leyline Gloves, aug with FC +3)
+		legs="Chas. Culottes +2", --DT -11
+		feet="Nyame Sollerets", --DT -7 (Carmine Greaves +1)
+		neck="Voltsurge Torque", --FC +4 (Baetyl Pendant)
+		waist="Carrier's Sash", --
+		left_ear="Alabaster Earring", --DT -5 (Locquacious Earring)
+		right_ear="Arete del Luna", --(Enchanter's Earring +1)
+		left_ring="Kishar Ring", --FC +4
+		right_ring="Shneddick Ring", --(Rahab Ring)
 		back={ name="Camulus's Mantle", augments={'VIT+20','Eva.+20 /Mag. Eva.+20','VIT+10','"Fast Cast"+10','Damage taken-5%',}}, --FC +10
 	}
         
@@ -210,17 +202,17 @@ function init_gear_sets()
 -- ### Ranged midshot gear ###
 	sets.midcast.RA = { --Ranged Acc 1212, Ranged Atk 1307, Store TP +42
         head="Lanun Tricorne +3",
-		body="Nyame Mail",
+		body="Nyame Mail", --(Path A, Augment to R30)
 		hands={ name="Carmine Fin. Ga. +1", augments={'Rng.Atk.+20','"Mag.Atk.Bns."+12','"Store TP"+6',}},
-		legs="Chas. Culottes +2",
-		feet="Nyame Sollerets",
+		legs="Chas. Culottes +2", --(Upgrade to +3)
+		feet="Nyame Sollerets", --(Path A, Augment to R30)
 		neck={ name="Comm. Charm +2", augments={'Path: A',}},
-		waist="Null Belt",
+		waist="Ponente Sash",
 		left_ear="Neritic Earring",
 		right_ear={ name="Chas. Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+9','Mag. Acc.+9',}},
-		left_ring="Crepuscular Ring",
-		right_ring="Rajas Ring",
-		back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Damage taken-5%',}},
+		left_ring="Rajas Ring",
+		right_ring="Crepuscular Ring",
+		back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Damage taken-5%',}}, --(Ambu cape: Agi, RAtk/RAcc, Store TP)
 	}
 
   -- Ranged Attack, Accuracy 
@@ -244,7 +236,7 @@ function init_gear_sets()
 -- ### Triple Shot gear ###
 	sets.buff['Triple Shot'] = set_combine(sets.midcast.RA, {
 		--head="Oshosi Mask +1",
-		body="Chasseur's Frac +2", -- Triple Shot +13
+		body="Chasseur's Frac +3", -- Triple Shot +14
 		hands={ name="Lanun Gants +3", augments={'Enhances "Fold" effect',}}, -- Triple Shot occ. becomes Quad Shot (Upgrade to +4)
 		--legs="Osh. Trousers +1",
 		--feet="Osh. Leggings +1",
@@ -254,91 +246,85 @@ function init_gear_sets()
 -- Idle Sets
 ------------------------------------------------------------------------------------------------------------
 -- ### Base Idle Set ###
-    sets.idle = { --DT -53/50, Regain +2, Regen +9, Refresh +1
-		head="Null Masque",
-		body="Chasseur's Frac +2",
-		hands="Meg. Gloves +2",
-		legs="Chas. Culottes +2",
-		feet="Meg. Jam. +2",
+    sets.idle = { --PDT -50/MDT -41, Regain +2, Regen +12, Refresh +1
+		head="Null Masque", --DT -10, Regain +2, Regen +3, Refresh +1
+		body="Meg. Cuirie +2", --PDT -8, Set: Regen +6 (3 piece)
+		hands="Meg. Gloves +2", --PDT -4
+		legs="Chas. Culottes +2", --DT -11
+		feet="Meg. Jam. +2", --PDT -3
 		neck="Warder's Charm +1",
-		waist="Null Belt",
-		left_ear="Alabaster Earring",
+		waist="Null Belt", --Regen +3
+		left_ear="Alabaster Earring", --DT -5
 		right_ear="Arete del Luna",
-		left_ring="Murky Ring",
-		right_ring="Shneddick Ring",
-		back={ name="Camulus's Mantle", augments={'VIT+20','Eva.+20 /Mag. Eva.+20','VIT+10','"Fast Cast"+10','Damage taken-5%',}},
+		left_ring="Murky Ring", --DT -10
+		right_ring="Shneddick Ring", --Mv. Speed +18%
+		back={ name="Camulus's Mantle", augments={'VIT+20','Eva.+20 /Mag. Eva.+20','VIT+10','"Fast Cast"+10','Damage taken-5%',}}, --DT -5
 	}
 		
   -- Regen idle set
-	sets.idle.Regen = set_combine(sets.idle, {
-		body="Meg. Cuirie +2",
-		hands="Meg. Gloves +2",
-		--neck="Bathy Choker +1",
-		--right_ear="Infused Earring",
-	}) 
+	sets.idle.Regen = set_combine(sets.idle, {}) 
 
   -- Refresh idle set
 	sets.idle.Refresh = set_combine(sets.idle, {})
 	
 -- ### Resting set ###
-    sets.resting = { --Regain +2, Regen +18, Refresh +1
-		head="Null Masque", --Regain +2, Regen +3, Refresh +1
-		body="Meg. Cuirie +2", --Set: Regen +12
-		hands="Meg. Gloves +2",
-		legs="Meg. Chausses +2",
-		feet="Meg. Jam. +2",
-		neck="Null Loop", --(Bathy Choker +1)
+    sets.resting = { --Regain +2, Regen +15, Refresh +1
+		head="Null Masque", --DT -10, Regain +2, Regen +3, Refresh +1
+		body="Meg. Cuirie +2", --PDT -8, Set: Regen +9 (4 piece)
+		hands="Meg. Gloves +2", --PDT -4
+		legs="Meg. Chausses +2", --PDT -6
+		feet="Meg. Jam. +2", --PDT -3
+		neck="Warder's Charm +1", --(Bathy Choker +1)
 		waist="Null Belt", --Regen +3
-		left_ear="Alabaster Earring",  
+		left_ear="Alabaster Earring", --DT -5  
 		right_ear="Arete del Luna", --(Infused Earring)
-		left_ring="Murky Ring", --(Chirich Ring +1)
-		right_ring="Mummu Ring", --(Chirich Ring +1)
-		back={ name="Camulus's Mantle", augments={'VIT+20','Eva.+20 /Mag. Eva.+20','VIT+10','"Fast Cast"+10','Damage taken-5%',}}, --(Cape with Regen +5)
+		left_ring="Murky Ring", --DT -5 (Chirich Ring +1)
+		right_ring="Shneddick Ring", --Mv. Speed +18%
+		back={ name="Camulus's Mantle", augments={'VIT+20','Eva.+20 /Mag. Eva.+20','VIT+10','"Fast Cast"+10','Damage taken-5%',}}, --(Ambu Cape with Regen +5)
 	}
 	
--------------------------------------------------------------------------------------------------------------- Defense Sets
--------------------------------------------------------------------------------------------------------------- ### Physical damage taken ###
-    sets.defense.PDT = { --DT 53/50
-        head="Nyame Helm",
-		body="Nyame Mail",
-		hands="Nyame Gauntlets",
-		legs="Nyame Flanchard",
-		feet="Nyame Sollerets",
-		neck="Warder's Charm +1",
-		waist="Null Belt",
-		left_ear="Alabaster Earring",
+------------------------------------------------------------------------------------------------------------ 
+-- Defense Sets
+------------------------------------------------------------------------------------------------------------
+-- ### Physical damage taken ###
+    sets.defense.PDT = { --DT -50
+        head="Nyame Helm", --DT -7
+		body="Nyame Mail", --DT -9
+		hands="Nyame Gauntlets", --DT -7
+		legs="Nyame Flanchard", --DT -8
+		feet="Nyame Sollerets", --DT -7
+		neck="Warder's Charm +1", 
+		waist="Carrier's Sash", 
+		left_ear="Alabaster Earring", --DT -5
 		right_ear="Arete del Luna",
-		left_ring="Murky Ring",
+		left_ring="Murky Ring", --DT -10
 		right_ring="Archon Ring",
 		back="Null Shawl",
 	}
 
   -- Magical damage taken
-    sets.defense.MDT = set_combine(sets.defense.PDT, {waist="Carrier's Sash"})
+    sets.defense.MDT = set_combine(sets.defense.PDT, {})
 	
   -- Magic Evasion
-    sets.defense.MEVA = set_combine(sets.defense.PDT, {
-		waist="Null Belt", --MEVA +30
-		back="Null Shawl", --MEVA +50
-	})
+    sets.defense.MEVA = set_combine(sets.defense.PDT, {waist="Null Belt"})
 	
 -----------------------------------------------------------------------------------------------------------
 -- Offensive Sets
 -----------------------------------------------------------------------------------------------------------
 -- ### Engaged Sets ###
-	sets.engaged = { --Acc 1318, DT -22, Double Atk. +16, Triple Atk. +3, Store TP +35, Subtle Blow +5
-		head="Null Masque", --DT -10
-		body="Mummu Jacket +2", --Store TP +6
-		hands="Mummu Wrists +2", --Double Attack +6
-		legs={ name="Samnuha Tights", augments={'STR+10','DEX+10','"Dbl.Atk."+3','"Triple Atk."+3',}}, --Double Attack +3, Triple Attack +3, Store TP +7
-		feet="Nyame Sollerets", --DT -7, Path A: Store TP +4
+	sets.engaged = { --Acc 1283, DT -21, DA +10, TA +11, Store TP +44, Dual Wield +5
+		head={ name="Adhemar Bonnet +1", augments={'DEX+12','AGI+12','Accuracy+20',}}, --TA +4
+		body="Nyame Mail", --DT -9, Path A: Store TP +4 (Augment to R30)
+		hands={ name="Adhemar Wrist. +1", augments={'DEX+12','AGI+12','Accuracy+20',}}, --TA +4, Store TP +7
+		legs={ name="Samnuha Tights", augments={'STR+10','DEX+10','"Dbl.Atk."+3','"Triple Atk."+3',}}, --Store TP +7, DA +3, TA +3
+		feet="Nyame Sollerets",--DT -7 Path A: Store TP +4
 		neck="Null Loop", --DT -5
 		waist="Null Belt", 
 		left_ear="Neritic Earring", --Store TP +4
 		right_ear="Suppanomimi", --Dual Wield +5
-		left_ring="Crepuscular Ring", --Store TP +6
-		right_ring="Rajas Ring", --Store TP +5, Subtle Blow +5
-		back="Null Shawl", --Double Attack +7, Store TP +7
+		left_ring="Rajas Ring", --Store TP +5
+		right_ring="Crepuscular Ring", --Store TP +6
+		back="Null Shawl", --DA +7, Store TP +7
 	}
 	
   -- Engaged set, accuracy 
@@ -351,11 +337,19 @@ function init_gear_sets()
 	sets.engaged.SubtleBlow = set_combine(sets.engaged, {})
 	
   -- Engaged set, hybrid DT
-    sets.engaged.DT = set_combine(sets.engaged, { --Acc 1316, DT -50, Store TP +36,
-		body="Nyame Mail",
-		hands="Nyame Gauntlets",
-		legs="Chas. Culottes +2",
-		back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Damage taken-5%',}},
+    sets.engaged.DT = set_combine(sets.engaged, { --DT -50, Store TP +48
+		head="Null Masque", --DT -10
+		body="Nyame Mail", --DT -9, Path A: Store TP +4 (Augment to R30)
+		hands="Nyame Gauntlets", --DT -7, Path A: Store TP +4 (Augment to R30)
+		legs="Chas. Culottes +2", --DT -11, Store TP +11
+		feet="Nyame Sollerets", --DT -7, Path A: Store TP +4 (Augment to R30)
+		neck="Null Loop", --DT -5
+		waist="Null Belt",
+		left_ear="Neritic Earring", --Store TP +4
+		right_ear="Suppanomimi", --Dual Wield +5
+		left_ring="Rajas Ring", --Store TP +5
+		right_ring="Crepuscular Ring", --Store TP +6
+		back={ name="Camulus's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Damage taken-5%',}}, --DT -5, Store TP +10 (Ambu cape with DEX, Atk/Acc, DA, DT)
 	})
 	
 -- ### Dual Wield Sets ###
@@ -374,19 +368,19 @@ function init_gear_sets()
 -- Weaponskill Sets
 -----------------------------------------------------------------------------------------------------------
 -- ### Default weaponskill gear ###
-	sets.precast.WS = { --PDT -31/MDT -25, WSD -35, 
-		head="Nyame Helm",
-		body="Laksa. Frac +2",
-		hands="Chasseur's Gants +3",
-		legs="Nyame Flanchard",
-		feet="Lanun Bottes +4",
+	sets.precast.WS = { --PDT -25/MDT -25, WSD +52 
+		head="Nyame Helm", --DT -7, Path B: WSD +4 (Augment to R30)
+		body="Laksa. Frac +3", --WSD +10 (Upgrade to +4)
+		hands="Chasseur's Gants +3", --WSD +12
+		legs="Nyame Flanchard", --DT -8, Path B: WSD +4 (Augment to R30)
+		feet="Lanun Bottes +4", --WSD +12
 		neck={ name="Comm. Charm +2", augments={'Path: A',}},
-		waist="Null Belt",
-		left_ear="Alabaster Earring",
-		right_ear="Odr Earring",
-		left_ring="Sroda Ring",
-		right_ring="Rajas Ring",
-		back={ name="Camulus's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Damage taken-5%',}},
+		waist="Null Belt", 
+		left_ear="Alabaster Earring", --DT -5 (Moonshade Earring w/ TP Bonus +250, Magic Atk. Bonus +4)
+		right_ear="Odr Earring", 
+		left_ring="Rajas Ring",
+		right_ring="Sroda Ring",
+		back={ name="Camulus's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Damage taken-5%',}}, --DT -5, WSD +10
 	}
 
   -- Default weaponskill accuracy gear
@@ -417,17 +411,12 @@ function init_gear_sets()
 	
   -- Leaden Salute
 	sets.precast.WS['Leaden Salute'] = set_combine(sets.precast.WS, {
-		head="Nyame Helm",
 		body="Lanun Frac +3",
-		hands="Nyame Gauntlets",
-		legs="Nyame Flanchard",
-		feet="Lanun Bottes +4",
-		neck={ name="Comm. Charm +2", augments={'Path: A',}},
 		waist="Eschan Stone",
 		left_ear="Sortiarius Earring",
 		right_ear="Friomisi Earring",
-		left_ring="Crepuscular Ring",
-		right_ring="Fenrir Ring +1",
+		left_ring="Fenrir Ring +1",
+		right_ring="Crepuscular Ring",
 		back={ name="Camulus's Mantle", augments={'AGI+20','Mag. Acc+20 /Mag. Dmg.+20','AGI+9','"Mag.Atk.Bns."+10','Damage taken-5%',}},
 	})
 	
