@@ -10,7 +10,7 @@ function user_job_setup()
     state.PhysicalDefenseMode:options('PDT', 'NukeLock')
 	state.MagicalDefenseMode:options('MDT')
 	state.ResistDefenseMode:options('MEVA')
-	state.Weapons:options('Savage', 'BlackHalo', 'None')
+	state.Weapons:options('Savage', 'DualSavage', 'BlackHalo', 'None')
 
 -- ### Additional local binds ###
 	send_command('bind ^` gs c cycle ElementalMode')
@@ -148,7 +148,7 @@ function init_gear_sets()
 		waist="Eschan Stone",
 		left_ear="Alabaster Earring", --(Mani Earring)
 		right_ear={ name="Lethargy Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+6','Mag. Acc.+6',}}, --(Upgrade to +2)
-		left_ring="Murky Ring", --(Metamorph Ring +1)
+		left_ring="Metamor. Ring +1", --(Metamorph Ring +1)
 		right_ring="Archon Ring",  
 		back={ name="Sucellos's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10','Damage taken-5%',}}, --(Null Shawl)
 	}
@@ -166,10 +166,10 @@ function init_gear_sets()
 		legs="Leth. Fuseau +2", --(Upgrade to +3)
 		feet="Jhakri Pigaches +2", --(Viti. Boots +4)
 		neck={ name="Dls. Torque +2", augments={'Path: A',}}, --(Sibyl Scarf)
-		waist="Eschan Stone", --(Acuity Belt +1)
+		waist="Acuity Belt +1",
 		left_ear="Alabaster Earring", --(Malignance Earring)
 		right_ear="Sortiarius Earring", --(Regal Earring)
-		left_ring="Jhakri Ring", --(Metamorph Ring +1)
+		left_ring="Metamor. Ring +1",
 		right_ring="Archon Ring", --(Freke Ring)
 		back={ name="Sucellos's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10','Damage taken-5%',}},
 	}
@@ -209,7 +209,7 @@ function init_gear_sets()
 		waist="Eschan Stone", --(Obstin. Sash)
 		left_ear="Alabaster Earring", --(Aug to R30)
 		right_ear={ name="Lethargy Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+6','Mag. Acc.+6',}}, --(Snotra Earring)
-		left_ring="Murky Ring", --(Metamor. Ring +1)
+		left_ring="Metamor. Ring +1",
 		right_ring="Jhakri Ring", --(Stikini Ring +1)
 		back={ name="Sucellos's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10','Damage taken-5%',}}, --(Ambu cape w/ MND + MACC)
 	}
@@ -478,7 +478,21 @@ function init_gear_sets()
 ------------------------------------------------------------
 -- ### Engaged, dual wield ###
 ------------------------------------------------------------
-	sets.engaged.DW = {}
+	sets.engaged.DW = {
+		head="Aya. Zucchetto +2",
+		body="Ayanmo Corazza +2",
+		hands="Leth. Ganth. +2",
+		legs="Jhakri Slops +2",
+		feet="Nyame Sollerets",
+		neck="Loricate Torque +1",
+		waist="Flume Belt +1",
+		left_ear="Suppanomimi",
+		right_ear="Sherida Earring",
+		left_ring="Murky Ring",
+		right_ring="Rajas Ring",
+		back={ name="Sucellos's Cape", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dual Wield"+10','Damage taken-5%',}},
+	}
+	
 	sets.engaged.DW.Acc = {}
 	sets.engaged.DW.FullAcc = {}
 	sets.engaged.DW.DT = {}
@@ -490,7 +504,7 @@ function init_gear_sets()
 -- ### Weapons sets ###
 ------------------------------------------------------------
 	sets.weapons.Savage = {main="Kaja Sword", sub="Archduke's Shield"}
-	--sets.weapons.DualSavage = {main="Kaja Sword", sub="Thibron"}
+	sets.weapons.DualSavage = {main="Kaja Sword", sub="Blurred Knife +1"}
 	--sets.weapons.Evisceration = {main="Tauret", sub="Almace"}
 	--sets.weapons.Aeolian = {main="Tauret", sub="Bunzi's Rod"}
 	sets.weapons.BlackHalo = {main="Maxentius", sub="Archduke's Shield"}
@@ -501,7 +515,21 @@ function init_gear_sets()
 -- ### Weaponskill sets ###
 ------------------------------------------------------------
   -- Default weaponskill sets
-	sets.precast.WS = {}
+	sets.precast.WS = {
+		head="Viti. Chapeau +3",
+		body="Nyame Mail",
+		hands="Atrophy Gloves +3",
+		legs="Nyame Flanchard",
+		feet="Nyame Sollerets",
+		neck="Loricate Torque +1",
+		waist="Flume Belt +1",
+		left_ear="Suppanomimi",
+		right_ear="Sherida Earring",
+		left_ring="Murky Ring",
+		right_ring="Rajas Ring",
+		back={ name="Sucellos's Cape", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Damage taken-5%',}},
+	}
+	
 	sets.precast.WS.PDL = {}
 	sets.precast.WS.Proc = 	{}
 	
