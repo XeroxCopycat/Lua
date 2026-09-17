@@ -3,14 +3,14 @@ function user_job_setup()
 -- ### Options: Override default values ###
     state.OffenseMode:options('Normal', 'Acc', 'FullAcc')
     state.HybridMode:options('Normal', 'DT')
-	state.WeaponskillMode:options('Match','Proc')
+	state.WeaponskillMode:options('Match', 'Proc')
 	state.AutoBuffMode:options('Off', 'Auto', 'AutoMelee')
 	state.CastingMode:options('Normal', 'Resistant', 'Fodder', 'Proc')
-    state.IdleMode:options('Normal', 'PDT', 'MDT', 'DTHippo')
+    state.IdleMode:options('Normal', 'Refresh', 'Regain', 'Regen')
     state.PhysicalDefenseMode:options('PDT', 'NukeLock')
 	state.MagicalDefenseMode:options('MDT')
 	state.ResistDefenseMode:options('MEVA')
-	state.Weapons:options('None','Naegling','DualWeapons','DualWeaponsAcc','DualEvisceration','DualClubs','DualAeolian','DualProcDaggers','EnspellOnly','EnspellDW')
+	state.Weapons:options('Savage', 'BlackHalo', 'None')
 
 -- ### Additional local binds ###
 	send_command('bind ^` gs c cycle ElementalMode')
@@ -46,23 +46,23 @@ function init_gear_sets()
 -- PRECAST SETS
 -------------------------------------------------------------------------------------------------------------------
 -- ### Precast sets to enhance JAs ###
-	sets.precast.JA['Chainspell'] = {body="Vitiation Tabard"}
+	sets.precast.JA['Chainspell'] = {body="Viti. Tabard +3"}
 	
 -- ### Fast cast sets for spells ###
-	sets.precast.FC = { --FC +43/42 (Only need +42 to cap on RDM), QC +7, DT -48/50
+	sets.precast.FC = { --FC +47/42 (Only need +42 to cap on RDM), QC +7, DT -48
 		ammo="Impatiens", --QC +2
 		head="Atrophy Chapeau +3", --FC +16 (Upgrade to +4)
-		body="Vitiation Tabard", --FC +12 (Upgrade to +4)
+		body="Viti. Tabard +3", --FC +15 (Upgrade to +4)
 		hands="Leth. Ganth. +2", --DT -10 (Upgrade to +3)
 		legs="Aya. Cosciales +2", --FC +6, DT -5
-		feet="Nyame Sollerets", --DT -7 (Augment to R30)
-		neck="Loricate Torque +1", --DT -6
-		waist="Witful Belt", --FC +3, QC +3 (Embla Sash)
+		feet="Nyame Sollerets", --DT -7 (Aug to R30)
+		neck="Loricate Torque +1",  --DT -6
+		waist="Witful Belt", --FC +3, QC +3
 		left_ear="Alabaster Earring", --DT -5
-		right_ear={ name="Lethargy Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+6','Mag. Acc.+6',}}, --FC +7
+		right_ear={ name="Lethargy Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+6','Mag. Acc.+6',}}, --FC +7 (Upgrade to +2)
 		left_ring="Murky Ring", --DT -10
-		right_ring="Lebeche Ring", --QC +2 (Kishar Ring)
-		back={ name="Sucellos's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10','Damage taken-5%',}}, --DT -5 
+		right_ring="Lebeche Ring", --QC +2
+		back={ name="Sucellos's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10','Damage taken-5%',}}, --DT -5 (MND/MEVA Cape)
 	}
 		
 	--sets.precast.FC.Impact = set_combine(sets.precast.FC, {head=empty, body="Twilight Cloak"})
@@ -77,11 +77,13 @@ function init_gear_sets()
 -------------------------------------------------------------------------------------------------------------------
 -- MIDCAST SETS
 -------------------------------------------------------------------------------------------------------------------	
+------------------------------------------------------------
 -- ### Fast recast set ###
+------------------------------------------------------------
 	sets.midcast.FastRecast = {
 		ammo="Impatiens", --QC +2 (Sapience Orb)
 		head="Atrophy Chapeau +3", --FC +16 (Upgrade to +4)
-		body="Vitiation Tabard", --FC +12 (Upgrade to +4)
+		body="Viti. Tabard +3", --FC +12 (Upgrade to +4)
 		hands="Leth. Ganth. +2", --DT -10 (Upgrade to +3)
 		legs="Aya. Cosciales +2", --FC +6, DT -5
 		feet="Nyame Sollerets", --DT -7
@@ -91,77 +93,84 @@ function init_gear_sets()
 		right_ear={ name="Lethargy Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+6','Mag. Acc.+6',}}, --FC +7
 		left_ring="Murky Ring", --DT -10
 		right_ring="Jharki Ring", --FC 
-		back={ name="Sucellos's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10','Damage taken-5%',}}, --DT -5
+		back={ name="Sucellos's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10','Damage taken-5%',}}, --DT -5 (MND/MEVA Cape)
 	}
-	
+
+------------------------------------------------------------
 -- ### Dark magic ###
+------------------------------------------------------------
 	sets.midcast['Dark Magic'] = {
-		main="Maxentius",
+		main="Maxentius", --(Bunzi's Rod aug to R30)
 		sub="Ammurapi Shield",
 		ammo="Impatiens", --(Ranged: Ullr)
-		head="Leth. Chappel +2", --(Upgrade to +3)
-		body="Lethargy Sayon +2", --(Upgrade to +3)
-		hands="Leth. Ganth. +2", --(Upgrade to +3)
-		legs="Jhakri Slops +2", --(Lethargy Fuseau +3)
-		feet="Jhakri Pigaches +2", --(Lethargy Houseaux +3)
-		neck="Erra Pendant", --(Null Loop)
+		head="Atrophy Chapeau +3", --(Upgrade to +4)
+		body="Atrophy Tabard +3", --(Upgrade to +4)
+		hands="Leth. Ganth. +2", --(Atrophy Gloves +4)
+		legs="Leth. Fuseau +2", --(Atrophy Tights +4)
+		feet="Jhakri Pigaches +2", --(Atrophy Boots +4)
+		neck={ name="Dls. Torque +2", augments={'Path: A',}}, --(Null Loop)
 		waist="Eschan Stone", --(Fucho-no-Obi)
-		left_ear="Magnetic Earring", --(Mani Earring)
-		right_ear={ name="Lethargy Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+6','Mag. Acc.+6',}},
+		left_ear="Alabaster Earring", --(Mani Earring)
+		right_ear={ name="Lethargy Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+6','Mag. Acc.+6',}}, --(Upgrade to +2)
 		left_ring="Murky Ring", --(Evanescence Ring)
-		right_ring="Archon Ring",
+		right_ring="Archon Ring", 
 		back={ name="Sucellos's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10','Damage taken-5%',}}, --(Null Shawl)
 	}
 	
   -- Specific dark magic spells
-	--sets.midcast.Aspir = {
+	sets.midcast.Aspir = {
 		--head="Pixie Hairpin +1",
 		--body="Merlinic Jubbah", --(Aug w/ Drain/Aspir Pot.)
 		--hands="Merlinic Dastanas", --(Aug w/ Drain/Aspir Pot.)
 		--legs="Merlinic Shalwar" --(Aug w/ Drain/Aspir Pot.)
 		--feet="Merlinic Crackows" --(Aug w/ Drain/Aspir Pot.)
-	--}
+		neck="Erra Pendant",
+	}
 	
 	sets.midcast.Bio = set_combine(sets.TreasureHunter)
 	sets.midcast.Drain = sets.midcast.Aspir
 	sets.midcast.Stun = {}
 	sets.midcast.Stun.Resistant = {}
 
+------------------------------------------------------------
 -- ### Divine magic ###
+------------------------------------------------------------
 	sets.midcast['Divine Magic'] = {
-		main="Maxentius",
+		main="Maxentius", --(Bunzi's Rod, Aug to R30)
 		sub="Ammurapi Shield",
 		ammo="Impatiens", --(Ranged: Ullr)
-		head="Leth. Chappel +2", --(Upgrade to +3)
-		body="Lethargy Sayon +2", --(Upgrade to +3)
-		hands="Leth. Ganth. +2", --(Upgrade to +3)
-		legs="Jhakri Slops +2", --(Lethargy Fuseau +3)
-		feet="Jhakri Pigaches +2", --(Lethargy Houseaux +3)
-		neck="Erra Pendant", --(Null Loop)
+		head="Atrophy Chapeau +3", --(Upgrade to +4)
+		body="Atrophy Tabard +3", --(Upgrade to +4)
+		hands="Leth. Ganth. +2", --(Atrophy Gloves +4)
+		legs="Leth. Fuseau +2", --(Atrophy Tights +4)
+		feet="Jhakri Pigaches +2", --(Atrophy Boots +4)
+		neck={ name="Dls. Torque +2", augments={'Path: A',}}, --(Null Loop)
 		waist="Eschan Stone",
-		left_ear="Magnetic Earring",
-		right_ear={ name="Lethargy Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+6','Mag. Acc.+6',}},
-		left_ring="Murky Ring",
-		right_ring="Archon Ring",
+		left_ear="Alabaster Earring", --(Mani Earring)
+		right_ear={ name="Lethargy Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+6','Mag. Acc.+6',}}, --(Upgrade to +2)
+		left_ring="Murky Ring", --(Metamorph Ring +1)
+		right_ring="Archon Ring",  
 		back={ name="Sucellos's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10','Damage taken-5%',}}, --(Null Shawl)
 	}
 
+------------------------------------------------------------
 -- ### Elemental magic ###
+------------------------------------------------------------
 	sets.midcast['Elemental Magic'] = {
 		main="Maxentius", --(Bunzi's Rod, Aug to R30)
 		sub="Ammurapi Shield",
-		ammo="Impatiens", --(Pemphedo Tathlum +1, Aug to R15)
+		ammo="Impatiens", --(Sroda Tathlum)
 		head="Leth. Chappel +2", --(Upgrade to +3)
 		body="Lethargy Sayon +2", --(Upgrade to +3)
 		hands="Leth. Ganth. +2", --(Upgrade to +3)
-		legs="Jhakri Slops +2", --(Lethargy Fuseau +3)
-		feet="Jhakri Pigaches +2", --(Vitiation Boots +4)
-		neck="Loricate Torque +1", --(Sibyl Scarf)
+		legs="Leth. Fuseau +2", --(Upgrade to +3)
+		feet="Jhakri Pigaches +2", --(Viti. Boots +4)
+		neck={ name="Dls. Torque +2", augments={'Path: A',}}, --(Sibyl Scarf)
 		waist="Eschan Stone", --(Acuity Belt +1)
-		left_ear="Sortiarius Earring", --(Malignance Earring)
-		right_ear={ name="Lethargy Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+6','Mag. Acc.+6',}}, --(Regal Earring)
-		left_ring="Murky Ring", --(Metamorph Ring +1)
-		right_ring="Jhakri Ring", --(Freke Ring)
+		left_ear="Alabaster Earring", --(Malignance Earring)
+		right_ear="Sortiarius Earring", --(Regal Earring)
+		left_ring="Jhakri Ring", --(Metamorph Ring +1)
+		right_ring="Archon Ring", --(Freke Ring)
 		back={ name="Sucellos's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10','Damage taken-5%',}},
 	}
 	
@@ -183,26 +192,51 @@ function init_gear_sets()
 		feet="Jharki Pigaches +2", --MBD +7
 		right_ring="Mujin Band", --MBD II +5
 	}
-	
+
+------------------------------------------------------------
 -- ### Enfeebling magic ###
+------------------------------------------------------------
 	sets.midcast['Enfeebling Magic'] = {
-		ammo="Impatiens",
-		head="Vitiation Chapeau",
-		body="Atrophy Tabard +3",
-		hands="Jhakri Cuffs +2",
-		legs="Jhakri Slops +2",
-		feet="Jhakri Pigaches +2",
-		neck="Erra Pendant",
-		waist="Eschan Stone",
-		left_ear="Alabaster Earring",
-		right_ear={ name="Lethargy Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+6','Mag. Acc.+6',}},
-		left_ring="Jhakri Ring",
-		right_ring="Archon Ring",
-		back="Solemnity Cape",
+		main="Maxentius", --(Bunzi's Rod, Aug to R30)
+		sub="Ammurapi Shield",
+		ammo="Impatiens", --(Regal Gem)
+		head="Viti. Chapeau +3", --(Upgrade to +4)
+		body="Lethargy Sayon +2", --(Upgrade to +3)
+		hands="Leth. Ganth. +2", --(Upgrade to +3)
+		legs="Leth. Fuseau +2", --(Chironic Hose Aug w/ MND + MACC)
+		feet="Vitiation Boots +3", --(Upgrade to +4)
+		neck={ name="Dls. Torque +2", augments={'Path: A',}},
+		waist="Eschan Stone", --(Obstin. Sash)
+		left_ear="Alabaster Earring", --(Aug to R30)
+		right_ear={ name="Lethargy Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+6','Mag. Acc.+6',}}, --(Snotra Earring)
+		left_ring="Murky Ring", --(Metamor. Ring +1)
+		right_ring="Jhakri Ring", --(Stikini Ring +1)
+		back={ name="Sucellos's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10','Damage taken-5%',}}, --(Ambu cape w/ MND + MACC)
 	}
 	
-	sets.midcast['Enfeebling Magic'].Resistant = {}
-	sets.midcast.DurationOnlyEnfeebling = set_combine(sets.midcast['Enfeebling Magic'], {})
+	sets.midcast['Enfeebling Magic'].Resistant = {
+		main="Maxentius", --(Bunzi's Rod, Aug to R30)
+		sub="Ammurapi Shield",
+		ammo="Impatiens", --(Ranged: Ullr)
+		head="Viti. Chapeau +3", --(Upgrade to +4)
+		body="Atrophy Tabard +3", --(Upgrade to +4)
+		hands="Leth. Ganth. +2", --(Upgrade to +3)
+		legs="Leth. Fuseau +2", --(Atrophy Tights +4)
+		feet="Jhakri Pigaches +2", --(Atrophy Boots +4)
+		neck={ name="Dls. Torque +2", augments={'Path: A',}}, --(Null Loop) 
+		waist="Eschan Stone", --(Obstin. Sash)
+		left_ear="Alabaster Earring", --(Augment to R30)
+		right_ear={ name="Lethargy Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+6','Mag. Acc.+6',}},
+		left_ring="Murky Ring", --(Stikini Ring +1)
+		right_ring="Jhakri Ring", --(Stikini Ring +1)
+		back={ name="Sucellos's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','"Mag.Atk.Bns."+10','Damage taken-5%',}}, --(MND/MACC)
+	}
+	
+	sets.midcast.DurationOnlyEnfeebling = set_combine(sets.midcast['Enfeebling Magic'], {
+		head="Leth. Chappel +2",
+		feet="Leth. Houseaux +1",
+	})
+	
 	sets.midcast.SkillBasedEnfeebling = set_combine(sets.midcast['Enfeebling Magic'], {})
 	
   -- Specific enfeebling magic spells
@@ -223,13 +257,15 @@ function init_gear_sets()
 	sets.midcast.Sleep = set_combine(sets.midcast.DurationOnlyEnfeebling,{})
 	sets.midcast.Sleep.Resistant = set_combine(sets.midcast['Enfeebling Magic'].Resistant,{})
 
+------------------------------------------------------------
 -- ### Enhancing magic ###
+------------------------------------------------------------
 	sets.midcast['Enhancing Magic'] = {
-		main="Maxentius", --(Colada, Aug w/ enhancing magic duration)
+		main="Maxentius", --(Colada w/ enhancing magic duration)
 		sub="Ammurapi Shield",
 		ammo="Impatiens", --(Staunch Tathlum +1)
 		head="Befouled Crown", --(Telechne Cap w/ enhancing magic duration)
-		body="Vitiation Tabard", --(Upgrade to +4)
+		body="Viti. Tabard +3", --(Upgrade to +4)
 		hands="Atrophy Gloves +3", --(Upgrade to +4)
 		legs="Leth. Fuseau +2", --(Telechine Bracconi w/ enhancing magic duration)
 		feet="Leth. Houseaux +1", --(Upgrade to +3)
@@ -264,11 +300,11 @@ function init_gear_sets()
   -- Enhancing magic skill
 	sets.EnhancingSkill = {
 		head="Befouled Crown", 
-		body="Vitiation Tabard",
-		hands="Vitiation Gloves",
+		body="Viti. Tabard +3",
+		hands="Viti. Gloves +3",
 		legs="Atrophy Tights +3",
 		feet="Leth. Houseaux +1",
-		neck="Erra Pendant",
+		neck={ name="Dls. Torque +2", augments={'Path: A',}},
 		waist="Eschan Stone",
 		left_ear="Alabaster Earring",
 		right_ear={ name="Lethargy Earring", augments={'System: 1 ID: 1676 Val: 0','Accuracy+6','Mag. Acc.+6',}},
@@ -292,13 +328,11 @@ function init_gear_sets()
 	sets.midcast.Shell = {right_ring="Sheltered Ring"}
 
   -- Misc. enhancing magic sets
-	sets.Self_Refresh = {
-		feet="Inspirited Boots",
-		waist="Gishdubar Sash",
-		--back="Grapevine Cape",
-	}
+	sets.Self_Refresh = {waist="Gishdubar Sash"}
   
+------------------------------------------------------------
 -- ### Healing magic ###
+------------------------------------------------------------
 	sets.midcast['Healing Magic'] = {
 		main="Maxentius", --(Daybreak)
 		sub="Archduke's Shield",
@@ -321,7 +355,7 @@ function init_gear_sets()
 	sets.midcast.Cure = {}
 	sets.midcast.Cursna = {
 		head={ name="Vanya Hood", augments={'Healing magic skill +20','"Cure" spellcasting time -7%','Magic dmg. taken -3',}},
-		body="Vitiation Tabard +1",
+		body="Viti. Tabard +3",
 	}
 	sets.midcast.StatusRemoval = set_combine(sets.midcast.FastRecast, {})
 	sets.midcast.Curaga = sets.midcast.Cure
@@ -333,12 +367,14 @@ function init_gear_sets()
 -------------------------------------------------------------------------------------------------------------------
 -- IDLE AND RESTING SETS
 -------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------
 -- ### Idle sets ###
+------------------------------------------------------------
 	sets.idle = { --Refresh +7, DT -51/50, Mv. Speed +18%
 		main="Maxentius",
 		sub="Archduke's Shield", --Refresh +1
 		ammo="Impatiens", --(Homiliary)
-		head="Vitiation Chapeau +1", --Refresh +2 (Update to +4)
+		head="Viti. Chapeau +3", --Refresh +3 (Update to +4)
 		body="Lethargy Sayon +2", --Refresh +3, DT -13 (Upgrade to +3)
 		hands="Leth. Ganth. +2", --DT -10 (Volte Gloves)
 		legs="Volte Brais", --Refresh +1 (Chironic legs aug w/ Refresh +2)
@@ -364,7 +400,9 @@ function init_gear_sets()
 	
 	sets.idle.Weakened = set_combine(sets.idle, {right_ring="Sheltered Ring"})
 	
+------------------------------------------------------------
 -- ### Resting sets ###
+------------------------------------------------------------
 	sets.resting = {
 		main="Chatoyant Staff", 
 		sub="Oneiros Grip", 
@@ -374,7 +412,9 @@ function init_gear_sets()
 -------------------------------------------------------------------------------------------------------------------
 -- DEFENSE SETS
 -------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------
 -- ### Physical damage taken ###
+------------------------------------------------------------
 	sets.defense.PDT = {
 		head="Nyame Helm",
 		body="Nyame Mail",
@@ -411,7 +451,9 @@ function init_gear_sets()
 -------------------------------------------------------------------------------------------------------------------
 -- OFFENSE SETS
 -------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------
 -- ### Engaged, single wield ###
+------------------------------------------------------------
 	sets.engaged = {
 		ammo="Impatiens",
 		head="Aya. Zucchetto +2",
@@ -433,7 +475,9 @@ function init_gear_sets()
 	sets.engaged.FullAcc = {}
 	sets.engaged.DT = {}
 
+------------------------------------------------------------
 -- ### Engaged, dual wield ###
+------------------------------------------------------------
 	sets.engaged.DW = {}
 	sets.engaged.DW.Acc = {}
 	sets.engaged.DW.FullAcc = {}
@@ -442,7 +486,9 @@ function init_gear_sets()
 -------------------------------------------------------------------------------------------------------------------
 -- WEAPONS & WEAPONSKILL SETS
 -------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------
 -- ### Weapons sets ###
+------------------------------------------------------------
 	sets.weapons.Savage = {main="Kaja Sword", sub="Archduke's Shield"}
 	--sets.weapons.DualSavage = {main="Kaja Sword", sub="Thibron"}
 	--sets.weapons.Evisceration = {main="Tauret", sub="Almace"}
@@ -451,14 +497,18 @@ function init_gear_sets()
 	sets.weapons.Enspell = {main="Norgish Dagger",sub="Aern Dagger"}
 	--sets.weapons.DualEnspell = {main="Blurred Knife +1", sub="Atoyac"}
 	
-	
+------------------------------------------------------------
 -- ### Weaponskill sets ###
+------------------------------------------------------------
   -- Default weaponskill sets
 	sets.precast.WS = {}
 	sets.precast.WS.PDL = {}
 	sets.precast.WS.Proc = 	{}
 	
   -- Specific weaponskill sets
+	-- Club
+	sets.precast.WS['Black Halo'] = {}
+  
 	-- Dagger  
 	sets.precast.WS['Aeolian Edge'] = {}
 	sets.precast.WS['Evisceration'] = {}
@@ -470,8 +520,10 @@ function init_gear_sets()
 	sets.precast.WS['Sanguine Blade'] = {}
 	sets.precast.WS['Seraph Blade'] = {}
 	sets.precast.WS['Savage Blade'] = {}
-	
+
+------------------------------------------------------------
 -- ### Auto weaponskill lists ###
+------------------------------------------------------------
 	autows_list = {
 		['Savage']='Savage Blade',
 		['DualSavage']='Savage Blade',
@@ -484,7 +536,7 @@ function init_gear_sets()
 -------------------------------------------------------------------------------------------------------------------
 -- MISC. SETS
 -------------------------------------------------------------------------------------------------------------------
--- Sets for special buff conditions on spells.		
+-- Sets for special buff conditions on spells.
 	sets.buff.Saboteur = {}
 	sets.HPDown = {}
     sets.HPCure = {}
