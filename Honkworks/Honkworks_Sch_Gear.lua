@@ -301,12 +301,12 @@ function init_gear_sets()
   -- Specific Healing Spells
 	sets.midcast.Cure = set_combine(sets.midcast['Healing Magic'], {})
     sets.midcast.Curaga = sets.midcast.Cure	
-    sets.midcast.Cursna = set_combine(sets.midcast.{
+    sets.midcast.Cursna = set_combine(sets.midcast['Healing Magic'], {
 		body={ name="Vanya Robe", augments={'Healing magic skill +20','"Cure" spellcasting time -7%','Magic dmg. taken -3',}},
 		hands={ name="Vanya Cuffs", augments={'Healing magic skill +20','"Cure" spellcasting time -7%','Magic dmg. taken -3',}},
 		legs="Acad. Pants +2", --(Upgrade to +4)
 		feet={ name="Vanya Clogs", augments={'Healing magic skill +20','"Cure" spellcasting time -7%','Magic dmg. taken -3',}}, --Potency +5, CST -7, Skill +20
-	}
+	})
 	
 	sets.midcast.StatusRemoval = set_combine(sets.midcast.FastRecast, {})
 	
@@ -412,7 +412,7 @@ function init_gear_sets()
 		left_ear="Alabaster Earring",
 		right_ear="Arete del Luna +1",
 		left_ring="Murky Ring",
-		right_ring="Jhakri Ring",
+		right_ring="Rajas Ring",
 		back={ name="Lugh's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20','MND+10','"Fast Cast"+10','Damage taken-5%',}},
 	}
 	
@@ -422,8 +422,6 @@ function init_gear_sets()
 		
   -- Engaged DT set
 	sets.engaged.DT = {
-		main="Marin Staff +1",
-		sub="Khonsu",
 		ammo="Oshasha's Treatise",
 		head="Nyame Helm",
 		body="Nyame Mail",
@@ -431,44 +429,42 @@ function init_gear_sets()
 		legs="Jhakri Slops +2",
 		feet="Nyame Sollerets",
 		neck="Loricate Torque +1",
-		waist="Acuity Belt +1",
-		left_ear="Etiolation Earring",
-		right_ear="Alabaster Earring",
-		left_ring="Rajas Ring",
-		right_ring="Murky Ring",
-		back="Solemnity Cape",
+		waist="Plat. Mog. Belt",
+		left_ear="Alabaster Earring",
+		right_ear="Arete del Luna +1",
+		left_ring="Murky Ring",
+		right_ring="Rajas Ring",
+		back={ name="Lugh's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20','MND+10','"Fast Cast"+10','Damage taken-5%',}},
 	}
 
-
 ---------------------------------------------------------------------------------------------------------------
--- Weapon sets
+-- Weapon & Weaponskill sets
 ---------------------------------------------------------------------------------------------------------------
+--------------------------------------
+-- Default weaponskill gear
+--------------------------------------
 	sets.weapons.None = {main=empty, sub=empty}
 	sets.weapons.Club = {main="Maxentius", sub="Sors Shield"} 
 	sets.weapons.Staff = {main={name="Musa", augments={'Path: C',}},sub="Khonsu"}
 	sets.weapons.Prime = {main="Opashoro",sub="Khonsu"}
 
-
----------------------------------------------------------------------------------------------------------------
--- Weaponskill sets
----------------------------------------------------------------------------------------------------------------
 --------------------------------------
 -- Default weaponskill gear
 --------------------------------------
     sets.precast.WS = {
 		ammo="Oshasha's Treatise",
-		head="Nyame Helm", -- Augment to R25
-		body="Nyame Mail", -- Augment to R25
-		hands="Jhakri Cuffs +2",
-		legs="Nyame Flanchard", -- Augment to R25
-		feet="Nyame Sollerets", -- Augment to R25
-		neck="Loricate Torque +1", --
-		waist="Acuity Belt +1",
-		left_ear="Etiolation Earring",
-		right_ear="Alabaster Earring",
-		left_ring="Rajas Ring",
-		right_ring="Murky Ring",
-		back="Solemnity Cape",
+		head="Nyame Helm",
+		body="Nyame Mail",
+		hands="Nyame Gauntlets",
+		legs="Nyame Flanchard",
+		feet="Nyame Sollerets",
+		neck="Loricate Torque +1",
+		waist="Eschan Stone",
+		left_ear="Alabaster Earring",
+		right_ear="Etiolation Earring",
+		left_ring="Murky Ring",
+		right_ring="Mujin Band",
+		back={ name="Lugh's Cape", augments={'MND+20','Mag. Acc+20 /Mag. Dmg.+20','MND+10','"Fast Cast"+10','Damage taken-5%',}},
 	}
 	
 	--sets.precast.WS.Acc = set_combine(sets.precast.WS, {
@@ -499,18 +495,7 @@ function init_gear_sets()
 -- Staff weaponskills
 --------------------------------------
 -- Cataclysm
-	sets.precast.WS['Cataclysm'] = set_combine(sets.precast.WS, {
-		--ammo="Sroda Tathlum",
-		head="Pixie Hairpin +1",
-		hands="Jhakri Cuffs +2",
-		--neck="Saevus Pendant +1",
-		--waist="Hachirin-no-Obi",
-		--left_ear={ name="Moonshade Earring", augments={'"Mag.Atk.Bns."+4','TP Bonus +250',}},
-		--right_ear="Malignance Earring",
-		--left_ring="Cornelia's Ring",
-		--right_ring="Archon Ring",
-		--back="Null Shawl",
-	})
+	sets.precast.WS['Cataclysm'] = set_combine(sets.precast.WS, {})
 	
 -- Myrkr
 	--sets.precast.WS['Myrkr'] = set_combine(sets.precast.WS, {})
@@ -518,38 +503,28 @@ function init_gear_sets()
 -- Omniscience
 	--sets.precast.WS['Omniscience'] = set_combine(sets.precast.WS, {})
 	
-	
 -------------------------------------------------------------------------------------------------------------------
 -- Miscelaneous Sets
 -------------------------------------------------------------------------------------------------------------------	
 --------------------------------------
--- Buff sets to be worn when a buff is active
+-- Gear worn when a buff is active
 --------------------------------------
-    --sets.buff['Ebullience'] = {head="Arbatel Bonnet +1"}
-    --sets.buff['Rapture'] = {head="Arbatel Bonnet +1"}
-    --sets.buff['Perpetuance'] = {hands="Arbatel Bracers +1"}
-    --sets.buff['Immanence'] = {hands="Arbatel Bracers +1"}
-    --sets.buff['Penury'] = {legs="Arbatel Pants +1"}
-    --sets.buff['Parsimony'] = {legs="Arbatel Pants +1"}
-    sets.buff['Celerity'] = {feet="Peda. Loafers +3"} -- Upgrade to +3/+4
-    sets.buff['Alacrity'] = {feet="Peda. Loafers +3"} -- Upgrade to +3/+4
-    --sets.buff['Klimaform'] = {feet="Arbatel Loafers +1"}
-
--- Gear that converts elemental damage done to recover MP.	
+	sets.buff['Alacrity'] = {feet="Peda. Loafers +3"} -- (Upgrade to +4)
+	sets.buff['Celerity'] = {feet="Peda. Loafers +3"} --(Upgrade to +4)
+	sets.buff['Dark Arts'] = {body="Acad. Gown +3"} --(Upgrade to +4)
+	sets.buff['Klimaform'] = {feet="Arbatel Loafers +2"} --(Upgrade to +4)
+	sets.buff['Light Arts'] = {legs="Acad. Pants +2"} --(Upgrade to +4) 
+    sets.buff['Ebullience'] = {head="Arbatel Bonnet +2"} --(Upgrade to +3)
+    sets.buff['Immanence'] = {hands="Arbatel Bracers +2"} --(Upgrade to +3)
+	sets.buff['Parsimony'] = {legs="Arbatel Pants +2"} --(Upgrade to +3)
+	sets.buff['Penury'] = {legs="Arbatel Pants +2"} --(Upgrade to +3)
+	sets.buff['Perpetuance'] = {hands="Arbatel Bracers +2"} --(Upgrade to +3)
+	sets.buff['Rapture'] = {head="Arbatel Bonnet +2"} --(Upgrade to +3)
+    
+--------------------------------------
+-- Gear that converts elemental damage done to recover MP.
+--------------------------------------
 	sets.RecoverMP = {}
-
---------------------------------------
--- HP Down set (?)
---------------------------------------
-	--sets.HPDown = {head="Pixie Hairpin +1",ear1="Mendicant's Earring",ear2="Evans Earring",
-		--body="Zendik Robe",hands="Hieros Mittens",ring1="Mephitas's Ring +1",ring2="Mephitas's Ring",
-		--back="Swith Cape +1",waist="Carrier's Sash",legs="Shedir Seraweels",feet=""}
-		
-    --sets.HPCure = {main="Daybreak",sub="Sors Shield",range=empty,ammo="Hasty Pinion +1",
-        --head="Gende. Caubeen +1",neck="Unmoving Collar +1",ear1="Gifted Earring",ear2="Mendi. Earring",
-        --body="Kaykaus Bliaut",hands="Kaykaus Cuffs",ring1="Gelatinous Ring +1",ring2="Meridian Ring",
-        --back="Moonlight Cape",waist="Luminary Sash",legs="Carmine Cuisses +1",feet="Kaykaus Boots"}
-
 
 --------------------------------------
 -- Vs. Debuffs
@@ -562,22 +537,14 @@ function init_gear_sets()
 
   --Sleep
 	sets.buff.Sleep = {main="Opashoro"}
-
-
---------------------------------------
--- Light & Dark Arts
---------------------------------------
-	sets.buff['Light Arts'] = {legs="Academic's Pants +1"} 
-	sets.buff['Dark Arts'] = {body="Acad. Gown +1"}
-
-
+	
 --------------------------------------
 -- Sublimation
 --------------------------------------
     sets.buff.Sublimation = {
-		head="Acad. Mortar. +3", --Sublimation +4
-		body="Peda. Gown +3", --Sublimation +5
-		waist="Embla Sash", --Sublimation +3
+		head="Acad. Mortar. +3", --(Upgrade to +4)
+		body="Peda. Gown +3", --(Upgrade to +4)
+		waist="Embla Sash",
 	}
 end
 
