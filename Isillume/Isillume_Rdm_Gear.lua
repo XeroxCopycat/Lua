@@ -234,7 +234,7 @@ function init_gear_sets()
 	
 	sets.midcast.DurationOnlyEnfeebling = set_combine(sets.midcast['Enfeebling Magic'], {
 		head="Leth. Chappel +2",
-		feet="Leth. Houseaux +1",
+		feet="Leth. Houseaux +2",
 	})
 	
 	sets.midcast.SkillBasedEnfeebling = set_combine(sets.midcast['Enfeebling Magic'], {})
@@ -268,7 +268,7 @@ function init_gear_sets()
 		body="Viti. Tabard +3", --(Upgrade to +4)
 		hands="Atrophy Gloves +3", --(Upgrade to +4)
 		legs="Leth. Fuseau +2", --(Telechine Bracconi w/ enhancing magic duration)
-		feet="Leth. Houseaux +1", --(Upgrade to +3)
+		feet="Leth. Houseaux +2", --(Upgrade to +3)
 		neck={ name="Dls. Torque +2", augments={'Path: A',}}, --(Augment to R25)
 		waist="Eschan Stone", --(Embla Sash)
 		left_ear="Alabaster Earring", 
@@ -287,7 +287,7 @@ function init_gear_sets()
 		body="Lethargy Sayon +2", --(Upgrade to +3)
 		hands="Atrophy Gloves +3", --(Upgrade to +4)
 		legs="Leth. Fuseau +2", --(Upgrade to +3)
-		feet="Leth. Houseaux +1", --(Upgrade to +3)
+		feet="Leth. Houseaux +2", --(Upgrade to +3)
 		neck={ name="Dls. Torque +2", augments={'Path: A',}}, --(Augment to R25)
 		waist="Eschan Stone", --(Embla Sash)
 		left_ear="Alabaster Earring", 
@@ -303,7 +303,7 @@ function init_gear_sets()
 		body="Viti. Tabard +3",
 		hands="Viti. Gloves +3",
 		legs="Atrophy Tights +3",
-		feet="Leth. Houseaux +1",
+		feet="Leth. Houseaux +2",
 		neck={ name="Dls. Torque +2", augments={'Path: A',}},
 		waist="Eschan Stone",
 		left_ear="Alabaster Earring",
@@ -503,8 +503,8 @@ function init_gear_sets()
 ------------------------------------------------------------
 -- ### Weapons sets ###
 ------------------------------------------------------------
-	sets.weapons.Savage = {main="Kaja Sword", sub="Archduke's Shield"}
-	sets.weapons.DualSavage = {main="Kaja Sword", sub="Blurred Knife +1"}
+	sets.weapons.Savage = {main="Naegling", sub="Archduke's Shield"}
+	sets.weapons.DualSavage = {main="Naegling", sub="Blurred Knife +1"}
 	--sets.weapons.Evisceration = {main="Tauret", sub="Almace"}
 	--sets.weapons.Aeolian = {main="Tauret", sub="Bunzi's Rod"}
 	sets.weapons.BlackHalo = {main="Maxentius", sub="Archduke's Shield"}
