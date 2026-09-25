@@ -44,13 +44,13 @@ function init_gear_sets()
 	sets.precast.JA.Martyr = {hands="Piety Mitts +3"} --(Upgrade to +4)
 
 -- ### FAST CAST SETS FOR SPELLS ###	
-    sets.precast.FC = { --Fast Cast +65~67, Quick Cast +7%
+    sets.precast.FC = { --Fast Cast +66~68, Quick Cast +7%
 		--main="Queller Rod", -- (Cait Palug Hammer)
 		--sub="Archduke's Shield", -- (Chanter's Shield)
 		ammo="Impatiens", --Quick Cast +2
 		head="Ebers Cap +3", --Fast Cast +13
 		body="Inyanga Jubbah +2", --Fast Cast +14
-		hands="Ebers Mitts +2", --Damage Taken -10% (Fanatic Gloves with Fast Cast +7)
+		hands={ name="Fanatic Gloves", augments={'MP+5','Healing magic skill +2','"Fast Cast"+1',}},
 		legs="Volte Brais", --Fast Cast +8
 		feet="Regal Pumps +1", --Fast Cast +5~7
 		neck={ name="Clr. Torque +2", augments={'Path: A',}}, --Fast Cast +10
@@ -108,11 +108,11 @@ function init_gear_sets()
 -- Midcast Sets
 -----------------------------------------------------------------------------------------------------------
 -- ### FAST RECAST ### 
-	sets.midcast.FastRecast = { --FC +65~67, QC +7
+	sets.midcast.FastRecast = { --FC +66~68, QC +7
 		ammo="Impatiens", --Quick Cast +2
 		head="Ebers Cap +3", --Fast Cast +13
 		body="Inyanga Jubbah +2", --Fast Cast +14
-		hands="Ebers Mitts +2", --Damage Taken -10% (Fanatic Gloves with Fast Cast +7)
+		hands={ name="Fanatic Gloves", augments={'MP+5','Healing magic skill +2','"Fast Cast"+1',}},
 		legs="Volte Brais", --Fast Cast +8
 		feet="Regal Pumps +1", --Fast Cast +5~7
 		neck={ name="Clr. Torque +2", augments={'Path: A',}}, --Fast Cast +10
@@ -155,7 +155,7 @@ function init_gear_sets()
 		sub="Ammurapi Shield",
 		head="Ebers Cap +3",
 		body="Ebers Bliaut +2",
-		hands={ name="Fanatic Gloves", augments={'MP+10','Healing magic skill +2','"Conserve MP"+1',}},
+		hands={ name="Fanatic Gloves", augments={'MP+5','Healing magic skill +2','"Fast Cast"+1',}},
 		legs="Ebers Pant. +3",
 		feet="Inyan. Crackows +2",
 		neck={ name="Clr. Torque +2", augments={'Path: A',}},
@@ -175,7 +175,7 @@ function init_gear_sets()
 		sub="Ammurapi Shield",
 		head="Ebers Cap +3",
 		body="Ebers Bliaut +2",
-		hands={ name="Fanatic Gloves", augments={'MP+10','Healing magic skill +2','"Conserve MP"+1',}},
+		hands={ name="Fanatic Gloves", augments={'MP+5','Healing magic skill +2','"Fast Cast"+1',}},
 		legs="Ebers Pant. +3",
 		feet="Inyan. Crackows +2",
 		neck={ name="Clr. Torque +2", augments={'Path: A',}},
@@ -253,12 +253,12 @@ function init_gear_sets()
 		body="Piety Bliaut +3", --Regen pot. +52
 		hands="Ebers Mitts +2", --Regen duration +24
 		legs="Th. Pant. +3", --Regen duration +24
-		feet="Theo. Duckbills +3", --Enhancing magic duration +5%
+		feet="Theo. Duckbills +4", --Enhancing magic duration +10%
 	})
 
-	sets.midcast.Shell = set_combine(sets.midcast['Enhancing Magic'], {feet="Theo. Duckbills +3", right_ring="Sheltered Ring"})
+	sets.midcast.Shell = set_combine(sets.midcast['Enhancing Magic'], {feet="Theo. Duckbills +4", right_ring="Sheltered Ring"})
 	sets.midcast.Shellra = sets.midcast.Shell
-	sets.midcast.Stoneskin = set_combine(sets.midcast['Enhancing Magic'], {legs="Shedir Seraweels", feet="Theo. Duckbills +3"})
+	sets.midcast.Stoneskin = set_combine(sets.midcast['Enhancing Magic'], {legs="Shedir Seraweels", feet="Theo. Duckbills +4"})
 
 -- ### Healing Magic ###
 	sets.midcast['Healing Magic'] = set_combine(sets.midcast.FastRecast, { 
@@ -290,7 +290,7 @@ function init_gear_sets()
 		main="Vadose Rod",
 		head="Ebers Cap +3",
 		body="Ebers Bliaut +3",
-		hands={ name="Fanatic Gloves", augments={'MP+10','Healing magic skill +2','"Conserve MP"+1',}},
+		hands={ name="Fanatic Gloves", augments={'MP+5','Healing magic skill +2','"Fast Cast"+1',}},
 		legs="Th. Pant. +3",
 		feet={ name="Vanya Clogs", augments={'Healing magic skill +20','"Cure" spellcasting time -7%','Magic dmg. taken -3',}},
 		neck="Debilis Medallion",
