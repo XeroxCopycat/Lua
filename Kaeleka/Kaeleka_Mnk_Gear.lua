@@ -1,15 +1,14 @@
 function user_job_setup()
 	-- Options: Override default values
-    state.OffenseMode:options('Normal', 'Acc', 'FullAcc', 'SubtleBlow')
-    state.WeaponskillMode:options('Match', 'Normal', 'Acc', 'FullAcc', 'Fodder')
+    state.OffenseMode:options('Normal', 'Acc', 'FullAcc')
+    state.WeaponskillMode:options('Match', 'Normal', 'Acc', 'FullAcc', 'PDL')
     state.HybridMode:options('Normal', 'DT')
-	state.ExtraMeleeMode = M{['description']='Extra Melee Mode', 'None', 'Counterstance', 'SubtleBlow'}
+	state.ExtraMeleeMode = M{['description']='Extra Melee Mode', 'None', 'SubtleBlow'}
 	state.IdleMode:options('Normal', 'Regen', 'Regain', 'Refresh')
     state.PhysicalDefenseMode:options('PDT')
 	state.MagicalDefenseMode:options('MDT')
 	state.ResistDefenseMode:options('MEVA')
-	state.Weapons:options('Godhands', 'Staff', 'ProcStaff', 'ProcClub', 'Barehanded', 'ProcSword', 'ProcGreatSword', 'ProcScythe', 'ProcPolearm', 'ProcGreatKatana')
-
+	state.Weapons:options('VictorySmite', 'Cataclysm', 'None')
     state.ExtraMeleeMode = M{['description']='Extra Melee Mode', 'None', 'SubtleBlow'}
 
     update_melee_groups()
@@ -57,18 +56,18 @@ function init_gear_sets()
 	sets.precast.FC.Utsusemi = set_combine(sets.precast.FC, {body="Passion Jacket", neck="Magoraga Beads"})
 
 -- ### Precast sets to enhance JAs on use ###
-	sets.precast.JA['Hundred Fists'] = {legs="Hesychast's Hose +3"}
-	sets.precast.JA['Boost'] = {hands="Anchorite's Gloves +3"}
-	sets.precast.JA['Boost'].OutOfCombat = {hands="Anchorite's Gloves +3"}
-	sets.precast.JA['Dodge'] = {feet="Anchorite's Gaiters +3"}
-	sets.precast.JA['Focus'] = {head="Anchorite's Crown +3"}
-	sets.precast.JA['Counterstance'] = {feet="Hesychast's Gaiters +3"}
+	sets.precast.JA['Hundred Fists'] = {legs="Hesychast's Hose +3"} --(Upgrade to +4)
+	sets.precast.JA['Boost'] = {hands="Anchorite's Gloves +3"} --(Upgrade to +4)
+	sets.precast.JA['Boost'].OutOfCombat = {hands="Anchorite's Gloves +3"} --(Upgrade to +4)
+	sets.precast.JA['Dodge'] = {feet="Anchorite's Gaiters +3"} --(Upgrade to +4)
+	sets.precast.JA['Focus'] = {head="Anchorite's Crown +3"} --(Upgrade to +4)
+	sets.precast.JA['Counterstance'] = {feet="Hesychast's Gaiters +3"} --(Upgrade to +4)
 	sets.precast.JA['Footwork'] = {feet="Bhikku Gaiters +3"}
-	sets.precast.JA['Formless Strikes'] = {body="Hesychast's Cyclas +3"}
-	sets.precast.JA['Mantra'] = {feet="Hesychast's Gaiters +3"}
+	sets.precast.JA['Formless Strikes'] = {body="Hesychast's Cyclas +3"} --(Upgrade to +4)
+	sets.precast.JA['Mantra'] = {feet="Hesychast's Gaiters +3"} --(Upgrade to +4)
 	sets.precast.JA['Chi Blast'] = {
 		ammo="Staunch Tathlum +1",
-		head="Hes. Crown +3",
+		head="Hes. Crown +3", --(Upgrade to +4)
 		body="Bhikku Cyclas +3",
 		hands="Nyame Gauntlets",
 		legs="Bhikku Hose +3",
@@ -164,22 +163,22 @@ function init_gear_sets()
 -- Idle & Resting Sets
 -------------------------------------------------------------------------------------------------------------------
 -- ### Base idle set ###
-	sets.idle = {
-		ammo="Staunch Tathlum +1",
-		head="Nyame Helm", --(Null Masque)
-		body="Hiza. Haramaki +2",
-		hands="Nyame Gauntlets",
-		legs="Nyame Flanchard",
-		feet="Nyame Sollerets",
-		neck="Bathy Choker +1",
-		waist="Plat. Mog. Belt",
-		left_ear="Alabaster Earring",
-		right_ear="Infused Earring",
-		left_ring="Murky Ring",
-		right_ring="Shneddick Ring",
-		back={ name="Segomo's Mantle", augments={'AGI+20','Eva.+10 /Mag. Eva.+10','"Fast Cast"+10','"Regen"+5',}},
+	sets.idle = { --DT -53/50, Regen +24
+		ammo="Staunch Tathlum +1", --DT -3
+		head="Nyame Helm", --DT -7 (Null Masque)
+		body="Hiza. Haramaki +2", --Regen +12
+		hands="Nyame Gauntlets", --DT -7
+		legs="Bhikku Hose +3", --DT -14
+		feet="Nyame Sollerets", --DT -7
+		neck="Bathy Choker +1", --Regen +3
+		waist="Null Belt", --Regen +3
+		left_ear="Alabaster Earring", --DT -5
+		right_ear="Infused Earring", --Regen +1
+		left_ring="Murky Ring", --DT -10
+		right_ring="Shneddick Ring", --Mv. Speed +18%
+		back={ name="Segomo's Mantle", augments={'AGI+20','Eva.+10 /Mag. Eva.+10','"Fast Cast"+10','"Regen"+5',}}, --Regen +5
 	}
-	
+		
   -- Refresh set
 	sets.idle.Refresh = set_combine(sets.idle, {neck="Sibyl Scarf"})
 	
@@ -202,7 +201,7 @@ function init_gear_sets()
 		legs="Nyame Flanchard",
 		feet="Nyame Sollerets",
 		neck="Bathy Choker +1",
-		waist="Plat. Mog. Belt",
+		waist="Null Belt",
 		left_ear="Alabaster Earring",
 		right_ear="Infused Earring",
 		left_ring="Chirich Ring +1",
@@ -313,9 +312,18 @@ function init_gear_sets()
 		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Store TP"+10','Damage taken-5%',}},
 	}
 
--- ## Extra melee sets (equipped over melee sets) ##
-  -- Counterstance
-	sets.Counterstance = {
+-- ## Extra melee sets (equipped over engaged sets) ##
+	sets.SubtleBlow = {
+		head={ name="Adhemar Bonnet +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
+		legs="Mpaca's Hose",
+		feet={ name="Ryuo Sune-Ate +1", augments={'HP+65','"Store TP"+5','"Subtle Blow"+8',}},
+		waist="Moonbow Belt +1",
+		left_ear="Sherida Earring",
+		right_ring="Niqmaddu Ring",
+	}
+		
+-- Misc. engaged sets (equipped when a buff is active on top of melee sets)
+	sets.buff.Counterstance = {
 		ammo="Crepuscular Pebble",
 		head="Bhikku Crown +3",
 		body="Mpaca's Doublet", --(Aug. to R30)
@@ -330,16 +338,7 @@ function init_gear_sets()
 		right_ring="Niqmaddu Ring",
 		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}}, --(Segomo's Mantle: DEX +30, Acc/Atk +20, DA +10, Counter +10)
 	}
-
-	sets.SubtleBlow = {
-		head={ name="Adhemar Bonnet +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
-		legs="Mpaca's Hose",
-		feet={ name="Ryuo Sune-Ate +1", augments={'HP+65','"Store TP"+5','"Subtle Blow"+8',}},
-		waist="Moonbow Belt +1",
-		left_ear="Sherida Earring",
-		right_ring="Niqmaddu Ring",
-		
--- Misc. engaged sets (equipped when a buff is active on top of melee sets)
+	
 	sets.buff.Impetus = {body="Bhikku Cyclas +3"}
 	sets.buff.Footwork = {feet="Bhikku Gaiters +3"}
 	sets.buff.Boost = {waist="Ask Sash"}
@@ -352,8 +351,13 @@ function init_gear_sets()
 	
 
 -------------------------------------------------------------------------------------------------------------------
--- Weaponskill Sets
+-- Weapon & Weaponskill Sets
 -------------------------------------------------------------------------------------------------------------------
+-- ### Weapon sets ###
+	sets.weapons.VictorySmite = {main="Karambit"}
+	sets.weapons.Cataclysm = {main="Malignance Pole", sub="Bloodrain Strap"}
+	sets.weapons.None = {main=empty}
+
 -- ### Default weaponskill set ###
 	sets.precast.WS = {
 		ammo="Coiste Bodhar", 
@@ -364,10 +368,10 @@ function init_gear_sets()
 		feet="Bhikku Gaiters +3", --(Duty Sollerets)
 		neck="Fotia Gorget",
 		waist="Moonbow Belt +1",
-		left_ear="Odr Earring",
-		right_ear="Sherida Earring", --(Hoxne Earring)
+		left_ear="Sherida Earring", --(Hoxne Earring)
 		left_ring="Gere Ring",
 		right_ring="Niqmaddu Ring",
+		right_ring="Gere Ring",
 		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Crit.hit rate+10','Damage taken-5%',}},
 	}
 	
@@ -375,7 +379,7 @@ function init_gear_sets()
 	sets.precast.WS.FullAcc = set_combine(sets.precast.WS, sets.precast.WSFullAcc)
 	sets.precast.WS.PDL = set_combine(sets.precast.WS, {
 		ammo="Crepuscular Pebble",
-		hands="Bhikku Gloves +2", --(Upgrade to +3)
+		hands="Bhikku Gloves +3", --(Upgrade to +3)
 		neck={ name="Mnk. Nodowa +1", augments={'Path: A',}}, --(Upgrade to +2, Aug. to R25)
 	})
 
@@ -385,7 +389,7 @@ function init_gear_sets()
 	sets.precast.WS['Asuran Fists'] = set_combine(sets.precast.WS, {
 		ammo="Coiste Bodhar",
 		head="Hes. Crown +3",
-		hands="Bhikku Gloves +2",
+		hands="Bhikku Gloves +3",
 		legs="Nyame Flanchard",
 		feet="Hes. Gaiters +3",
 		waist="Fotia Belt",
@@ -425,27 +429,118 @@ function init_gear_sets()
 	sets.precast.WS['Dragon Kick'].FullAcc = set_combine(sets.precast.WS['Dragon Kick'], {})
 	sets.precast.WS['Dragon Kick'].PDL = set_combine(sets.precast.WS['Dragon Kick'], {
 		ammo="Crepuscular Pebble",
-		hands="Bhikku Gloves +2", --(Upgrade to +3)
+		hands="Bhikku Gloves +3", --(Upgrade to +3)
 		neck={ name="Mnk. Nodowa +1", augments={'Path: A',}}, --(Upgrade to +2, Aug. to R25)
 	})
 	
 	-- Howling Fist
-	sets.precast.WS['Howling Fist'] = set_combine(sets.precast.WS, {})
+	sets.precast.WS['Howling Fist'] = set_combine(sets.precast.WS, {
+		head="Mpaca's Cap",
+		body="Nyame Mail",
+		hands="Nyame Gauntlets",
+		feet="Nyame Sollerets",
+		neck={ name="Mnk. Nodowa +1", augments={'Path: A',}},
+		left_ear="Moonshade Earring",
+		right_ear="Schere Earring",
+		left_ring="Cornelia's Ring",
+		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
+	})
+	
+	sets.precast.WS['Howling Fist'].Acc = set_combine(sets.precast.WS['Howling Fist'], {})
+	sets.precast.WS['Howling Fist'].FullAcc = set_combine(sets.precast.WS['Howling Fist'], {})
+	sets.precast.WS['Howling Fist'].PDL = set_combine(sets.precast.WS['Howling Fist'], {
+		ammo="Crepuscular Pebble",
+		hands="Bhikku Gloves +3", --(Upgrade to +3)
+	})
 	
 	-- Raging Fists
-	sets.precast.WS['Raging Fists'] = set_combine(sets.precast.WS, {})
+	sets.precast.WS['Raging Fists'] = set_combine(sets.precast.WS, {
+		head="Mpaca's Cap",
+		body="Nyame Mail",
+		hands="Nyame Gauntlets",
+		legs="Nyame Flanchard",
+		feet="Nyame Sollerets",
+		right_ear="Schere Earring",
+		left_ring="Gere Ring",
+		right_ring="Niqmaddu Ring",
+		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Damage taken-5%',}},
+	})
 	
-	-- Shinjin Spiral
-	sets.precast.WS['Shijin Spiral'] = set_combine(sets.precast.WS, {})
+	sets.precast.WS['Raging Fists'].Acc = set_combine(sets.precast.WS['Raging Fists'], {})
+	sets.precast.WS['Raging Fists'].FullAcc = set_combine(sets.precast.WS['Raging Fists'], {})
+	sets.precast.WS['Raging Fists'].PDL = set_combine(sets.precast.WS['Raging Fists'], {
+		ammo="Crepuscular Pebble",
+		hands="Bhikku Gloves +3", --(Upgrade to +3)
+		legs="Mpaca's Hose", --(Aug. to R30)
+	})
+	
+	-- Shijin Spiral
+	sets.precast.WS['Shijin Spiral'] = set_combine(sets.precast.WS, {
+		ammo="Coiste Bodhar",
+		head="Mpaca's Cap",
+		hands="Nyame Gauntlets",
+		legs="Nyame Flanchard",
+		feet="Nyame Sollerets",
+		left_ear="Moonshade Earring",
+		right_ear="Odr Earring",
+		back={ name="Segomo's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
+	})
+	
+	sets.precast.WS['Shijin Spiral'].Acc = set_combine(sets.precast.WS['Shijin Spiral'], {})
+	sets.precast.WS['Shijin Spiral'].FullAcc = set_combine(sets.precast.WS['Shijin Spiral'], {})
+	sets.precast.WS['Shijin Spiral'].PDL = set_combine(sets.precast.WS['Shijin Spiral'], {
+		ammo="Crepuscular Pebble",
+		head={ name="Adhemar Bonnet +1", augments={'DEX+12','AGI+12','Accuracy+20',}},
+		body="Malignance Tabard",
+		hands="Bhikku Gloves +2",
+		legs="Mpaca's Hose",
+		right_ear="Sherida Earring",
+		right_ring="Regal Ring",
+	})
 	
 	-- Tornado Kick
-	sets.precast.WS['Tornado Kick'] = set_combine(sets.precast.WS, {})
+	sets.precast.WS['Tornado Kick'] = set_combine(sets.precast.WS, {
+		head="Mpaca's Cap",
+		body="Nyame Mail",
+		hands="Nyame Gauntlets",
+		legs="Nyame Flanchard",
+		feet="Nyame Sollerets",
+		left_ear="Moonshade Earring",
+		right_ear="Schere Earring",
+		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Damage taken-5%',}},
+	})
+	
+	sets.precast.WS['Tornado Kick'].Acc = set_combine(sets.precast.WS['Tornado Kick'], {})
+	sets.precast.WS['Tornado Kick'].FullAcc = set_combine(sets.precast.WS['Tornado Kick'], {})
+	sets.precast.WS['Tornado Kick'].PDL = set_combine(sets.precast.WS['Tornado Kick'], {
+		ammo="Crepuscular Pebble",
+		hands="Bhikku Gloves +2", --(Upgrade to +3)
+		legs="Mpaca's Hose",
+	})
 	
 	-- Victory Smite
 	sets.precast.WS["Victory Smite"] = set_combine(sets.precast.WS, {})
+	sets.precast.WS["Victory Smite"].Acc = set_combine(sets.precast.WS['Victory Smite'], {})
+	sets.precast.WS["Victory Smite"].FullAcc = set_combine(sets.precast.WS['Victory Smite'], {})
+	sets.precast.WS["Victory Smite"].Fodder = set_combine(sets.precast.WS['Victory Smite'], {})
 
- -- Staff Weaponskills
-	sets.precast.WS['Cataclysm'] = {}
+  -- Staff Weaponskills
+    -- Cataclysm 
+	sets.precast.WS['Cataclysm'] = set_combine(sets.precast,WS, {
+		ammo="Pemphredo Tathlum",
+		head="Pixie Hairpin +1",
+		body="Nyame Mail",
+		hands="Nyame Gauntlets",
+		legs="Nyame Flanchard",
+		feet="Nyame Sollerets",
+		neck="Sibyl Scarf",
+		waist="Orpheus's Sash",
+		left_ear="Moonshade Earring",
+		right_ear="Friomisi Earring",
+		left_ring="Metamor. Ring +1",
+		right_ring="Archon Ring",
+		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Damage taken-5%',}},
+	})
 	
 -- ### Weaponskills when either Footwork and/or Impetus is active ###
 	sets.buff.FootworkWS = {feet="Bhikku Gaiters +3"}
@@ -456,28 +551,24 @@ function init_gear_sets()
 		back={ name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Damage taken-5%',}}, --(Segomo's Mantle: Str +30, Acc/Atk +20, DA +10, DT -5)
 	}
 
--- Gear swaps using WS if at 3000 TP
+-- ### Gear swaps when using WS at 3000 TP
 	sets.MaxTP = {}
 	sets.AccMaxTP = {}
 	
 -------------------------------------------------------------------------------------------------------------------
 -- Weapon Sets
 -------------------------------------------------------------------------------------------------------------------
-	sets.weapons.VictorySmite = {main="Karambit"}
-	sets.weapons.Cataclysm = {main="Malignance Pole", sub="Bloodrain Strap"}
-	sets.weapons.ProcStaff = {main="Terra's Staff"}
-	sets.weapons.ProcClub = {main="Mafic Cudgel"}
-	sets.weapons.ProcSword = {main="Ark Sword",sub=empty}
-	sets.weapons.ProcGreatSword = {main="Lament",sub=empty}
-	sets.weapons.ProcScythe = {main="Ark Scythe",sub=empty}
-	sets.weapons.ProcPolearm = {main="Pitchfork +1",sub=empty}
-	sets.weapons.ProcGreatKatana = {main="Hardwood Katana",sub=empty}
+
 	
 -------------------------------------------------------------------------------------------------------------------
 -- Miscelaneous Sets
 -------------------------------------------------------------------------------------------------------------------
 -- Treasure Hunter	
-	sets.TreasureHunter = {	}
+	sets.TreasureHunter = {
+		body="Volte Jupon",
+		feet="Volte Boots",
+		waist="Chaac Belt",
+	}
     
 -- Kiting
 	sets.Kiting = {left_ring="Shneddick Ring"}
@@ -490,8 +581,6 @@ function init_gear_sets()
 	
 -- Extra Melee sets.  Apply these on top of melee sets.
     sets.Knockback = {}
-	
-	}
 	
 -- Actions we want to use to tag TH.
     sets.precast.Step = sets.TreasureHunter	
