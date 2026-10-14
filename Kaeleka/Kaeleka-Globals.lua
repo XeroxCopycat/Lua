@@ -58,12 +58,10 @@ send_command('bind f10 gs c set DefenseMode Physical') --Turns your physical def
 send_command('bind ^f10 gs c cycle PhysicalDefenseMode') --Changes your physical defense set.
 send_command('bind !f10 gs c toggle Kiting') --Keeps your kiting gear on..
 send_command('bind f11 gs c set DefenseMode Magical') --Turns your magical defense set on.
-send_command('bind ^f11 gs c cycle MagicalDefenseMode') --Changes your magical defense set.
-send_command('bind @f11 gs c cycle CastingMode') --Changes your castingmode options such as magic accuracy.
+send_command('bind ^f11 gs c cycle CastingMode') --Changes your castingmode options such as magic accuracy.
 send_command('bind !f11 gs c cycle ExtraMeleeMode') --Adds another set layered on top of your engaged set.
-send_command('bind ^f12 gs c cycle ResistDefenseMode') --Changes your resist defense set.
 send_command('bind f12 gs c set DefenseMode Resist') --Turns your resist defense set on.
-send_command('bind @f12 gs c cycle IdleMode') --Changes your idle mode options such as refresh.
+send_command('bind ^f12 gs c cycle IdleMode') --Changes your idle mode options such as refresh.
 send_command('bind !f12 gs c reset DefenseMode') --Turns your defensive mode off.
 send_command('bind ^@!f12 gs reload') --Reloads gearswap.
 send_command('bind pause gs c update user') --Runs a quick check to make sure you have the right gear on and checks variables.
@@ -77,6 +75,9 @@ send_command('bind !t input /target <bt>') --Targets the battle target.
 send_command('bind ^o fillmode') --Lets you see through walls.
 send_command('bind @m gs c mount Omega')
 
+-- ## Customized commands for Kaeleka ##
+send_command('bind ~h gs disable ammo;gs disable ranged;input /equip ammo "Hoxne Ampulla";input /echo ###Ranged/Ammo Slots disabled###') --Disables ammo/ranged slot and equips Hoxne Ampulla.
+send_command('bind ^!h gs enable ammo;gs enable ranged;input /echo ###Ranged/Ammo Slots enabled###') --Enables ammo/ranged slot
 
 
 NotifyBuffs = S{'doom','petrification'}
