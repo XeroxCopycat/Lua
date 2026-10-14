@@ -1,23 +1,21 @@
 function user_job_setup()
 	-- Options: Override default values
-    state.OffenseMode:options('Normal', 'Hoxne', 'Acc', 'FullAcc', 'PDL')
-    state.WeaponskillMode:options('Match', 'Normal', 'Acc', 'PDL')
-    state.HybridMode:options('Normal', 'DT')
+    state.OffenseMode:options('Normal', 'Hoxne', 'Acc', 'FullAcc')
+    state.WeaponskillMode:options('Match', 'Normal', 'Hoxne', 'Acc', 'PDL')
+    state.HybridMode:options('Normal', 'DT', 'FullDef', 'HoxneDT', 'HoxneFullDef')
     state.PhysicalDefenseMode:options('PDT', 'PDTReraise')
     state.MagicalDefenseMode:options('MDT', 'MDTReraise')
 	state.ResistDefenseMode:options('MEVA')
-	state.IdleMode:options('Normal', 'Regen', 'Regain', 'Refresh', 'Reraise')
-    state.ExtraMeleeMode = M{['description']='Extra Melee Mode', 'DWMax', 'SubtleBlow'}
+	state.IdleMode:options('Normal', 'Regen', 'Refresh', 'Sphere', 'Reraise')
+    state.ExtraMeleeMode = M{['description']='Extra Melee Mode', 'None', 'DWMid', 'DWMax', 'SubtleBlow'}
 	state.Passive = M{['description'] = 'Passive Mode', 'None', 'Twilight'}
-	state.Weapons:options('Sword', 'Greataxe', 'Club', 'Polearm', 'Greatsword', 'Club', 'Axe', 'DualSword', 'DualDagger',
-		'ProcDagger', 'ProcSword', 'ProcGreatSword', 'ProcKatana', 'ProcScythe', 'ProcPolearm', 'ProcGreatKatana', 'ProcClub', 'ProcStaff')
-
+	state.Weapons:options('Sword', 'Greataxe', 'Club', 'Axe', 'Polearm', 'Greatsword', 'DualSword', 'DualDagger', 'ProcDagger', 'ProcSword', 'ProcGreatSword', 'ProcKatana', 'ProcScythe', 'ProcPolearm', 'ProcGreatKatana', 'ProcClub', 'ProcStaff')
 
 	-- Additional local binds
 	send_command('bind ^` input /ja "Hasso" <me>')
 	send_command('bind !` input /ja "Seigan" <me>')
 	send_command('bind @` gs c cycle SkillchainMode')
-	send_command('bind !r gs c weapons Greatsword;gs c update')
+	send_command('bind !r gs c weapons Sword;gs c update')
 
 	--Ikenga_axe_bonus = 300  -- It is 300 at R25. Uncomment if you need to manually adjust because you are using below R25 or above
 	
@@ -26,6 +24,7 @@ end
 
 -- Define sets and vars used by this job file.
 function init_gear_sets()
+
 -------------------------------------------------------------------------------------------------------------------
 -- START DEFINING THE SETS
 -------------------------------------------------------------------------------------------------------------------
@@ -33,7 +32,7 @@ function init_gear_sets()
 -- PRECAST SETS
 -------------------------------------------------------------------------------------------------------------------
 -- ### Precast sets to enhance JAs ###
-	sets.precast.JA['Aggressor'] = {head="Pummeler's Mask +3", body="Agoge Lorica +3"} --(Upgrade to +4)
+	sets.precast.JA['Aggressor'] = {head="Pumm. Mask +4", body="Agoge Lorica +3"} --(Upgrade to +4)
 	sets.precast.JA['Berserk'] = {body="Pummeler's Lorica +3", feet="Agoge Calligae +3", back="Cichol's Mantle"} --(Upgrade to +4)
 	sets.precast.JA['Blood Rage'] = {body="Boii Lorica +3"} 
 	sets.precast.JA['Brazen Rush'] = {}
@@ -47,19 +46,19 @@ function init_gear_sets()
 	sets.precast.JA['Tomahawk'] = {feet="Agoge Calligae +3", ammo="Thr. Tomahawk"} --(Upgrade to +4)
 
 -- ### Enmity Set ###
-    sets.Enmity = { --DT -22 [PDT -37], Enmity +66
+    sets.Enmity = { --DT -34 [PDT -44/MDT -34], Enmity +86
 		ammo="Sapience Orb", --Enmity +2
-		head="Pummeler's Mask +3", --Enmity +12 (Upgrade to +4)
-		body="Nyame Mail", --DT -9 (Souv. Cuisses +1, Path C: Aug. to R15)
+		head="Pumm. Mask +4", --Enmity +12
+		body={ name="Souv. Cuirass +1", augments={'HP+105','Enmity+9','Potency of "Cure" effect received +15%',}}, --DT -10, Enmity +20, Set bonus (x3): DT -6
 		hands="Pumm. Mufflers +3", --Enmity +15 (Upgrade to +4)
 		legs={ name="Souv. Diechlings +1", augments={'HP+105','Enmity+9','Potency of "Cure" effect received +15%',}}, --DT -4 Enmity +9
 		feet={ name="Souveran Schuhs +1", augments={'HP+105','Enmity+9','Potency of "Cure" effect received +15%',}}, --PDT -5 Enmity +9
-		neck="Unmoving Collar +1", --Enmity +10
+		neck="Unmoving Collar +1", --Enmity +10 (Moonlight Necklace)
 		waist="Plat. Mog. Belt", --DT -3
 		left_ear="Alabaster Earring", --DT -5
 		right_ear="Friomisi Earring", --Enmity +2
-		left_ring="Petrov Ring", --Enmity +4
-		right_ring="Vengeful Ring", --Enmity +3 (Supershear Ring)
+		left_ring="Petrov Ring", --Enmity +4 (Apeile Ring +1, Aug. to R15)
+		right_ring="Vengeful Ring", --Enmity +3 (Apeile Ring)
 		back={ name="Cichol's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}}, --(Cichol's Mantle: Enmity +10, DT -5)
 	}
 	
@@ -68,7 +67,7 @@ function init_gear_sets()
 	
 -- ### Fast cast sets ###
 	sets.precast.FC = { --FC +37/+80, DT -36
-		ammo="Sapience Orb", --FC +2, 
+		ammo="Sapience Orb", --FC +2
 		head="Sakpata's Helm", --DT -7, FC +8
 		body="Sacro Breastplate", --FC +10
 		hands={ name="Leyline Gloves", augments={'Accuracy+15','Mag. Acc.+15','"Mag.Atk.Bns."+15','"Fast Cast"+3',}}, --FC +8
@@ -97,7 +96,7 @@ function init_gear_sets()
   -- Curing Waltz
 	sets.precast.Waltz = {
 		ammo="Aurgelmir Orb", --(Aurgelmir Orb +1)
-		head="Boii Mask +3",
+		head="Boii Mask +3", --(Null Masque)
 		body="Nyame Mail", --(Path B: Aug. to R30)
 		hands="Boii Mufflers +3",
 		legs="Dashing Subligar", 
@@ -116,17 +115,17 @@ function init_gear_sets()
     
 -- ### Step sets for /DNC ###
 	sets.precast.Step = {
-		ammo="Seeth. Bomblet +1", 
-		head="Boii Mask +3",
+		ammo="Seeth. Bomblet +1",
+		head="Pumm. Mask +4",
 		body="Tatena. Harama. +1",
 		hands="Tatena. Gote +1",
-		legs="Boii Cuisses +3",
-		feet="Boii Calligae +3",
+		legs="Pumm. Cuisses +4",
+		feet="Pumm. Calligae +4",
 		neck="Null Loop",
 		waist="Null Belt",
-		left_ear="Alabaster Earring", --(Aug. to R30)
+		left_ear="Alabaster Earring",
 		right_ear={ name="Boii Earring +2", augments={'System: 1 ID: 1676 Val: 0','Accuracy+18','Mag. Acc.+18','Crit.hit rate+7','STR+11 VIT+11',}},
-		left_ring="Chirich Ring +1",
+		left_ring="Regal Ring",
 		right_ring="Chirich Ring +1",
 		back="Null Shawl",
 	}
@@ -226,11 +225,12 @@ function init_gear_sets()
 	sets.buff.Doom = set_combine(sets.buff.Doom, {neck="Nicander's Necklace", waist="Gishdubar Sash"})
 	sets.buff.Sleep = {neck="Vim Torque +1"}
 	
+	
 -------------------------------------------------------------------------------------------------------------------
 -- IDLE SETS
 -------------------------------------------------------------------------------------------------------------------
 -- ### Base Idle Set ###
-	sets.idle = { --DT -37 [PDT -50/MDT -48], Regen +24
+	sets.idle = { --DT -37 [PDT -50/MDT -48], Regen +24 
 		ammo="Staunch Tathlum +1", --DT -3
 		head="Volte Salade", --PDT -3/MDT -7, Regen +2 (Null Masque)
 		body="Sacro Breastplate", --Regen +13
@@ -245,15 +245,15 @@ function init_gear_sets()
 		right_ring="Shneddick Ring", --Mv. Speed +18%
 		back={ name="Cichol's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}}, --(Cichol's Mantle: VIT +30, Eva/MEva +20, +10, FC +10, Regen +5)
 	}
-	
+		
   -- Refresh set
 	sets.idle.Refresh = set_combine(sets.idle, {neck="Sibyl Scarf"})
 	
-  -- Regain set
-	sets.idle.Regain = set_combine(sets.idle, {body="Makora Meikogai"})
-	
   -- Regen set
 	sets.idle.Regen = set_combine(sets.idle, {left_ring="Chirich Ring +1"})
+	
+  -- Sphere set
+	sets.idle.Sphere = set_combine(sets.idle, {body="Makora Meikogai"})
 	
   -- Weakened idle set	
 	sets.idle.Weak = set_combine(sets.idle, { --DT -50, Regen +17
@@ -297,114 +297,98 @@ function init_gear_sets()
 -- ENGAGED SETS
 -------------------------------------------------------------------------------------------------------------------
 -- ### Engaged set, single wield ###
-	sets.engaged = { --DT -33 [PDT -48/MDT -33], DA +77, QA +3, Store TP +29
-		ammo="Coiste Bodhar", --DA +3, Store TP +3 
+	sets.engaged = { --Base Acc 1342, DT -32 [PDT -37], DA +63, Store TP +47
+		ammo="Coiste Bodhar", --DA +3, Store TP +3
 		head="Hjarrandi Helm", --DT -10, DA +6, Store TP +7
-		body="Sakpata's Plate", --DT -10, DA +8
-		hands="Sakpata's Gauntlets", --DT -8, DA +6 
-		legs="Pumm. Cuisses +4", --PDT -5, DA +11 
+		body="Boii Lorica +3", --DT -14, Store TP +11
+		hands="Sakpata's Gauntlets", --DT -8, DA +6 (Aug. to R30)
+		legs="Pumm. Cuisses +4", --DA +11
 		feet="Pumm. Calligae +4", --DA +9, Store TP +4
-		neck="Vim Torque +1", --Latent: Regain +20, Store TP +10
+		neck="Vim Torque +1", --Store TP +10, Latent: Regain +20
+		waist="Sailfi Belt +1", --DA +5, TA +2
+		left_ear="Schere Earring", --DA +6
+		right_ear={ name="Boii Earring +2", augments={'System: 1 ID: 1676 Val: 0','Accuracy+18','Mag. Acc.+18','Crit.hit rate+7','STR+11 VIT+11',}}, --DA +9
+		left_ring="Petrov Ring", --DA +1, Store TP +5
+		right_ring="Niqmaddu Ring", --QA +3
+		back="Null Shawl", --DA +7, Store TP +7
+	}
+  
+  -- Hoxne set
+	sets.engaged.Hoxne = set_combine(sets.engaged, { --DT -34, Store TP +65~77, TA +11, QA +3
+		ammo="Hoxne Ampulla", --Enchantment: 1,000 gil > DA +100
+		hands="Tatena. Gote +1", --Store TP +4~8, TA +4
+		legs="Tatena. Haidate +1", --Store TP +4~8, TA +4
+		feet="Tatena. Sune. +1", --Store TP +4~8, TA +3
+		waist="Sweordfaetels +1", --Store TP +6
+		left_ear="Alabaster Earring", --DT -5 (Aug. to R30)
+		right_ear="Dedition Earring", --Store TP +8
+		left_ring="Moonlight Ring", --DT -5, Store TP +5
+		back="Null Shawl", --Store TP +7 (Cichol's Mantle: DEX +30, Acc/Atk +20, Store TP +10, PDT -10)
+	})
+	
+  -- Accuracy set
+	sets.engaged.Acc = set_combine(sets.engaged, { --Base Acc 1395, DT -32 [PDT -37], DA +73, Store TP +44
+		neck={ name="War. Beads +2", augments={'Path: A',}}, --DA +7
 		waist="Ioskeha Belt +1", --DA +9
+		left_ring="Chirich Ring +1", --Store TP +6
+		right_ring="Chirich Ring +1", --Store TP +6
+	})
+	
+  -- Full accuracy set
+	sets.engaged.FullAcc = set_combine(sets.engaged, { --Base Acc 1503, DT -30 [PDT -35], DA +49, Store TP +32
+		ammo="Seeth. Bomblet +1",
+		head="Boii Mask +3", --DT -11, DA +7
+		body="Boii Lorica +3", --DT -14, Store TP +11
+		hands="Tatena. Gote +1", --TA +4, Store TP +4~8
+		neck="Null Loop", --DT -5
+		waist="Null Belt",
+		left_ring="Regal Ring", 
+		right_ring="Chirich Ring +1", --Store TP +6
+	})
+	
+-- ### Hybrid DT sets ###
+	sets.engaged.DT = { --Base Acc 1340, DT -37 [PDT -50], DA +65, Store TP +40
+		ammo="Coiste Bodhar", --DA +3, Store TP +3
+		head="Hjarrandi Helm", --DT -10, DA +6, Store TP +7
+		body="Boii Lorica +3", --DT -14, Store TP +11
+		hands="Sakpata's Gauntlets", --DT -8, DA +6 (Aug. to R30)
+		legs="Pumm. Cuisses +4", --PDT -5, DA +11
+		feet="Pumm. Calligae +4", --DA +9, Store TP +4
+		neck="Vim Torque +1", --Store TP +10, Latent: Regain +20
+		waist="Sailfi Belt +1", --DA +5, TA +2
 		left_ear="Schere Earring", --DA +6
 		right_ear={ name="Boii Earring +2", augments={'System: 1 ID: 1676 Val: 0','Accuracy+18','Mag. Acc.+18','Crit.hit rate+7','STR+11 VIT+11',}}, --DA +9
 		left_ring="Moonlight Ring", --DT -5, Store TP +5
 		right_ring="Niqmaddu Ring", --QA +3
 		back={ name="Cichol's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}}, --PDT -10, DA +10
 	}
-  
-  -- Accuracy Set
-	sets.engaged.Acc = set_combine(sets.engaged, { --1366 Acc
-		right_ring="Chirich Ring +1",
-		back="Null Shawl",
+	
+  -- Hybrid full defense set	
+	sets.engaged.Hoxne.FullDef = set_combine(sets.engaged,DT, { --Base Acc 1336, DT -49, DA +53. Store TP +26
+		hands="Sakpata's Gauntlets", --DT -8, Store TP +4 (Aug. to R30)
+		feet="Nyame Sollerets", --DT -7
 	})
-	
-  -- Full Accuracy Set
-	sets.engaged.FullAcc = set_combine(sets.engaged, { --1509 Acc
-		ammo="Seeth. Bomblet +1",
-		head="Boii Mask +3",
-		body="Tatena. Harama. +1",
-		hands="Tatena. Gote +1",
-		neck="Null Loop",
-		waist="Null Belt",
-		right_ring="Regal Ring",
-		back="Null Shawl",
-	})
-	
-  -- Hybrid DT Set
-	sets.engaged.DT = set_combine(sets.engaged, {
-		ammo="Coiste Bodhar", --DA +3, Store TP +3
-		head="Hjarrandi Helm", --DT -10, DA +6, Store TP +7
-		body="Sakpata's Plate", --DT -10, DA +8
-		hands="Sakpata's Gauntlets", --DT -8, DA +6
-		legs="Sakpata's Cuisses", --DT -9, DA +7
-		feet="Sakpata's Leggings", --DT -6, DA +4
-		left_ring="Moonlight Ring", --DT -5, Store TP +5
-	})
-	
-	sets.engaged.DT.Acc = set_combine(sets.engaged.DT, {
-		right_ring="Chirich Ring +1",
-		back="Null Shawl",
-	})
-	
-	sets.engaged.DT.FullAcc = set_combine(sets.engaged.DT, { --Acc 1460, DT -45 [PDT -50/MDT -45, DA +46, Store TP +29
-		ammo="Coiste Bodhar", --DA +3, Store TP +3
-		head="Boii Mask +3", --DT -11, DA +7
-		body="Boii Lorica +3", --DT -14, Store TP +11
-		hands="Tatena. Gote +1", --TA +4, Store TP +4~8
-		legs="Pumm. Cuisses +4", --PDT -5, DA +11
-		feet="Pumm. Calligae +4", --DA +9, Store TP +4
-		neck="Null Loop", --DT -5
-		waist="Null Belt", 
-		left_ear="Alabaster Earring", --DT -5
-		right_ear={ name="Boii Earring +2", augments={'System: 1 ID: 1676 Val: 0','Accuracy+18','Mag. Acc.+18','Crit.hit rate+7','STR+11 VIT+11',}}, --DA +9
-		left_ring="Murky Ring", --DT -10
-		right_ring="Regal Ring",
-		back="Null Shawl", --DA +7, Store TP +7
-	})
-	
--- ### Engaged set w/ Hoxne Ampulla, single wield ###
-	sets.engaged.Hoxne = { --DT -29, Store TP +72
-		ammo="Hoxne Ampulla", --Enchantment: 1,000 gil > DA +100
-		head="Hjarrandi Helm", --DT -10, Store TP +7
-		body="Boii Lorica +3", --DT -14, Store TP +11
-		hands="Tatena. Gote +1", --Store TP +4~8
-		legs="Tatena. Haidate +1", --Store TP +4~8
-		feet="Tatena. Sune. +1", --Store TP +4~8
-		neck="Vim Torque +1", --Latent: Regain +20, Store TP +10
-		waist="Kentarch Belt +1", --Store TP +1~5
-		left_ear="Dedition Earring", --Store TP +8
-		right_ear="Telos Earring", --Store TP +5
-		left_ring="Moonlight Ring", --DT -5, Store TP +5
-		right_ring="Chirich Ring +1", --Store TP +6
-		back="Null Shawl", --Store TP +7 (Cichol's Mantle: DEX +30, Acc/Atk +20, Store TP +10, DT -5)
-	}
-	
--- ### Engaged sets, dual-wield ###
-	sets.engaged.DW = {}
-	sets.engaged.DW.Acc = {}
-	sets.engaged.DW.FullAcc = {}
-	sets.engaged.DW.DT = {}
-	sets.engaged.DW.DTAcc = {}
-	sets.engaged.DW.DTFullAcc = {}
-	
 	
 -- ### Extra melee sets (equipped on top of engaged sets) ###
-	sets.DWMid = {}
-	
-	sets.DWMax = { --Dual wield +16
+	sets.DWMid = { --Dual wield +11, used for /NIN
 		waist="Reiki Yotai", --DW +7
-		left_ear="Suppanomimi", --DW +5
 		right_ear="Eabani Earring", --DW +4
 	}
 	
-	sets.SubtleBlow = set_combine(sets.engaged, { --SB +47, SBII +5
-		body="Sacro Breastplate", --SB +15
-		neck="Bathy Choker +1", --SB +11
-		left_ear="Schere Earring", --SB +3
-		right_ear={ name="Boii Earring +2", augments={'System: 1 ID: 1676 Val: 0','Accuracy+18','Mag. Acc.+18','Crit.hit rate+7','STR+11 VIT+11',}}, --SB +7
-		left_ring="Chirich Ring +1", --SB +11
-		right_ring="Niqmaddu Ring", --SB2 +5
+	sets.DWMax = { --Dual wield +16, used for /DNC
+		waist="Reiki Yotai", --DW +7
+		left_ear="Suppanomimi", --DW +5
+		right_ear="Eabani Earring", --DW +4
+		back={ name="Cichol's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}}, --PDT -10, DA +10 (Cichol's Mantle: DEX +30, Acc/Atk +20, Dual Wield +10, PDT -10)
+	}
+	
+	sets.SubtleBlow = set_combine(sets.engaged, { --Subtle Blow +50, Subtle Blow II +5
+		body="Sacro Breastplate", --Subtle Blow +15 (Dagon Breastplate)
+		hands="Sakpata's Gauntlets", --Subtle Blow +8
+		neck="Bathy Choker +1", --Subtle Blow +11
+		right_ear={ name="Boii Earring +2", augments={'System: 1 ID: 1676 Val: 0','Accuracy+18','Mag. Acc.+18','Crit.hit rate+7','STR+11 VIT+11',}}, --Subtle Blow +7
+		left_ring="Chirich Ring +1", --Subtle Blow +10
+		right_ring="Niqmaddu Ring", --Subtle Blow II +5
 	})
 
 
@@ -414,16 +398,18 @@ function init_gear_sets()
 -- Single handed weapons
 	sets.weapons.Axe = {main="Ikenga's Axe", sub="Blurred Shield +1"}
 	sets.weapons.Club = {main="Loxotic Mace +1", sub="Blurred Shield +1"}
+	sets.weapons.Sword = {main="Naegling", sub="Blurred Shield +1"}
+	sets.weapons.Dagger = {main="Crepuscular Knife", sub="Blurred Shield +1"}
+	
+-- Two-Handed weapons
 	sets.weapons.Greataxe = {main="Chango", sub="Utu Grip"}
 	sets.weapons.Greatsword = {main="Agwu's Claymore", sub="Utu Grip"}
 	sets.weapons.Polearm = {main="Shining One", sub="Utu Grip"}
-	sets.weapons.Sword = {main="Naegling", sub="Blurred Shield +1"}
-	sets.weapons.Dagger = {main="Crepuscular Knife", sub="Blurred Shield +1"}
 	
 -- Dual weapons
 	sets.weapons.DualSword = {main="Naegling", sub="Blurred Knife +1"}
 	sets.weapons.DualDagger = {main="Crepuscular Knife", sub="Blurred Knife +1"}
-		
+	
 -- Proc weapons (Enabled in Abyssea only)
 	sets.weapons.ProcDagger = {main="Qutrub Knife", sub=empty}
 	sets.weapons.ProcSword = {main="Ibushi Shinai", sub=empty}
@@ -455,7 +441,7 @@ function init_gear_sets()
 		back={ name="Cichol's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Damage taken-5%',}},
 	}
 
-	sets.precast.WS.Hoxne = set_combine(sets.precast.WS, {})
+	sets.precast.WS.Hoxne = set_combine(sets.precast.WS, {ammo="Hoxne Ampulla"})
 	sets.precast.WS.Acc = set_combine(sets.precast.WS, {})
 	sets.precast.WS.PDL = set_combine(sets.precast.WS, {
 		body="Sakpata's Plate", --(Aug. to R30)
@@ -467,43 +453,43 @@ function init_gear_sets()
   -- Axe Weaponskills
 	-- Decimation
 	sets.precast.WS['Decimation'] = set_combine(sets.precast.WS, {})
-	sets.precast.WS['Decimation'].Hoxne = set_combine(sets.precast.WS.Hoxne, {})
-	sets.precast.WS['Decimation'].Acc = set_combine(sets.precast.WS['Decimation'], {})
-	sets.precast.WS['Decimation'].PDL = set_combine(sets.precast.WS['Decimation'], {})
+	sets.precast.WS['Decimation'].Hoxne = set_combine(sets.precast.WS['Decimation'], sets.precast.WS.Hoxne, {})
+	sets.precast.WS['Decimation'].Acc = set_combine(sets.precast.WS['Decimation'], sets.precast.WS.Acc, {})
+	sets.precast.WS['Decimation'].PDL = set_combine(sets.precast.WS['Decimation'], sets.precast.WS.PDL, {})
 	 
     -- Mistral Axe
 	sets.precast.WS['Mistral Axe'] = set_combine(sets.precast.WS, {right_ear="Thrud Earring", right_ring="Sroda Ring"})
-	sets.precast.WS['Mistral Axe'].Hoxne = set_combine(sets.precast.WS.Hoxne, {})
-    sets.precast.WS['Mistral Axe'].Acc = set_combine(sets.precast.WS['Mistral Axe'], {})
-	sets.precast.WS['Mistral Axe'].PDL = set_combine(sets.precast.WS['Mistral Axe'], {})
+	sets.precast.WS['Mistral Axe'].Hoxne = set_combine(sets.precast.WS['Mistral Axe'], sets.precast.WS.Hoxne, {})
+    sets.precast.WS['Mistral Axe'].Acc = set_combine(sets.precast.WS['Mistral Axe'], sets.precast.WS.Acc, {})
+	sets.precast.WS['Mistral Axe'].PDL = set_combine(sets.precast.WS['Mistral Axe'], sets.precast.WS.PDL, {})
 	
     -- Ruination
 	sets.precast.WS['Ruination'] = set_combine(sets.precast.WS, {})
-	sets.precast.WS['Ruination'].Hoxne = set_combine(sets.precast.WS.Hoxne, {})
-	sets.precast.WS['Ruination'].Acc = set_combine(sets.precast.WS['Ruination'], {})
-	sets.precast.WS['Ruination'].PDL = set_combine(sets.precast.WS['Ruination'], {})
+	sets.precast.WS['Ruination'].Hoxne = set_combine(sets.precast.WS['Ruination'], sets.precast.WS.Hoxne, {})
+	sets.precast.WS['Ruination'].Acc = set_combine(sets.precast.WS['Ruination'], sets.precast.WS.Acc, {})
+	sets.precast.WS['Ruination'].PDL = set_combine(sets.precast.WS['Ruination'], sets.precast.WS.PDL, {})
 	
 	
   -- Club Weaponskills
 	-- Black Halo
-	sets.precast.WS['Black Halo'] = set_combine(sets.precast.WS, {right_ring="Regal Ring"})
-    sets.precast.WS['Black Halo'].Hoxne = set_combine(sets.precast.WS.Hoxne, {})
-	sets.precast.WS['Black Halo'].Acc = set_combine(sets.precast.WS['Black Halo'], {})
-    sets.precast.WS['Black Halo'].Fodder = set_combine(sets.precast.WS['Black Halo'], {})
+	sets.precast.WS['Black Halo'] = set_combine(sets.precast.WS, sets.precast.WS.Hoxne, {right_ring="Regal Ring"})
+    sets.precast.WS['Black Halo'].Hoxne = set_combine(sets.precast.WS['Black Halo'], sets.precast.WS.Hoxne, {})
+	sets.precast.WS['Black Halo'].Acc = set_combine(sets.precast.WS['Black Halo'], sets.precast.WS.Acc, {})
+    sets.precast.WS['Black Halo'].PDL = set_combine(sets.precast.WS['Black Halo'], sets.precast.WS.PDL,  {})
 	
 	-- Judgement
     sets.precast.WS['Judgement'] = set_combine(sets.precast.WS, {})
-	sets.precast.WS['Judgement'].Hoxne = set_combine(sets.precast.WS.Hoxne, {})
-    sets.precast.WS['Judgement'].Acc = set_combine(sets.precast.WS['Judgement'], {})
-    sets.precast.WS['Judgement'].PDL = set_combine(sets.precast.WS['Judgement'], {})
+	sets.precast.WS['Judgement'].Hoxne = set_combine(sets.precast.WS['Judgement'], sets.precast.WS.Hoxne, {})
+    sets.precast.WS['Judgement'].Acc = set_combine(sets.precast.WS['Judgement'], sets.precast.WS.Acc, {})
+    sets.precast.WS['Judgement'].PDL = set_combine(sets.precast.WS['Judgement'], sets.precast.WS.PDL, {})
 	
 	
   -- Great Axe Weaponskills
-	-- Fell Cleave
+	-- Fell Cleave (STR)
     sets.precast.WS['Fell Cleave'] = set_combine(sets.precast.WS, {right_ear="Thrud Earring", right_ring="Sroda Ring"})
-	sets.precast.WS['Fell Cleave'].Hoxne = set_combine(sets.precast.WS.Hoxne, {})
-    sets.precast.WS['Fell Cleave'].Acc = set_combine(sets.precast.WS['Fell Cleave'], {})
-    sets.precast.WS['Fell Cleave'].PDL = set_combine(sets.precast.WS['Fell Cleave'], {})
+	sets.precast.WS['Fell Cleave'].Hoxne = set_combine(sets.precast.WS['Fell Cleave'], sets.precast.WS.Hoxne, {})
+    sets.precast.WS['Fell Cleave'].Acc = set_combine(sets.precast.WS['Fell Cleave'], sets.precast.WS.Acc, {})
+    sets.precast.WS['Fell Cleave'].PDL = set_combine(sets.precast.WS['Fell Cleave'], sets.precast.WS.PDL, {})
 	
     -- Full Break (STR/VIT, MAcc)
 	sets.precast.WS["Full Break"] = set_combine(sets.precast.WS, {
@@ -522,41 +508,125 @@ function init_gear_sets()
 		back="Null Shawl",
 	})
 	
-    --sets.precast.WS["Full Break"].Acc = set_combine(sets.precast.WS.Acc, {})
-    --sets.precast.WS["Full Break"].Fodder = set_combine(sets.precast.WS.Fodder, {})
+  -- Ukko's Fury --DEX, Crit Rate
+	sets.precast.WS["Ukko's Fury"] = set_combine(sets.precast.WS, {
+		ammo="Yetshila +1",
+		head="Boii Mask +3",
+		body="Hjarrandi Breast.",
+		hands="Flam. Manopolas +2",
+		legs="Zoar Subligar +1",
+		feet="Boii Calligae +3",
+		back={ name="Cichol's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Damage taken-5%',}}, --(Cichol's Mantle: DEX +30, Atk/Acc +20, Crit. Hit Rate +10, DT -5)
+	})
 	
-  -- Ukko's Fury
-	sets.precast.WS["Ukko's Fury"] = set_combine(sets.precast.WS, {})
-	sets.precast.WS["Ukko's Fury"].Hoxne = set_combine(sets.precast.WS.Hoxne, {})
-    sets.precast.WS["Ukko's Fury"].Acc = set_combine(sets.precast.WS["Ukko's Fury"], {})
-    sets.precast.WS["Ukko's Fury"].Fodder = set_combine(sets.precast.WS["Ukko's Fury"], {})
+	sets.precast.WS["Ukko's Fury"].Hoxne = set_combine(sets.precast.WS["Ukko's Fury"], sets.precast.WS.Hoxne, {})
+    sets.precast.WS["Ukko's Fury"].Acc = set_combine(sets.precast.WS["Ukko's Fury"], sets.precast.WS.Acc, {})
+    sets.precast.WS["Ukko's Fury"].PDL = set_combine(sets.precast.WS["Ukko's Fury"], sets.precast.WS.PDL, {})
 	
   -- Upheaval
-    sets.precast.WS['Upheaval'] = set_combine(sets.precast.WS, {})
-	sets.precast.WS['Upheaval'].Hoxne = set_combine(sets.precast.WS.Hoxne, {})
-    sets.precast.WS['Upheaval'].Acc = set_combine(sets.precast.WS['Upheaval'], {})
-    sets.precast.WS['Upheaval'].Fodder = set_combine(sets.precast.WS['Upheaval'], {}) 
+    sets.precast.WS['Upheaval'] = set_combine(sets.precast.WS, {
+		ammo="Knobkierrie",
+		head="Agoge Mask +4",
+		body="Nyame Mail",
+		hands="Boii Mufflers +3",
+		legs="Boii Cuisses +3",
+		feet="Nyame Sollerets",
+		neck={ name="War. Beads +2", augments={'Path: A',}},
+		waist="Sailfi Belt +1",
+		left_ear="Moonshade Earring",
+		right_ear="Thrud Earring",
+		left_ring="Regal Ring",
+		right_ring="Niqmaddu Ring",
+		back={ name="Cichol's Mantle", augments={'VIT+20','Accuracy+20 Attack+20','VIT+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
+	})
+	
+	sets.precast.WS['Upheaval'].Hoxne = set_combine(sets.precast.WS['Upheaval'], sets.precast.WS.Hoxne, {})
+    sets.precast.WS['Upheaval'].Acc = set_combine(sets.precast.WS['Upheaval'], sets.precast.WS.Acc, {})
+    sets.precast.WS['Upheaval'].PDL = set_combine(sets.precast.WS['Upheaval'], sets.precast.WS.PDL, {
+		body="Sakpata's Plate",
+		hands="Sakpata's Gauntlets",
+		legs="Boii Cuisses +3",
+		feet="Boii Calligae +3",
+		left_ring="Sroda Ring",
+	}) 
 	
   -- Great Sword Weaponskills
-	-- Resolution
-    sets.precast.WS['Resolution'] = set_combine(sets.precast.WS, {})
-	sets.precast.WS['Resolution'].Hoxne = set_combine(sets.precast.WS.Hoxne, {})
-    sets.precast.WS['Resolution'].Acc = set_combine(sets.precast.WS.Acc, {})
-	sets.precast.WS['Resolution'].Fodder = set_combine(sets.precast.WS.Fodder, {})
+	-- Resolution (STR/DA)
+    sets.precast.WS['Resolution'] = set_combine(sets.precast.WS, {
+		ammo="Coiste Bodhar",
+		head="Agoge Mask +4",
+		body="Agoge Lorica +3",
+		hands="Agoge Mufflers +3",
+		legs="Boii Cuisses +3",
+		feet="Boii Calligae +3",
+		neck={ name="War. Beads +2", augments={'Path: A',}},
+		waist="Fotia Belt",
+		left_ear="Moonshade Earring",
+		right_ear="Schere Earring",
+		left_ring="Regal Ring",
+		right_ring="Niqmaddu Ring",
+		back={ name="Cichol's Mantle", augments={'VIT+20','Accuracy+20 Attack+20','VIT+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}}, --(Cichol's Mantle: STR +30, Acc/Atk +20, DA +10, DT -5)
+	})
+	
+	sets.precast.WS['Resolution'].Hoxne = set_combine(sets.precast.WS['Resolution'], sets.precast.WS.Hoxne, {
+		back={ name="Cichol's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Damage taken-5%',}},
+	})
+	
+    sets.precast.WS['Resolution'].Acc = set_combine(sets.precast.WS['Resolution'], sets.precast.WS.Acc, {})
+	sets.precast.WS['Resolution'].PDL = set_combine(sets.precast.WS['Resolution'], sets.precast.WS.PDL, {
+		ammo="Coiste Bodhar",
+		head="Sakpata's Helm",
+		hands="Sakpata's Gauntlets",
+		feet="Sakpata's Leggings",
+		neck="Fotia Gorget",
+		waist="Fotia Belt",
+		right_ear="Schere Earring",
+		left_ring="Sroda Ring",
+		back={ name="Cichol's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Damage taken-5%',}}, 
+	})
 	
 
   -- Polearm Weaponskills
-	-- Impulse Drive
-    sets.precast.WS["Impulse Drive"] = set_combine(sets.precast.WS, {})
-	sets.precast.WS["Impulse Drive"].Hoxne = set_combine(sets.precast.WS.Hoxne, {})
-    sets.precast.WS["Impulse Drive"].Acc = set_combine(sets.precast.WS["Impulse Drive"], {})
-    sets.precast.WS["Impulse Drive"].PDL = set_combine(sets.precast.WS["Impulse Drive"], {})
+	-- Impulse Drive (STR/Crit)
+    sets.precast.WS["Impulse Drive"] = set_combine(sets.precast.WS, {
+		ammo="Yetshila +1",
+		head="Boii Mask +3",
+		body="Tatena. Harama. +1",
+		hands="Boii Mufflers +3",
+		legs="Zoar Subligar +1",
+		feet="Boii Calligae +3",
+		back={ name="Cichol's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Damage taken-5%',}}, --(Cichol's Mantle: STR +30, Acc/Atk +20, Crit. Hit Rate +10, DT -5)
+	})
+	
+	sets.precast.WS["Impulse Drive"].Hoxne = set_combine(sets.precast.WS["Impulse Drive"], sets.precast.WS.Hoxne, {})
+    sets.precast.WS["Impulse Drive"].Acc = set_combine(sets.precast.WS["Impulse Drive"], sets.precast.WS.Acc, {})
+    sets.precast.WS["Impulse Drive"].PDL = set_combine(sets.precast.WS["Impulse Drive"], sets.precast.WS.PDL, {
+		head="Blistering Sallet +1",
+		body="Tatena. Harama. +1",
+		hands="Flam. Manopolas +2",
+		legs="Boii Cuisses +3",
+		left_ring="Regal Ring",
+	})
 
-  -- Stardiver
-	sets.precast.WS["Stardiver"] = set_combine(sets.precast.WS, {})
-	sets.precast.WS["Stardiver"].Hoxne = set_combine(sets.precast.WS.Hoxne, {})
-    sets.precast.WS["Stardiver"].Acc = set_combine(sets.precast.WS["Stardiver"], {})
-    sets.precast.WS["Stardiver"].PDL = set_combine(sets.precast.WS["Stardiver"], {})
+  -- Stardiver (STR/Crit)
+	sets.precast.WS["Stardiver"] = set_combine(sets.precast.WS, {
+		ammo="Yetshila +1",
+		head="Boii Mask +3",
+		body="Tatena. Harama. +1",
+		hands="Boii Mufflers +3",
+		legs="Zoar Subligar +1",
+		feet="Boii Calligae +3",
+		neck="Fotia Gorget",
+		waist="Fotia Belt",
+		back={ name="Cichol's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Damage taken-5%',}},  --(Cichol's Mantle: STR +30, Acc/Atk +20, Crit. Hit Rate +10, DT -5)
+	})
+	
+	sets.precast.WS["Stardiver"].Hoxne = set_combine(sets.precast.WS.Hoxne, sets.precast.WS.Hoxne, {})
+    sets.precast.WS["Stardiver"].Acc = set_combine(sets.precast.WS["Stardiver"], sets.precast.WS.Acc, {})
+    sets.precast.WS["Stardiver"].PDL = set_combine(sets.precast.WS["Stardiver"], sets.precast.WS.PDL, {
+		legs="Boii Cuisses +3",
+		right_ring="Sroda Ring",
+	})
 	
 
   -- Sword Weaponskills
@@ -577,11 +647,15 @@ function init_gear_sets()
 		back={ name="Cichol's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Damage taken-5%',}}, --(Cichol's Mantle: INT +30, MAtk/Macc +20, WSD +10, DT -5)
 	})
 	
-    -- Savage Blade (uses default WS set)
+    -- Savage Blade (STR/WSD, uses default WS set)
 	sets.precast.WS['Savage Blade'] = set_combine(sets.precast.WS, {})
-    sets.precast.WS['Savage Blade'].Hoxne = set_combine(sets.precast.WS.Hoxne, {})
-	sets.precast.WS['Savage Blade'].Acc = set_combine(sets.precast.WS['Savage Blade'], {})
-    sets.precast.WS['Savage Blade'].PDL = set_combine(sets.precast.WS['Savage Blade'], {})
+    sets.precast.WS['Savage Blade'].Hoxne = set_combine(sets.precast.WS['Savage Blade'], sets.precast.WS.Hoxne, {})
+	sets.precast.WS['Savage Blade'].Acc = set_combine(sets.precast.WS['Savage Blade'], sets.precast.WS.Acc, {})
+    sets.precast.WS['Savage Blade'].PDL = set_combine(sets.precast.WS['Savage Blade'], sets.precast.WS.PDL, {
+		body="Sakpata's Plate", --(Aug. to R30)
+		legs="Boii Cuisses +3",
+		right_ring="Sroda Ring",
+	})
 
 
 -- ### Misc. weaponskill swaps, used when using WS at 3000 TP ###
@@ -637,18 +711,16 @@ end
 	
 -- Select default macro book on initial load or subjob change.
 function select_default_macro_book()
-    -- Default macro set/book
-    function select_default_macro_book()
-		if player.sub_job == 'DRG' then
-			set_macro_page(1, 1)
-		elseif player.sub_job == 'SAM' then
-			set_macro_page(2, 1)
-		elseif player.sub_job == 'DNC' then
-			set_macro_page(3, 1)
-		elseif player.sub_job == 'NIN' then
-			set_macro_page(4, 1)
-		else
-			set_macro_page(1, 1)
-		end
+	if player.sub_job == 'DRG' then
+		set_macro_page(1, 1)
+	elseif player.sub_job == 'SAM' then
+		set_macro_page(2, 1)
+	elseif player.sub_job == 'DNC' then
+		set_macro_page(3, 1)
+	elseif player.sub_job == 'NIN' then
+		set_macro_page(4, 1)
+	else
+		set_macro_page(1, 1)
+
 	end
 end
