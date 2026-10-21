@@ -6,9 +6,9 @@ function character_user_job_setup()
 	state.PhysicalDefenseMode:options('PDT')
 	state.MagicalDefenseMode:options('MDT')
 	state.ResistDefenseMode:options('MEVA')
-	state.IdleMode:options('Normal', 'Regen', 'Refresh', 'Regaom')
+	state.IdleMode:options('Normal', 'Regen', 'Refresh', 'Regain')
 	state.Weapons:options('Savage', 'Torcleaver', 'Resolution', 'Entropy', 'FellCleave', 'Judgement')
-	state.ExtraMeleeMode = M{['description']='Extra Melee Mode', 'None'}
+	state.ExtraMeleeMode = M{['description']='Extra Melee Mode', 'None', 'DWMid', 'DWMax', 'SubtleBlow'}
 	state.Passive = M{['description'] = 'Passive Mode', 'None', 'MP', 'Twilight'}
 	state.DrainSwapWeaponMode = M{'Always', 'Never', '300', '1000'}
 
@@ -390,6 +390,36 @@ function init_gear_sets()
 		right_ring="Niqmaddu Ring", --QA +3
 		back="Null Shawl", --Store TP +7, (Ankou's Mantle: DEX +30, Acc/Atk +20, Store TP +10, PDT -10)
 	}
+
+-- ### Hybrid DT set ###
+	sets.engaged.DT = {
+		ammo="Coiste Bodhar",
+		head="Hjarrandi Helm",
+		body="Hjarrandi Breast.",
+		hands="Sakpata's Gauntlets",
+		legs="Sakpata's Cuisses",
+		feet="Flam. Gambieras +2",
+		neck="Vim Torque +1",
+		waist="Sailfi Belt +1",
+		left_ear="Alabaster Earring",
+		right_ear="Telos Earring",
+		left_ring="Moonlight Ring",
+		right_ring="Chirich Ring +1",
+		back={ name="Ankou's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
+	}
+	
+-- ### Misc. engaged sets (added on top of engaged sets) ###
+	sets.DWMid = {}
+	sets.DWMax = {}
+	sets.SubtleBlow = { --Subtle Blow +49, Subtle Blow II +5
+		body="Sacro Breastplate", --SB +15
+		hands="Sakpata's Gauntlets", --SB +8
+		neck="Bathy Choker +1", --SB +11
+		left_ear="Digni. Earring", --SB +5
+		left_ring="Niqmaddu Ring", --SBII +5
+		right_ring="Chirich Ring +1", --SB +10
+	}
+	
 
 -------------------------------------------------------------------------------------------------------------------
 -- WEAPON SETS
