@@ -1,16 +1,16 @@
 function character_user_job_setup()
 	-- Options: Override default values
-	state.OffenseMode:options('Normal','SomeAcc','Acc','FullAcc','Fodder')
-	state.WeaponskillMode:options('Match','Normal','SomeAcc','Acc','FullAcc','Fodder')
-	state.HybridMode:options('Normal')
-	state.PhysicalDefenseMode:options('PDT', 'PDTReraise')
-	state.MagicalDefenseMode:options('MDT', 'MDTReraise')
+	state.OffenseMode:options('Normal', 'Acc', 'FullAcc', 'PDL', 'Hoxne')
+	state.WeaponskillMode:options('Match', 'Normal', 'Acc', 'FullAcc', 'PDL', 'Hoxne')
+	state.HybridMode:options('Normal', 'DT')
+	state.PhysicalDefenseMode:options('PDT')
+	state.MagicalDefenseMode:options('MDT')
 	state.ResistDefenseMode:options('MEVA')
-	state.IdleMode:options('Normal', 'PDT','Refresh','Reraise')
-	state.Weapons:options('Montante','Anguta')
-	state.ExtraMeleeMode = M{['description']='Extra Melee Mode','None'}
-	state.Passive = M{['description'] = 'Passive Mode','None','MP','Twilight'}
-	state.DrainSwapWeaponMode = M{'Always','Never','300','1000'}
+	state.IdleMode:options('Normal', 'Regen', 'Refresh', 'Regaom')
+	state.Weapons:options('Savage', 'Torcleaver', 'Resolution', 'Entropy', 'FellCleave', 'Judgement')
+	state.ExtraMeleeMode = M{['description']='Extra Melee Mode', 'None'}
+	state.Passive = M{['description'] = 'Passive Mode', 'None', 'MP', 'Twilight'}
+	state.DrainSwapWeaponMode = M{'Always', 'Never', '300', '1000'}
 
 	-- Additional local binds
 	send_command('bind ^` input /ja "Hasso" <me>')
@@ -161,7 +161,7 @@ function init_gear_sets()
 	sets.midcast.Stun = set_combine(sets.midcast.FastRecast, {
 		legs="Heath. Flanchard +3",
 		waist="Null Belt",
-	}
+	})
 	
 	sets.midcast['Dread Spikes'] = set_combine(sets.midcast['Dark Magic'], {
 		head="Hjarrandi Helm", --(Ratri Sallet +1)
@@ -202,7 +202,7 @@ function init_gear_sets()
 	
 	sets.midcast['Impact'] = set_combine(sets.midcast['Elemental Magic'], {
 		--range="Ullr",
-		head=empty
+		head=empty,
 		body="Crepuscular Cloak",
 		hands="Heath. Gauntlets +3",
 		legs="Heath. Flanchard +3",
@@ -367,7 +367,7 @@ function init_gear_sets()
 		left_ring="Chirich Ring +1",
 		right_ring="Chirich Ring +1",
 		back="Null Shawl",
-	}
+	})
 	
 	sets.engaged.Fodder = {
 		head="Flam. Zucchetto +2",
@@ -397,128 +397,208 @@ function init_gear_sets()
 -- Weapons sets
 	sets.weapons.Savage = {main="Naegling", sub="Blurred Shield +1"}
 	sets.weapons.Torcleaver = {main="Caladbolg", sub="Utu Grip"}
-	sets.weapons.Resolution = {main="Agwu's Greatsword", sub="Utu Grip"}
+	sets.weapons.Resolution = {main="Agwu's Claymore", sub="Utu Grip"}
 	sets.weapons.Entropy = {main="Crepuscular Scythe", sub="Utu Grip"}
+	sets.weapons.FellCleave = {main="Lycurgos", sub="Utu Grip"}
 	sets.weapons.Judgement = {main="Loxotic Mace +1", sub="Blurred Shield +1"}
 	
 -------------------------------------------------------------------------------------------------------------------
 -- WEAPONSKILL SETS
 -------------------------------------------------------------------------------------------------------------------
 -- ### Default weaponskill sets ###
-	sets.precast.WS = {}
-	sets.precast.WS.Acc = set_combine(sets.precast.WS, {})
-	sets.precast.WS.FullAcc = set_combine(sets.precast.WS, {})
-	sets.precast.WS.Hoxne = set_combine(sets.precast.WS, {})
-	sets.precast.WS.PDL = set_combine(sets.precast.WS, {})
-
--- ### Specific weaponskill sets ### 
-  -- Club
-	-- Judgement
-	sets.precast.WS['Judgement'] = set_combine(sets.precast.WS, {}
-	sets.precast.WS['Judgement'].Acc = set_combine(sets.precast.WS['Judgement'], sets.precast.WS.Acc, {})
-	sets.precast.WS['Judgement'].FullAcc = set_combine(sets.precast.WS['Judgement'], sets.precast.WS.FullAcc, {})
-	sets.precast.WS['Judgement'].Hoxne = set_combine(sets.precast.WS['Judgement'], sets.precast.WS.Hoxne, {})
-	sets.precast.WS['Judgement'].PDL = set_combine(sets.precast.WS['Judgement'], sets.precast.WS.PDL {})
-
-  -- Greataxe
-    -- Armor Break
-	sets.precast.WS['Armor Break'] = set_combine(sets.precast.WS, {}
-	sets.precast.WS['Armor Break'].Acc = set_combine(sets.precast.WS['Armor Break'], sets.precast.WS.Acc, {})
-	sets.precast.WS['Armor Break'].FullAcc = set_combine(sets.precast.WS['Armor Break'], sets.precast.WS.FullAcc, {})
-	sets.precast.WS['Armor Break'].Hoxne = set_combine(sets.precast.WS['Armor Break'], sets.precast.WS.Hoxne, {})
-	sets.precast.WS['Armor Break'].PDL = set_combine(sets.precast.WS['Armor Break'], sets.precast.WS.PDL {})
-	
-	-- Fell Cleave
-	sets.precast.WS['Fell Cleave'] = set_combine(sets.precast.WS, {}
-	sets.precast.WS['Fell Cleave'].Acc = set_combine(sets.precast.WS['Fell Cleave'], sets.precast.WS.Acc, {})
-	sets.precast.WS['Fell Cleave'].FullAcc = set_combine(sets.precast.WS['Fell Cleave'], sets.precast.WS.FullAcc, {})
-	sets.precast.WS['Fell Cleave'].Hoxne = set_combine(sets.precast.WS['Fell Cleave'], sets.precast.WS.Hoxne, {})
-	sets.precast.WS['Fell Cleave'].PDL = set_combine(sets.precast.WS['Fell Cleave'], sets.precast.WS.PDL {})
-	
-	-- Full Break
-	sets.precast.WS['Full Break'] = set_combine(sets.precast.WS, {}
-	sets.precast.WS['Full Break'].Acc = set_combine(sets.precast.WS['Full Break'], sets.precast.WS.Acc, {})
-	sets.precast.WS['Full Break'].FullAcc = set_combine(sets.precast.WS['Full Break'], sets.precast.WS.FullAcc, {})
-	sets.precast.WS['Full Break'].Hoxne = set_combine(sets.precast.WS['Full Break'], sets.precast.WS.Hoxne, {})
-	sets.precast.WS['Full Break'].PDL = set_combine(sets.precast.WS['Full Break'], sets.precast.WS.PDL {})
-	
-	-- Steel Cyclone
-	sets.precast.WS['Steel Cyclone'] = set_combine(sets.precast.WS, {}
-	sets.precast.WS['Steel Cyclone'].Acc = set_combine(sets.precast.WS['Steel Cyclone'], sets.precast.WS.Acc, {})
-	sets.precast.WS['Steel Cyclone'].FullAcc = set_combine(sets.precast.WS['Steel Cyclone'], sets.precast.WS.FullAcc, {})
-	sets.precast.WS['Steel Cyclone'].Hoxne = set_combine(sets.precast.WS['Steel Cyclone'], sets.precast.WS.Hoxne, {})
-	sets.precast.WS['Steel Cyclone'].PDL = set_combine(sets.precast.WS['Steel Cyclone'], sets.precast.WS.PDL {})
-	
-	-- Upheaval
-	sets.precast.WS['Upheaval'] = set_combine(sets.precast.WS, {}
-	sets.precast.WS['Upheaval'].Acc = set_combine(sets.precast.WS['Upheaval'], sets.precast.WS.Acc, {})
-	sets.precast.WS['Upheaval'].FullAcc = set_combine(sets.precast.WS['Upheaval'], sets.precast.WS.FullAcc, {})
-	sets.precast.WS['Upheaval'].Hoxne = set_combine(sets.precast.WS['Upheaval'], sets.precast.WS.Hoxne, {})
-	sets.precast.WS['Upheaval'].PDL = set_combine(sets.precast.WS['Upheaval'], sets.precast.WS.PDL {})
-  
-  -- Greatsword
-	-- Resolution
-	sets.precast.WS['Resolution'] = set_combine(sets.precast.WS, {}
-	sets.precast.WS['Resolution'].Acc = set_combine(sets.precast.WS['Resolution'], sets.precast.WS.Acc, {})
-	sets.precast.WS['Resolution'].FullAcc = set_combine(sets.precast.WS['Resolution'], sets.precast.WS.FullAcc, {})
-	sets.precast.WS['Resolution'].Hoxne = set_combine(sets.precast.WS['Resolution'], sets.precast.WS.Hoxne, {})
-	sets.precast.WS['Resolution'].PDL = set_combine(sets.precast.WS['Resolution'], sets.precast.WS.PDL {})
-	
-	-- Torcleaver
-	sets.precast.WS['Torcleaver'] = set_combine(sets.precast.WS, {}
-	sets.precast.WS['Torcleaver'].Acc = set_combine(sets.precast.WS['Torcleaver'], sets.precast.WS.Acc, {})
-	sets.precast.WS['Torcleaver'].FullAcc = set_combine(sets.precast.WS['Torcleaver'], sets.precast.WS.FullAcc, {})
-	sets.precast.WS['Torcleaver'].Hoxne = set_combine(sets.precast.WS['Torcleaver'], sets.precast.WS.Hoxne, {})
-	sets.precast.WS['Torcleaver'].PDL = set_combine(sets.precast.WS['Torcleaver'], sets.precast.WS.PDL {})
-
-  -- Scythe
-    -- Catastrophe
-	sets.precast.WS['Catastrophe'] = set_combine(sets.precast.WS, {}
-	sets.precast.WS['Catastrophe'].Acc = set_combine(sets.precast.WS['Catastrophe'], sets.precast.WS.Acc, {})
-	sets.precast.WS['Catastrophe'].FullAcc = set_combine(sets.precast.WS['Catastrophe'], sets.precast.WS.FullAcc, {})
-	sets.precast.WS['Catastrophe'].Hoxne = set_combine(sets.precast.WS['Catastrophe'], sets.precast.WS.Hoxne, {})
-	sets.precast.WS['Catastrophe'].PDL = set_combine(sets.precast.WS['Catastrophe'], sets.precast.WS.PDL {})
-	
-	-- Entropy
-	sets.precast.WS['Entropy'] = set_combine(sets.precast.WS, {}
-	sets.precast.WS['Entropy'].Acc = set_combine(sets.precast.WS['Entropy'], sets.precast.WS.Acc, {})
-	sets.precast.WS['Entropy'].FullAcc = set_combine(sets.precast.WS['Entropy'], sets.precast.WS.FullAcc, {})
-	sets.precast.WS['Entropy'].Hoxne = set_combine(sets.precast.WS['Entropy'], sets.precast.WS.Hoxne, {})
-	sets.precast.WS['Entropy'].PDL = set_combine(sets.precast.WS['Entropy'], sets.precast.WS.PDL {})
-	
-  -- Sword
-	-- Sanguine Blade
-	sets.precast.WS['Sanguine Blade'] = set_combine(sets.precast.WS, {}
-	sets.precast.WS['Sanguine Blade'].Acc = set_combine(sets.precast.WS['Sanguine Blade'], sets.precast.WS.Acc, {})
-	sets.precast.WS['Sanguine Blade'].FullAcc = set_combine(sets.precast.WS['Sanguine Blade'], sets.precast.WS.FullAcc, {})
-	sets.precast.WS['Sanguine Blade'].Hoxne = set_combine(sets.precast.WS['Sanguine Blade'], sets.precast.WS.Hoxne, {})
-	sets.precast.WS['Sanguine Blade'].PDL = set_combine(sets.precast.WS['Sanguine Blade'], sets.precast.WS.PDL {})
-	
-	-- Savage Blade
-	sets.precast.WS['Savage Blade'] = set_combine(sets.precast.WS, {
+	sets.precast.WS = {
 		ammo="Knobkierrie",
-		head="Nyame Helm",
-		body="Nyame Mail",
-		hands="Nyame Gauntlets",
-		legs="Nyame Flanchard",
+		head="Nyame Helm", --(Aug. to R30)
+		body="Nyame Mail", --(Ig. Cuirass +4)
+		hands="Nyame Gauntlets", --(Aug. to R30)
+		legs="Nyame Flanchard", --(Aug. to R30)
 		feet="Heath. Sollerets +3",
 		neck={ name="Abyssal Beads +2", augments={'Path: A',}},
 		waist="Sailfi Belt +1",
 		left_ear="Moonshade Earring",
 		right_ear="Thrud Earring", --(Hoxne Earring, MR 7+)
-		left_ring="Regal Ring",
-		right_ring="Cornelia's Ring",
+		left_ring="Cornelia's Ring",
+		right_ring="Regal Ring",
 		back={ name="Ankou's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
 	}
 	
+	sets.precast.WS.Acc = set_combine(sets.precast.WS, {})
+	sets.precast.WS.FullAcc = set_combine(sets.precast.WS, {})
+	sets.precast.WS.Hoxne = set_combine(sets.precast.WS, {ammo="Hoxne Ampulla"})
+	sets.precast.WS.PDL = set_combine(sets.precast.WS, {
+		head="Heath. Bur. +3",
+		right_ear={ name="Heath. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+14','Mag. Acc.+14','Weapon skill damage +3%',}},
+		right_ring="Sroda Ring",
+	})
+
+-- ### Specific weaponskill sets ### 
+  -- Club
+	-- Judgement (Uses default set)
+	sets.precast.WS['Judgement'] = set_combine(sets.precast.WS, {})
+	sets.precast.WS['Judgement'].Acc = set_combine(sets.precast.WS['Judgement'], sets.precast.WS.Acc, {})
+	sets.precast.WS['Judgement'].FullAcc = set_combine(sets.precast.WS['Judgement'], sets.precast.WS.FullAcc, {})
+	sets.precast.WS['Judgement'].Hoxne = set_combine(sets.precast.WS['Judgement'], sets.precast.WS.Hoxne, {})
+	sets.precast.WS['Judgement'].PDL = set_combine(sets.precast.WS['Judgement'], sets.precast.WS.PDL, {})
+
+  -- Greataxe
+    -- Armor Break
+	sets.precast.WS['Armor Break'] = set_combine(sets.precast.WS, {
+		ammo="Knobkierrie",
+		head="Heath. Bur. +3",
+		body="Sakpata's Plate",
+		hands="Sakpata's Gauntlets",
+		legs="Sakpata's Cuisses",
+		feet="Sakpata's Leggings",
+		neck={ name="Abyssal Beads +2", augments={'Path: A',}},
+		waist="Fotia Belt",
+		left_ear="Moonshade Earring",
+		right_ear={ name="Heath. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+14','Mag. Acc.+14','Weapon skill damage +3%',}},
+		left_ring="Niqmaddu Ring",
+		right_ring="Regal Ring",
+		back={ name="Ankou's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
+	})
+	
+	sets.precast.WS['Armor Break'].Acc = set_combine(sets.precast.WS['Armor Break'], sets.precast.WS.Acc, {})
+	sets.precast.WS['Armor Break'].FullAcc = set_combine(sets.precast.WS['Armor Break'], sets.precast.WS.FullAcc, {})
+	sets.precast.WS['Armor Break'].Hoxne = set_combine(sets.precast.WS['Armor Break'], sets.precast.WS.Hoxne, {})
+	sets.precast.WS['Armor Break'].PDL = set_combine(sets.precast.WS['Armor Break'], sets.precast.WS.PDL, {})
+	
+	-- Fell Cleave
+	sets.precast.WS['Fell Cleave'] = set_combine(sets.precast.WS, {
+		left_ear="Thrud Earring",
+		right_ear={ name="Heath. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+14','Mag. Acc.+14','Weapon skill damage +3%',}},
+	})
+	
+	sets.precast.WS['Fell Cleave'].Acc = set_combine(sets.precast.WS['Fell Cleave'], sets.precast.WS.Acc, {})
+	sets.precast.WS['Fell Cleave'].FullAcc = set_combine(sets.precast.WS['Fell Cleave'], sets.precast.WS.FullAcc, {})
+	sets.precast.WS['Fell Cleave'].Hoxne = set_combine(sets.precast.WS['Fell Cleave'], sets.precast.WS.Hoxne, {})
+	sets.precast.WS['Fell Cleave'].PDL = set_combine(sets.precast.WS['Fell Cleave'], sets.precast.WS.PDL, {})
+	
+	-- Full Break
+	sets.precast.WS['Full Break'] = set_combine(sets.precast.WS, {
+		ammo="Knobkierrie",
+		head="Heath. Bur. +3",
+		body="Sakpata's Plate",
+		hands="Sakpata's Gauntlets",
+		legs="Sakpata's Cuisses",
+		feet="Sakpata's Leggings",
+		neck={ name="Abyssal Beads +2", augments={'Path: A',}},
+		waist="Fotia Belt",
+		left_ear="Moonshade Earring",
+		right_ear={ name="Heath. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+14','Mag. Acc.+14','Weapon skill damage +3%',}},
+		left_ring="Niqmaddu Ring",
+		right_ring="Regal Ring",
+		back={ name="Ankou's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
+	})
+	
+	sets.precast.WS['Full Break'].Acc = set_combine(sets.precast.WS['Full Break'], sets.precast.WS.Acc, {})
+	sets.precast.WS['Full Break'].FullAcc = set_combine(sets.precast.WS['Full Break'], sets.precast.WS.FullAcc, {})
+	sets.precast.WS['Full Break'].Hoxne = set_combine(sets.precast.WS['Full Break'], sets.precast.WS.Hoxne, {})
+	sets.precast.WS['Full Break'].PDL = set_combine(sets.precast.WS['Full Break'], sets.precast.WS.PDL, {})
+	
+	-- Steel Cyclone
+	sets.precast.WS['Steel Cyclone'] = set_combine(sets.precast.WS, {})
+	sets.precast.WS['Steel Cyclone'].Acc = set_combine(sets.precast.WS['Steel Cyclone'], sets.precast.WS.Acc, {})
+	sets.precast.WS['Steel Cyclone'].FullAcc = set_combine(sets.precast.WS['Steel Cyclone'], sets.precast.WS.FullAcc, {})
+	sets.precast.WS['Steel Cyclone'].Hoxne = set_combine(sets.precast.WS['Steel Cyclone'], sets.precast.WS.Hoxne, {})
+	sets.precast.WS['Steel Cyclone'].PDL = set_combine(sets.precast.WS['Steel Cyclone'], sets.precast.WS.PDL, {})
+	
+	-- Upheaval
+	sets.precast.WS['Upheaval'] = set_combine(sets.precast.WS, {
+		right_ear={ name="Heath. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+14','Mag. Acc.+14','Weapon skill damage +3%',}},
+		left_ring="Niqmaddu Ring",
+		back={ name="Ankou's Mantle", augments={'VIT+20','Accuracy+20 Attack+20','VIT+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
+	})
+	
+	sets.precast.WS['Upheaval'].Acc = set_combine(sets.precast.WS['Upheaval'], sets.precast.WS.Acc, {})
+	sets.precast.WS['Upheaval'].FullAcc = set_combine(sets.precast.WS['Upheaval'], sets.precast.WS.FullAcc, {})
+	sets.precast.WS['Upheaval'].Hoxne = set_combine(sets.precast.WS['Upheaval'], sets.precast.WS.Hoxne, {})
+	sets.precast.WS['Upheaval'].PDL = set_combine(sets.precast.WS['Upheaval'], sets.precast.WS.PDL, {})
+  
+  -- Greatsword
+	-- Resolution
+	sets.precast.WS['Resolution'] = set_combine(sets.precast.WS, {
+		ammo="Coiste Bodhar",
+		head="Heath. Bur. +3",
+		body="Sakpata's Plate", --(Sworn Platemail, Aug. to R30)
+		hands="Sakpata's Gauntlets", --(Sworn Gauntlets, Aug. to R30)
+		feet="Sakpata's Leggings", --(Sworn Sabatons, Aug. to R30)
+		waist="Fotia Belt",
+		left_ear="Moonshade Earring",
+		left_ring="Niqmaddu Ring",
+		right_ring="Sroda Ring",
+		back={ name="Ankou's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}},
+	}) --(STR/DA)
+	
+	sets.precast.WS['Resolution'].Acc = set_combine(sets.precast.WS['Resolution'], sets.precast.WS.Acc, {})
+	sets.precast.WS['Resolution'].FullAcc = set_combine(sets.precast.WS['Resolution'], sets.precast.WS.FullAcc, {})
+	sets.precast.WS['Resolution'].Hoxne = set_combine(sets.precast.WS['Resolution'], sets.precast.WS.Hoxne, {})
+	sets.precast.WS['Resolution'].PDL = set_combine(sets.precast.WS['Resolution'], sets.precast.WS.PDL, {
+		legs="Sapkata's Cuisses", --(Aug. to R30)
+		right_ear={ name="Heath. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+14','Mag. Acc.+14','Weapon skill damage +3%',}},
+	})
+	
+	-- Torcleaver
+	sets.precast.WS['Torcleaver'] = set_combine(sets.precast.WS, {
+		legs="Fall. Flanchard +3", --(Upgrade to +4)
+		left_ring="Niqmaddu Ring",
+		back={ name="Ankou's Mantle", augments={'VIT+20','Accuracy+20 Attack+20','VIT+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
+	})
+	
+	sets.precast.WS['Torcleaver'].Acc = set_combine(sets.precast.WS['Torcleaver'], sets.precast.WS.Acc, {})
+	sets.precast.WS['Torcleaver'].FullAcc = set_combine(sets.precast.WS['Torcleaver'], sets.precast.WS.FullAcc, {})
+	sets.precast.WS['Torcleaver'].Hoxne = set_combine(sets.precast.WS['Torcleaver'], sets.precast.WS.Hoxne, {})
+	sets.precast.WS['Torcleaver'].PDL = set_combine(sets.precast.WS['Torcleaver'], sets.precast.WS.PDL, {left_ring="Cornelia's Ring"})
+
+  -- Scythe
+    -- Catastrophe
+	sets.precast.WS['Catastrophe'] = set_combine(sets.precast.WS, {})
+	sets.precast.WS['Catastrophe'].Acc = set_combine(sets.precast.WS['Catastrophe'], sets.precast.WS.Acc, {})
+	sets.precast.WS['Catastrophe'].FullAcc = set_combine(sets.precast.WS['Catastrophe'], sets.precast.WS.FullAcc, {})
+	sets.precast.WS['Catastrophe'].Hoxne = set_combine(sets.precast.WS['Catastrophe'], sets.precast.WS.Hoxne, {})
+	sets.precast.WS['Catastrophe'].PDL = set_combine(sets.precast.WS['Catastrophe'], sets.precast.WS.PDL, {})
+	
+	-- Entropy (INT/DA)
+	sets.precast.WS['Entropy'] = set_combine(sets.precast.WS, {
+		ammo="Coiste Bodhar",
+		head="Heath. Bur. +3",
+		feet="Nyame Sollerets",
+		waist="Fotia Belt",
+		right_ear={ name="Heath. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+14','Mag. Acc.+14','Weapon skill damage +3%',}}, --(Hoxne Earring, MR 7+)
+		left_ring="Niqmaddu Ring",
+		right_ring="Metamor. Ring +1",
+		back={ name="Ankou's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}}, --(INT/DA)
+	})
+	
+	sets.precast.WS['Entropy'].Acc = set_combine(sets.precast.WS['Entropy'], sets.precast.WS.Acc, {})
+	sets.precast.WS['Entropy'].FullAcc = set_combine(sets.precast.WS['Entropy'], sets.precast.WS.FullAcc, {})
+	sets.precast.WS['Entropy'].Hoxne = set_combine(sets.precast.WS['Entropy'], sets.precast.WS.Hoxne, {})
+	sets.precast.WS['Entropy'].PDL = set_combine(sets.precast.WS['Entropy'], sets.precast.WS.PDL, {
+		body="Sakpata's Plate",
+		hands="Sakpata's Gauntlets",
+		legs="Sakpata's Cuisses",
+		right_ear={ name="Heath. Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+14','Mag. Acc.+14','Weapon skill damage +3%',}},
+	})
+	
+  -- Sword
+	-- Sanguine Blade
+	sets.precast.WS['Sanguine Blade'] = set_combine(sets.precast.WS, {
+		head="Pixie Hairpin +1",
+		neck="Baetyl Pendant",
+		waist="Orpheus's Sash",
+		left_ear="Malignance Earring",
+		right_ear="Friomisi Earring",
+		left_ring="Cornelia's Ring",
+		right_ring="Metamor. Ring +1",
+		back={ name="Ankou's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
+	}) 
+	
+	-- Savage Blade (STR/WSD, uses default WS set)
+	sets.precast.WS['Savage Blade'] = set_combine(sets.precast.WS, {})
 	sets.precast.WS['Savage Blade'].Acc = set_combine(sets.precast.WS['Savage Blade'], sets.precast.WS.Acc, {})
 	sets.precast.WS['Savage Blade'].FullAcc = set_combine(sets.precast.WS['Savage Blade'], sets.precast.WS.FullAcc, {})
 	sets.precast.WS['Savage Blade'].Hoxne = set_combine(sets.precast.WS['Savage Blade'], sets.precast.WS.Hoxne, {ammo="Hoxne Ampulla"})
-	sets.precast.WS['Savage Blade'].PDL = set_combine(sets.precast.WS['Savage Blade'], sets.precast.WS.PDL {
-		ammo="Crepuscular Pebble",
-		head="Heath. Bur. +3",
-		left_ring="Sroda Ring",
-	})
+	sets.precast.WS['Savage Blade'].PDL = set_combine(sets.precast.WS['Savage Blade'], sets.precast.WS.PDL, {})
 	
 
 -- Swap to these on Moonshade using WS if at 3000 TP
@@ -538,7 +618,7 @@ function init_gear_sets()
 	
 -- ### Gear to equip when specific debuffs are applied ###
 	sets.buff.Doom = set_combine(sets.buff.Doom, {})
-	sets.buff.Sleep = {head="Frenzy Sallet"}
+	sets.buff.Sleep = {neck="Vim Torque +1"}
 	
 -- ### Treasure Hunter gear ###
 	sets.TreasureHunter = set_combine(sets.TreasureHunter, {
