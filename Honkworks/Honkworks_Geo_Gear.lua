@@ -397,21 +397,21 @@ function init_gear_sets()
 -- Offense Sets
 -------------------------------------------------------------------------------------------------------------------
 -- Engaged set
-	--sets.engaged = {
-		--ammo="Hasty Pinion +1",
-		--head={ name="Nyame Helm", augments={'Path: B',}},
-		--body={ name="Nyame Mail", augments={'Path: B',}},
-		--hands={ name="Nyame Gauntlets", augments={'Path: B',}},
-		--legs={ name="Nyame Flanchard", augments={'Path: B',}},
-		--feet={ name="Nyame Sollerets", augments={'Path: B',}},
-		--neck="Combatant's Torque",
-		--waist="Grunfeld Rope",
-		--left_ear="Telos Earring",
-		--right_ear="Cessance Earring",
-		--left_ring="Chirich Ring +1",
-		--right_ring="Cacoethic Ring +1",
-		--back="Solemnity Cape",
-	--}
+	sets.engaged = {
+		ammo="Oshasha's Treatise",
+		head="Nyame Helm",
+		body="Nyame Mail",
+		hands="Nyame Gauntlets",
+		legs="Nyame Flanchard",
+		feet="Nyame Sollerets",
+		neck="Warder's Charm +1",
+		waist="Carrier's Sash",
+		left_ear="Alabaster Earring",
+		right_ear="Etiolation Earring",
+		left_ring="Murky Ring",
+		right_ring="Archon Ring",
+		back={ name="Nantosuelta's Cape", augments={'HP+60','Eva.+20 /Mag. Eva.+20','Mag. Evasion+5','Pet: "Regen"+10','Pet: "Regen"+5',}},
+	}
 	
 	--sets.engaged.Acc = set_combine(sets.engaged, {})
 	--sets.engaged.FullAcc = set_combine(sets.engaged, {})
@@ -485,7 +485,22 @@ function init_gear_sets()
 	
   -- Staff
 	-- Cataclysm
-	sets.precast.WS['Cataclysm'] = set_combine(sets.precast.WS, {})
+	sets.precast.WS['Cataclysm'] = set_combine(sets.precast.WS, {
+		ammo="Ghastly Tathlum +1",
+		head="Pixie Hairpin +1",
+		body="Azimuth Coat +3",
+		hands="Azimuth Gloves +3",
+		legs="Azimuth Tights +3",
+		feet="Azimuth Gaiters +3",
+		neck="Sibyl Scarf",
+		waist="Acuity Belt +1",
+		left_ear="Malignance Earring",
+		right_ear={ name="Azimuth Earring +2", augments={'System: 1 ID: 1676 Val: 0','Mag. Acc.+16','Damage taken-6%','INT+7 MND+7',}},
+		left_ring="Metamor. Ring +1",
+		right_ring="Medada's Ring",
+		back={ name="Nantosuelta's Cape", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','INT+10','"Mag.Atk.Bns."+10','Damage taken-5%',}},
+	})
+	
 	sets.precast.WS['Cataclysm'].Acc = set_combine(sets.precast.WS.Acc, sets.precast.WS['Cataclysm'], {})
 	sets.precast.WS['Cataclysm'].FullAcc = set_combine(sets.precast.WS.FullAcc, sets.precast.WS['Cataclysm'], {})
 	sets.precast.WS['Cataclysm'].PDL = set_combine(sets.precast.WS.PDL, sets.precast.WS['Cataclysm'], {})
