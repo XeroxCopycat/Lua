@@ -2,14 +2,14 @@ function user_job_setup()
 	-- Options: Override default values
     state.OffenseMode:options('Normal', 'Hoxne', 'Acc', 'FullAcc')
     state.WeaponskillMode:options('Match', 'Normal', 'Hoxne', 'Acc', 'PDL')
-    state.HybridMode:options('Normal', 'DT', 'FullDef', 'HoxneDT', 'HoxneFullDef')
+    state.HybridMode:options('Normal', 'DT', 'HoxneDT')
     state.PhysicalDefenseMode:options('PDT', 'PDTReraise')
     state.MagicalDefenseMode:options('MDT', 'MDTReraise')
 	state.ResistDefenseMode:options('MEVA')
 	state.IdleMode:options('Normal', 'Regen', 'Refresh', 'Sphere', 'Reraise')
     state.ExtraMeleeMode = M{['description']='Extra Melee Mode', 'None', 'DWMid', 'DWMax', 'SubtleBlow'}
 	state.Passive = M{['description'] = 'Passive Mode', 'None', 'Twilight'}
-	state.Weapons:options('Sword', 'Greataxe', 'Club', 'Axe', 'Polearm', 'Greatsword', 'DualSword', 'DualDagger', 'ProcDagger', 'ProcSword', 'ProcGreatSword', 'ProcKatana', 'ProcScythe', 'ProcPolearm', 'ProcGreatKatana', 'ProcClub', 'ProcStaff')
+	state.Weapons:options('Naegling', 'Loxotic', 'Chango', 'AgwuClaymore', 'ShiningOne', 'DualSavage', 'ProcDagger', 'ProcSword', 'ProcGreatSword', 'ProcKatana', 'ProcScythe', 'ProcPolearm', 'ProcGreatKatana', 'ProcClub', 'ProcStaff')
 
 	-- Additional local binds
 	send_command('bind ^` input /ja "Hasso" <me>')
@@ -313,18 +313,7 @@ function init_gear_sets()
 		back="Null Shawl", --DA +7, Store TP +7
 	}
   
-  -- Hoxne set
-	sets.engaged.Hoxne = set_combine(sets.engaged, { --DT -34, Store TP +65~77, TA +11, QA +3
-		ammo="Hoxne Ampulla", --Enchantment: 1,000 gil > DA +100
-		hands="Tatena. Gote +1", --Store TP +4~8, TA +4
-		legs="Tatena. Haidate +1", --Store TP +4~8, TA +4
-		feet="Tatena. Sune. +1", --Store TP +4~8, TA +3
-		waist="Sweordfaetels +1", --Store TP +6
-		left_ear="Alabaster Earring", --DT -5 (Aug. to R30)
-		right_ear="Dedition Earring", --Store TP +8
-		left_ring="Moonlight Ring", --DT -5, Store TP +5
-		back="Null Shawl", --Store TP +7 (Cichol's Mantle: DEX +30, Acc/Atk +20, Store TP +10, PDT -10)
-	})
+  
 	
   -- Accuracy set
 	sets.engaged.Acc = set_combine(sets.engaged, { --Base Acc 1395, DT -32 [PDT -37], DA +73, Store TP +44
@@ -346,41 +335,62 @@ function init_gear_sets()
 		right_ring="Chirich Ring +1", --Store TP +6
 	})
 	
--- ### Hybrid DT sets ###
-	sets.engaged.DT = { --Base Acc 1340, DT -37 [PDT -50], DA +65, Store TP +40
+	-- Hoxne set
+	sets.engaged.Hoxne = set_combine(sets.engaged, { --DT -34, Store TP +65~77, TA +11, QA +3
+		ammo="Hoxne Ampulla", --Enchantment: 1,000 gil > DA +100
+		hands="Tatena. Gote +1", --Store TP +4~8, TA +4
+		legs="Tatena. Haidate +1", --Store TP +4~8, TA +4
+		feet="Tatena. Sune. +1", --Store TP +4~8, TA +3
+		waist="Sweordfaetels +1", --Store TP +6
+		left_ear="Alabaster Earring", --DT -5 (Aug. to R30)
+		right_ear="Dedition Earring", --Store TP +8
+		left_ring="Moonlight Ring", --DT -5, Store TP +5
+		back="Null Shawl", --Store TP +7 (Cichol's Mantle: DEX +30, Acc/Atk +20, Store TP +10, PDT -10)
+	})
+	
+	
+  -- Hybrid DT set (Base Acc 1378, DT -50, DA +47, QA +3, Store TP +42)
+	sets.engaged.DT = { 
 		ammo="Coiste Bodhar", --DA +3, Store TP +3
-		head="Hjarrandi Helm", --DT -10, DA +6, Store TP +7
+		head="Boii Mask +3", --DT -11, DA +7
 		body="Boii Lorica +3", --DT -14, Store TP +11
-		hands="Sakpata's Gauntlets", --DT -8, DA +6 (Aug. to R30)
-		legs="Pumm. Cuisses +4", --PDT -5, DA +11
-		feet="Pumm. Calligae +4", --DA +9, Store TP +4
-		neck="Vim Torque +1", --Store TP +10, Latent: Regain +20
-		waist="Sailfi Belt +1", --DA +5, TA +2
+		hands="Sakpata's Gauntlets", --DT -8, DA +6, Store TP +4 (Aug. to R30)
+		legs="Revelation Brais", --DT -7, Store TP +7
+		feet="Revelation Sab.", --DT -5, Store TP +5
+		neck={ name="War. Beads +2", augments={'Path: A',}}, --DA +7
+		waist="Ioskeha Belt +1", --DA +9
 		left_ear="Schere Earring", --DA +6
 		right_ear={ name="Boii Earring +2", augments={'System: 1 ID: 1676 Val: 0','Accuracy+18','Mag. Acc.+18','Crit.hit rate+7','STR+11 VIT+11',}}, --DA +9
 		left_ring="Moonlight Ring", --DT -5, Store TP +5
 		right_ring="Niqmaddu Ring", --QA +3
-		back={ name="Cichol's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}}, --PDT -10, DA +10
+		back="Null Shawl", --DA +7, Store TP +7
 	}
 	
-  -- Hybrid full defense set	
-	sets.engaged.Hoxne.FullDef = set_combine(sets.engaged,DT, { --Base Acc 1336, DT -49, DA +53. Store TP +26
-		hands="Sakpata's Gauntlets", --DT -8, Store TP +4 (Aug. to R30)
-		feet="Nyame Sollerets", --DT -7
+-- ## Dual-wield sets ##
+	sets.engaged.DW = set_combine(sets.engaged, {
+		legs="Revelation Brais", --DT -7, Store TP +7
+		waist="Reiki Yotai", --DW +7
+		right_ear="Eabani Earring", --DW +4
 	})
 	
+	sets.engaged.DW.Acc = set_combine(sets.engaged.Acc, sets.engaged.DW, {})
+	sets.engaged.DW.FullAcc = set_combine(sets.engaged.FullAcc, sets.engaged.DW, {})
+	sets.engaged.DW.Hoxne = set_combine(sets.engaged.Hoxne, sets.engaged.DW, {})
+	sets.engaged.DW.DT = set_combine(sets.engaged.DT, sets.engaged.DW, {})
+	sets.engaged.DW.Acc.DT = set_combine(sets.engaged.Acc, sets.engaged.DW, {})
+	sets.engaged.DW.FullAcc.DT = set_combine(sets.engaged.FullAcc, sets.engaged.DW, {})
+	sets.engaged.DW.Hoxne.DT =set_combine(sets.engaged.Hoxne, sets.engaged.DW, {})
+	
+	
 -- ### Extra melee sets (equipped on top of engaged sets) ###
-	sets.DWMid = { --Dual wield +11, used for /NIN
+  --  Dual wield mid set 
+	sets.DWMid = {
 		waist="Reiki Yotai", --DW +7
 		right_ear="Eabani Earring", --DW +4
+		back="Null Shawl", -- (Cichol's Mantle: DEX +30, Acc/Atk +20, Dual Wield +10, PDT -10)
 	}
 	
-	sets.DWMax = { --Dual wield +16, used for /DNC
-		waist="Reiki Yotai", --DW +7
-		left_ear="Suppanomimi", --DW +5
-		right_ear="Eabani Earring", --DW +4
-		back={ name="Cichol's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dbl.Atk."+10','Phys. dmg. taken-10%',}}, --PDT -10, DA +10 (Cichol's Mantle: DEX +30, Acc/Atk +20, Dual Wield +10, PDT -10)
-	}
+	sets.DWMax = set_combine(sets.DWMid, {left_ear="Suppanomimi"})
 	
 	sets.SubtleBlow = set_combine(sets.engaged, { --Subtle Blow +50, Subtle Blow II +5
 		body="Sacro Breastplate", --Subtle Blow +15 (Dagon Breastplate)
@@ -395,21 +405,16 @@ function init_gear_sets()
 -------------------------------------------------------------------------------------------------------------------
 -- Weapon sets
 -------------------------------------------------------------------------------------------------------------------
--- Single handed weapons
-	sets.weapons.Axe = {main="Ikenga's Axe", sub="Blurred Shield +1"}
-	sets.weapons.Club = {main="Loxotic Mace +1", sub="Blurred Shield +1"}
-	sets.weapons.Sword = {main="Naegling", sub="Blurred Shield +1"}
-	sets.weapons.Dagger = {main="Crepuscular Knife", sub="Blurred Shield +1"}
+-- ## Weapon sets ## 
+	sets.weapons.Naegling = {main="Naegling", sub="Blurred Shield +1"}
+	 sets.weapons.DualNaegling = {main="Naegling", sub="Blurred Knife +1"}
+	sets.weapons.Loxotic = {main="Loxotic Mace +1", sub="Blurred Shield +1"}
+	sets.weapons.Chango = {main="Chango", sub="Utu Grip"}
+	sets.weapons.AgwuClaymore = {main="Agwu's Claymore", sub="Utu Grip"}
+	sets.weapons.ShiningOne = {main="Shining One", sub="Utu Grip"}
 	
--- Two-Handed weapons
-	sets.weapons.Greataxe = {main="Chango", sub="Utu Grip"}
-	sets.weapons.Greatsword = {main="Agwu's Claymore", sub="Utu Grip"}
-	sets.weapons.Polearm = {main="Shining One", sub="Utu Grip"}
 	
--- Dual weapons
-	sets.weapons.DualSword = {main="Naegling", sub="Blurred Knife +1"}
-	sets.weapons.DualDagger = {main="Crepuscular Knife", sub="Blurred Knife +1"}
-	
+
 -- Proc weapons (Enabled in Abyssea only)
 	sets.weapons.ProcDagger = {main="Qutrub Knife", sub=empty}
 	sets.weapons.ProcSword = {main="Ibushi Shinai", sub=empty}
@@ -424,52 +429,32 @@ function init_gear_sets()
 -------------------------------------------------------------------------------------------------------------------
 -- Weaponskill sets
 -------------------------------------------------------------------------------------------------------------------
--- ### Default weaponskill set ###
+-- ## Default weaponskill set ###
+-- ## Default set is based off STR/DA/WSD, used for Savage Blade (DT -29, DA +29, TA +2, QA +3, WSD +77% ##
     sets.precast.WS = {
-		ammo="Knobkierrie",
-		head="Agoge Mask +4",
-		body="Nyame Mail", --(Path B: Aug. to R30)
-		hands="Boii Mufflers +3",
-		legs="Nyame Flanchard", --(Path B: Aug. to R30) 
-		feet="Nyame Sollerets", --(Path B: Aug. to R30)
-		neck={ name="War. Beads +2", augments={'Path: A',}},
-		waist="Sailfi Belt +1",
-		left_ear="Moonshade Earring",
-		right_ear={ name="Boii Earring +2", augments={'System: 1 ID: 1676 Val: 0','Accuracy+18','Mag. Acc.+18','Crit.hit rate+7','STR+11 VIT+11',}}, --(Hoxne Earring, MR 7+)
-		left_ring="Cornelia's Ring",
-		right_ring="Niqmaddu Ring",
-		back={ name="Cichol's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Damage taken-5%',}},
+		ammo="Knobkierrie", --WSD +6%
+		head="Agoge Mask +4", --WSD +12%
+		body="Nyame Mail", --DT -9, DA +3, WSD +10%
+		hands="Boii Mufflers +3", --WSD +12%
+		legs="Nyame Flanchard", --DT -8, DA +3, WSD +9%
+		feet="Nyame Sollerets", --DT -7, DA +2, WSD +8%
+		neck={ name="War. Beads +2", augments={'Path: A',}}, --DA +7
+		waist="Sailfi Belt +1", --DA +5, TA +2
+		left_ear="Moonshade Earring", --TP Bonus +250
+		right_ear={ name="Boii Earring +2", augments={'System: 1 ID: 1676 Val: 0','Accuracy+18','Mag. Acc.+18','Crit.hit rate+7','STR+11 VIT+11',}}, --DA +9, (Hoxne Earring, Master Rank 7+)
+		left_ring="Cornelia's Ring", --WS Acc +10, WSD +10%, (Bethir Ring)
+		right_ring="Niqmaddu Ring", --QA +3
+		back={ name="Cichol's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Damage taken-5%',}}, --DT -5, WSD +10%
 	}
 
 	sets.precast.WS.Hoxne = set_combine(sets.precast.WS, {ammo="Hoxne Ampulla"})
 	sets.precast.WS.Acc = set_combine(sets.precast.WS, {})
 	sets.precast.WS.PDL = set_combine(sets.precast.WS, {
-		body="Sakpata's Plate", --(Aug. to R30)
-		legs="Boii Cuisses +3",
-		right_ring="Sroda Ring",
+		body="Sakpata's Plate", --DT -10, DA +8, PDL +8% (Aug. to R30)
+		legs="Boii Cuisses +3", --PDL +10%, Fencer +4, TP Bonus +100, 
+		right_ring="Sroda Ring", --PDL +3%
 	})
 
-
-  -- Axe Weaponskills
-	-- Decimation
-	sets.precast.WS['Decimation'] = set_combine(sets.precast.WS, {})
-	sets.precast.WS['Decimation'].Hoxne = set_combine(sets.precast.WS['Decimation'], sets.precast.WS.Hoxne, {})
-	sets.precast.WS['Decimation'].Acc = set_combine(sets.precast.WS['Decimation'], sets.precast.WS.Acc, {})
-	sets.precast.WS['Decimation'].PDL = set_combine(sets.precast.WS['Decimation'], sets.precast.WS.PDL, {})
-	 
-    -- Mistral Axe
-	sets.precast.WS['Mistral Axe'] = set_combine(sets.precast.WS, {right_ear="Thrud Earring", right_ring="Sroda Ring"})
-	sets.precast.WS['Mistral Axe'].Hoxne = set_combine(sets.precast.WS['Mistral Axe'], sets.precast.WS.Hoxne, {})
-    sets.precast.WS['Mistral Axe'].Acc = set_combine(sets.precast.WS['Mistral Axe'], sets.precast.WS.Acc, {})
-	sets.precast.WS['Mistral Axe'].PDL = set_combine(sets.precast.WS['Mistral Axe'], sets.precast.WS.PDL, {})
-	
-    -- Ruination
-	sets.precast.WS['Ruination'] = set_combine(sets.precast.WS, {})
-	sets.precast.WS['Ruination'].Hoxne = set_combine(sets.precast.WS['Ruination'], sets.precast.WS.Hoxne, {})
-	sets.precast.WS['Ruination'].Acc = set_combine(sets.precast.WS['Ruination'], sets.precast.WS.Acc, {})
-	sets.precast.WS['Ruination'].PDL = set_combine(sets.precast.WS['Ruination'], sets.precast.WS.PDL, {})
-	
-	
   -- Club Weaponskills
 	-- Black Halo
 	sets.precast.WS['Black Halo'] = set_combine(sets.precast.WS, sets.precast.WS.Hoxne, {right_ring="Regal Ring"})
@@ -477,7 +462,7 @@ function init_gear_sets()
 	sets.precast.WS['Black Halo'].Acc = set_combine(sets.precast.WS['Black Halo'], sets.precast.WS.Acc, {})
     sets.precast.WS['Black Halo'].PDL = set_combine(sets.precast.WS['Black Halo'], sets.precast.WS.PDL,  {})
 	
-	-- Judgement
+	-- Judgement (STR/WSD, uses default WS set)
     sets.precast.WS['Judgement'] = set_combine(sets.precast.WS, {})
 	sets.precast.WS['Judgement'].Hoxne = set_combine(sets.precast.WS['Judgement'], sets.precast.WS.Hoxne, {})
     sets.precast.WS['Judgement'].Acc = set_combine(sets.precast.WS['Judgement'], sets.precast.WS.Acc, {})
@@ -496,154 +481,133 @@ function init_gear_sets()
 		ammo="Pemphredo Tathlum",
 		head="Boii Mask +3",
 		body="Boii Lorica +3",
-		hands="Boii Mufflers +3",
 		legs="Boii Cuisses +3",
 		feet="Boii Calligae +3",
 		neck="Null Loop",
 		waist="Null Belt",
 		left_ear="Alabaster Earring", --(Aug. to R30)
-		right_ear={ name="Boii Earring +2", augments={'System: 1 ID: 1676 Val: 0','Accuracy+18','Mag. Acc.+18','Crit.hit rate+7','STR+11 VIT+11',}},
 		left_ring="Metamor. Ring +1",
 		right_ring="Crepuscular Ring",
 		back="Null Shawl",
 	})
 	
-  -- Ukko's Fury --DEX, Crit Rate
+  -- Ukko's Fury (STR, Crit Rate: DT -36, STR +281, DEX +189, WSD +22%, Crit rate +45%, Crit Dmg +16%)
 	sets.precast.WS["Ukko's Fury"] = set_combine(sets.precast.WS, {
-		ammo="Yetshila +1",
-		head="Boii Mask +3",
-		body="Hjarrandi Breast.",
-		hands="Flam. Manopolas +2",
-		legs="Zoar Subligar +1",
-		feet="Boii Calligae +3",
-		back={ name="Cichol's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Damage taken-5%',}}, --(Cichol's Mantle: DEX +30, Atk/Acc +20, Crit. Hit Rate +10, DT -5)
+		ammo="Yetshila +1", --Crit rate +2%, Crit dmg +6%
+		head="Revelation Masque", --DT -6, Crit rate +6%
+		body="Revelation Plate.", --DT -8, Crit rate +8%
+		legs="Revelation Brais", --DT -7, Crit rate +7%
+		feet="Boii Calligae +3", --DT -10, Crit dmg +10%
+		left_ring="Begrudging Ring", --Max Tonberry hate: Crit rate +5%
+		back={ name="Cichol's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Damage taken-5%',}}, --WSD +10% (Cichol's mantle: DEX +30, Acc/Atk +20, Crit rate +10%, DT -5) 
 	})
 	
 	sets.precast.WS["Ukko's Fury"].Hoxne = set_combine(sets.precast.WS["Ukko's Fury"], sets.precast.WS.Hoxne, {})
     sets.precast.WS["Ukko's Fury"].Acc = set_combine(sets.precast.WS["Ukko's Fury"], sets.precast.WS.Acc, {})
-    sets.precast.WS["Ukko's Fury"].PDL = set_combine(sets.precast.WS["Ukko's Fury"], sets.precast.WS.PDL, {})
-	
-  -- Upheaval
-    sets.precast.WS['Upheaval'] = set_combine(sets.precast.WS, {
-		ammo="Knobkierrie",
-		head="Agoge Mask +4",
-		body="Nyame Mail",
-		hands="Boii Mufflers +3",
-		legs="Boii Cuisses +3",
-		feet="Nyame Sollerets",
-		neck={ name="War. Beads +2", augments={'Path: A',}},
-		waist="Sailfi Belt +1",
-		left_ear="Moonshade Earring",
-		right_ear="Thrud Earring",
+    sets.precast.WS["Ukko's Fury"].PDL = set_combine(sets.precast.WS["Ukko's Fury"], sets.precast.WS.PDL, {
 		left_ring="Regal Ring",
-		right_ring="Niqmaddu Ring",
-		back={ name="Cichol's Mantle", augments={'VIT+20','Accuracy+20 Attack+20','VIT+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}},
+		back={ name="Cichol's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Damage taken-5%',}}, --Alabaster Mantle (Aug. to R30)
+	})
+	
+  -- Upheaval (VIT/WSD: VIT +213, DT -17, DA +26, TA +2, QA +3, WSD +63%, Fencer +4, TP Bonus +350) 
+    sets.precast.WS['Upheaval'] = set_combine(sets.precast.WS, {
+		legs="Boii Cuisses +3", --DA +8, Fencer +4, TP Bonus +100
+		right_ear="Thrud Earring", --WSD +3%
+		left_ring="Regal Ring", 
+		back={ name="Cichol's Mantle", augments={'VIT+20','Accuracy+20 Attack+20','VIT+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}}, --WSD +10%
 	})
 	
 	sets.precast.WS['Upheaval'].Hoxne = set_combine(sets.precast.WS['Upheaval'], sets.precast.WS.Hoxne, {})
     sets.precast.WS['Upheaval'].Acc = set_combine(sets.precast.WS['Upheaval'], sets.precast.WS.Acc, {})
     sets.precast.WS['Upheaval'].PDL = set_combine(sets.precast.WS['Upheaval'], sets.precast.WS.PDL, {
-		body="Sakpata's Plate",
-		hands="Sakpata's Gauntlets",
-		legs="Boii Cuisses +3",
-		feet="Boii Calligae +3",
-		left_ring="Sroda Ring",
+		hands="Sakpata's Gauntlets", --DT -8, DA +6, PDL +8
+		feet="Revelation Sab.", --DT -5
+		left_ring="Sroda Ring", --PDL +3%
 	}) 
 	
   -- Great Sword Weaponskills
 	-- Resolution (STR/DA)
     sets.precast.WS['Resolution'] = set_combine(sets.precast.WS, {
-		ammo="Coiste Bodhar",
-		head="Agoge Mask +4",
-		body="Agoge Lorica +3",
-		hands="Agoge Mufflers +3",
-		legs="Boii Cuisses +3",
-		feet="Boii Calligae +3",
-		neck={ name="War. Beads +2", augments={'Path: A',}},
-		waist="Fotia Belt",
-		left_ear="Moonshade Earring",
-		right_ear="Schere Earring",
-		left_ring="Regal Ring",
-		right_ring="Niqmaddu Ring",
-		back={ name="Cichol's Mantle", augments={'VIT+20','Accuracy+20 Attack+20','VIT+10','Weapon skill damage +10%','Phys. dmg. taken-10%',}}, --(Cichol's Mantle: STR +30, Acc/Atk +20, DA +10, DT -5)
+		ammo="Coiste Bodhar", --DA +3
+		body="Agoge Lorica +3", --DA +7
+		hands="Agoge Mufflers +3", --Fencer +1
+		legs="Boii Cuisses +3", --DA +8, Fencer +4, TP Bonus +100
+		feet="Revelation Sab.", --DT -5, Crit rate +5%
+		waist="Fotia Belt", --fTP bonus
+		left_ring="Regal Ring", 
+		back={ name="Cichol's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Damage taken-5%',}}, --DT -5, WSD +10% (Cichol's Mantle: STR +30, Acc/Atk +20, DA +10, DT -5)
 	})
 	
 	sets.precast.WS['Resolution'].Hoxne = set_combine(sets.precast.WS['Resolution'], sets.precast.WS.Hoxne, {
+		body="Revelation Plate.",
+		hands="Revelation Gaunt.",
+		feet="Revelation Sab.",
 		back={ name="Cichol's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Damage taken-5%',}},
 	})
 	
     sets.precast.WS['Resolution'].Acc = set_combine(sets.precast.WS['Resolution'], sets.precast.WS.Acc, {})
 	sets.precast.WS['Resolution'].PDL = set_combine(sets.precast.WS['Resolution'], sets.precast.WS.PDL, {
-		ammo="Coiste Bodhar",
-		head="Sakpata's Helm",
-		hands="Sakpata's Gauntlets",
-		feet="Sakpata's Leggings",
+		head="Revelation Masque",
+		body="Revelation Plate.",
+		hands="Revelation Gaunt.",
+		feet="Revelation Sab.",
 		neck="Fotia Gorget",
-		waist="Fotia Belt",
-		right_ear="Schere Earring",
-		left_ring="Sroda Ring",
-		back={ name="Cichol's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Damage taken-5%',}}, 
 	})
 	
 
   -- Polearm Weaponskills
 	-- Impulse Drive (STR/Crit)
     sets.precast.WS["Impulse Drive"] = set_combine(sets.precast.WS, {
-		ammo="Yetshila +1",
-		head="Boii Mask +3",
-		body="Tatena. Harama. +1",
-		hands="Boii Mufflers +3",
-		legs="Zoar Subligar +1",
-		feet="Boii Calligae +3",
-		back={ name="Cichol's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Damage taken-5%',}}, --(Cichol's Mantle: STR +30, Acc/Atk +20, Crit. Hit Rate +10, DT -5)
+		ammo="Yetshila +1", --Crit rate +2%, Crit dmg +6%
+		head="Boii Mask +3", --DT -11, Crit rate +6%
+		body="Revelation Plate.", --DT -8, Crit rate +8%
+		hands="Boii Mufflers +3", --WSD +12%
+		legs="Revelation Brais", --DT -7, Crit rate +7%
+		feet="Boii Calligae +3", --DT -10, Crit dmg +13%
+		left_ring="Begrudging Ring", --Max Tonberry hate: Crit rate +5%
+		back={ name="Cichol's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Damage taken-5%',}}, --DT -5, WSD +10% (Cichol's Mantle: STR +30, Acc/Atk +20, Crit rate +10%, DT -5)
 	})
 	
 	sets.precast.WS["Impulse Drive"].Hoxne = set_combine(sets.precast.WS["Impulse Drive"], sets.precast.WS.Hoxne, {})
     sets.precast.WS["Impulse Drive"].Acc = set_combine(sets.precast.WS["Impulse Drive"], sets.precast.WS.Acc, {})
     sets.precast.WS["Impulse Drive"].PDL = set_combine(sets.precast.WS["Impulse Drive"], sets.precast.WS.PDL, {
-		head="Blistering Sallet +1",
-		body="Tatena. Harama. +1",
-		hands="Flam. Manopolas +2",
-		legs="Boii Cuisses +3",
-		left_ring="Regal Ring",
+		head="Revelation Masque", --DT -6, Crit rate +6% (Aug. to R30)
+		legs="Boii Cuisses +3", --DA +8, PDL +10%, Fencer +4, TP Bonus +100
+		feet="Revelation Sab.", --DT -5, Crit rate +5% (Aug. to R30)
+		left_ring="Regal Ring", 
+		back="Alabaster Mantle", --WSD +11% (Aug. to R30)
 	})
 
-  -- Stardiver (STR/Crit)
+  -- Stardiver (STR/Crit: STR +257, DT -40, Crit rate +52)
 	sets.precast.WS["Stardiver"] = set_combine(sets.precast.WS, {
-		ammo="Yetshila +1",
-		head="Boii Mask +3",
-		body="Tatena. Harama. +1",
-		hands="Boii Mufflers +3",
-		legs="Zoar Subligar +1",
-		feet="Boii Calligae +3",
-		neck="Fotia Gorget",
-		waist="Fotia Belt",
-		back={ name="Cichol's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Damage taken-5%',}},  --(Cichol's Mantle: STR +30, Acc/Atk +20, Crit. Hit Rate +10, DT -5)
+		ammo="Yetshila +1", --Crit rate +2%, Crit dmg +6%
+		head="Boii Mask +3", --DT -11, Crit rate +6%
+		body="Revelation Plate.", --DT -8, Crit rate +8%
+		hands="Revelation Gaunt.", --DT -4, Crit rate +4%
+		legs="Revelation Brais", --DT -7, Crit rate +7%
+		feet="Boii Calligae +3", --DT -10, Crit dmg +13%
+		neck="Fotia Gorget", --fTP Bonus
+		waist="Fotia Belt", --fTP Bonus
+		left_ring="Begrudging Ring", --Max Tonberry hate: Crit rate +5%
+		back={ name="Cichol's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Damage taken-5%',}}, --DT -5, WSD +10% (Cichol's Mantle: STR +30, Acc/Atk +20, Crit rate +10%, DT -5)
 	})
 	
 	sets.precast.WS["Stardiver"].Hoxne = set_combine(sets.precast.WS.Hoxne, sets.precast.WS.Hoxne, {})
     sets.precast.WS["Stardiver"].Acc = set_combine(sets.precast.WS["Stardiver"], sets.precast.WS.Acc, {})
-    sets.precast.WS["Stardiver"].PDL = set_combine(sets.precast.WS["Stardiver"], sets.precast.WS.PDL, {
-		legs="Boii Cuisses +3",
-		right_ring="Sroda Ring",
-	})
+    sets.precast.WS["Stardiver"].PDL = set_combine(sets.precast.WS["Stardiver"], sets.precast.WS.PDL, {})
 	
 
   -- Sword Weaponskills
 	-- Sanguine Blade
 	sets.precast.WS["Sanguine Blade"] = set_combine(sets.precast.WS, {
-		ammo="Pemphredo Tathlum",
-		head="Pixie Hairpin +1",
-		body="Nyame Mail", --(Path B: Aug. to R30)
-		hands="Nyame Gauntlets", --(Path B: Aug. to R30)
-		legs="Nyame Flanchard", --(Path B: Aug. to R30)
-		feet="Nyame Sollerets", --(Path B: Aug. to R30)
-		neck="Sibyl Scarf",
-		waist="Orpheus's Sash",
-		left_ear="Moonshade Earring",
-		right_ear="Friomisi Earring",
-		left_ring="Metamor. Ring +1",
-		right_ring="Archon Ring",
+		ammo="Pemphredo Tathlum", --MAB +4
+		head="Pixie Hairpin +1", --Dark elem.: MAB +28
+		hands="Nyame Gauntlets", --DT -7, MAB +30, WSD +8% (Aug. to R30)
+		neck="Sibyl Scarf", --MAB +10
+		waist="Orpheus's Sash", --Ele. magic dmg bonus
+		right_ear="Friomisi Earring", --MAB +10
+		left_ring="Metamor. Ring +1", 
+		right_ring="Archon Ring", --Dark elem.: MAB +5
 		back={ name="Cichol's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','Weapon skill damage +10%','Damage taken-5%',}}, --(Cichol's Mantle: INT +30, MAtk/Macc +20, WSD +10, DT -5)
 	})
 	
@@ -651,11 +615,7 @@ function init_gear_sets()
 	sets.precast.WS['Savage Blade'] = set_combine(sets.precast.WS, {})
     sets.precast.WS['Savage Blade'].Hoxne = set_combine(sets.precast.WS['Savage Blade'], sets.precast.WS.Hoxne, {})
 	sets.precast.WS['Savage Blade'].Acc = set_combine(sets.precast.WS['Savage Blade'], sets.precast.WS.Acc, {})
-    sets.precast.WS['Savage Blade'].PDL = set_combine(sets.precast.WS['Savage Blade'], sets.precast.WS.PDL, {
-		body="Sakpata's Plate", --(Aug. to R30)
-		legs="Boii Cuisses +3",
-		right_ring="Sroda Ring",
-	})
+    sets.precast.WS['Savage Blade'].PDL = set_combine(sets.precast.WS['Savage Blade'], sets.precast.WS.PDL, {})
 
 
 -- ### Misc. weaponskill swaps, used when using WS at 3000 TP ###
@@ -680,7 +640,15 @@ function init_gear_sets()
 -- Miscelaneous Sets
 -------------------------------------------------------------------------------------------------------------------
 -- ### Gear equipped to counteract specific debuffs ###
-	sets.buff.Doom = set_combine(sets.buff.Doom, {neck="Nicander's Necklace", waist="Gishdubar Sash"}) --(Purity Ring, Shabti Cuisses +1)
+  -- Vs. Doom (Cursna effect received +45)
+	sets.buff.Doom = set_combine(sets.buff.Doom, { 
+		legs="Shabti Cuisses +1", --Cursna effect received +15
+		neck="Nicander's Necklace", --Cursna effect received +20, Holy Water effect +30
+		waist="Gishdubar Sash", --Cursna effect received +10
+		--right_ring="Purity Ring", 
+	}) 
+	
+  -- Vs. Sleep
 	sets.buff.Sleep = {neck="Vim Torque +1"}
 
 -- ### Gear for specific buffs that have to be kept equipped ###
@@ -696,16 +664,18 @@ function init_gear_sets()
 	
   -- Phalanx received
 	sets.Phalanx_Received = { --Phalanx +14
-		hands={ name="Souv. Handschuhs", augments={'HP+80','Enmity+7','Potency of "Cure" effect received +10%',}}, --Phalanx +4
+		--main="Deacon Sword"
+		--head="Yorium Barbuta" --(Aug. w/ Phalanx +3, OR Odyssean Helm w/ Phalanx +3~5)
+		--body="Yorium Cuirass" --(Aug. w/ Phalanx +3, OR Odyssean Chestplate w/ Phalanx +3~5
+		hands={ name="Souv. Handschuhs", augments={'HP+80','Enmity+7','Potency of "Cure" effect received +10%',}}, --Phalanx +4 (Souv. Handschuhs +1)
 		legs="Sakpata's Cuisses", --Phalanx +5
 		feet={ name="Souveran Schuhs +1", augments={'HP+105','Enmity+9','Potency of "Cure" effect received +15%',}}, --Phalanx +5
 	}
 
--- ### Treasure Hunter ###
+-- ### Treasure Hunter (Treasure Hunter +4, Treasure Hunter effect +5% ###
 	sets.TreasureHunter = set_combine(sets.TreasureHunter, {
-		head="Volte Cap",
-        body="Volte Jupon",
-		waist="Chaac Belt",
+        body="Volte Jupon", --Treasure Hunter +2
+		right_ring="Hoxne Ring", --Treasure Hunter +2, TH Effect +5%
 	})	
 end
 	

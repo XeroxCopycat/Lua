@@ -6,7 +6,7 @@ function user_job_setup()
     state.CastingMode:options('Normal', 'Resistant', 'AoE')
     state.IdleMode:options('Normal', 'Regen', 'Refresh')
 	state.ExtraMeleeMode = M{['description']='Extra Melee Mode', 'None', 'DWMid', 'DWMax', 'SubtleBlow'}
-	state.Weapons:options('Savage', 'Ruthless', 'Rudras', 'Evisceration', 'Aeolian')
+	state.Weapons:options('Savage', 'Ruthless', 'Rudras', 'Evisceration', 'Aeolian', 'SavageShield')
 	
 	-- Whether to use Carn (or song daggers in general) under a certain threshhold even when weapons are locked.
 	state.CarnMode = M{'Always', '300', '1000', 'Never'}
@@ -362,7 +362,7 @@ function init_gear_sets()
 		body="Nyame Mail", --DT -9
 		hands="Nyame Gauntlets", --DT -7
 		legs="Nyame Flanchard", --DT -8
-		feet="Fili Cothurnes +3", --Mv. Speed +18%, Regen +4
+		feet="Fili Cothurnes +3", --Regen +4
 		neck="Bathy Choker +1", --Regen +3
 		waist="Null Belt", --Regen +3
 		left_ear="Alabaster Earring", --DT -5
@@ -451,23 +451,23 @@ function init_gear_sets()
 	})
 
 -- Misc. Defense Sets
-	--sets.Kiting = {left_ring="Shneddick Ring"}
+	sets.Kiting = {right_ring="Shneddick Ring"}
 	
-  
-	--sets.TPEat = {neck="Chrys. Torque"}
-
+	
 -------------------------------------------------------------------------------------------------------------------
 -- Offensive Sets
 -------------------------------------------------------------------------------------------------------------------
--- ### Engaged Sets ###
-	sets.engaged = { --DT -20, DA +20, Store TP +62
-		head="Bunzi's Hat", --DT -7 (Aug. to R30)
-		body="Volte Harness", --Store TP +10 (Rev. Platemail, Aug. to R30)
+-- ### Engaged Sets (--Base Acc 1228, DT -39, DA +18, TA +2, QA +3, Store TP +62) ###
+-- ### Base accuracy cacluations are based upon Naegling/Centovente w/ no food ###
+	sets.engaged = { 
+		range={ name="Linos", augments={'"Store TP"+2',}}, --Store TP +2 (Aug. w/ QA +3, Store TP +4)
+		head="Revelation Masque", --DT -6, Store TP +6 (Aug. to R30)
+		body="Revelation Plate.", --DT -8, Store TP +8  (Aug. to R30)
 		hands="Bunzi's Gloves", --DT -8, DA +8 (Aug. to R30)
-		legs="Volte Tights", --Store TP +8
-		feet="Volte Spats", --Store TP +6
-		neck={ name="Bard's Charm +2", augments={'Path: A',}}, --Store TP +7
-		waist="Reiki Yotai", --Dual Wield +7, Store TP +4
+		legs="Revelation Brais", --DT -7, Store TP +7
+		feet="Revelation Sab.", --DT -5, Store TP +5
+		neck={ name="Bard's Charm +2", augments={'Path: A',}}, --QA +3, Store TP +7
+		waist="Sailfi Belt +1", --DA +5, TA +2
 		left_ear="Dedition Earring", --Store TP +8
 		right_ear="Brutal Earring", --DA +5, Store TP +1
 		left_ring="Moonlight Ring", --DT -5, Store TP +5
@@ -475,59 +475,50 @@ function init_gear_sets()
 		back="Null Shawl", --DA +7, Store TP +7
 	}
 	
-  -- Engaged, accuracy set
-	sets.engaged.Acc = set_combine(sets.engaged, {
-		left_ear="Telos Earring",
-	})
+  -- Engaged, accuracy set (Base Acc 1248, DT -39, DA +19, TA +2, QA +3, Store TP +59)
+	sets.engaged.Acc = set_combine(sets.engaged, {left_ear="Telos Earring"}) --DA +1, Store TP +5
 	
-  -- Engaged, full accuracy set
-	sets.engaged.FullAcc = set_combine(sets.engaged, {
-		head="Fili Calot +3",
-		body="Bihu Just. +4",
-		hands="Fili Manchettes +3",
-		legs="Brios. Cann. +4",
-		feet="Fili Cothurnes +3",
-		neck={ name="Bard's Charm +2", augments={'Path: A',}},
-		waist="Reiki Yotai",
-		left_ear="Regal Earring",
+  -- Engaged, full accuracy set (--Base Acc 1355, DT -35 [PDT -42], DA +12, TA +2, QA +3, Store TP +29)
+	sets.engaged.FullAcc = set_combine(sets.engaged, { 
+		head="Fili Calot +3", --DT -11
+		body="Bihu Just. +4", --PDT -7
+		hands="Fili Manchettes +3", --DT -11
+		legs="Brios. Cann. +4", --DT -8
+		feet="Fili Cothurnes +3", 
+		left_ear="Regal Earring", 
 		right_ear={ name="Fili Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+12','Mag. Acc.+12','Damage taken-4%',}},
-		left_ring="Chirich Ring +1",
-		right_ring="Chirich Ring +1",
-		back="Null Shawl",
+		
 	})
 	
--- ### Engaged set, dual-wield ###
-	sets.engaged.DW = {
-		range="Daurdabla", --(Linos, Aug. w/ QA, Store TP)
-		head="Bunzi's Hat", --DT -7 (Aug. to R30)
-		body="Volte Harness", --Store TP +10 (Rev. Platemail, Aug. to R30)
-		hands="Bunzi's Gloves", --DT -8, DA +8 (Aug. to R30)
-		legs="Volte Tights", --Store TP +8
-		feet="Volte Spats", --Store TP +6
-		neck={ name="Bard's Charm +2", augments={'Path: A',}}, --Store TP +7
+	
+-- ### Engaged set, dual-wield (Base Acc 1257, DT -35, Dual Wield +11, DA +7, QA +3, Store TP +67) ###
+-- ### Dual-wield sets are designed for /NIN. Use DWMid extra set for /DNC ###
+	sets.engaged.DW = { 
+		range={ name="Linos", augments={'"Store TP"+2',}}, --Store TP +2 (Aug. w/ QA +3, Store TP +4)
+		head="Revelation Masque", --DT -6, Store TP +6 (Aug. to R30)
+		body="Revelation Plate.", --DT -8, Store TP +8  (Aug. to R30)
+		hands="Revelation Gaunt.", --DT -4, Store TP +4 (Aug. to R30)
+		legs="Revelation Brais", --DT -7, Store TP +7
+		feet="Revelation Sab.", --DT -5, Store TP +5
+		neck={ name="Bard's Charm +2", augments={'Path: A',}}, --QA +3, Store TP +7
 		waist="Reiki Yotai", --Dual Wield +7, Store TP +4
 		left_ear="Dedition Earring", --Store TP +8
-		right_ear="Brutal Earring", --DA +5, Store TP +1
-		left_ring="Petrov Ring", --DA +1, Store TP +5
+		right_ear="Eabani Earring", --Dual Wield +4
+		left_ring="Moonlight Ring", --DT -5, Store TP +5
 		right_ring="Chirich Ring +1", --Store TP +6
 		back="Null Shawl", --DA +7, Store TP +7
 	}
 	
+  -- Engaged set, dual-wield accuracy (Base Acc 1277, DT -35, Dual Wield +11, DA +8, QA +3, Store TP +64)
 	sets.engaged.DW.Acc = set_combine(sets.engaged.DW, {left_ear="Telos Earring"})
 	
-	sets.engaged.DW.FullAcc = set_combine(sets.engaged.DW, {
-		head="Fili Calot +3",
-		body="Bihu Just. +4",
-		hands="Fili Manchettes +3",
-		legs="Brios. Cann. +4",
-		feet="Fili Cothurnes +3",
-		neck={ name="Bard's Charm +2", augments={'Path: A',}},
-		waist="Reiki Yotai",
-		left_ear="Regal Earring",
-		right_ear={ name="Fili Earring +1", augments={'System: 1 ID: 1676 Val: 0','Accuracy+12','Mag. Acc.+12','Damage taken-4%',}},
-		left_ring="Chirich Ring +1",
-		right_ring="Chirich Ring +1",
-		back="Null Shawl",
+  -- Engaged set, dual-wield full accuracy (Base Acc 1294, DT -42, Dual Wield +11, DA +7, Store TP +53)
+	sets.engaged.DW.FullAcc = set_combine(sets.engaged.DW.Acc, {
+		head="Fili Calot +3", --DT -11
+		neck="Null Loop", --DT -5
+		left_ear="Regal Ring", 
+		left_ring="Chirich Ring +1", --Store TP +6
+		right_ring="Chirich Ring +1", --Store TP +6
 	})
 	
 -- ### Engaged, DT hybrid sets ###
@@ -553,13 +544,15 @@ function init_gear_sets()
 		back={ name="Intarabus's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Damage taken-5%',}}, --(Intarabus's Cape: DEX +30, Atk/Acc +20, DA +10, DT -5)
 	})
 	
--- ### Extra melee modes applied on top of melee sets ###	
+-- ### Extra melee modes applied on top of melee sets ###
+  -- Dual-wield mid set (use for /DNC)
 	sets.DWMid = { --Dual Wield +21
 		right_ear="Eabani Earring", --Dual Wield +4
 		waist="Reiki Yotai", --Dual Wield +7, Store TP +4
 		back={ name="Intarabus's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Damage taken-5%',}}, --Dual Wield +10
 	}
 	
+  -- Dual-wield max set (overcaps dual-wield, useful when weakened or not getting capped magic haste)
 	sets.DWMax = { --Dual Wield +26
 		left_ear="Suppanomimi", --Dual Wield +5
 		right_ear="Eabani Earring", --Dual Wield +4
@@ -567,6 +560,7 @@ function init_gear_sets()
 		back={ name="Intarabus's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','"Dual Wield"+10','Damage taken-5%',}}, --Dual Wield +10
 	}
 	
+  -- Subtle blow set
 	sets.SubtleBlow = { --Subtle Blow +50
 		head="Volte Tiara", --Subtle Blow +6
 		body="Volte Harness", --Subtle Blow +10
@@ -581,6 +575,7 @@ function init_gear_sets()
 ---------------------------------------------------------------------------------------------------------------
 -- ### Weaspon sets ###
 	sets.weapons.Savage = {main="Naegling", sub="Centovente"}
+	 sets.weapons.SavageShield = {main="Naegling", sub="Ammurapi Shield"}
 	sets.weapons.Ruthless = {main="Mpu Gandring", sub="Centovente"}
 	sets.weapons.Rudras = {main="Aeneas", name="Centovente"} --(Twashtar)
 	sets.weapons.Evisceration = {main="Tauret", sub="Gleti's Knife"}
@@ -650,7 +645,7 @@ function init_gear_sets()
 	sets.precast.WS["Rudra's Storm"].FullAcc = set_combine(sets.precast.WS.FullAcc, sets.precast.WS["Rudra's Storm"], {})
 	sets.precast.WS["Rudra's Storm"].PDL = set_combine(sets.precast.WS.PDL, sets.precast.WS["Rudra's Storm"], {})
 	
--- Ruthless Stroke
+    -- Ruthless Stroke
 	sets.precast.WS['Ruthless Stroke'] = set_combine(sets.precast.WS, {
 		neck={ name="Bard's Charm +2", augments={'Path: A',}},
 		waist="Kentarch Belt +1",
@@ -668,7 +663,9 @@ function init_gear_sets()
 	sets.precast.WS['Savage Blade'] = set_combine(sets.precast.WS, {})
 	sets.precast.WS['Savage Blade'].Acc = set_combine(sets.precast.WS.Acc, sets.precast.WS['Savage Blade'], {})
 	sets.precast.WS['Savage Blade'].FullAcc = set_combine(sets.precast.WS.FullAcc, sets.precast.WS['Savage Blade'], {})
-	sets.precast.WS['Savage Blade'].PDL = set_combine(sets.precast.WS.PDL, sets.precast.WS['Savage Blade'], {})
+	sets.precast.WS['Savage Blade'].PDL = set_combine(sets.precast.WS.PDL, sets.precast.WS['Savage Blade'], {
+		neck={ name="Bard's Charm +2", augments={'Path: A',}},
+	})
 
 -- ### Weaponskill swaps when using WS at 3000 TP ###
 	sets.MaxTP = {left_ear="Ishvara Earring", right_ear="Telos Earring",}
@@ -689,10 +686,10 @@ function init_gear_sets()
 
 -- Treasure Hunter ger
 	sets.TreasureHunter = set_combine(sets.TreasureHunter, {
-		head="Volte Cap",
 		body="Volte Jupon",
-		waist="Chaac Belt",
+		right_ring="Hoxne Ring",
 	})
+	
 end
 
 ---------------------------------------------------------------------------------------------------------------
